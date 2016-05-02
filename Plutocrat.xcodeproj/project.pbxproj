@@ -9,11 +9,7 @@
 /* Begin PBXBuildFile section */
 		FD45A0BC1CD7735100304EC0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0BB1CD7735100304EC0 /* main.m */; };
 		FD45A0BF1CD7735100304EC0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0BE1CD7735100304EC0 /* AppDelegate.m */; };
-		FD45A0C21CD7735100304EC0 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0C11CD7735100304EC0 /* FirstViewController.m */; };
-		FD45A0C51CD7735100304EC0 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0C41CD7735100304EC0 /* SecondViewController.m */; };
-		FD45A0C81CD7735100304EC0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD45A0C61CD7735100304EC0 /* Main.storyboard */; };
 		FD45A0CA1CD7735100304EC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD45A0C91CD7735100304EC0 /* Assets.xcassets */; };
-		FD45A0CD1CD7735100304EC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD45A0CB1CD7735100304EC0 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,13 +17,7 @@
 		FD45A0BB1CD7735100304EC0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FD45A0BD1CD7735100304EC0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FD45A0BE1CD7735100304EC0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		FD45A0C01CD7735100304EC0 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		FD45A0C11CD7735100304EC0 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		FD45A0C31CD7735100304EC0 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		FD45A0C41CD7735100304EC0 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
-		FD45A0C71CD7735100304EC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FD45A0C91CD7735100304EC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		FD45A0CC1CD7735100304EC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FD45A0CE1CD7735100304EC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,13 +53,7 @@
 			children = (
 				FD45A0BD1CD7735100304EC0 /* AppDelegate.h */,
 				FD45A0BE1CD7735100304EC0 /* AppDelegate.m */,
-				FD45A0C01CD7735100304EC0 /* FirstViewController.h */,
-				FD45A0C11CD7735100304EC0 /* FirstViewController.m */,
-				FD45A0C31CD7735100304EC0 /* SecondViewController.h */,
-				FD45A0C41CD7735100304EC0 /* SecondViewController.m */,
-				FD45A0C61CD7735100304EC0 /* Main.storyboard */,
 				FD45A0C91CD7735100304EC0 /* Assets.xcassets */,
-				FD45A0CB1CD7735100304EC0 /* LaunchScreen.storyboard */,
 				FD45A0CE1CD7735100304EC0 /* Info.plist */,
 				FD45A0BA1CD7735100304EC0 /* Supporting Files */,
 			);
@@ -141,9 +125,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD45A0CD1CD7735100304EC0 /* LaunchScreen.storyboard in Resources */,
 				FD45A0CA1CD7735100304EC0 /* Assets.xcassets in Resources */,
-				FD45A0C81CD7735100304EC0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,33 +136,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD45A0C51CD7735100304EC0 /* SecondViewController.m in Sources */,
 				FD45A0BF1CD7735100304EC0 /* AppDelegate.m in Sources */,
-				FD45A0C21CD7735100304EC0 /* FirstViewController.m in Sources */,
 				FD45A0BC1CD7735100304EC0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		FD45A0C61CD7735100304EC0 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FD45A0C71CD7735100304EC0 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		FD45A0CB1CD7735100304EC0 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FD45A0CC1CD7735100304EC0 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		FD45A0CF1CD7735100304EC0 /* Debug */ = {
@@ -269,6 +230,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				INFOPLIST_FILE = Plutocrat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.whiteflyventuresinc.Plutocrat;
@@ -280,6 +242,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				INFOPLIST_FILE = Plutocrat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.whiteflyventuresinc.Plutocrat;
