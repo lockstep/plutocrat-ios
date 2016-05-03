@@ -7,16 +7,36 @@
 //
 
 #import "AppDelegate.h"
+#import "JASidePanelController.h"
+#import "TabBarViewController.h"
+#import "LeftPanelViewController.h"
 
 @interface AppDelegate ()
-
+{
+    JASidePanelController * rootViewController;
+    
+    TabBarViewController * tabBarViewController;
+    LeftPanelViewController * leftPanelViewController;
+}
 @end
 
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    rootViewController = [JASidePanelController new];
+    
+    leftPanelViewController = [LeftPanelViewController new];
+    rootViewController.leftPanel = leftPanelViewController;
+    
+    tabBarViewController = [TabBarViewController new];
+    rootViewController.centerPanel = tabBarViewController;
+    
+    self.window.rootViewController = rootViewController;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

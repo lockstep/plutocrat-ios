@@ -10,6 +10,14 @@
 		FD45A0BC1CD7735100304EC0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0BB1CD7735100304EC0 /* main.m */; };
 		FD45A0BF1CD7735100304EC0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0BE1CD7735100304EC0 /* AppDelegate.m */; };
 		FD45A0CA1CD7735100304EC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD45A0C91CD7735100304EC0 /* Assets.xcassets */; };
+		FD45A0D71CD8D7F800304EC0 /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0D61CD8D7F800304EC0 /* JASidePanelController.m */; };
+		FD45A0DB1CD8DE8100304EC0 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0DA1CD8DE8100304EC0 /* HomeViewController.m */; };
+		FD45A0E11CD8DF1200304EC0 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0E01CD8DF1200304EC0 /* TabBarViewController.m */; };
+		FD45A0E41CD8DF2800304EC0 /* TargetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0E31CD8DF2800304EC0 /* TargetsViewController.m */; };
+		FD45A0E71CD8EA3200304EC0 /* BuyoutsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0E61CD8EA3200304EC0 /* BuyoutsViewController.m */; };
+		FD45A0EA1CD8EC8900304EC0 /* SharesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0E91CD8EC8900304EC0 /* SharesViewController.m */; };
+		FD45A0ED1CD8EC9700304EC0 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0EC1CD8EC9700304EC0 /* AboutViewController.m */; };
+		FD45A0F31CD8EEEA00304EC0 /* LeftPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0F21CD8EEEA00304EC0 /* LeftPanelViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +27,22 @@
 		FD45A0BE1CD7735100304EC0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FD45A0C91CD7735100304EC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD45A0CE1CD7735100304EC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD45A0D51CD8D7F800304EC0 /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JASidePanelController.h; path = ThirdParty/JASidePanelController.h; sourceTree = "<group>"; };
+		FD45A0D61CD8D7F800304EC0 /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JASidePanelController.m; path = ThirdParty/JASidePanelController.m; sourceTree = "<group>"; };
+		FD45A0D91CD8DE8100304EC0 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = View/HomeViewController.h; sourceTree = "<group>"; };
+		FD45A0DA1CD8DE8100304EC0 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = View/HomeViewController.m; sourceTree = "<group>"; };
+		FD45A0DF1CD8DF1200304EC0 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabBarViewController.h; path = View/TabBarViewController.h; sourceTree = "<group>"; };
+		FD45A0E01CD8DF1200304EC0 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabBarViewController.m; path = View/TabBarViewController.m; sourceTree = "<group>"; };
+		FD45A0E21CD8DF2800304EC0 /* TargetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TargetsViewController.h; path = View/TargetsViewController.h; sourceTree = "<group>"; };
+		FD45A0E31CD8DF2800304EC0 /* TargetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TargetsViewController.m; path = View/TargetsViewController.m; sourceTree = "<group>"; };
+		FD45A0E51CD8EA3200304EC0 /* BuyoutsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyoutsViewController.h; path = View/BuyoutsViewController.h; sourceTree = "<group>"; };
+		FD45A0E61CD8EA3200304EC0 /* BuyoutsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyoutsViewController.m; path = View/BuyoutsViewController.m; sourceTree = "<group>"; };
+		FD45A0E81CD8EC8900304EC0 /* SharesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharesViewController.h; path = View/SharesViewController.h; sourceTree = "<group>"; };
+		FD45A0E91CD8EC8900304EC0 /* SharesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SharesViewController.m; path = View/SharesViewController.m; sourceTree = "<group>"; };
+		FD45A0EB1CD8EC9700304EC0 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutViewController.h; path = View/AboutViewController.h; sourceTree = "<group>"; };
+		FD45A0EC1CD8EC9700304EC0 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutViewController.m; path = View/AboutViewController.m; sourceTree = "<group>"; };
+		FD45A0F11CD8EEEA00304EC0 /* LeftPanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LeftPanelViewController.h; path = View/LeftPanelViewController.h; sourceTree = "<group>"; };
+		FD45A0F21CD8EEEA00304EC0 /* LeftPanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LeftPanelViewController.m; path = View/LeftPanelViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +75,8 @@
 		FD45A0B91CD7735100304EC0 /* Plutocrat */ = {
 			isa = PBXGroup;
 			children = (
+				FD45A0D81CD8DAA200304EC0 /* View */,
+				FD45A0D41CD8D7E900304EC0 /* ThirdParty */,
 				FD45A0BD1CD7735100304EC0 /* AppDelegate.h */,
 				FD45A0BE1CD7735100304EC0 /* AppDelegate.m */,
 				FD45A0C91CD7735100304EC0 /* Assets.xcassets */,
@@ -66,6 +92,36 @@
 				FD45A0BB1CD7735100304EC0 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FD45A0D41CD8D7E900304EC0 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				FD45A0D51CD8D7F800304EC0 /* JASidePanelController.h */,
+				FD45A0D61CD8D7F800304EC0 /* JASidePanelController.m */,
+			);
+			name = ThirdParty;
+			sourceTree = "<group>";
+		};
+		FD45A0D81CD8DAA200304EC0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FD45A0EB1CD8EC9700304EC0 /* AboutViewController.h */,
+				FD45A0EC1CD8EC9700304EC0 /* AboutViewController.m */,
+				FD45A0E51CD8EA3200304EC0 /* BuyoutsViewController.h */,
+				FD45A0E61CD8EA3200304EC0 /* BuyoutsViewController.m */,
+				FD45A0D91CD8DE8100304EC0 /* HomeViewController.h */,
+				FD45A0DA1CD8DE8100304EC0 /* HomeViewController.m */,
+				FD45A0F11CD8EEEA00304EC0 /* LeftPanelViewController.h */,
+				FD45A0F21CD8EEEA00304EC0 /* LeftPanelViewController.m */,
+				FD45A0E81CD8EC8900304EC0 /* SharesViewController.h */,
+				FD45A0E91CD8EC8900304EC0 /* SharesViewController.m */,
+				FD45A0DF1CD8DF1200304EC0 /* TabBarViewController.h */,
+				FD45A0E01CD8DF1200304EC0 /* TabBarViewController.m */,
+				FD45A0E21CD8DF2800304EC0 /* TargetsViewController.h */,
+				FD45A0E31CD8DF2800304EC0 /* TargetsViewController.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,8 +192,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD45A0ED1CD8EC9700304EC0 /* AboutViewController.m in Sources */,
 				FD45A0BF1CD7735100304EC0 /* AppDelegate.m in Sources */,
 				FD45A0BC1CD7735100304EC0 /* main.m in Sources */,
+				FD45A0D71CD8D7F800304EC0 /* JASidePanelController.m in Sources */,
+				FD45A0F31CD8EEEA00304EC0 /* LeftPanelViewController.m in Sources */,
+				FD45A0E41CD8DF2800304EC0 /* TargetsViewController.m in Sources */,
+				FD45A0E11CD8DF1200304EC0 /* TabBarViewController.m in Sources */,
+				FD45A0E71CD8EA3200304EC0 /* BuyoutsViewController.m in Sources */,
+				FD45A0EA1CD8EC8900304EC0 /* SharesViewController.m in Sources */,
+				FD45A0DB1CD8DE8100304EC0 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
