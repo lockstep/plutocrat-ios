@@ -7,12 +7,15 @@
 //
 
 #import "AppDelegate.h"
+#import "LoginViewController.h"
 #import "JASidePanelController.h"
 #import "TabBarViewController.h"
 #import "LeftPanelViewController.h"
 
 @interface AppDelegate ()
 {
+    LoginViewController * loginViewController;
+    
     JASidePanelController * rootViewController;
     
     TabBarViewController * tabBarViewController;
@@ -27,15 +30,18 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    rootViewController = [JASidePanelController new];
-    
-    leftPanelViewController = [LeftPanelViewController new];
-    rootViewController.leftPanel = leftPanelViewController;
-    
-    tabBarViewController = [TabBarViewController new];
-    rootViewController.centerPanel = tabBarViewController;
-    
-    self.window.rootViewController = rootViewController;
+    loginViewController = [LoginViewController new];
+    self.window.rootViewController = loginViewController;
+    [loginViewController setupContentsWhenUserIsRegistered:YES];
+//    rootViewController = [JASidePanelController new];
+//    
+//    leftPanelViewController = [LeftPanelViewController new];
+//    rootViewController.leftPanel = leftPanelViewController;
+//    
+//    tabBarViewController = [TabBarViewController new];
+//    rootViewController.centerPanel = tabBarViewController;
+//    
+//    self.window.rootViewController = rootViewController;
     [self.window makeKeyAndVisible];
     return YES;
 }
