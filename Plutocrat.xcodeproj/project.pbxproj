@@ -27,6 +27,10 @@
 		FD8B5CC01CDBE6A600751642 /* UIFont+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CBF1CDBE6A600751642 /* UIFont+Utils.m */; };
 		FD8B5CC51CDBFF8D00751642 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CC41CDBFF8D00751642 /* LoginViewController.m */; };
 		FD8B5CCB1CDBFFFA00751642 /* CommonSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CCA1CDBFFFA00751642 /* CommonSeparator.m */; };
+		FD8B5CCE1CDFCFED00751642 /* CommonButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CCD1CDFCFED00751642 /* CommonButton.m */; };
+		FD8B5CD11CDFE6A400751642 /* Buttons.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD8B5CCF1CDFE6A400751642 /* Buttons.strings */; };
+		FD8B5CD41CDFE93600751642 /* CommonCheckBoxWithText.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CD31CDFE93600751642 /* CommonCheckBoxWithText.m */; };
+		FD8B5CD61CDFEDD100751642 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8B5CD51CDFEDD100751642 /* LocalAuthentication.framework */; };
 		FDFA5AF81CDA9F9700030A89 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FDFA5AF61CDA9F9700030A89 /* main.m */; };
 		FDFA5AFB1CDA9FAD00030A89 /* Texts.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDFA5AFD1CDA9FAD00030A89 /* Texts.strings */; };
 		FDFA5B011CDAA43600030A89 /* UIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = FDFA5B001CDAA43600030A89 /* UIColor+Utils.m */; };
@@ -67,6 +71,12 @@
 		FD8B5CC41CDBFF8D00751642 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = View/Authentication/LoginViewController.m; sourceTree = "<group>"; };
 		FD8B5CC91CDBFFFA00751642 /* CommonSeparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonSeparator.h; path = View/Common/Views/CommonSeparator.h; sourceTree = "<group>"; };
 		FD8B5CCA1CDBFFFA00751642 /* CommonSeparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonSeparator.m; path = View/Common/Views/CommonSeparator.m; sourceTree = "<group>"; };
+		FD8B5CCC1CDFCFED00751642 /* CommonButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonButton.h; path = View/Common/Views/CommonButton.h; sourceTree = "<group>"; };
+		FD8B5CCD1CDFCFED00751642 /* CommonButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonButton.m; path = View/Common/Views/CommonButton.m; sourceTree = "<group>"; };
+		FD8B5CD01CDFE6A400751642 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "Supporting Files/Base.lproj/Buttons.strings"; sourceTree = "<group>"; };
+		FD8B5CD21CDFE93600751642 /* CommonCheckBoxWithText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonCheckBoxWithText.h; path = View/Common/Views/CommonCheckBoxWithText.h; sourceTree = "<group>"; };
+		FD8B5CD31CDFE93600751642 /* CommonCheckBoxWithText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonCheckBoxWithText.m; path = View/Common/Views/CommonCheckBoxWithText.m; sourceTree = "<group>"; };
+		FD8B5CD51CDFEDD100751642 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		FDFA5AF51CDA9F9700030A89 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Supporting Files/Info.plist"; sourceTree = "<group>"; };
 		FDFA5AF61CDA9F9700030A89 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Supporting Files/main.m"; sourceTree = "<group>"; };
 		FDFA5AFC1CDA9FAD00030A89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Texts.strings; sourceTree = "<group>"; };
@@ -79,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD8B5CD61CDFEDD100751642 /* LocalAuthentication.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +99,7 @@
 		FD45A0AE1CD7735100304EC0 = {
 			isa = PBXGroup;
 			children = (
+				FD8B5CD71CDFEDDE00751642 /* Frameworks */,
 				FD45A0B91CD7735100304EC0 /* Plutocrat */,
 				FD45A0B81CD7735100304EC0 /* Products */,
 			);
@@ -164,6 +176,7 @@
 			children = (
 				FDFA5AFD1CDA9FAD00030A89 /* Texts.strings */,
 				FD8B5CAC1CDBE27000751642 /* Labels.strings */,
+				FD8B5CCF1CDFE6A400751642 /* Buttons.strings */,
 			);
 			name = Base.lproj;
 			sourceTree = "<group>";
@@ -219,8 +232,20 @@
 			children = (
 				FD8B5CC91CDBFFFA00751642 /* CommonSeparator.h */,
 				FD8B5CCA1CDBFFFA00751642 /* CommonSeparator.m */,
+				FD8B5CCC1CDFCFED00751642 /* CommonButton.h */,
+				FD8B5CCD1CDFCFED00751642 /* CommonButton.m */,
+				FD8B5CD21CDFE93600751642 /* CommonCheckBoxWithText.h */,
+				FD8B5CD31CDFE93600751642 /* CommonCheckBoxWithText.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		FD8B5CD71CDFEDDE00751642 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FD8B5CD51CDFEDD100751642 /* LocalAuthentication.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		FDFA5AFE1CDAA3A100030A89 /* Utils */ = {
@@ -295,6 +320,7 @@
 				FD8B5CBD1CDBE53E00751642 /* Sansation-Regular.ttf in Resources */,
 				FD8B5CBB1CDBE53E00751642 /* Sansation-Light.ttf in Resources */,
 				FD8B5CB91CDBE53E00751642 /* Sansation-BoldItalic.ttf in Resources */,
+				FD8B5CD11CDFE6A400751642 /* Buttons.strings in Resources */,
 				FD8B5CB81CDBE53E00751642 /* Sansation-Bold.ttf in Resources */,
 				FD8B5CAE1CDBE27000751642 /* Labels.strings in Resources */,
 				FD45A0CA1CD7735100304EC0 /* Assets.xcassets in Resources */,
@@ -314,12 +340,14 @@
 				FD45A0BF1CD7735100304EC0 /* AppDelegate.m in Sources */,
 				FD8B5CC51CDBFF8D00751642 /* LoginViewController.m in Sources */,
 				FD45A0D71CD8D7F800304EC0 /* JASidePanelController.m in Sources */,
+				FD8B5CD41CDFE93600751642 /* CommonCheckBoxWithText.m in Sources */,
 				FD45A0F31CD8EEEA00304EC0 /* LeftPanelViewController.m in Sources */,
 				FD8B5CC01CDBE6A600751642 /* UIFont+Utils.m in Sources */,
 				FD45A0E41CD8DF2800304EC0 /* TargetsViewController.m in Sources */,
 				FD45A0E11CD8DF1200304EC0 /* TabBarViewController.m in Sources */,
 				FD45A0E71CD8EA3200304EC0 /* BuyoutsViewController.m in Sources */,
 				FDFA5B011CDAA43600030A89 /* UIColor+Utils.m in Sources */,
+				FD8B5CCE1CDFCFED00751642 /* CommonButton.m in Sources */,
 				FD8B5CCB1CDBFFFA00751642 /* CommonSeparator.m in Sources */,
 				FD45A0EA1CD8EC8900304EC0 /* SharesViewController.m in Sources */,
 				FDFA5AF81CDA9F9700030A89 /* main.m in Sources */,
@@ -336,6 +364,14 @@
 				FD8B5CAD1CDBE27000751642 /* Base */,
 			);
 			name = Labels.strings;
+			sourceTree = "<group>";
+		};
+		FD8B5CCF1CDFE6A400751642 /* Buttons.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FD8B5CD01CDFE6A400751642 /* Base */,
+			);
+			name = Buttons.strings;
 			sourceTree = "<group>";
 		};
 		FDFA5AFD1CDA9FAD00030A89 /* Texts.strings */ = {

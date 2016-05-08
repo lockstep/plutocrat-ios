@@ -11,3 +11,6 @@
 "DisplayName" = "Display Name";
 "Email" = "Email";
 "Password" = "Password";
+"UseTouchId" = "Enable Touch ID";
+"Login" = "Login";
+"ForgotPassword" = "Forgot Password";

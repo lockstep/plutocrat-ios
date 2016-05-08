@@ -32,7 +32,6 @@
     
     loginViewController = [LoginViewController new];
     self.window.rootViewController = loginViewController;
-    [loginViewController setupContentsWhenUserIsRegistered:YES];
 //    rootViewController = [JASidePanelController new];
 //    
 //    leftPanelViewController = [LeftPanelViewController new];
@@ -43,6 +42,8 @@
 //    
 //    self.window.rootViewController = rootViewController;
     [self.window makeKeyAndVisible];
+    [loginViewController setupContentsWhenUserIsRegistered:NO];
+
     return YES;
 }
 
