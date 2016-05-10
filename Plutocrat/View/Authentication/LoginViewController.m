@@ -181,8 +181,7 @@
     }
     else
     {
-        //TODO: uncomment after debug
-        //[useTouchId setHidden:YES];
+        [useTouchId setHidden:YES];
     }
     
     enterButton = [CommonButton smallButtonWithColor:buttonColorGray];
@@ -233,22 +232,15 @@
                                 enterButton.frame.size.width,
                                 enterButton.frame.size.height)];
     
-    [loginButton setFrame:CGRectMake(password.frame.origin.x,
-                                     self.view.bounds.size.height - 80.0f,
-                                     loginButton.frame.size.width,
-                                     loginButton.frame.size.height)];
-    
-    [forgotPasswordButton setFrame:CGRectMake(password.frame.origin.x,
-                                              self.view.bounds.size.height - 95.0f,
-                                              forgotPasswordButton.frame.size.width,
-                                              forgotPasswordButton.frame.size.height)];
-    
-    [registerButton setFrame:CGRectMake(password.frame.origin.x,
-                                        self.view.bounds.size.height - 64.0f,
-                                        registerButton.frame.size.width,
-                                        registerButton.frame.size.height)];
-    
-    
+    CGFloat spaceLeftStartPoint = enterButton.frame.origin.y + enterButton.frame.size.height;
+    CGFloat spaceLeftHeight = self.view.bounds.size.height - spaceLeftStartPoint;
+    CGFloat spaceLeftCenter = spaceLeftStartPoint + spaceLeftHeight / 2;
+    [loginButton setCenter:CGPointMake(password.frame.origin.x + loginButton.frame.size.width / 2,
+                                       spaceLeftCenter)];
+    [forgotPasswordButton setCenter:CGPointMake(password.frame.origin.x + forgotPasswordButton.frame.size.width / 2,
+                                                spaceLeftCenter - 15.0f)];
+    [registerButton setCenter:CGPointMake(password.frame.origin.x + registerButton.frame.size.width / 2,
+                                          spaceLeftCenter + 15.0f)];
     
     [loginButton setHidden:userIsRegistered];
     [forgotPasswordButton setHidden:!userIsRegistered];
@@ -285,7 +277,15 @@
 
 #pragma mark - Keyboard
 
-static CGFloat scrollingHeight = 70.0f; // TODO: automatically count this value for different screen sizes
+CGFloat scrollingHeight()
+{
+    CGFloat res = 0.0f;
+    if ([UIScreen mainScreen].bounds.size.height < 600.0f) // small iPhones
+    {
+        res = 620.0f - [UIScreen mainScreen].bounds.size.height;
+    }
+    return res;
+}
 
 - (void)keyboardWillShow:(NSNotification *)notification
 {
@@ -294,7 +294,7 @@ static CGFloat scrollingHeight = 70.0f; // TODO: automatically count this value 
     
     void (^animations)() = ^() {
         CGRect frame = scrollableContentHolder.frame;
-        frame.origin.y -= scrollingHeight;
+        frame.origin.y -= scrollingHeight();
         scrollableContentHolder.frame = frame;
     };
     
@@ -312,7 +312,7 @@ static CGFloat scrollingHeight = 70.0f; // TODO: automatically count this value 
     
     void (^animations)() = ^() {
         CGRect frame = scrollableContentHolder.frame;
-        frame.origin.y += scrollingHeight;
+        frame.origin.y += scrollingHeight();
         scrollableContentHolder.frame = frame;
     };
     

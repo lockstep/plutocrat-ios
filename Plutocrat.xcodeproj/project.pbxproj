@@ -10,13 +10,6 @@
 		FD45A0BF1CD7735100304EC0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0BE1CD7735100304EC0 /* AppDelegate.m */; };
 		FD45A0CA1CD7735100304EC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD45A0C91CD7735100304EC0 /* Assets.xcassets */; };
 		FD45A0D71CD8D7F800304EC0 /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0D61CD8D7F800304EC0 /* JASidePanelController.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		FD45A0DB1CD8DE8100304EC0 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0DA1CD8DE8100304EC0 /* HomeViewController.m */; };
-		FD45A0E11CD8DF1200304EC0 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0E01CD8DF1200304EC0 /* TabBarViewController.m */; };
-		FD45A0E41CD8DF2800304EC0 /* TargetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0E31CD8DF2800304EC0 /* TargetsViewController.m */; };
-		FD45A0E71CD8EA3200304EC0 /* BuyoutsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0E61CD8EA3200304EC0 /* BuyoutsViewController.m */; };
-		FD45A0EA1CD8EC8900304EC0 /* SharesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0E91CD8EC8900304EC0 /* SharesViewController.m */; };
-		FD45A0ED1CD8EC9700304EC0 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0EC1CD8EC9700304EC0 /* AboutViewController.m */; };
-		FD45A0F31CD8EEEA00304EC0 /* LeftPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0F21CD8EEEA00304EC0 /* LeftPanelViewController.m */; };
 		FD8B5CAE1CDBE27000751642 /* Labels.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD8B5CAC1CDBE27000751642 /* Labels.strings */; };
 		FD8B5CB81CDBE53E00751642 /* Sansation-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD8B5CB21CDBE53E00751642 /* Sansation-Bold.ttf */; };
 		FD8B5CB91CDBE53E00751642 /* Sansation-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD8B5CB31CDBE53E00751642 /* Sansation-BoldItalic.ttf */; };
@@ -31,6 +24,15 @@
 		FD8B5CD11CDFE6A400751642 /* Buttons.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD8B5CCF1CDFE6A400751642 /* Buttons.strings */; };
 		FD8B5CD41CDFE93600751642 /* CommonCheckBoxWithText.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CD31CDFE93600751642 /* CommonCheckBoxWithText.m */; };
 		FD8B5CD61CDFEDD100751642 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8B5CD51CDFEDD100751642 /* LocalAuthentication.framework */; };
+		FD8B5CDE1CE251D400751642 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CDD1CE251D400751642 /* AboutViewController.m */; };
+		FD8B5CE21CE2521B00751642 /* ResetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CE11CE2521B00751642 /* ResetPasswordViewController.m */; };
+		FD8B5CE51CE2525100751642 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CE41CE2525100751642 /* AccountViewController.m */; };
+		FD8B5CEB1CE2526500751642 /* BuyoutsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CE81CE2526500751642 /* BuyoutsViewController.m */; };
+		FD8B5CEC1CE2526500751642 /* TargetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CEA1CE2526500751642 /* TargetsViewController.m */; };
+		FD8B5CF01CE2528300751642 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CEF1CE2528300751642 /* HomeViewController.m */; };
+		FD8B5CF41CE252AE00751642 /* SharesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CF31CE252AE00751642 /* SharesViewController.m */; };
+		FD8B5CF91CE252BF00751642 /* LeftPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CF61CE252BF00751642 /* LeftPanelViewController.m */; };
+		FD8B5CFA1CE252BF00751642 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CF81CE252BF00751642 /* TabBarViewController.m */; };
 		FDFA5AF81CDA9F9700030A89 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FDFA5AF61CDA9F9700030A89 /* main.m */; };
 		FDFA5AFB1CDA9FAD00030A89 /* Texts.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDFA5AFD1CDA9FAD00030A89 /* Texts.strings */; };
 		FDFA5B011CDAA43600030A89 /* UIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = FDFA5B001CDAA43600030A89 /* UIColor+Utils.m */; };
@@ -43,20 +45,6 @@
 		FD45A0C91CD7735100304EC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD45A0D51CD8D7F800304EC0 /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JASidePanelController.h; path = ThirdParty/JASidePanelController.h; sourceTree = "<group>"; };
 		FD45A0D61CD8D7F800304EC0 /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JASidePanelController.m; path = ThirdParty/JASidePanelController.m; sourceTree = "<group>"; };
-		FD45A0D91CD8DE8100304EC0 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = View/HomeViewController.h; sourceTree = "<group>"; };
-		FD45A0DA1CD8DE8100304EC0 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = View/HomeViewController.m; sourceTree = "<group>"; };
-		FD45A0DF1CD8DF1200304EC0 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabBarViewController.h; path = View/TabBarViewController.h; sourceTree = "<group>"; };
-		FD45A0E01CD8DF1200304EC0 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabBarViewController.m; path = View/TabBarViewController.m; sourceTree = "<group>"; };
-		FD45A0E21CD8DF2800304EC0 /* TargetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TargetsViewController.h; path = View/TargetsViewController.h; sourceTree = "<group>"; };
-		FD45A0E31CD8DF2800304EC0 /* TargetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TargetsViewController.m; path = View/TargetsViewController.m; sourceTree = "<group>"; };
-		FD45A0E51CD8EA3200304EC0 /* BuyoutsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyoutsViewController.h; path = View/BuyoutsViewController.h; sourceTree = "<group>"; };
-		FD45A0E61CD8EA3200304EC0 /* BuyoutsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyoutsViewController.m; path = View/BuyoutsViewController.m; sourceTree = "<group>"; };
-		FD45A0E81CD8EC8900304EC0 /* SharesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharesViewController.h; path = View/SharesViewController.h; sourceTree = "<group>"; };
-		FD45A0E91CD8EC8900304EC0 /* SharesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SharesViewController.m; path = View/SharesViewController.m; sourceTree = "<group>"; };
-		FD45A0EB1CD8EC9700304EC0 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutViewController.h; path = View/AboutViewController.h; sourceTree = "<group>"; };
-		FD45A0EC1CD8EC9700304EC0 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutViewController.m; path = View/AboutViewController.m; sourceTree = "<group>"; };
-		FD45A0F11CD8EEEA00304EC0 /* LeftPanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LeftPanelViewController.h; path = View/LeftPanelViewController.h; sourceTree = "<group>"; };
-		FD45A0F21CD8EEEA00304EC0 /* LeftPanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LeftPanelViewController.m; path = View/LeftPanelViewController.m; sourceTree = "<group>"; };
 		FD8B5CAD1CDBE27000751642 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "Supporting Files/Base.lproj/Labels.strings"; sourceTree = "<group>"; };
 		FD8B5CB21CDBE53E00751642 /* Sansation-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Sansation-Bold.ttf"; path = "Misc assets/Fonts/Sansation-Bold.ttf"; sourceTree = "<group>"; };
 		FD8B5CB31CDBE53E00751642 /* Sansation-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Sansation-BoldItalic.ttf"; path = "Misc assets/Fonts/Sansation-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -77,6 +65,24 @@
 		FD8B5CD21CDFE93600751642 /* CommonCheckBoxWithText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonCheckBoxWithText.h; path = View/Common/Views/CommonCheckBoxWithText.h; sourceTree = "<group>"; };
 		FD8B5CD31CDFE93600751642 /* CommonCheckBoxWithText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonCheckBoxWithText.m; path = View/Common/Views/CommonCheckBoxWithText.m; sourceTree = "<group>"; };
 		FD8B5CD51CDFEDD100751642 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		FD8B5CDC1CE251D400751642 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutViewController.h; path = View/About/AboutViewController.h; sourceTree = "<group>"; };
+		FD8B5CDD1CE251D400751642 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutViewController.m; path = View/About/AboutViewController.m; sourceTree = "<group>"; };
+		FD8B5CE01CE2521B00751642 /* ResetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResetPasswordViewController.h; path = View/Authentication/ResetPasswordViewController.h; sourceTree = "<group>"; };
+		FD8B5CE11CE2521B00751642 /* ResetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResetPasswordViewController.m; path = View/Authentication/ResetPasswordViewController.m; sourceTree = "<group>"; };
+		FD8B5CE31CE2525100751642 /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountViewController.h; path = View/Account/AccountViewController.h; sourceTree = "<group>"; };
+		FD8B5CE41CE2525100751642 /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountViewController.m; path = View/Account/AccountViewController.m; sourceTree = "<group>"; };
+		FD8B5CE71CE2526500751642 /* BuyoutsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyoutsViewController.h; path = View/Interaction/BuyoutsViewController.h; sourceTree = "<group>"; };
+		FD8B5CE81CE2526500751642 /* BuyoutsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyoutsViewController.m; path = View/Interaction/BuyoutsViewController.m; sourceTree = "<group>"; };
+		FD8B5CE91CE2526500751642 /* TargetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TargetsViewController.h; path = View/Interaction/TargetsViewController.h; sourceTree = "<group>"; };
+		FD8B5CEA1CE2526500751642 /* TargetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TargetsViewController.m; path = View/Interaction/TargetsViewController.m; sourceTree = "<group>"; };
+		FD8B5CEE1CE2528300751642 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = View/Home/HomeViewController.h; sourceTree = "<group>"; };
+		FD8B5CEF1CE2528300751642 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = View/Home/HomeViewController.m; sourceTree = "<group>"; };
+		FD8B5CF21CE252AE00751642 /* SharesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharesViewController.h; path = View/Shares/SharesViewController.h; sourceTree = "<group>"; };
+		FD8B5CF31CE252AE00751642 /* SharesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SharesViewController.m; path = View/Shares/SharesViewController.m; sourceTree = "<group>"; };
+		FD8B5CF51CE252BF00751642 /* LeftPanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LeftPanelViewController.h; path = View/Common/LeftPanelViewController.h; sourceTree = "<group>"; };
+		FD8B5CF61CE252BF00751642 /* LeftPanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LeftPanelViewController.m; path = View/Common/LeftPanelViewController.m; sourceTree = "<group>"; };
+		FD8B5CF71CE252BF00751642 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabBarViewController.h; path = View/Common/TabBarViewController.h; sourceTree = "<group>"; };
+		FD8B5CF81CE252BF00751642 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabBarViewController.m; path = View/Common/TabBarViewController.m; sourceTree = "<group>"; };
 		FDFA5AF51CDA9F9700030A89 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Supporting Files/Info.plist"; sourceTree = "<group>"; };
 		FDFA5AF61CDA9F9700030A89 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Supporting Files/main.m"; sourceTree = "<group>"; };
 		FDFA5AFC1CDA9FAD00030A89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Texts.strings; sourceTree = "<group>"; };
@@ -120,6 +126,8 @@
 				FD45A0BE1CD7735100304EC0 /* AppDelegate.m */,
 				FD45A0C91CD7735100304EC0 /* Assets.xcassets */,
 				FD8B5CB01CDBE50500751642 /* Misc assets */,
+				FD8B5CD91CE250FD00751642 /* Model */,
+				FD8B5CD81CE250F700751642 /* Network */,
 				FD45A0BA1CD7735100304EC0 /* Supporting Files */,
 				FD45A0D41CD8D7E900304EC0 /* ThirdParty */,
 				FDFA5AFE1CDAA3A100030A89 /* Utils */,
@@ -151,22 +159,13 @@
 		FD45A0D81CD8DAA200304EC0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FD45A0EB1CD8EC9700304EC0 /* AboutViewController.h */,
-				FD45A0EC1CD8EC9700304EC0 /* AboutViewController.m */,
+				FD8B5CDB1CE251BD00751642 /* About */,
+				FD8B5CDF1CE251DD00751642 /* Account */,
 				FD8B5CC21CDBFF5600751642 /* Authentication */,
-				FD45A0E51CD8EA3200304EC0 /* BuyoutsViewController.h */,
-				FD45A0E61CD8EA3200304EC0 /* BuyoutsViewController.m */,
 				FD8B5CC71CDBFFBD00751642 /* Common */,
-				FD45A0D91CD8DE8100304EC0 /* HomeViewController.h */,
-				FD45A0DA1CD8DE8100304EC0 /* HomeViewController.m */,
-				FD45A0F11CD8EEEA00304EC0 /* LeftPanelViewController.h */,
-				FD45A0F21CD8EEEA00304EC0 /* LeftPanelViewController.m */,
-				FD45A0E81CD8EC8900304EC0 /* SharesViewController.h */,
-				FD45A0E91CD8EC8900304EC0 /* SharesViewController.m */,
-				FD45A0DF1CD8DF1200304EC0 /* TabBarViewController.h */,
-				FD45A0E01CD8DF1200304EC0 /* TabBarViewController.m */,
-				FD45A0E21CD8DF2800304EC0 /* TargetsViewController.h */,
-				FD45A0E31CD8DF2800304EC0 /* TargetsViewController.m */,
+				FD8B5CED1CE2527500751642 /* Home */,
+				FD8B5CE61CE2525700751642 /* Interaction */,
+				FD8B5CF11CE252A200751642 /* Shares */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -207,6 +206,8 @@
 			children = (
 				FD8B5CC31CDBFF8D00751642 /* LoginViewController.h */,
 				FD8B5CC41CDBFF8D00751642 /* LoginViewController.m */,
+				FD8B5CE01CE2521B00751642 /* ResetPasswordViewController.h */,
+				FD8B5CE11CE2521B00751642 /* ResetPasswordViewController.m */,
 				FD8B5CC61CDBFF9A00751642 /* Views */,
 			);
 			name = Authentication;
@@ -222,6 +223,10 @@
 		FD8B5CC71CDBFFBD00751642 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				FD8B5CF51CE252BF00751642 /* LeftPanelViewController.h */,
+				FD8B5CF61CE252BF00751642 /* LeftPanelViewController.m */,
+				FD8B5CF71CE252BF00751642 /* TabBarViewController.h */,
+				FD8B5CF81CE252BF00751642 /* TabBarViewController.m */,
 				FD8B5CC81CDBFFDB00751642 /* Views */,
 			);
 			name = Common;
@@ -246,6 +251,67 @@
 				FD8B5CD51CDFEDD100751642 /* LocalAuthentication.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FD8B5CD81CE250F700751642 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		FD8B5CD91CE250FD00751642 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		FD8B5CDB1CE251BD00751642 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				FD8B5CDC1CE251D400751642 /* AboutViewController.h */,
+				FD8B5CDD1CE251D400751642 /* AboutViewController.m */,
+			);
+			name = About;
+			sourceTree = "<group>";
+		};
+		FD8B5CDF1CE251DD00751642 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				FD8B5CE31CE2525100751642 /* AccountViewController.h */,
+				FD8B5CE41CE2525100751642 /* AccountViewController.m */,
+			);
+			name = Account;
+			sourceTree = "<group>";
+		};
+		FD8B5CE61CE2525700751642 /* Interaction */ = {
+			isa = PBXGroup;
+			children = (
+				FD8B5CE71CE2526500751642 /* BuyoutsViewController.h */,
+				FD8B5CE81CE2526500751642 /* BuyoutsViewController.m */,
+				FD8B5CE91CE2526500751642 /* TargetsViewController.h */,
+				FD8B5CEA1CE2526500751642 /* TargetsViewController.m */,
+			);
+			name = Interaction;
+			sourceTree = "<group>";
+		};
+		FD8B5CED1CE2527500751642 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				FD8B5CEE1CE2528300751642 /* HomeViewController.h */,
+				FD8B5CEF1CE2528300751642 /* HomeViewController.m */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		FD8B5CF11CE252A200751642 /* Shares */ = {
+			isa = PBXGroup;
+			children = (
+				FD8B5CF21CE252AE00751642 /* SharesViewController.h */,
+				FD8B5CF31CE252AE00751642 /* SharesViewController.m */,
+			);
+			name = Shares;
 			sourceTree = "<group>";
 		};
 		FDFA5AFE1CDAA3A100030A89 /* Utils */ = {
@@ -336,22 +402,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD45A0ED1CD8EC9700304EC0 /* AboutViewController.m in Sources */,
 				FD45A0BF1CD7735100304EC0 /* AppDelegate.m in Sources */,
 				FD8B5CC51CDBFF8D00751642 /* LoginViewController.m in Sources */,
+				FD8B5CF91CE252BF00751642 /* LeftPanelViewController.m in Sources */,
 				FD45A0D71CD8D7F800304EC0 /* JASidePanelController.m in Sources */,
+				FD8B5CEC1CE2526500751642 /* TargetsViewController.m in Sources */,
 				FD8B5CD41CDFE93600751642 /* CommonCheckBoxWithText.m in Sources */,
-				FD45A0F31CD8EEEA00304EC0 /* LeftPanelViewController.m in Sources */,
+				FD8B5CF01CE2528300751642 /* HomeViewController.m in Sources */,
+				FD8B5CF41CE252AE00751642 /* SharesViewController.m in Sources */,
 				FD8B5CC01CDBE6A600751642 /* UIFont+Utils.m in Sources */,
-				FD45A0E41CD8DF2800304EC0 /* TargetsViewController.m in Sources */,
-				FD45A0E11CD8DF1200304EC0 /* TabBarViewController.m in Sources */,
-				FD45A0E71CD8EA3200304EC0 /* BuyoutsViewController.m in Sources */,
+				FD8B5CE21CE2521B00751642 /* ResetPasswordViewController.m in Sources */,
 				FDFA5B011CDAA43600030A89 /* UIColor+Utils.m in Sources */,
+				FD8B5CDE1CE251D400751642 /* AboutViewController.m in Sources */,
+				FD8B5CEB1CE2526500751642 /* BuyoutsViewController.m in Sources */,
 				FD8B5CCE1CDFCFED00751642 /* CommonButton.m in Sources */,
 				FD8B5CCB1CDBFFFA00751642 /* CommonSeparator.m in Sources */,
-				FD45A0EA1CD8EC8900304EC0 /* SharesViewController.m in Sources */,
 				FDFA5AF81CDA9F9700030A89 /* main.m in Sources */,
-				FD45A0DB1CD8DE8100304EC0 /* HomeViewController.m in Sources */,
+				FD8B5CFA1CE252BF00751642 /* TabBarViewController.m in Sources */,
+				FD8B5CE51CE2525100751642 /* AccountViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,6 +544,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Plutocrat/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Plutocrat/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.whiteflyventuresinc.Plutocrat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -490,6 +559,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Plutocrat/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Plutocrat/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.whiteflyventuresinc.Plutocrat;
 				PRODUCT_NAME = "$(TARGET_NAME)";

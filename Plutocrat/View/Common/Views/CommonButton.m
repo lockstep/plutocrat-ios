@@ -39,7 +39,6 @@
 
     [button setText:text];
     return button;
-    
 }
 
 - (void)setText:(NSString *)text

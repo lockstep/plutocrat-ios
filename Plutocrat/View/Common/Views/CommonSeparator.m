@@ -10,7 +10,6 @@
 
 @implementation CommonSeparator
 
-
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -31,6 +30,5 @@
     CGContextAddLineToPoint(context, rect.size.width, 0.0f);
     CGContextStrokePath(context);
 }
-
 
 @end
