@@ -8,7 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class LoginViewController;
+
+@protocol LoginViewControllerDelegate <NSObject>
+@required
+
+- (void)loginViewControllerShouldDismiss:(LoginViewController *)loginViewController;
+
+@end
+
 @interface LoginViewController : UIViewController <UITextFieldDelegate>
+
+@property (nonatomic, weak) id <LoginViewControllerDelegate> delegate;
 
 - (void)setupContentsWhenUserIsRegistered:(BOOL)userIsRegistered;
 

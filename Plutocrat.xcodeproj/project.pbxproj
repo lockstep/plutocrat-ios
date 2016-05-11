@@ -7,9 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD3869ED1CE3473700065BA3 /* ApiConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3869EC1CE3473700065BA3 /* ApiConnector.m */; };
+		FD386A041CE349C600065BA3 /* Buyout.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A011CE349C600065BA3 /* Buyout.m */; };
+		FD386A051CE349C600065BA3 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A031CE349C600065BA3 /* User.m */; };
+		FD386A081CE34A3C00065BA3 /* DateUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A071CE34A3C00065BA3 /* DateUtility.m */; };
+		FD386A171CE34B9600065BA3 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A0B1CE34B9600065BA3 /* AFHTTPSessionManager.m */; };
+		FD386A181CE34B9600065BA3 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A0E1CE34B9600065BA3 /* AFNetworkReachabilityManager.m */; };
+		FD386A191CE34B9600065BA3 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A101CE34B9600065BA3 /* AFSecurityPolicy.m */; };
+		FD386A1A1CE34B9600065BA3 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A121CE34B9600065BA3 /* AFURLRequestSerialization.m */; };
+		FD386A1B1CE34B9600065BA3 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A141CE34B9600065BA3 /* AFURLResponseSerialization.m */; };
+		FD386A1C1CE34B9600065BA3 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A161CE34B9600065BA3 /* AFURLSessionManager.m */; };
+		FD386A1F1CE34BB700065BA3 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A1E1CE34BB700065BA3 /* UserManager.m */; };
+		FD386A2A1CE3516800065BA3 /* Compact.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A231CE3516800065BA3 /* Compact.m */; };
+		FD386A2B1CE3516800065BA3 /* CUCompactArray.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A251CE3516800065BA3 /* CUCompactArray.m */; };
+		FD386A2C1CE3516800065BA3 /* CUCompactDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A271CE3516800065BA3 /* CUCompactDictionary.m */; };
+		FD386A2D1CE3516800065BA3 /* CUJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A291CE3516800065BA3 /* CUJSONSerialization.m */; };
+		FD386A311CE3517A00065BA3 /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A301CE3517A00065BA3 /* JASidePanelController.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		FD386A341CE3637F00065BA3 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A331CE3637F00065BA3 /* RootViewController.m */; };
 		FD45A0BF1CD7735100304EC0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0BE1CD7735100304EC0 /* AppDelegate.m */; };
 		FD45A0CA1CD7735100304EC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD45A0C91CD7735100304EC0 /* Assets.xcassets */; };
-		FD45A0D71CD8D7F800304EC0 /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0D61CD8D7F800304EC0 /* JASidePanelController.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		FD8B5CAE1CDBE27000751642 /* Labels.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD8B5CAC1CDBE27000751642 /* Labels.strings */; };
 		FD8B5CB81CDBE53E00751642 /* Sansation-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD8B5CB21CDBE53E00751642 /* Sansation-Bold.ttf */; };
 		FD8B5CB91CDBE53E00751642 /* Sansation-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD8B5CB31CDBE53E00751642 /* Sansation-BoldItalic.ttf */; };
@@ -39,12 +55,46 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FD3869EB1CE3473700065BA3 /* ApiConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApiConnector.h; path = Network/ApiConnector.h; sourceTree = "<group>"; };
+		FD3869EC1CE3473700065BA3 /* ApiConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApiConnector.m; path = Network/ApiConnector.m; sourceTree = "<group>"; };
+		FD386A001CE349C600065BA3 /* Buyout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Buyout.h; path = Model/Buyout.h; sourceTree = "<group>"; };
+		FD386A011CE349C600065BA3 /* Buyout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Buyout.m; path = Model/Buyout.m; sourceTree = "<group>"; };
+		FD386A021CE349C600065BA3 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Model/User.h; sourceTree = "<group>"; };
+		FD386A031CE349C600065BA3 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Model/User.m; sourceTree = "<group>"; };
+		FD386A061CE34A3C00065BA3 /* DateUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DateUtility.h; path = Utils/DateUtility.h; sourceTree = "<group>"; };
+		FD386A071CE34A3C00065BA3 /* DateUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DateUtility.m; path = Utils/DateUtility.m; sourceTree = "<group>"; };
+		FD386A0A1CE34B9600065BA3 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPSessionManager.h; path = ThirdParty/AFNetworking/AFHTTPSessionManager.h; sourceTree = "<group>"; };
+		FD386A0B1CE34B9600065BA3 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHTTPSessionManager.m; path = ThirdParty/AFNetworking/AFHTTPSessionManager.m; sourceTree = "<group>"; };
+		FD386A0C1CE34B9600065BA3 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFNetworking.h; path = ThirdParty/AFNetworking/AFNetworking.h; sourceTree = "<group>"; };
+		FD386A0D1CE34B9600065BA3 /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFNetworkReachabilityManager.h; path = ThirdParty/AFNetworking/AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		FD386A0E1CE34B9600065BA3 /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFNetworkReachabilityManager.m; path = ThirdParty/AFNetworking/AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		FD386A0F1CE34B9600065BA3 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFSecurityPolicy.h; path = ThirdParty/AFNetworking/AFSecurityPolicy.h; sourceTree = "<group>"; };
+		FD386A101CE34B9600065BA3 /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFSecurityPolicy.m; path = ThirdParty/AFNetworking/AFSecurityPolicy.m; sourceTree = "<group>"; };
+		FD386A111CE34B9600065BA3 /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFURLRequestSerialization.h; path = ThirdParty/AFNetworking/AFURLRequestSerialization.h; sourceTree = "<group>"; };
+		FD386A121CE34B9600065BA3 /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFURLRequestSerialization.m; path = ThirdParty/AFNetworking/AFURLRequestSerialization.m; sourceTree = "<group>"; };
+		FD386A131CE34B9600065BA3 /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFURLResponseSerialization.h; path = ThirdParty/AFNetworking/AFURLResponseSerialization.h; sourceTree = "<group>"; };
+		FD386A141CE34B9600065BA3 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFURLResponseSerialization.m; path = ThirdParty/AFNetworking/AFURLResponseSerialization.m; sourceTree = "<group>"; };
+		FD386A151CE34B9600065BA3 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFURLSessionManager.h; path = ThirdParty/AFNetworking/AFURLSessionManager.h; sourceTree = "<group>"; };
+		FD386A161CE34B9600065BA3 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFURLSessionManager.m; path = ThirdParty/AFNetworking/AFURLSessionManager.m; sourceTree = "<group>"; };
+		FD386A1D1CE34BB700065BA3 /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserManager.h; path = Model/UserManager.h; sourceTree = "<group>"; };
+		FD386A1E1CE34BB700065BA3 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserManager.m; path = Model/UserManager.m; sourceTree = "<group>"; };
+		FD386A211CE3516800065BA3 /* CollectionUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollectionUtils.h; path = ThirdParty/CollectionUtils/CollectionUtils.h; sourceTree = "<group>"; };
+		FD386A221CE3516800065BA3 /* Compact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Compact.h; path = ThirdParty/CollectionUtils/Compact.h; sourceTree = "<group>"; };
+		FD386A231CE3516800065BA3 /* Compact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Compact.m; path = ThirdParty/CollectionUtils/Compact.m; sourceTree = "<group>"; };
+		FD386A241CE3516800065BA3 /* CUCompactArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CUCompactArray.h; path = ThirdParty/CollectionUtils/CUCompactArray.h; sourceTree = "<group>"; };
+		FD386A251CE3516800065BA3 /* CUCompactArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CUCompactArray.m; path = ThirdParty/CollectionUtils/CUCompactArray.m; sourceTree = "<group>"; };
+		FD386A261CE3516800065BA3 /* CUCompactDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CUCompactDictionary.h; path = ThirdParty/CollectionUtils/CUCompactDictionary.h; sourceTree = "<group>"; };
+		FD386A271CE3516800065BA3 /* CUCompactDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CUCompactDictionary.m; path = ThirdParty/CollectionUtils/CUCompactDictionary.m; sourceTree = "<group>"; };
+		FD386A281CE3516800065BA3 /* CUJSONSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CUJSONSerialization.h; path = ThirdParty/CollectionUtils/CUJSONSerialization.h; sourceTree = "<group>"; };
+		FD386A291CE3516800065BA3 /* CUJSONSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CUJSONSerialization.m; path = ThirdParty/CollectionUtils/CUJSONSerialization.m; sourceTree = "<group>"; };
+		FD386A2F1CE3517A00065BA3 /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JASidePanelController.h; path = ThirdParty/SidePanel/JASidePanelController.h; sourceTree = "<group>"; };
+		FD386A301CE3517A00065BA3 /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JASidePanelController.m; path = ThirdParty/SidePanel/JASidePanelController.m; sourceTree = "<group>"; };
+		FD386A321CE3637F00065BA3 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootViewController.h; path = View/Common/RootViewController.h; sourceTree = "<group>"; };
+		FD386A331CE3637F00065BA3 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = View/Common/RootViewController.m; sourceTree = "<group>"; };
 		FD45A0B71CD7735100304EC0 /* Plutocrat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plutocrat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD45A0BD1CD7735100304EC0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FD45A0BE1CD7735100304EC0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FD45A0C91CD7735100304EC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		FD45A0D51CD8D7F800304EC0 /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JASidePanelController.h; path = ThirdParty/JASidePanelController.h; sourceTree = "<group>"; };
-		FD45A0D61CD8D7F800304EC0 /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JASidePanelController.m; path = ThirdParty/JASidePanelController.m; sourceTree = "<group>"; };
 		FD8B5CAD1CDBE27000751642 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "Supporting Files/Base.lproj/Labels.strings"; sourceTree = "<group>"; };
 		FD8B5CB21CDBE53E00751642 /* Sansation-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Sansation-Bold.ttf"; path = "Misc assets/Fonts/Sansation-Bold.ttf"; sourceTree = "<group>"; };
 		FD8B5CB31CDBE53E00751642 /* Sansation-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Sansation-BoldItalic.ttf"; path = "Misc assets/Fonts/Sansation-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -102,6 +152,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FD386A091CE34B8A00065BA3 /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				FD386A0A1CE34B9600065BA3 /* AFHTTPSessionManager.h */,
+				FD386A0B1CE34B9600065BA3 /* AFHTTPSessionManager.m */,
+				FD386A0C1CE34B9600065BA3 /* AFNetworking.h */,
+				FD386A0D1CE34B9600065BA3 /* AFNetworkReachabilityManager.h */,
+				FD386A0E1CE34B9600065BA3 /* AFNetworkReachabilityManager.m */,
+				FD386A0F1CE34B9600065BA3 /* AFSecurityPolicy.h */,
+				FD386A101CE34B9600065BA3 /* AFSecurityPolicy.m */,
+				FD386A111CE34B9600065BA3 /* AFURLRequestSerialization.h */,
+				FD386A121CE34B9600065BA3 /* AFURLRequestSerialization.m */,
+				FD386A131CE34B9600065BA3 /* AFURLResponseSerialization.h */,
+				FD386A141CE34B9600065BA3 /* AFURLResponseSerialization.m */,
+				FD386A151CE34B9600065BA3 /* AFURLSessionManager.h */,
+				FD386A161CE34B9600065BA3 /* AFURLSessionManager.m */,
+			);
+			name = AFNetworking;
+			sourceTree = "<group>";
+		};
+		FD386A201CE3515700065BA3 /* CollectionUtils */ = {
+			isa = PBXGroup;
+			children = (
+				FD386A211CE3516800065BA3 /* CollectionUtils.h */,
+				FD386A221CE3516800065BA3 /* Compact.h */,
+				FD386A231CE3516800065BA3 /* Compact.m */,
+				FD386A241CE3516800065BA3 /* CUCompactArray.h */,
+				FD386A251CE3516800065BA3 /* CUCompactArray.m */,
+				FD386A261CE3516800065BA3 /* CUCompactDictionary.h */,
+				FD386A271CE3516800065BA3 /* CUCompactDictionary.m */,
+				FD386A281CE3516800065BA3 /* CUJSONSerialization.h */,
+				FD386A291CE3516800065BA3 /* CUJSONSerialization.m */,
+			);
+			name = CollectionUtils;
+			sourceTree = "<group>";
+		};
+		FD386A2E1CE3516B00065BA3 /* SidePanel */ = {
+			isa = PBXGroup;
+			children = (
+				FD386A2F1CE3517A00065BA3 /* JASidePanelController.h */,
+				FD386A301CE3517A00065BA3 /* JASidePanelController.m */,
+			);
+			name = SidePanel;
+			sourceTree = "<group>";
+		};
 		FD45A0AE1CD7735100304EC0 = {
 			isa = PBXGroup;
 			children = (
@@ -150,8 +245,9 @@
 		FD45A0D41CD8D7E900304EC0 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
-				FD45A0D51CD8D7F800304EC0 /* JASidePanelController.h */,
-				FD45A0D61CD8D7F800304EC0 /* JASidePanelController.m */,
+				FD386A091CE34B8A00065BA3 /* AFNetworking */,
+				FD386A201CE3515700065BA3 /* CollectionUtils */,
+				FD386A2E1CE3516B00065BA3 /* SidePanel */,
 			);
 			name = ThirdParty;
 			sourceTree = "<group>";
@@ -225,6 +321,8 @@
 			children = (
 				FD8B5CF51CE252BF00751642 /* LeftPanelViewController.h */,
 				FD8B5CF61CE252BF00751642 /* LeftPanelViewController.m */,
+				FD386A321CE3637F00065BA3 /* RootViewController.h */,
+				FD386A331CE3637F00065BA3 /* RootViewController.m */,
 				FD8B5CF71CE252BF00751642 /* TabBarViewController.h */,
 				FD8B5CF81CE252BF00751642 /* TabBarViewController.m */,
 				FD8B5CC81CDBFFDB00751642 /* Views */,
@@ -256,6 +354,8 @@
 		FD8B5CD81CE250F700751642 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				FD3869EB1CE3473700065BA3 /* ApiConnector.h */,
+				FD3869EC1CE3473700065BA3 /* ApiConnector.m */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -263,6 +363,12 @@
 		FD8B5CD91CE250FD00751642 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FD386A001CE349C600065BA3 /* Buyout.h */,
+				FD386A011CE349C600065BA3 /* Buyout.m */,
+				FD386A021CE349C600065BA3 /* User.h */,
+				FD386A031CE349C600065BA3 /* User.m */,
+				FD386A1D1CE34BB700065BA3 /* UserManager.h */,
+				FD386A1E1CE34BB700065BA3 /* UserManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -317,6 +423,8 @@
 		FDFA5AFE1CDAA3A100030A89 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				FD386A061CE34A3C00065BA3 /* DateUtility.h */,
+				FD386A071CE34A3C00065BA3 /* DateUtility.m */,
 				FDFA5AFF1CDAA43600030A89 /* UIColor+Utils.h */,
 				FDFA5B001CDAA43600030A89 /* UIColor+Utils.m */,
 				FD8B5CBE1CDBE6A600751642 /* UIFont+Utils.h */,
@@ -402,24 +510,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD386A2D1CE3516800065BA3 /* CUJSONSerialization.m in Sources */,
 				FD45A0BF1CD7735100304EC0 /* AppDelegate.m in Sources */,
 				FD8B5CC51CDBFF8D00751642 /* LoginViewController.m in Sources */,
 				FD8B5CF91CE252BF00751642 /* LeftPanelViewController.m in Sources */,
-				FD45A0D71CD8D7F800304EC0 /* JASidePanelController.m in Sources */,
+				FD386A1F1CE34BB700065BA3 /* UserManager.m in Sources */,
+				FD386A311CE3517A00065BA3 /* JASidePanelController.m in Sources */,
+				FD386A081CE34A3C00065BA3 /* DateUtility.m in Sources */,
 				FD8B5CEC1CE2526500751642 /* TargetsViewController.m in Sources */,
+				FD386A191CE34B9600065BA3 /* AFSecurityPolicy.m in Sources */,
+				FD3869ED1CE3473700065BA3 /* ApiConnector.m in Sources */,
 				FD8B5CD41CDFE93600751642 /* CommonCheckBoxWithText.m in Sources */,
 				FD8B5CF01CE2528300751642 /* HomeViewController.m in Sources */,
+				FD386A341CE3637F00065BA3 /* RootViewController.m in Sources */,
+				FD386A051CE349C600065BA3 /* User.m in Sources */,
 				FD8B5CF41CE252AE00751642 /* SharesViewController.m in Sources */,
 				FD8B5CC01CDBE6A600751642 /* UIFont+Utils.m in Sources */,
+				FD386A2A1CE3516800065BA3 /* Compact.m in Sources */,
 				FD8B5CE21CE2521B00751642 /* ResetPasswordViewController.m in Sources */,
+				FD386A171CE34B9600065BA3 /* AFHTTPSessionManager.m in Sources */,
+				FD386A041CE349C600065BA3 /* Buyout.m in Sources */,
 				FDFA5B011CDAA43600030A89 /* UIColor+Utils.m in Sources */,
+				FD386A1C1CE34B9600065BA3 /* AFURLSessionManager.m in Sources */,
 				FD8B5CDE1CE251D400751642 /* AboutViewController.m in Sources */,
 				FD8B5CEB1CE2526500751642 /* BuyoutsViewController.m in Sources */,
+				FD386A1B1CE34B9600065BA3 /* AFURLResponseSerialization.m in Sources */,
+				FD386A1A1CE34B9600065BA3 /* AFURLRequestSerialization.m in Sources */,
 				FD8B5CCE1CDFCFED00751642 /* CommonButton.m in Sources */,
 				FD8B5CCB1CDBFFFA00751642 /* CommonSeparator.m in Sources */,
 				FDFA5AF81CDA9F9700030A89 /* main.m in Sources */,
 				FD8B5CFA1CE252BF00751642 /* TabBarViewController.m in Sources */,
+				FD386A2C1CE3516800065BA3 /* CUCompactDictionary.m in Sources */,
+				FD386A181CE34B9600065BA3 /* AFNetworkReachabilityManager.m in Sources */,
 				FD8B5CE51CE2525100751642 /* AccountViewController.m in Sources */,
+				FD386A2B1CE3516800065BA3 /* CUCompactArray.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

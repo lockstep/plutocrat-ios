@@ -10,11 +10,13 @@
 #import "CommonSeparator.h"
 #import "CommonCheckBoxWithText.h"
 #import "CommonButton.h"
+#import "ApiConnector.h"
 
 #import <LocalAuthentication/LAContext.h>
 
 @interface LoginViewController ()
 {
+    BOOL loginMode;
     UIView * scrollableContentHolder;
     UILabel * actionLabel;
     UITextField * displayName;
@@ -34,6 +36,7 @@
 
 - (void)setupContentsWhenUserIsRegistered:(BOOL)userIsRegistered
 {
+    loginMode = userIsRegistered;
     [self setupDerived:userIsRegistered];
 }
 
@@ -277,12 +280,14 @@
 
 #pragma mark - Keyboard
 
+static CGFloat fieldsAndKeyboardTotalHeight = 620.0f;
+
 CGFloat scrollingHeight()
 {
     CGFloat res = 0.0f;
-    if ([UIScreen mainScreen].bounds.size.height < 600.0f) // small iPhones
+    if ([UIScreen mainScreen].bounds.size.height < fieldsAndKeyboardTotalHeight) // small iPhones
     {
-        res = 620.0f - [UIScreen mainScreen].bounds.size.height;
+        res = fieldsAndKeyboardTotalHeight - [UIScreen mainScreen].bounds.size.height;
     }
     return res;
 }
@@ -327,12 +332,35 @@ CGFloat scrollingHeight()
 
 - (void)enterButtonTouched
 {
-    //TODO: login or register
+    if ([self.delegate respondsToSelector:@selector(loginViewControllerShouldDismiss:)])
+    {
+        [self.delegate loginViewControllerShouldDismiss:self];
+    }
+    
+//    if (loginMode)
+//    {
+//        NSString * emailStr = email.text;
+//        NSString * passwordStr = password.text;
+//        [ApiConnector signInWithEmail:emailStr password:passwordStr completion:
+//         ^(NSDictionary * response, NSString * error) {
+//             
+//         }];
+//    }
+//    else
+//    {
+//        NSString * displayNameStr = displayName.text;
+//        NSString * emailStr = email.text;
+//        NSString * passwordStr = password.text;
+//        [ApiConnector signUpWithDisplayName:displayNameStr email:emailStr password:passwordStr completion:
+//         ^(NSDictionary * response, NSString * error) {
+//            
+//        }];
+//    }
 }
 
 - (void)loginButtonTouched
 {
-    [self setupDerived:YES];
+    [self setupContentsWhenUserIsRegistered:YES];
 }
 
 - (void)forgotPasswordButtonTouched
@@ -342,7 +370,7 @@ CGFloat scrollingHeight()
 
 - (void)registerButtonTouched
 {
-    [self setupDerived:NO];
+    [self setupContentsWhenUserIsRegistered:NO];
 }
 
 @end

@@ -7,19 +7,11 @@
 //
 
 #import "AppDelegate.h"
-#import "LoginViewController.h"
-#import "JASidePanelController.h"
-#import "TabBarViewController.h"
-#import "LeftPanelViewController.h"
+#import "RootViewController.h"
 
 @interface AppDelegate ()
 {
-    LoginViewController * loginViewController;
-    
-    JASidePanelController * rootViewController;
-    
-    TabBarViewController * tabBarViewController;
-    LeftPanelViewController * leftPanelViewController;
+    RootViewController * rootViewController;
 }
 @end
 
@@ -29,21 +21,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    loginViewController = [LoginViewController new];
-    self.window.rootViewController = loginViewController;
-//    rootViewController = [JASidePanelController new];
-//    
-//    leftPanelViewController = [LeftPanelViewController new];
-//    rootViewController.leftPanel = leftPanelViewController;
-//    
-//    tabBarViewController = [TabBarViewController new];
-//    rootViewController.centerPanel = tabBarViewController;
-//    
-//    self.window.rootViewController = rootViewController;
+    rootViewController = [RootViewController new];
+    self.window.rootViewController = rootViewController;
     [self.window makeKeyAndVisible];
-    [loginViewController setupContentsWhenUserIsRegistered:NO];
-
     return YES;
 }
 
