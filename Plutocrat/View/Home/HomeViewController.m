@@ -7,6 +7,7 @@
 //
 
 #import "HomeViewController.h"
+#import "BigUserView.h"
 
 @interface HomeViewController ()
 
@@ -19,6 +20,8 @@
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
+    BigUserView * bigUserView = [[BigUserView alloc] initWithFrame:CGRectMake(0.0f, 124.0f, self.view.bounds.size.width, 136.0f)];
+    [self.view addSubview:bigUserView];
     // Do any additional setup after loading the view.
 }
 

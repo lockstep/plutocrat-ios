@@ -19,9 +19,9 @@
     return button;
 }
 
-+ (instancetype)textButton:(NSString *)text
++ (instancetype)textButton:(NSString *)text fontSize:(CGFloat)fontSize
 {
-    UIFont * font = [UIFont snFontWithSize:14.0f];
+    UIFont * font = [UIFont snFontWithSize:fontSize];
     CGRect rect = [text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 20.0f)
                                      options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                   attributes:@{NSFontAttributeName:font}

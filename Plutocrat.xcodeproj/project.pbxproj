@@ -24,6 +24,15 @@
 		FD386A2D1CE3516800065BA3 /* CUJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A291CE3516800065BA3 /* CUJSONSerialization.m */; };
 		FD386A311CE3517A00065BA3 /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A301CE3517A00065BA3 /* JASidePanelController.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		FD386A341CE3637F00065BA3 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A331CE3637F00065BA3 /* RootViewController.m */; };
+		FD386A381CE4FA3600065BA3 /* BigUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A371CE4FA3600065BA3 /* BigUserView.m */; };
+		FD386A3B1CE4FAC800065BA3 /* BuyoutsStatsView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A3A1CE4FAC800065BA3 /* BuyoutsStatsView.m */; };
+		FD386A3E1CE4FB3100065BA3 /* AttackerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A3D1CE4FB3100065BA3 /* AttackerView.m */; };
+		FD386A431CE5160100065BA3 /* 778.png in Resources */ = {isa = PBXBuildFile; fileRef = FD386A401CE5160100065BA3 /* 778.png */; };
+		FD386A441CE5160100065BA3 /* 778@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FD386A411CE5160100065BA3 /* 778@2x.png */; };
+		FD386A451CE5160100065BA3 /* 778@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FD386A421CE5160100065BA3 /* 778@3x.png */; };
+		FD386A491CE51B3E00065BA3 /* 779.png in Resources */ = {isa = PBXBuildFile; fileRef = FD386A461CE51B3E00065BA3 /* 779.png */; };
+		FD386A4A1CE51B3E00065BA3 /* 779@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FD386A471CE51B3E00065BA3 /* 779@2x.png */; };
+		FD386A4B1CE51B3E00065BA3 /* 779@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FD386A481CE51B3E00065BA3 /* 779@3x.png */; };
 		FD45A0BF1CD7735100304EC0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0BE1CD7735100304EC0 /* AppDelegate.m */; };
 		FD45A0CA1CD7735100304EC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD45A0C91CD7735100304EC0 /* Assets.xcassets */; };
 		FD8B5CAE1CDBE27000751642 /* Labels.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD8B5CAC1CDBE27000751642 /* Labels.strings */; };
@@ -91,6 +100,18 @@
 		FD386A301CE3517A00065BA3 /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JASidePanelController.m; path = ThirdParty/SidePanel/JASidePanelController.m; sourceTree = "<group>"; };
 		FD386A321CE3637F00065BA3 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootViewController.h; path = View/Common/RootViewController.h; sourceTree = "<group>"; };
 		FD386A331CE3637F00065BA3 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = View/Common/RootViewController.m; sourceTree = "<group>"; };
+		FD386A361CE4FA3600065BA3 /* BigUserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BigUserView.h; path = View/Home/Views/BigUserView.h; sourceTree = "<group>"; };
+		FD386A371CE4FA3600065BA3 /* BigUserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BigUserView.m; path = View/Home/Views/BigUserView.m; sourceTree = "<group>"; };
+		FD386A391CE4FAC800065BA3 /* BuyoutsStatsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyoutsStatsView.h; path = View/Home/Views/BuyoutsStatsView.h; sourceTree = "<group>"; };
+		FD386A3A1CE4FAC800065BA3 /* BuyoutsStatsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyoutsStatsView.m; path = View/Home/Views/BuyoutsStatsView.m; sourceTree = "<group>"; };
+		FD386A3C1CE4FB3100065BA3 /* AttackerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AttackerView.h; path = View/Home/Views/AttackerView.h; sourceTree = "<group>"; };
+		FD386A3D1CE4FB3100065BA3 /* AttackerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AttackerView.m; path = View/Home/Views/AttackerView.m; sourceTree = "<group>"; };
+		FD386A401CE5160100065BA3 /* 778.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 778.png; path = "Misc assets/Stubs/778.png"; sourceTree = "<group>"; };
+		FD386A411CE5160100065BA3 /* 778@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "778@2x.png"; path = "Misc assets/Stubs/778@2x.png"; sourceTree = "<group>"; };
+		FD386A421CE5160100065BA3 /* 778@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "778@3x.png"; path = "Misc assets/Stubs/778@3x.png"; sourceTree = "<group>"; };
+		FD386A461CE51B3E00065BA3 /* 779.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 779.png; path = "Misc assets/Stubs/779.png"; sourceTree = "<group>"; };
+		FD386A471CE51B3E00065BA3 /* 779@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "779@2x.png"; path = "Misc assets/Stubs/779@2x.png"; sourceTree = "<group>"; };
+		FD386A481CE51B3E00065BA3 /* 779@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "779@3x.png"; path = "Misc assets/Stubs/779@3x.png"; sourceTree = "<group>"; };
 		FD45A0B71CD7735100304EC0 /* Plutocrat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plutocrat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD45A0BD1CD7735100304EC0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FD45A0BE1CD7735100304EC0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -197,6 +218,32 @@
 			name = SidePanel;
 			sourceTree = "<group>";
 		};
+		FD386A351CE4F9F400065BA3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FD386A3C1CE4FB3100065BA3 /* AttackerView.h */,
+				FD386A3D1CE4FB3100065BA3 /* AttackerView.m */,
+				FD386A361CE4FA3600065BA3 /* BigUserView.h */,
+				FD386A371CE4FA3600065BA3 /* BigUserView.m */,
+				FD386A391CE4FAC800065BA3 /* BuyoutsStatsView.h */,
+				FD386A3A1CE4FAC800065BA3 /* BuyoutsStatsView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		FD386A3F1CE515BE00065BA3 /* Stubs */ = {
+			isa = PBXGroup;
+			children = (
+				FD386A461CE51B3E00065BA3 /* 779.png */,
+				FD386A471CE51B3E00065BA3 /* 779@2x.png */,
+				FD386A481CE51B3E00065BA3 /* 779@3x.png */,
+				FD386A401CE5160100065BA3 /* 778.png */,
+				FD386A411CE5160100065BA3 /* 778@2x.png */,
+				FD386A421CE5160100065BA3 /* 778@3x.png */,
+			);
+			name = Stubs;
+			sourceTree = "<group>";
+		};
 		FD45A0AE1CD7735100304EC0 = {
 			isa = PBXGroup;
 			children = (
@@ -280,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				FD8B5CB11CDBE51B00751642 /* Fonts */,
+				FD386A3F1CE515BE00065BA3 /* Stubs */,
 			);
 			name = "Misc assets";
 			sourceTree = "<group>";
@@ -304,16 +352,8 @@
 				FD8B5CC41CDBFF8D00751642 /* LoginViewController.m */,
 				FD8B5CE01CE2521B00751642 /* ResetPasswordViewController.h */,
 				FD8B5CE11CE2521B00751642 /* ResetPasswordViewController.m */,
-				FD8B5CC61CDBFF9A00751642 /* Views */,
 			);
 			name = Authentication;
-			sourceTree = "<group>";
-		};
-		FD8B5CC61CDBFF9A00751642 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Views;
 			sourceTree = "<group>";
 		};
 		FD8B5CC71CDBFFBD00751642 /* Common */ = {
@@ -407,6 +447,7 @@
 			children = (
 				FD8B5CEE1CE2528300751642 /* HomeViewController.h */,
 				FD8B5CEF1CE2528300751642 /* HomeViewController.m */,
+				FD386A351CE4F9F400065BA3 /* Views */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -494,12 +535,18 @@
 				FD8B5CBD1CDBE53E00751642 /* Sansation-Regular.ttf in Resources */,
 				FD8B5CBB1CDBE53E00751642 /* Sansation-Light.ttf in Resources */,
 				FD8B5CB91CDBE53E00751642 /* Sansation-BoldItalic.ttf in Resources */,
+				FD386A451CE5160100065BA3 /* 778@3x.png in Resources */,
 				FD8B5CD11CDFE6A400751642 /* Buttons.strings in Resources */,
+				FD386A441CE5160100065BA3 /* 778@2x.png in Resources */,
 				FD8B5CB81CDBE53E00751642 /* Sansation-Bold.ttf in Resources */,
 				FD8B5CAE1CDBE27000751642 /* Labels.strings in Resources */,
+				FD386A491CE51B3E00065BA3 /* 779.png in Resources */,
+				FD386A431CE5160100065BA3 /* 778.png in Resources */,
+				FD386A4A1CE51B3E00065BA3 /* 779@2x.png in Resources */,
 				FD45A0CA1CD7735100304EC0 /* Assets.xcassets in Resources */,
 				FDFA5AFB1CDA9FAD00030A89 /* Texts.strings in Resources */,
 				FD8B5CBA1CDBE53E00751642 /* Sansation-Italic.ttf in Resources */,
+				FD386A4B1CE51B3E00065BA3 /* 779@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +567,7 @@
 				FD8B5CEC1CE2526500751642 /* TargetsViewController.m in Sources */,
 				FD386A191CE34B9600065BA3 /* AFSecurityPolicy.m in Sources */,
 				FD3869ED1CE3473700065BA3 /* ApiConnector.m in Sources */,
+				FD386A3B1CE4FAC800065BA3 /* BuyoutsStatsView.m in Sources */,
 				FD8B5CD41CDFE93600751642 /* CommonCheckBoxWithText.m in Sources */,
 				FD8B5CF01CE2528300751642 /* HomeViewController.m in Sources */,
 				FD386A341CE3637F00065BA3 /* RootViewController.m in Sources */,
@@ -527,7 +575,9 @@
 				FD8B5CF41CE252AE00751642 /* SharesViewController.m in Sources */,
 				FD8B5CC01CDBE6A600751642 /* UIFont+Utils.m in Sources */,
 				FD386A2A1CE3516800065BA3 /* Compact.m in Sources */,
+				FD386A3E1CE4FB3100065BA3 /* AttackerView.m in Sources */,
 				FD8B5CE21CE2521B00751642 /* ResetPasswordViewController.m in Sources */,
+				FD386A381CE4FA3600065BA3 /* BigUserView.m in Sources */,
 				FD386A171CE34B9600065BA3 /* AFHTTPSessionManager.m in Sources */,
 				FD386A041CE349C600065BA3 /* Buyout.m in Sources */,
 				FDFA5B011CDAA43600030A89 /* UIColor+Utils.m in Sources */,

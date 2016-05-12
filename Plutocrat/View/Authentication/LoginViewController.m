@@ -68,6 +68,7 @@
     UIColor * paleGray = [UIColor grayWithIntense:146.0f];
     const CGFloat bigFontSize = 20.0f;
     const CGFloat smallFontSize = 12.0f;
+    const CGFloat textButtonsFontSize = 14.0f;
     CGFloat horizontalOffset = 28.0f;
     CGFloat heightsOfTextFields = 34.0f;
     CGFloat componentsWidth = self.view.bounds.size.width - horizontalOffset * 2;
@@ -192,15 +193,16 @@
     [enterButton addTarget:self action:@selector(enterButtonTouched) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:enterButton];
     
-    loginButton = [CommonButton textButton:NSLocalizedStringFromTable(@"Login", @"Labels", nil)];
+    loginButton = [CommonButton textButton:NSLocalizedStringFromTable(@"Login", @"Labels", nil)
+                   fontSize:textButtonsFontSize];
     [loginButton addTarget:self action:@selector(loginButtonTouched) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginButton];
     
-    forgotPasswordButton = [CommonButton textButton:NSLocalizedStringFromTable(@"ForgotPassword", @"Labels", nil)];
+    forgotPasswordButton = [CommonButton textButton:NSLocalizedStringFromTable(@"ForgotPassword", @"Labels", nil) fontSize:textButtonsFontSize];
     [forgotPasswordButton addTarget:self action:@selector(forgotPasswordButtonTouched) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:forgotPasswordButton];
     
-    registerButton = [CommonButton textButton:NSLocalizedStringFromTable(@"Register", @"Labels", nil)];
+    registerButton = [CommonButton textButton:NSLocalizedStringFromTable(@"Register", @"Labels", nil) fontSize:textButtonsFontSize];
     [registerButton addTarget:self action:@selector(registerButtonTouched) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:registerButton];
 }
