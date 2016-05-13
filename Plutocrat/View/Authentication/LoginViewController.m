@@ -188,7 +188,7 @@
         [useTouchId setHidden:YES];
     }
     
-    enterButton = [CommonButton smallButtonWithColor:buttonColorGray];
+    enterButton = [CommonButton smallButtonWithColor:ButtonColorGray];
     [enterButton setText:NSLocalizedStringFromTable(@"ENTER", @"Buttons", nil)];
     [enterButton addTarget:self action:@selector(enterButtonTouched) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:enterButton];

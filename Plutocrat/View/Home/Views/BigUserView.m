@@ -84,7 +84,7 @@
         [separator setHidden:YES];
         [self addSubview:separator];
         
-        [self fillStub2];
+        [self fillStub1];
     }
     return self;
 }

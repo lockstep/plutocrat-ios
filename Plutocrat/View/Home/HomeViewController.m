@@ -7,21 +7,44 @@
 //
 
 #import "HomeViewController.h"
+#import "HomeHeader.h"
 #import "BigUserView.h"
+#import "BuyoutsStatsView.h"
 
 @interface HomeViewController ()
-
+{
+    HomeHeader * homeHeader;
+    BigUserView * bigUserView;
+    BuyoutsStatsView * buyoutsStatsView;
+}
 @end
 
 @implementation HomeViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    BigUserView * bigUserView = [[BigUserView alloc] initWithFrame:CGRectMake(0.0f, 124.0f, self.view.bounds.size.width, 136.0f)];
+    homeHeader = [[HomeHeader alloc] initWithFrame:CGRectMake(0.0f,
+                                                              0.0f,
+                                                              self.view.bounds.size.width,
+                                                              124.0f)];
+    [homeHeader setType:HomeHeaderTypeCommon];
+    [homeHeader setDate:[NSDate dateWithTimeInterval:-127526 sinceDate:[NSDate date]]];
+    [self.view addSubview:homeHeader];
+    
+    
+    bigUserView = [[BigUserView alloc] initWithFrame:CGRectMake(0.0f,
+                                                                124.0f,
+                                                                self.view.bounds.size.width,
+                                                                136.0f)];
     [self.view addSubview:bigUserView];
+    
+    buyoutsStatsView = [[BuyoutsStatsView alloc] initWithFrame:
+                        CGRectMake(0.0f, 260.0f, self.view.bounds.size.width, 136.0f)];
+    [self.view addSubview:buyoutsStatsView];
     // Do any additional setup after loading the view.
 }
 

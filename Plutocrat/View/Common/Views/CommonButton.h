@@ -10,9 +10,9 @@
 
 typedef NS_ENUM (NSUInteger, ButtonColor)
 {
-    buttonColorGray,
-    buttonColorRed,
-    buttonColorViolet
+    ButtonColorGray,
+    ButtonColorRed,
+    ButtonColorViolet
 };
 
 @interface CommonButton : UIButton

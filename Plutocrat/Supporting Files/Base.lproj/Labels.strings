@@ -15,3 +15,10 @@
 "Login" = "Login";
 "ForgotPassword" = "Forgot Password";
 "ManageAccount" = "Manage Account";
+"SuccessfullBuyouts" = "Successful Buyouts";
+"FailedBuyouts" = "Failed Buyouts";
+"DefeatedBuyouts" = "Defeated Buyouts";
+"SurvivalTime" = "Survival Time";
+"ActiveBuyoutThreat" = "Active Buyout Threat";
+"Deadline" = "Deadline";
+"YouSurvived" = "You Survived";
