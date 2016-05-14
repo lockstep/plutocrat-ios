@@ -10,4 +10,7 @@
 
 @interface BigUserView : UIView
 
+- (void)fillStub1;
+- (void)fillStub2;
+
 @end

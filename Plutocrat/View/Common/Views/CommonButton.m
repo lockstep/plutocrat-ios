@@ -13,9 +13,18 @@
 + (instancetype)smallButtonWithColor:(ButtonColor)buttonColor
 {
     CommonButton * button = [[CommonButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 65.0f, 24.0f)];
-    [button setBackgroundColor:[UIColor grayWithIntense:124.0f]];
+    [button paintButtonToColor:buttonColor];
     [[button layer] setCornerRadius:4.0f];
     [[button titleLabel] setFont:[UIFont snFontWithSize:14.0f]];
+    return button;
+}
+
++ (instancetype)bigButtonWithColor:(ButtonColor)buttonColor
+{
+    CommonButton * button = [[CommonButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 110.0f, 24.0f)];
+    [button paintButtonToColor:buttonColor];
+    [[button layer] setCornerRadius:4.0f];
+    [[button titleLabel] setFont:[UIFont snFontWithSize:12.0f]];
     return button;
 }
 
@@ -44,6 +53,35 @@
 - (void)setText:(NSString *)text
 {
     [self setTitle:text forState:UIControlStateNormal];
+}
+
+#pragma mark - private
+
+- (void)paintButtonToColor:(ButtonColor)buttonColor
+{
+    switch (buttonColor)
+    {
+        case ButtonColorRed:
+            [self setBackgroundColor:[UIColor colorWithRed:193.0f / 255.0f
+                                                     green:1.0f / 255.0f
+                                                      blue:1.0f / 255.0f
+                                                     alpha:1.0f]];
+            break;
+            
+        case ButtonColorGray:
+            [self setBackgroundColor:[UIColor grayWithIntense:124.0f]];
+            break;
+            
+        case ButtonColorViolet:
+            [self setBackgroundColor:[UIColor colorWithRed:65.0f / 255.0f
+                                                     green:12.0f / 255.0f
+                                                      blue:91.0f / 255.0f
+                                                     alpha:1.0f]];
+            break;
+            
+        default:
+            break;
+    }
 }
 
 @end

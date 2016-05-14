@@ -7,3 +7,5 @@
 */
 
 "ENTER" = "ENTER";
+"ACCEPT" = "ACCEPT DEFEAT";
+"MATCH" = "MATCH SHARES";

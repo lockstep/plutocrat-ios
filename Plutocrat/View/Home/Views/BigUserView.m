@@ -82,9 +82,7 @@
         
         separator = [[CommonSeparator alloc] initWithFrame:CGRectMake(bordersOffset, self.bounds.size.height - 1.0f, self.bounds.size.width - bordersOffset * 2, 1.0f)];
         [separator setHidden:YES];
-        [self addSubview:separator];
-        
-        [self fillStub1];
+        [self addSubview:separator];        
     }
     return self;
 }

@@ -10,12 +10,17 @@
 #import "HomeHeader.h"
 #import "BigUserView.h"
 #import "BuyoutsStatsView.h"
+#import "AttackerView.h"
 
 @interface HomeViewController ()
 {
     HomeHeader * homeHeader;
     BigUserView * bigUserView;
     BuyoutsStatsView * buyoutsStatsView;
+    UITextView * tapHere;
+    AttackerView * attackerView;
+    UILabel * youWereBoughtOut;
+    NSUInteger tapCount;
 }
 @end
 
@@ -31,8 +36,6 @@
                                                               0.0f,
                                                               self.view.bounds.size.width,
                                                               124.0f)];
-    [homeHeader setType:HomeHeaderTypeCommon];
-    [homeHeader setDate:[NSDate dateWithTimeInterval:-127526 sinceDate:[NSDate date]]];
     [self.view addSubview:homeHeader];
     
     
@@ -44,13 +47,158 @@
     
     buyoutsStatsView = [[BuyoutsStatsView alloc] initWithFrame:
                         CGRectMake(0.0f, 260.0f, self.view.bounds.size.width, 136.0f)];
+    [buyoutsStatsView setHidden:YES];
     [self.view addSubview:buyoutsStatsView];
+    
+    UIFont * smallFont = [UIFont snFontWithSize:12.0f];
+    UIColor * paleGray = [UIColor grayWithIntense:168.0f];
+
+    tapHere = [[UITextView alloc] initWithFrame:
+               CGRectMake(0.0f,
+                          396.0f + (self.view.bounds.size.height - 396.0f - 80.0f - 40.0f) / 2,
+                          self.view.bounds.size.width,
+                          80.0f)];
+    [tapHere setEditable:NO];
+    [tapHere setSelectable:NO];
+    [tapHere setHidden:YES];
+    [self.view addSubview:tapHere];
+
+    
+    attackerView = [[AttackerView alloc] initWithFrame:CGRectMake(0.0f,
+                                                                  124.0f,
+                                                                  self.view.bounds.size.width,
+                                                                  270.0f)];
+    [attackerView setHidden:YES];
+    [self.view addSubview:attackerView];
+    
+    youWereBoughtOut = [[UILabel alloc] initWithFrame:
+                        CGRectMake(0.0f,
+                                   396.0f + (self.view.bounds.size.height - 396.0f - 50.0f - 40.0f) / 2,
+                                   self.view.bounds.size.width,
+                                   50.0f)];
+    [youWereBoughtOut setHidden:YES];
+    [youWereBoughtOut setFont:smallFont];
+    [youWereBoughtOut setTextColor:paleGray];
+    [youWereBoughtOut setTextAlignment:NSTextAlignmentCenter];
+    [youWereBoughtOut setNumberOfLines:0];
+    [youWereBoughtOut setLineBreakMode:NSLineBreakByWordWrapping];
+    [self.view addSubview:youWereBoughtOut];
+    
+    
+    UIButton * but = [UIButton buttonWithType:UIButtonTypeContactAdd];
+    [but addTarget:self action:@selector(change) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:but];
+    tapCount = 1;
+    [self stub1];
     // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - stub
+
+- (void)change
+{
+    if (tapCount == 3)
+    {
+        tapCount = 1;
+        [self stub1];
+        return;
+    }
+    if (tapCount == 1)
+    {
+        tapCount = 2;
+        [self stub2];
+        return;
+    }
+    if (tapCount == 2)
+    {
+        tapCount = 3;
+        [self stub3];
+        return;
+    }
+}
+
+- (void)stub1
+{
+    [homeHeader setType:HomeHeaderTypeCommon];
+    [homeHeader setDate:[NSDate dateWithTimeInterval:-127526 sinceDate:[NSDate date]]];
+    [bigUserView fillStub1];
+    [bigUserView setFrame:CGRectMake(bigUserView.frame.origin.x,
+                                     124.0f,
+                                     bigUserView.frame.size.width,
+                                     bigUserView.frame.size.height)];
+    
+    UIFont * smallFont = [UIFont snFontWithSize:10.0f];
+    UIColor * paleGray = [UIColor grayWithIntense:168.0f];
+    UIColor * coloredViolet = [UIColor colorWithRed:65.0f / 255.0f
+                                              green:12.0f / 255.0f
+                                               blue:91.0f / 255.0f
+                                              alpha:1.0f];
+    NSDictionary * baseAttrs = @{NSFontAttributeName:smallFont,
+                                 NSForegroundColorAttributeName:paleGray};
+    
+    NSString * tapHereStr = [NSString stringWithFormat:
+                             NSLocalizedStringFromTable(@"TapHere", @"Texts", nil), 4];
+    
+    NSMutableAttributedString * attrStr = [[NSMutableAttributedString alloc] initWithString:tapHereStr attributes:baseAttrs];
+    
+    NSString * stringToColor1 = NSLocalizedStringFromTable(@"TapHereColored1", @"Texts", nil);
+    NSString * stringToColor2 = [NSString stringWithFormat:
+                                 NSLocalizedStringFromTable(@"TapHereColored2", @"Texts", nil), 4];
+    NSString * stringToColor3 = NSLocalizedStringFromTable(@"TapHereColored3", @"Texts", nil);
+    
+    NSArray * arr = @[stringToColor1, stringToColor2, stringToColor3];
+    
+    for (int i = 0; i < 3; ++i)
+    {
+        NSDictionary * subAttrs = @{NSFontAttributeName:smallFont,
+                                    NSForegroundColorAttributeName:coloredViolet};
+        const NSRange range = [tapHereStr rangeOfString:[arr objectAtIndex:i]];
+        [attrStr setAttributes:subAttrs range:range];
+    }
+    [tapHere setAttributedText:attrStr];
+    [tapHere setTextAlignment:NSTextAlignmentCenter];
+    [tapHere setHidden:NO];
+    [buyoutsStatsView setHidden:NO];
+    [attackerView setHidden:YES];
+    [youWereBoughtOut setHidden:YES];
+}
+
+- (void)stub2
+{
+    [homeHeader setType:HomeHeaderTypeThreated];
+    [homeHeader setDate:[NSDate dateWithTimeInterval:-127526 sinceDate:[NSDate date]]];
+    [bigUserView fillStub1];
+    [bigUserView setFrame:CGRectMake(bigUserView.frame.origin.x,
+                                     394.0f,
+                                     bigUserView.frame.size.width,
+                                     bigUserView.frame.size.height)];
+    [tapHere setHidden:YES];
+    [buyoutsStatsView setHidden:YES];
+    [attackerView setHidden:NO];
+    [youWereBoughtOut setHidden:YES];
+}
+
+- (void)stub3
+{
+    [homeHeader setType:HomeHeaderTypeDefeated];
+    [homeHeader setDate:[NSDate dateWithTimeInterval:-127526 sinceDate:[NSDate date]]];
+    [bigUserView fillStub1];
+    [bigUserView setFrame:CGRectMake(bigUserView.frame.origin.x,
+                                     124.0f,
+                                     bigUserView.frame.size.width,
+                                     bigUserView.frame.size.height)];
+    [tapHere setHidden:YES];
+    [buyoutsStatsView setHidden:NO];
+    [attackerView setHidden:YES];
+    [youWereBoughtOut setHidden:NO];
+    [youWereBoughtOut setText:
+     [NSString stringWithFormat:NSLocalizedStringFromTable(@"YourWereBoughtOut", @"Texts", nil),
+                               @"Aaron Pinchai", 32, 4]];
 }
 
 /*
