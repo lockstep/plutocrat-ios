@@ -26,23 +26,23 @@
     if (self)
     {
         UIColor * paleGray = [UIColor grayWithIntense:114.0f];
-        CGFloat bordersOffset = 28.0f;
+        CGFloat bordersOffset = [Globals horizontalOffset];
         const CGFloat bigFontSize = 24.0f;
         const CGFloat smallFontSize = 12.0f;
         
         photo = [[UIImageView alloc] initWithFrame:CGRectMake(bordersOffset,
-                                                              bordersOffset,
+                                                              28.0f,
                                                               88.0f,
                                                               88.0f)];
         [[photo layer] setCornerRadius:photo.frame.size.width / 2];
         [self addSubview:photo];
         
-        CGFloat startingXForLabels = bordersOffset * 1.5f + photo.frame.size.width;
+        CGFloat startingXForLabels = bordersOffset + photo.frame.size.width + 20.0f;
         
         name = [[UILabel alloc] initWithFrame:CGRectMake(startingXForLabels,
-                                                         bordersOffset * 1.5f,
+                                                         28.0f * 1.5f,
                                                          self.bounds.size.width - startingXForLabels - bordersOffset,
-                                                         bordersOffset)];
+                                                         28.0f)];
         [name setNumberOfLines:1];
         [name setAdjustsFontSizeToFitWidth:YES];
         [name setTextColor:paleGray];
@@ -52,7 +52,7 @@
         email = [[UILabel alloc] initWithFrame:CGRectMake(startingXForLabels,
                                                          name.frame.origin.y + name.frame.size.height + 5.0f,
                                                          self.bounds.size.width - startingXForLabels - bordersOffset,
-                                                         bordersOffset / 2)];
+                                                         14.0f)];
         [email setNumberOfLines:1];
         [email setAdjustsFontSizeToFitWidth:YES];
         [email setTextColor:paleGray];
@@ -68,7 +68,7 @@
         [manageButton setHidden:YES];
         [self addSubview:manageButton];
         
-        sharesToMatch = [[UILabel alloc] initWithFrame:CGRectMake(startingXForLabels, name.frame.origin.y + name.frame.size.height + 5.0f, self.bounds.size.width - startingXForLabels - bordersOffset,  bordersOffset / 2)];
+        sharesToMatch = [[UILabel alloc] initWithFrame:CGRectMake(startingXForLabels, name.frame.origin.y + name.frame.size.height + 5.0f, self.bounds.size.width - startingXForLabels - bordersOffset,  14.0f)];
         [sharesToMatch setNumberOfLines:1];
         [sharesToMatch setAdjustsFontSizeToFitWidth:YES];
         [sharesToMatch setTextColor:[UIColor colorWithRed:193.0f / 255.0f
@@ -104,13 +104,5 @@
     [sharesToMatch setText:@"Shares to Match: 23"];
     [sharesToMatch setHidden:NO];
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 @end

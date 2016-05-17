@@ -69,7 +69,7 @@
     const CGFloat bigFontSize = 20.0f;
     const CGFloat smallFontSize = 12.0f;
     const CGFloat textButtonsFontSize = 14.0f;
-    CGFloat horizontalOffset = 28.0f;
+    CGFloat horizontalOffset = [Globals horizontalOffset];
     CGFloat heightsOfTextFields = 34.0f;
     CGFloat componentsWidth = self.view.bounds.size.width - horizontalOffset * 2;
     

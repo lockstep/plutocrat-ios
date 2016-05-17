@@ -59,6 +59,7 @@
 		FD8B5CF41CE252AE00751642 /* SharesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CF31CE252AE00751642 /* SharesViewController.m */; };
 		FD8B5CF91CE252BF00751642 /* LeftPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CF61CE252BF00751642 /* LeftPanelViewController.m */; };
 		FD8B5CFA1CE252BF00751642 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CF81CE252BF00751642 /* TabBarViewController.m */; };
+		FDA1A6821CEB467100FFB268 /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA1A6811CEB467100FFB268 /* Globals.m */; };
 		FDFA5AF81CDA9F9700030A89 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FDFA5AF61CDA9F9700030A89 /* main.m */; };
 		FDFA5AFB1CDA9FAD00030A89 /* Texts.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDFA5AFD1CDA9FAD00030A89 /* Texts.strings */; };
 		FDFA5B011CDAA43600030A89 /* UIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = FDFA5B001CDAA43600030A89 /* UIColor+Utils.m */; };
@@ -157,6 +158,8 @@
 		FD8B5CF61CE252BF00751642 /* LeftPanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LeftPanelViewController.m; path = View/Common/LeftPanelViewController.m; sourceTree = "<group>"; };
 		FD8B5CF71CE252BF00751642 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabBarViewController.h; path = View/Common/TabBarViewController.h; sourceTree = "<group>"; };
 		FD8B5CF81CE252BF00751642 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabBarViewController.m; path = View/Common/TabBarViewController.m; sourceTree = "<group>"; };
+		FDA1A6801CEB467100FFB268 /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Globals.h; path = Utils/Globals.h; sourceTree = "<group>"; };
+		FDA1A6811CEB467100FFB268 /* Globals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Globals.m; path = Utils/Globals.m; sourceTree = "<group>"; };
 		FDFA5AF51CDA9F9700030A89 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Supporting Files/Info.plist"; sourceTree = "<group>"; };
 		FDFA5AF61CDA9F9700030A89 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Supporting Files/main.m"; sourceTree = "<group>"; };
 		FDFA5AFC1CDA9FAD00030A89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Texts.strings; sourceTree = "<group>"; };
@@ -475,6 +478,8 @@
 				FDFA5B001CDAA43600030A89 /* UIColor+Utils.m */,
 				FD8B5CBE1CDBE6A600751642 /* UIFont+Utils.h */,
 				FD8B5CBF1CDBE6A600751642 /* UIFont+Utils.m */,
+				FDA1A6801CEB467100FFB268 /* Globals.h */,
+				FDA1A6811CEB467100FFB268 /* Globals.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -581,6 +586,7 @@
 				FD8B5CF41CE252AE00751642 /* SharesViewController.m in Sources */,
 				FD8B5CC01CDBE6A600751642 /* UIFont+Utils.m in Sources */,
 				FD386A2A1CE3516800065BA3 /* Compact.m in Sources */,
+				FDA1A6821CEB467100FFB268 /* Globals.m in Sources */,
 				FD386A3E1CE4FB3100065BA3 /* AttackerView.m in Sources */,
 				FD8B5CE21CE2521B00751642 /* ResetPasswordViewController.m in Sources */,
 				FD386A381CE4FA3600065BA3 /* BigUserView.m in Sources */,

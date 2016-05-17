@@ -28,7 +28,7 @@
         [attacker fillStub2];
         [self addSubview:attacker];
         
-        CGFloat bordersOffset = 28.0f;
+        CGFloat bordersOffset = [Globals horizontalOffset];
         UILabel * warning = [[UILabel alloc] initWithFrame:
                              CGRectMake(bordersOffset,
                                         136.0f,

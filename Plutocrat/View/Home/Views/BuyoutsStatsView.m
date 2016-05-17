@@ -23,7 +23,7 @@
     {
         UIColor * darkGray = [UIColor grayWithIntense:128.0f];
         UIColor * paleGray = [UIColor grayWithIntense:168.0f];
-        CGFloat bordersOffset = 28.0f;
+        CGFloat bordersOffset = [Globals horizontalOffset];
         CGFloat elementsWidth = (self.bounds.size.width - bordersOffset * 6) / 3;
         const CGFloat bigFontSize = 54.0f;
         const CGFloat smallFontSize = 10.0f;
@@ -34,7 +34,7 @@
                                                                  60.0f)];
         [successValue setFont:[UIFont snFontWithSize:bigFontSize]];
         [successValue setTextColor:darkGray];
-        [successValue setTextAlignment:NSTextAlignmentLeft];
+        [successValue setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:successValue];
         
         failedValue = [[UILabel alloc] initWithFrame:
@@ -54,7 +54,7 @@
                                     60.0f)];
         [defeatedValue setFont:[UIFont snFontWithSize:bigFontSize]];
         [defeatedValue setTextColor:darkGray];
-        [defeatedValue setTextAlignment:NSTextAlignmentRight];
+        [defeatedValue setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:defeatedValue];
         
         
