@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Background-bad.png",
+      "filename" : "plutocrat.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Background-bad-1.png",
+      "filename" : "plutocrat-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Background-bad-2.png",
+      "filename" : "plutocrat-2.png",
       "scale" : "3x"
     }
   ],

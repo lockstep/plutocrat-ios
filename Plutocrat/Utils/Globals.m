@@ -15,4 +15,19 @@
     return 28.0f;
 }
 
++ (CGFloat)horizontalOffsetInTable
+{
+    return 15.0f;
+}
+
++ (CGFloat)cellHeight
+{
+    return 100.0f;
+}
+
++ (CGFloat)offsetFromPhoto
+{
+    return 20.0f;
+}
+
 @end

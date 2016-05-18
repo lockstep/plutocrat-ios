@@ -30,17 +30,17 @@
         
         firstLine = [[UILabel alloc] initWithFrame:CGRectMake(0.0f,
                                                               20.0f,
-                                                              self.bounds.size.width,
-                                                              self.bounds.size.height / 2)];
+                                                              frame.size.width,
+                                                              frame.size.height / 2)];
         [firstLine setFont:[UIFont snFontWithSize:bigFontSize]];
         [firstLine setTextColor:[UIColor whiteColor]];
         [firstLine setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:firstLine];
         
         secondLine = [[UILabel alloc] initWithFrame:CGRectMake(0.0f,
-                                                               self.bounds.size.height / 2,
-                                                               self.bounds.size.width,
-                                                               self.bounds.size.height / 2)];
+                                                               frame.size.height / 2,
+                                                               frame.size.width,
+                                                               frame.size.height / 2)];
         [secondLine setFont:[UIFont snFontWithSize:smallFontSize]];
         [secondLine setTextColor:[UIColor whiteColor]];
         [secondLine setTextAlignment:NSTextAlignmentCenter];
@@ -57,19 +57,19 @@
     switch (type)
     {
         case HomeHeaderTypeCommon:
-            [background setImage:[UIImage imageNamed:@"Background-blurry"]];
+            [background setImage:[UIImage imageNamed:@"Background-gray"]];
             [firstLine setText:NSLocalizedStringFromTable(@"SurvivalTime", @"Labels", nil)];
             attacked = NO;
             break;
             
         case HomeHeaderTypeThreated:
-            [background setImage:[UIImage imageNamed:@"Background-bad"]];
+            [background setImage:[UIImage imageNamed:@"Background-red"]];
             [firstLine setText:NSLocalizedStringFromTable(@"ActiveBuyoutThreat", @"Labels", nil)];
             attacked = YES;
             break;
             
         case HomeHeaderTypeDefeated:
-            [background setImage:[UIImage imageNamed:@"Background-bad"]];
+            [background setImage:[UIImage imageNamed:@"Background-red"]];
             [firstLine setText:NSLocalizedStringFromTable(@"YouSurvived", @"Labels", nil)];
             attacked = NO;
             break;

@@ -35,9 +35,10 @@
                                                               88.0f,
                                                               88.0f)];
         [[photo layer] setCornerRadius:photo.frame.size.width / 2];
+        [[photo layer] setMasksToBounds:YES];
         [self addSubview:photo];
         
-        CGFloat startingXForLabels = bordersOffset + photo.frame.size.width + 20.0f;
+        CGFloat startingXForLabels = bordersOffset + photo.frame.size.width + [Globals offsetFromPhoto];
         
         name = [[UILabel alloc] initWithFrame:CGRectMake(startingXForLabels,
                                                          28.0f * 1.5f,

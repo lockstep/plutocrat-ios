@@ -11,5 +11,8 @@
 @interface Globals : NSObject
 
 + (CGFloat)horizontalOffset;
++ (CGFloat)horizontalOffsetInTable;
++ (CGFloat)cellHeight;
++ (CGFloat)offsetFromPhoto;
 
 @end

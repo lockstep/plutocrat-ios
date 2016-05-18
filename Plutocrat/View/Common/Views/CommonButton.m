@@ -10,19 +10,23 @@
 
 @implementation CommonButton
 
-+ (instancetype)smallButtonWithColor:(ButtonColor)buttonColor
++ (instancetype)smallButtonWithColor:(ButtonColor)buttonColor titleColor:(ButtonColor)titleColor
 {
     CommonButton * button = [[CommonButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 65.0f, 24.0f)];
-    [button paintButtonToColor:buttonColor];
+    [button paintButtonToColor:buttonColor titleColor:titleColor];
     [[button layer] setCornerRadius:4.0f];
     [[button titleLabel] setFont:[UIFont snFontWithSize:14.0f]];
     return button;
+}
++ (instancetype)smallButtonWithColor:(ButtonColor)buttonColor
+{
+    return [self smallButtonWithColor:buttonColor titleColor:ButtonColorWhite];
 }
 
 + (instancetype)bigButtonWithColor:(ButtonColor)buttonColor
 {
     CommonButton * button = [[CommonButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 110.0f, 24.0f)];
-    [button paintButtonToColor:buttonColor];
+    [button paintButtonToColor:buttonColor titleColor:ButtonColorWhite];
     [[button layer] setCornerRadius:4.0f];
     [[button titleLabel] setFont:[UIFont snFontWithSize:12.0f]];
     return button;
@@ -57,7 +61,7 @@
 
 #pragma mark - private
 
-- (void)paintButtonToColor:(ButtonColor)buttonColor
+- (void)paintButtonToColor:(ButtonColor)buttonColor titleColor:(ButtonColor)titleColor
 {
     switch (buttonColor)
     {
@@ -77,6 +81,40 @@
                                                      green:12.0f / 255.0f
                                                       blue:91.0f / 255.0f
                                                      alpha:1.0f]];
+            break;
+            
+        case ButtonColorWhite:
+            [self setBackgroundColor:[UIColor whiteColor]];
+            break;
+            
+        default:
+            break;
+    }
+    
+    switch (titleColor)
+    {
+        case ButtonColorRed:
+            [self setTitleColor:[UIColor colorWithRed:193.0f / 255.0f
+                                                green:1.0f / 255.0f
+                                                 blue:1.0f / 255.0f
+                                                alpha:1.0f]
+                       forState:UIControlStateNormal];
+            break;
+            
+        case ButtonColorGray:
+            [self setTitleColor:[UIColor grayWithIntense:124.0f] forState:UIControlStateNormal];
+            break;
+            
+        case ButtonColorViolet:
+            [self setTitleColor:[UIColor colorWithRed:65.0f / 255.0f
+                                                green:12.0f / 255.0f
+                                                 blue:91.0f / 255.0f
+                                                alpha:1.0f]
+                       forState:UIControlStateNormal];
+            break;
+            
+        case ButtonColorWhite:
+            [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             break;
             
         default:

@@ -53,13 +53,25 @@
 		FD8B5CDE1CE251D400751642 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CDD1CE251D400751642 /* AboutViewController.m */; };
 		FD8B5CE21CE2521B00751642 /* ResetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CE11CE2521B00751642 /* ResetPasswordViewController.m */; };
 		FD8B5CE51CE2525100751642 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CE41CE2525100751642 /* AccountViewController.m */; };
-		FD8B5CEB1CE2526500751642 /* BuyoutsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CE81CE2526500751642 /* BuyoutsViewController.m */; };
-		FD8B5CEC1CE2526500751642 /* TargetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CEA1CE2526500751642 /* TargetsViewController.m */; };
 		FD8B5CF01CE2528300751642 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CEF1CE2528300751642 /* HomeViewController.m */; };
 		FD8B5CF41CE252AE00751642 /* SharesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CF31CE252AE00751642 /* SharesViewController.m */; };
 		FD8B5CF91CE252BF00751642 /* LeftPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CF61CE252BF00751642 /* LeftPanelViewController.m */; };
 		FD8B5CFA1CE252BF00751642 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CF81CE252BF00751642 /* TabBarViewController.m */; };
 		FDA1A6821CEB467100FFB268 /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA1A6811CEB467100FFB268 /* Globals.m */; };
+		FDA1A6891CEB544C00FFB268 /* TargetsBuyoutsHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA1A6881CEB544C00FFB268 /* TargetsBuyoutsHeader.m */; };
+		FDA1A68D1CEB91E900FFB268 /* me.png in Resources */ = {isa = PBXBuildFile; fileRef = FDA1A68A1CEB91E900FFB268 /* me.png */; };
+		FDA1A68E1CEB91E900FFB268 /* me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FDA1A68B1CEB91E900FFB268 /* me@2x.png */; };
+		FDA1A68F1CEB91E900FFB268 /* me@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FDA1A68C1CEB91E900FFB268 /* me@3x.png */; };
+		FDA1A6921CEB961100FFB268 /* TargetsBuyoutsBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA1A6911CEB961100FFB268 /* TargetsBuyoutsBaseViewController.m */; };
+		FDA1A6951CEB967900FFB268 /* TargetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA1A6941CEB967900FFB268 /* TargetsViewController.m */; };
+		FDA1A6981CEB968600FFB268 /* BuyoutsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA1A6971CEB968600FFB268 /* BuyoutsViewController.m */; };
+		FDA1A69B1CECDD7000FFB268 /* TargetsBuyoutsBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA1A69A1CECDD7000FFB268 /* TargetsBuyoutsBaseCell.m */; };
+		FDA1A69E1CECE31800FFB268 /* TargetsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA1A69D1CECE31800FFB268 /* TargetsCell.m */; };
+		FDA1A6A31CECE99E00FFB268 /* Aaron Pinchai.png in Resources */ = {isa = PBXBuildFile; fileRef = FDA1A69F1CECE99E00FFB268 /* Aaron Pinchai.png */; };
+		FDA1A6A41CECE99E00FFB268 /* M. Dorsey.png in Resources */ = {isa = PBXBuildFile; fileRef = FDA1A6A01CECE99E00FFB268 /* M. Dorsey.png */; };
+		FDA1A6A51CECE99E00FFB268 /* Peter Cook.png in Resources */ = {isa = PBXBuildFile; fileRef = FDA1A6A11CECE99E00FFB268 /* Peter Cook.png */; };
+		FDA1A6A61CECE99E00FFB268 /* Sara Mayer.png in Resources */ = {isa = PBXBuildFile; fileRef = FDA1A6A21CECE99E00FFB268 /* Sara Mayer.png */; };
+		FDA1A6A91CECEE2A00FFB268 /* BuyoutsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA1A6A81CECEE2A00FFB268 /* BuyoutsCell.m */; };
 		FDFA5AF81CDA9F9700030A89 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FDFA5AF61CDA9F9700030A89 /* main.m */; };
 		FDFA5AFB1CDA9FAD00030A89 /* Texts.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDFA5AFD1CDA9FAD00030A89 /* Texts.strings */; };
 		FDFA5B011CDAA43600030A89 /* UIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = FDFA5B001CDAA43600030A89 /* UIColor+Utils.m */; };
@@ -146,10 +158,6 @@
 		FD8B5CE11CE2521B00751642 /* ResetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResetPasswordViewController.m; path = View/Authentication/ResetPasswordViewController.m; sourceTree = "<group>"; };
 		FD8B5CE31CE2525100751642 /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountViewController.h; path = View/Account/AccountViewController.h; sourceTree = "<group>"; };
 		FD8B5CE41CE2525100751642 /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountViewController.m; path = View/Account/AccountViewController.m; sourceTree = "<group>"; };
-		FD8B5CE71CE2526500751642 /* BuyoutsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyoutsViewController.h; path = View/Interaction/BuyoutsViewController.h; sourceTree = "<group>"; };
-		FD8B5CE81CE2526500751642 /* BuyoutsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyoutsViewController.m; path = View/Interaction/BuyoutsViewController.m; sourceTree = "<group>"; };
-		FD8B5CE91CE2526500751642 /* TargetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TargetsViewController.h; path = View/Interaction/TargetsViewController.h; sourceTree = "<group>"; };
-		FD8B5CEA1CE2526500751642 /* TargetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TargetsViewController.m; path = View/Interaction/TargetsViewController.m; sourceTree = "<group>"; };
 		FD8B5CEE1CE2528300751642 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = View/Home/HomeViewController.h; sourceTree = "<group>"; };
 		FD8B5CEF1CE2528300751642 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = View/Home/HomeViewController.m; sourceTree = "<group>"; };
 		FD8B5CF21CE252AE00751642 /* SharesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharesViewController.h; path = View/Shares/SharesViewController.h; sourceTree = "<group>"; };
@@ -160,6 +168,27 @@
 		FD8B5CF81CE252BF00751642 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabBarViewController.m; path = View/Common/TabBarViewController.m; sourceTree = "<group>"; };
 		FDA1A6801CEB467100FFB268 /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Globals.h; path = Utils/Globals.h; sourceTree = "<group>"; };
 		FDA1A6811CEB467100FFB268 /* Globals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Globals.m; path = Utils/Globals.m; sourceTree = "<group>"; };
+		FDA1A6871CEB544C00FFB268 /* TargetsBuyoutsHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TargetsBuyoutsHeader.h; path = View/Interaction/Views/TargetsBuyoutsHeader.h; sourceTree = "<group>"; };
+		FDA1A6881CEB544C00FFB268 /* TargetsBuyoutsHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TargetsBuyoutsHeader.m; path = View/Interaction/Views/TargetsBuyoutsHeader.m; sourceTree = "<group>"; };
+		FDA1A68A1CEB91E900FFB268 /* me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = me.png; path = "Misc assets/Stubs/me.png"; sourceTree = "<group>"; };
+		FDA1A68B1CEB91E900FFB268 /* me@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "me@2x.png"; path = "Misc assets/Stubs/me@2x.png"; sourceTree = "<group>"; };
+		FDA1A68C1CEB91E900FFB268 /* me@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "me@3x.png"; path = "Misc assets/Stubs/me@3x.png"; sourceTree = "<group>"; };
+		FDA1A6901CEB961100FFB268 /* TargetsBuyoutsBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TargetsBuyoutsBaseViewController.h; path = View/Interaction/TargetsBuyoutsBaseViewController.h; sourceTree = "<group>"; };
+		FDA1A6911CEB961100FFB268 /* TargetsBuyoutsBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TargetsBuyoutsBaseViewController.m; path = View/Interaction/TargetsBuyoutsBaseViewController.m; sourceTree = "<group>"; };
+		FDA1A6931CEB967900FFB268 /* TargetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TargetsViewController.h; path = View/Interaction/TargetsViewController.h; sourceTree = "<group>"; };
+		FDA1A6941CEB967900FFB268 /* TargetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TargetsViewController.m; path = View/Interaction/TargetsViewController.m; sourceTree = "<group>"; };
+		FDA1A6961CEB968600FFB268 /* BuyoutsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyoutsViewController.h; path = View/Interaction/BuyoutsViewController.h; sourceTree = "<group>"; };
+		FDA1A6971CEB968600FFB268 /* BuyoutsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyoutsViewController.m; path = View/Interaction/BuyoutsViewController.m; sourceTree = "<group>"; };
+		FDA1A6991CECDD7000FFB268 /* TargetsBuyoutsBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TargetsBuyoutsBaseCell.h; path = View/Interaction/Views/TargetsBuyoutsBaseCell.h; sourceTree = "<group>"; };
+		FDA1A69A1CECDD7000FFB268 /* TargetsBuyoutsBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TargetsBuyoutsBaseCell.m; path = View/Interaction/Views/TargetsBuyoutsBaseCell.m; sourceTree = "<group>"; };
+		FDA1A69C1CECE31700FFB268 /* TargetsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TargetsCell.h; path = View/Interaction/Views/TargetsCell.h; sourceTree = "<group>"; };
+		FDA1A69D1CECE31800FFB268 /* TargetsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TargetsCell.m; path = View/Interaction/Views/TargetsCell.m; sourceTree = "<group>"; };
+		FDA1A69F1CECE99E00FFB268 /* Aaron Pinchai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Aaron Pinchai.png"; path = "Misc assets/Stubs/Aaron Pinchai.png"; sourceTree = "<group>"; };
+		FDA1A6A01CECE99E00FFB268 /* M. Dorsey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "M. Dorsey.png"; path = "Misc assets/Stubs/M. Dorsey.png"; sourceTree = "<group>"; };
+		FDA1A6A11CECE99E00FFB268 /* Peter Cook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Peter Cook.png"; path = "Misc assets/Stubs/Peter Cook.png"; sourceTree = "<group>"; };
+		FDA1A6A21CECE99E00FFB268 /* Sara Mayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Sara Mayer.png"; path = "Misc assets/Stubs/Sara Mayer.png"; sourceTree = "<group>"; };
+		FDA1A6A71CECEE2A00FFB268 /* BuyoutsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyoutsCell.h; path = View/Interaction/Views/BuyoutsCell.h; sourceTree = "<group>"; };
+		FDA1A6A81CECEE2A00FFB268 /* BuyoutsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyoutsCell.m; path = View/Interaction/Views/BuyoutsCell.m; sourceTree = "<group>"; };
 		FDFA5AF51CDA9F9700030A89 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Supporting Files/Info.plist"; sourceTree = "<group>"; };
 		FDFA5AF61CDA9F9700030A89 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Supporting Files/main.m"; sourceTree = "<group>"; };
 		FDFA5AFC1CDA9FAD00030A89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Texts.strings; sourceTree = "<group>"; };
@@ -242,12 +271,19 @@
 		FD386A3F1CE515BE00065BA3 /* Stubs */ = {
 			isa = PBXGroup;
 			children = (
-				FD386A461CE51B3E00065BA3 /* 779.png */,
-				FD386A471CE51B3E00065BA3 /* 779@2x.png */,
-				FD386A481CE51B3E00065BA3 /* 779@3x.png */,
+				FDA1A69F1CECE99E00FFB268 /* Aaron Pinchai.png */,
+				FDA1A6A01CECE99E00FFB268 /* M. Dorsey.png */,
+				FDA1A6A11CECE99E00FFB268 /* Peter Cook.png */,
+				FDA1A6A21CECE99E00FFB268 /* Sara Mayer.png */,
 				FD386A401CE5160100065BA3 /* 778.png */,
 				FD386A411CE5160100065BA3 /* 778@2x.png */,
 				FD386A421CE5160100065BA3 /* 778@3x.png */,
+				FD386A461CE51B3E00065BA3 /* 779.png */,
+				FD386A471CE51B3E00065BA3 /* 779@2x.png */,
+				FD386A481CE51B3E00065BA3 /* 779@3x.png */,
+				FDA1A68A1CEB91E900FFB268 /* me.png */,
+				FDA1A68B1CEB91E900FFB268 /* me@2x.png */,
+				FDA1A68C1CEB91E900FFB268 /* me@3x.png */,
 			);
 			name = Stubs;
 			sourceTree = "<group>";
@@ -442,10 +478,13 @@
 		FD8B5CE61CE2525700751642 /* Interaction */ = {
 			isa = PBXGroup;
 			children = (
-				FD8B5CE71CE2526500751642 /* BuyoutsViewController.h */,
-				FD8B5CE81CE2526500751642 /* BuyoutsViewController.m */,
-				FD8B5CE91CE2526500751642 /* TargetsViewController.h */,
-				FD8B5CEA1CE2526500751642 /* TargetsViewController.m */,
+				FDA1A6961CEB968600FFB268 /* BuyoutsViewController.h */,
+				FDA1A6971CEB968600FFB268 /* BuyoutsViewController.m */,
+				FDA1A6901CEB961100FFB268 /* TargetsBuyoutsBaseViewController.h */,
+				FDA1A6911CEB961100FFB268 /* TargetsBuyoutsBaseViewController.m */,
+				FDA1A6931CEB967900FFB268 /* TargetsViewController.h */,
+				FDA1A6941CEB967900FFB268 /* TargetsViewController.m */,
+				FDA1A6861CEB531300FFB268 /* Views */,
 			);
 			name = Interaction;
 			sourceTree = "<group>";
@@ -467,6 +506,21 @@
 				FD8B5CF31CE252AE00751642 /* SharesViewController.m */,
 			);
 			name = Shares;
+			sourceTree = "<group>";
+		};
+		FDA1A6861CEB531300FFB268 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FDA1A6871CEB544C00FFB268 /* TargetsBuyoutsHeader.h */,
+				FDA1A6881CEB544C00FFB268 /* TargetsBuyoutsHeader.m */,
+				FDA1A6991CECDD7000FFB268 /* TargetsBuyoutsBaseCell.h */,
+				FDA1A69A1CECDD7000FFB268 /* TargetsBuyoutsBaseCell.m */,
+				FDA1A69C1CECE31700FFB268 /* TargetsCell.h */,
+				FDA1A69D1CECE31800FFB268 /* TargetsCell.m */,
+				FDA1A6A71CECEE2A00FFB268 /* BuyoutsCell.h */,
+				FDA1A6A81CECEE2A00FFB268 /* BuyoutsCell.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		FDFA5AFE1CDAA3A100030A89 /* Utils */ = {
@@ -541,9 +595,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDA1A68E1CEB91E900FFB268 /* me@2x.png in Resources */,
+				FDA1A68F1CEB91E900FFB268 /* me@3x.png in Resources */,
 				FD8B5CBC1CDBE53E00751642 /* Sansation-LightItalic.ttf in Resources */,
+				FDA1A6A41CECE99E00FFB268 /* M. Dorsey.png in Resources */,
 				FD8B5CBD1CDBE53E00751642 /* Sansation-Regular.ttf in Resources */,
 				FD8B5CBB1CDBE53E00751642 /* Sansation-Light.ttf in Resources */,
+				FDA1A6A31CECE99E00FFB268 /* Aaron Pinchai.png in Resources */,
+				FDA1A6A51CECE99E00FFB268 /* Peter Cook.png in Resources */,
 				FD8B5CB91CDBE53E00751642 /* Sansation-BoldItalic.ttf in Resources */,
 				FD386A451CE5160100065BA3 /* 778@3x.png in Resources */,
 				FD8B5CD11CDFE6A400751642 /* Buttons.strings in Resources */,
@@ -554,8 +613,10 @@
 				FD386A431CE5160100065BA3 /* 778.png in Resources */,
 				FD386A4A1CE51B3E00065BA3 /* 779@2x.png in Resources */,
 				FD45A0CA1CD7735100304EC0 /* Assets.xcassets in Resources */,
+				FDA1A68D1CEB91E900FFB268 /* me.png in Resources */,
 				FDFA5AFB1CDA9FAD00030A89 /* Texts.strings in Resources */,
 				FD8B5CBA1CDBE53E00751642 /* Sansation-Italic.ttf in Resources */,
+				FDA1A6A61CECE99E00FFB268 /* Sara Mayer.png in Resources */,
 				FD386A4B1CE51B3E00065BA3 /* 779@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -570,32 +631,37 @@
 				FD386A2D1CE3516800065BA3 /* CUJSONSerialization.m in Sources */,
 				FD45A0BF1CD7735100304EC0 /* AppDelegate.m in Sources */,
 				FD8B5CC51CDBFF8D00751642 /* LoginViewController.m in Sources */,
+				FDA1A6981CEB968600FFB268 /* BuyoutsViewController.m in Sources */,
 				FD8B5CF91CE252BF00751642 /* LeftPanelViewController.m in Sources */,
 				FD386A1F1CE34BB700065BA3 /* UserManager.m in Sources */,
 				FD386A311CE3517A00065BA3 /* JASidePanelController.m in Sources */,
 				FD386A081CE34A3C00065BA3 /* DateUtility.m in Sources */,
-				FD8B5CEC1CE2526500751642 /* TargetsViewController.m in Sources */,
 				FD386A191CE34B9600065BA3 /* AFSecurityPolicy.m in Sources */,
 				FD386A4E1CE5385800065BA3 /* HomeHeader.m in Sources */,
 				FD3869ED1CE3473700065BA3 /* ApiConnector.m in Sources */,
+				FDA1A6A91CECEE2A00FFB268 /* BuyoutsCell.m in Sources */,
 				FD386A3B1CE4FAC800065BA3 /* BuyoutsStatsView.m in Sources */,
+				FDA1A6951CEB967900FFB268 /* TargetsViewController.m in Sources */,
 				FD8B5CD41CDFE93600751642 /* CommonCheckBoxWithText.m in Sources */,
+				FDA1A6921CEB961100FFB268 /* TargetsBuyoutsBaseViewController.m in Sources */,
 				FD8B5CF01CE2528300751642 /* HomeViewController.m in Sources */,
 				FD386A341CE3637F00065BA3 /* RootViewController.m in Sources */,
 				FD386A051CE349C600065BA3 /* User.m in Sources */,
 				FD8B5CF41CE252AE00751642 /* SharesViewController.m in Sources */,
 				FD8B5CC01CDBE6A600751642 /* UIFont+Utils.m in Sources */,
 				FD386A2A1CE3516800065BA3 /* Compact.m in Sources */,
+				FDA1A69E1CECE31800FFB268 /* TargetsCell.m in Sources */,
 				FDA1A6821CEB467100FFB268 /* Globals.m in Sources */,
 				FD386A3E1CE4FB3100065BA3 /* AttackerView.m in Sources */,
+				FDA1A69B1CECDD7000FFB268 /* TargetsBuyoutsBaseCell.m in Sources */,
 				FD8B5CE21CE2521B00751642 /* ResetPasswordViewController.m in Sources */,
 				FD386A381CE4FA3600065BA3 /* BigUserView.m in Sources */,
+				FDA1A6891CEB544C00FFB268 /* TargetsBuyoutsHeader.m in Sources */,
 				FD386A171CE34B9600065BA3 /* AFHTTPSessionManager.m in Sources */,
 				FD386A041CE349C600065BA3 /* Buyout.m in Sources */,
 				FDFA5B011CDAA43600030A89 /* UIColor+Utils.m in Sources */,
 				FD386A1C1CE34B9600065BA3 /* AFURLSessionManager.m in Sources */,
 				FD8B5CDE1CE251D400751642 /* AboutViewController.m in Sources */,
-				FD8B5CEB1CE2526500751642 /* BuyoutsViewController.m in Sources */,
 				FD386A1B1CE34B9600065BA3 /* AFURLResponseSerialization.m in Sources */,
 				FD386A1A1CE34B9600065BA3 /* AFURLRequestSerialization.m in Sources */,
 				FD8B5CCE1CDFCFED00751642 /* CommonButton.m in Sources */,

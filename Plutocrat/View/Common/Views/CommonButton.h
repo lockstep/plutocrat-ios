@@ -12,12 +12,14 @@ typedef NS_ENUM (NSUInteger, ButtonColor)
 {
     ButtonColorGray,
     ButtonColorRed,
-    ButtonColorViolet
+    ButtonColorViolet,
+    ButtonColorWhite
 };
 
 @interface CommonButton : UIButton
 
 + (instancetype)smallButtonWithColor:(ButtonColor)buttonColor;
++ (instancetype)smallButtonWithColor:(ButtonColor)buttonColor titleColor:(ButtonColor)titleColor;
 + (instancetype)bigButtonWithColor:(ButtonColor)buttonColor;
 + (instancetype)textButton:(NSString *)text fontSize:(CGFloat)fontSize;
 - (void)setText:(NSString *)text;
