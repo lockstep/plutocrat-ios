@@ -72,6 +72,8 @@
 		FDA1A6A51CECE99E00FFB268 /* Peter Cook.png in Resources */ = {isa = PBXBuildFile; fileRef = FDA1A6A11CECE99E00FFB268 /* Peter Cook.png */; };
 		FDA1A6A61CECE99E00FFB268 /* Sara Mayer.png in Resources */ = {isa = PBXBuildFile; fileRef = FDA1A6A21CECE99E00FFB268 /* Sara Mayer.png */; };
 		FDA1A6A91CECEE2A00FFB268 /* BuyoutsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA1A6A81CECEE2A00FFB268 /* BuyoutsCell.m */; };
+		FDA1A6AC1CEF5CD200FFB268 /* InitiateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA1A6AB1CEF5CD200FFB268 /* InitiateViewController.m */; };
+		FDA1A6AF1CEF6AD600FFB268 /* SelectShares.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA1A6AE1CEF6AD600FFB268 /* SelectShares.m */; };
 		FDFA5AF81CDA9F9700030A89 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FDFA5AF61CDA9F9700030A89 /* main.m */; };
 		FDFA5AFB1CDA9FAD00030A89 /* Texts.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDFA5AFD1CDA9FAD00030A89 /* Texts.strings */; };
 		FDFA5B011CDAA43600030A89 /* UIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = FDFA5B001CDAA43600030A89 /* UIColor+Utils.m */; };
@@ -189,6 +191,10 @@
 		FDA1A6A21CECE99E00FFB268 /* Sara Mayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Sara Mayer.png"; path = "Misc assets/Stubs/Sara Mayer.png"; sourceTree = "<group>"; };
 		FDA1A6A71CECEE2A00FFB268 /* BuyoutsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyoutsCell.h; path = View/Interaction/Views/BuyoutsCell.h; sourceTree = "<group>"; };
 		FDA1A6A81CECEE2A00FFB268 /* BuyoutsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyoutsCell.m; path = View/Interaction/Views/BuyoutsCell.m; sourceTree = "<group>"; };
+		FDA1A6AA1CEF5CD200FFB268 /* InitiateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InitiateViewController.h; path = View/Interaction/InitiateViewController.h; sourceTree = "<group>"; };
+		FDA1A6AB1CEF5CD200FFB268 /* InitiateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InitiateViewController.m; path = View/Interaction/InitiateViewController.m; sourceTree = "<group>"; };
+		FDA1A6AD1CEF6AD600FFB268 /* SelectShares.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectShares.h; path = View/Interaction/Views/SelectShares.h; sourceTree = "<group>"; };
+		FDA1A6AE1CEF6AD600FFB268 /* SelectShares.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectShares.m; path = View/Interaction/Views/SelectShares.m; sourceTree = "<group>"; };
 		FDFA5AF51CDA9F9700030A89 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Supporting Files/Info.plist"; sourceTree = "<group>"; };
 		FDFA5AF61CDA9F9700030A89 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Supporting Files/main.m"; sourceTree = "<group>"; };
 		FDFA5AFC1CDA9FAD00030A89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Texts.strings; sourceTree = "<group>"; };
@@ -360,9 +366,9 @@
 		FD8B5CAF1CDBE27900751642 /* Base.lproj */ = {
 			isa = PBXGroup;
 			children = (
-				FDFA5AFD1CDA9FAD00030A89 /* Texts.strings */,
-				FD8B5CAC1CDBE27000751642 /* Labels.strings */,
 				FD8B5CCF1CDFE6A400751642 /* Buttons.strings */,
+				FD8B5CAC1CDBE27000751642 /* Labels.strings */,
+				FDFA5AFD1CDA9FAD00030A89 /* Texts.strings */,
 			);
 			name = Base.lproj;
 			sourceTree = "<group>";
@@ -480,6 +486,8 @@
 			children = (
 				FDA1A6961CEB968600FFB268 /* BuyoutsViewController.h */,
 				FDA1A6971CEB968600FFB268 /* BuyoutsViewController.m */,
+				FDA1A6AA1CEF5CD200FFB268 /* InitiateViewController.h */,
+				FDA1A6AB1CEF5CD200FFB268 /* InitiateViewController.m */,
 				FDA1A6901CEB961100FFB268 /* TargetsBuyoutsBaseViewController.h */,
 				FDA1A6911CEB961100FFB268 /* TargetsBuyoutsBaseViewController.m */,
 				FDA1A6931CEB967900FFB268 /* TargetsViewController.h */,
@@ -511,14 +519,16 @@
 		FDA1A6861CEB531300FFB268 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FDA1A6871CEB544C00FFB268 /* TargetsBuyoutsHeader.h */,
-				FDA1A6881CEB544C00FFB268 /* TargetsBuyoutsHeader.m */,
-				FDA1A6991CECDD7000FFB268 /* TargetsBuyoutsBaseCell.h */,
-				FDA1A69A1CECDD7000FFB268 /* TargetsBuyoutsBaseCell.m */,
-				FDA1A69C1CECE31700FFB268 /* TargetsCell.h */,
-				FDA1A69D1CECE31800FFB268 /* TargetsCell.m */,
 				FDA1A6A71CECEE2A00FFB268 /* BuyoutsCell.h */,
 				FDA1A6A81CECEE2A00FFB268 /* BuyoutsCell.m */,
+				FDA1A6AD1CEF6AD600FFB268 /* SelectShares.h */,
+				FDA1A6AE1CEF6AD600FFB268 /* SelectShares.m */,
+				FDA1A6991CECDD7000FFB268 /* TargetsBuyoutsBaseCell.h */,
+				FDA1A69A1CECDD7000FFB268 /* TargetsBuyoutsBaseCell.m */,
+				FDA1A6871CEB544C00FFB268 /* TargetsBuyoutsHeader.h */,
+				FDA1A6881CEB544C00FFB268 /* TargetsBuyoutsHeader.m */,
+				FDA1A69C1CECE31700FFB268 /* TargetsCell.h */,
+				FDA1A69D1CECE31800FFB268 /* TargetsCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -528,12 +538,12 @@
 			children = (
 				FD386A061CE34A3C00065BA3 /* DateUtility.h */,
 				FD386A071CE34A3C00065BA3 /* DateUtility.m */,
+				FDA1A6801CEB467100FFB268 /* Globals.h */,
+				FDA1A6811CEB467100FFB268 /* Globals.m */,
 				FDFA5AFF1CDAA43600030A89 /* UIColor+Utils.h */,
 				FDFA5B001CDAA43600030A89 /* UIColor+Utils.m */,
 				FD8B5CBE1CDBE6A600751642 /* UIFont+Utils.h */,
 				FD8B5CBF1CDBE6A600751642 /* UIFont+Utils.m */,
-				FDA1A6801CEB467100FFB268 /* Globals.h */,
-				FDA1A6811CEB467100FFB268 /* Globals.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -631,6 +641,7 @@
 				FD386A2D1CE3516800065BA3 /* CUJSONSerialization.m in Sources */,
 				FD45A0BF1CD7735100304EC0 /* AppDelegate.m in Sources */,
 				FD8B5CC51CDBFF8D00751642 /* LoginViewController.m in Sources */,
+				FDA1A6AF1CEF6AD600FFB268 /* SelectShares.m in Sources */,
 				FDA1A6981CEB968600FFB268 /* BuyoutsViewController.m in Sources */,
 				FD8B5CF91CE252BF00751642 /* LeftPanelViewController.m in Sources */,
 				FD386A1F1CE34BB700065BA3 /* UserManager.m in Sources */,
@@ -664,6 +675,7 @@
 				FD8B5CDE1CE251D400751642 /* AboutViewController.m in Sources */,
 				FD386A1B1CE34B9600065BA3 /* AFURLResponseSerialization.m in Sources */,
 				FD386A1A1CE34B9600065BA3 /* AFURLRequestSerialization.m in Sources */,
+				FDA1A6AC1CEF5CD200FFB268 /* InitiateViewController.m in Sources */,
 				FD8B5CCE1CDFCFED00751642 /* CommonButton.m in Sources */,
 				FD8B5CCB1CDBFFFA00751642 /* CommonSeparator.m in Sources */,
 				FDFA5AF81CDA9F9700030A89 /* main.m in Sources */,

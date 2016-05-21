@@ -7,7 +7,8 @@
 //
 
 #import "TargetsBuyoutsBaseViewController.h"
+#import "TargetsCell.h"
 
-@interface TargetsViewController : TargetsBuyoutsBaseViewController
+@interface TargetsViewController : TargetsBuyoutsBaseViewController <TargetsBuyoutsCellDelegate>
 
 @end

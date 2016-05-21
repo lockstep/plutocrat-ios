@@ -37,3 +37,7 @@
 "BuyoutSucceeded" = "Buyout Succeeded";
 "BuyoutFailed" = "Buyout Failed";
 "BuyoutsCellFormat" = "%@\r\n%i shares %i %@ ago\r\n%@";
+"InitiateBuyoutWith" = "Initiate Buyout With";
+"Shares" = "Shares";
+"MinimumBuyout" = "Minimum Buyout";
+"AvailableShares" = "Available Shares";

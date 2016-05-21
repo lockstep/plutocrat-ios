@@ -19,6 +19,7 @@
     CommonButton * engageButton;
     UILabel * successfulBuyouts;
     BOOL plutocratExists;
+    BOOL buttonEngages;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -80,6 +81,7 @@
          CGPointMake(frame.size.width - bordersOffset - engageButton.frame.size.width / 2,
                      frame.size.height / 2 + 10.0f)];
         [engageButton setHidden:YES];
+        [engageButton addTarget:self action:@selector(buttonTapped) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:engageButton];
         
         successfulBuyouts = [[UILabel alloc] initWithFrame:frame];
@@ -89,6 +91,7 @@
         [successfulBuyouts setHidden:YES];
         [self addSubview:successfulBuyouts];
         
+        buttonEngages = YES;
     }
     return self;
 }
@@ -158,6 +161,23 @@
     {
         [successfulBuyouts setText:
          [NSString stringWithFormat:NSLocalizedStringFromTable(@"SuccessfulBuyouts", @"Labels", nil), number]];
+    }
+}
+
+- (void)setButtonToEngageState:(BOOL)state
+{
+    buttonEngages = state;
+    if (state) [engageButton setText:NSLocalizedStringFromTable(@"ENGAGE", @"Buttons", nil)];
+    else [engageButton setText:NSLocalizedStringFromTable(@"ABORT", @"Buttons", nil)];
+}
+
+#pragma mark - Button
+
+- (void)buttonTapped
+{
+    if ([self.delegate respondsToSelector:@selector(buttonTappedToEngage:)])
+    {
+        [self.delegate buttonTappedToEngage:buttonEngages];
     }
 }
 

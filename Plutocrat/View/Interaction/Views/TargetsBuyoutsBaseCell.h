@@ -13,11 +13,20 @@ typedef NS_ENUM (NSUInteger, EngageButtonState)
     EngageButtonDefaultState,
     EngageButtonUnderThreatState,
     EngageButtonAttackingYouState,
-    EngageButtonEliminatedState
+    EngageButtonEliminatedState,
+    EngageButtonToAbortState
 };
+
+@class TargetsBuyoutsBaseCell;
+@protocol TargetsBuyoutsCellDelegate <NSObject>
+
+- (void)buttonTappedToEngage:(BOOL)toEngage onCell:(TargetsBuyoutsBaseCell *)cell;
+
+@end
 
 @interface TargetsBuyoutsBaseCell : UITableViewCell
 
+@property (nonatomic, weak) id <TargetsBuyoutsCellDelegate> delegate;
 @property (nonatomic, strong) UIImageView * photo;
 @property (nonatomic, strong) UILabel * name;
 @property (nonatomic, strong) UILabel * info;

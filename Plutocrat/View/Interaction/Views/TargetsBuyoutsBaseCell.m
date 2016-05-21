@@ -14,6 +14,7 @@
 {
     CommonButton * engageButton;
     UILabel * engageReplace;
+    BOOL buttonEngages;
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -22,6 +23,8 @@
     
     if (self)
     {
+        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
         CGFloat bordersOffset = [Globals horizontalOffsetInTable];
         self.photo = [[UIImageView alloc] initWithFrame:CGRectMake(bordersOffset,
                                                               18.0f,
@@ -54,11 +57,11 @@
         [self addSubview:self.info];
         
         engageButton = [CommonButton smallButtonWithColor:ButtonColorGray titleColor:ButtonColorWhite];
-        [engageButton setText:NSLocalizedStringFromTable(@"ENGAGE", @"Buttons", nil)];
         [engageButton setCenter:
          CGPointMake(self.frame.size.width - bordersOffset - engageButton.frame.size.width / 2,
                      [Globals cellHeight] / 2)];
         [engageButton setHidden:YES];
+        [engageButton addTarget:self action:@selector(buttonTapped) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:engageButton];
         
         engageReplace = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 65.0f, 28.0f)];
@@ -91,7 +94,9 @@
     {
         case EngageButtonDefaultState:
             [engageButton setHidden:NO];
+            [engageButton setText:NSLocalizedStringFromTable(@"ENGAGE", @"Buttons", nil)];
             [engageReplace setHidden:YES];
+            buttonEngages = YES;
             break;
             
         case EngageButtonUnderThreatState:
@@ -112,8 +117,25 @@
             [engageReplace setText:NSLocalizedStringFromTable(@"Eliminated", @"Labels", nil)];
             break;
             
+        case EngageButtonToAbortState:
+            [engageButton setHidden:NO];
+            [engageButton setText:NSLocalizedStringFromTable(@"ABORT", @"Buttons", nil)];
+            [engageReplace setHidden:YES];
+            buttonEngages = NO;
+            break;
+            
         default:
             break;
+    }
+}
+
+#pragma mark - button
+
+- (void)buttonTapped
+{
+    if ([self.delegate respondsToSelector:@selector(buttonTappedToEngage:onCell:)])
+    {
+        [self.delegate buttonTappedToEngage:buttonEngages onCell:self];
     }
 }
 

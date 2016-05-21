@@ -7,6 +7,7 @@
 //
 
 #import "TargetsBuyoutsBaseViewController.h"
+#import "InitiateViewController.h"
 
 @interface TargetsBuyoutsBaseViewController ()
 {
@@ -24,7 +25,9 @@
     
     self.header = [[TargetsBuyoutsHeader alloc] initWithFrame:
               CGRectMake(0.0f, 0.0f, self.view.bounds.size.width, [Globals cellHeight] + 20.0f)];
+    [self.header setDelegate:self];
     [self.view addSubview:self.header];
+    
     self.table = [[UITableView alloc] initWithFrame:CGRectMake(0.0f,
                                                                self.header.frame.size.height,
                                                                self.view.bounds.size.width,
@@ -59,6 +62,18 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [Globals cellHeight];
+}
+
+#pragma mark - TargetsBuyotsHeaderDelegate
+
+- (void)buttonTappedToEngage:(BOOL)toEngage
+{
+    if (toEngage)
+    {
+        InitiateViewController * ivc = [[InitiateViewController alloc] init];
+        [self addChildViewController:ivc];
+        [self.view addSubview:ivc.view];
+    }
 }
 
 #pragma mark - global stub

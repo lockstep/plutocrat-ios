@@ -7,7 +7,7 @@
 //
 
 #import "TargetsViewController.h"
-#import "TargetsCell.h"
+#import "InitiateViewController.h"
 
 @interface TargetsViewController ()
 {
@@ -39,8 +39,44 @@
     TargetsCell * tCell = (TargetsCell *)cell;
     [[tCell photo] setImage:[UIImage imageNamed:[self.source objectAtIndex:indexPath.row]]];
     [[tCell name] setText:[self.source objectAtIndex:indexPath.row]];
-    
+    [tCell setTag:indexPath.row];
+    if (!tCell.delegate)
+    {
+        [tCell setDelegate:self];
+    }
     [self stubCell:tCell];
+}
+
+#pragma mark - TargetsBuyoutsCellDelegate
+
+- (void)buttonTappedToEngage:(BOOL)toEngage onCell:(TargetsBuyoutsBaseCell *)cell
+{
+    if (toEngage)
+    {
+        CGRect frame = cell.frame;
+        frame.origin.y += self.table.frame.origin.y;
+        cell.frame = frame;
+        [self.view addSubview:cell];
+        void (^animations)() = ^() {
+            CGRect frame = cell.frame;
+            frame.origin.y = 20.0f;
+            cell.frame = frame;
+        };
+        
+        [UIView animateWithDuration:0.5f
+                              delay:0.0f
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:animations
+                         completion:^(BOOL finished){
+                             InitiateViewController * ivc = [[InitiateViewController alloc] init];
+                             [self addChildViewController:ivc];
+                             [self.view addSubview:ivc.view];
+                             [ivc stubName:[self.source objectAtIndex:cell.tag]];
+                             [ivc setBackImageType:BackImageTypeTargets];
+                             [cell removeFromSuperview];
+                             [self.table reloadData];
+                         }];
+    }
 }
 
 #pragma mark - stub
