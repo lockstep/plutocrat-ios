@@ -14,6 +14,8 @@
     UILabel * shares;
     UILabel * minimumBuyout;
     UILabel * availableShares;
+    UIButton * minusButton;
+    UIButton * plusButton;
     NSUInteger minimumValue;
     NSUInteger currentValue;
     NSUInteger maximumValue;
@@ -42,14 +44,30 @@
         [firstLine setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:firstLine];
         
-        shares = [[UILabel alloc] initWithFrame:CGRectMake(0.0f,
+        shares = [[UILabel alloc] initWithFrame:CGRectMake(110.0f,
                                                            firstLine.frame.size.height,
-                                                           frame.size.width,
+                                                           frame.size.width - 220.0f,
                                                            58.0f)];
         [shares setFont:bigFont];
         [shares setTextColor:violetColor];
         [shares setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:shares];
+        
+        minusButton = [[UIButton alloc] initWithFrame:CGRectMake(25.0f,
+                                                                 firstLine.frame.size.height,
+                                                                 60.0f,
+                                                                 58.0f)];
+        [minusButton addTarget:self action:@selector(minus) forControlEvents:UIControlEventTouchUpInside];
+        [minusButton setImage:[UIImage imageNamed:@"minus"] forState:UIControlStateNormal];
+        [self addSubview:minusButton];
+        
+        plusButton = [[UIButton alloc] initWithFrame:CGRectMake(frame.size.width - 95.0f,
+                                                                firstLine.frame.size.height,
+                                                                60.0f,
+                                                                58.0f)];
+        [plusButton addTarget:self action:@selector(plus) forControlEvents:UIControlEventTouchUpInside];
+        [plusButton setImage:[UIImage imageNamed:@"plus"] forState:UIControlStateNormal];
+        [self addSubview:plusButton];
         
         UILabel * lastLine = [[UILabel alloc] initWithFrame:
                               CGRectMake(0.0f,
@@ -103,6 +121,27 @@
     return self;
 }
 
+- (void)setSharesState
+{
+    [shares setText:[NSString stringWithFormat:@"%lu", (unsigned long)currentValue]];
+    [minusButton setEnabled:!(minimumValue == currentValue)];
+    [plusButton setEnabled:!(maximumValue == currentValue)];
+}
+
+#pragma mark - buttons
+
+- (void)minus
+{
+    currentValue--;
+    [self setSharesState];
+}
+
+- (void)plus
+{
+    currentValue++;
+    [self setSharesState];
+}
+
 #pragma mark - public
 
 - (void)setMin:(NSUInteger)min value:(NSUInteger)value max:(NSUInteger)max
@@ -110,11 +149,11 @@
     minimumValue = min;
     currentValue = value;
     maximumValue = max;
-    [shares setText:[NSString stringWithFormat:@"%lu", (unsigned long)value]];
     [minimumBuyout setText:
      [NSString stringWithFormat:@"%@: %lu", NSLocalizedStringFromTable(@"MinimumBuyout", @"Labels", nil), (unsigned long)min]];
     [availableShares setText:
      [NSString stringWithFormat:@"%@: %lu", NSLocalizedStringFromTable(@"AvailableShares", @"Labels", nil), (unsigned long)max]];
+    [self setSharesState];
 }
 
 - (NSUInteger)value
