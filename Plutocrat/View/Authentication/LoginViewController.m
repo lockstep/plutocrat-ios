@@ -46,6 +46,8 @@
 {
     [super viewDidLoad];
     
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     [self setupCommon];

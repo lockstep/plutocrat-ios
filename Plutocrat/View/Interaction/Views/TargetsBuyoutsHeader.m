@@ -49,7 +49,7 @@
                                                               74.0f)];
         [[photo layer] setCornerRadius:photo.frame.size.width / 2];
         [[photo layer] setBorderColor:[UIColor whiteColor].CGColor];
-        [[photo layer] setBorderWidth:1.0f];
+        [[photo layer] setBorderWidth:2.0f];
         [[photo layer] setMasksToBounds:YES];
         [photo setHidden:YES];
         [self addSubview:photo];

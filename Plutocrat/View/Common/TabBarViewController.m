@@ -26,8 +26,11 @@
 
 @implementation TabBarViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     hvc = [HomeViewController new];
     hvc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Home" image:nil tag:0];

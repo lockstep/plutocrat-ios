@@ -27,12 +27,10 @@
         
         CGFloat bordersOffset = [Globals horizontalOffsetInTable];
         self.photo = [[UIImageView alloc] initWithFrame:CGRectMake(bordersOffset,
-                                                              18.0f,
+                                                              13.0f,
                                                               74.0f,
                                                               74.0f)];
         [[self.photo layer] setCornerRadius:self.photo.frame.size.width / 2];
-        [[self.photo layer] setBorderColor:[UIColor whiteColor].CGColor];
-        [[self.photo layer] setBorderWidth:1.0f];
         [[self.photo layer] setMasksToBounds:YES];
         [self addSubview:self.photo];
         
