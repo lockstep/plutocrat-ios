@@ -26,10 +26,10 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        UIFont * textFont = [UIFont snFontWithSize:12.0f];
-        UIFont * tinyFont = [UIFont snFontWithSize:14.0f];
-        UIFont * smallFont = [UIFont snFontWithSize:18.0f];
-        UIFont * bigFont = [UIFont snFontWithSize:72.0f];
+        UIFont * textFont = [UIFont regularFontWithSize:12.0f];
+        UIFont * tinyFont = [UIFont regularFontWithSize:14.0f];
+        UIFont * smallFont = [UIFont regularFontWithSize:18.0f];
+        UIFont * bigFont = [UIFont regularFontWithSize:72.0f];
         UIColor * grayColor = [UIColor grayWithIntense:146.0f];
         UIColor * violetColor = [UIColor colorWithRed:65.0f / 255.0f
                                                 green:12.0f / 255.0f

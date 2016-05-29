@@ -8,7 +8,7 @@
 
 "WelcomeTo" = "Welcome to Plutocrat";
 
-"UseShares" = "Use Shares to buy out other players.\nThe player with the most buyouts is the Plutocrat.\nMatch buyout offers to stay in the game.\r\n\r\nFailing to match a buyout within 48 hours results in permanent account suspension. Your remaining shares go to the victor.";
+"UseShares" = "Use shares to buy out other players. The player with the most buyouts is the Plutocrat. Match buyout offers to stay in the game.\r\n\r\nFailing to match a buyout within 48 hours results in permanent account suspension. Your remaining shares go to the victor.";
 
 "UseSharesToBold" = "permanent account suspension";
 

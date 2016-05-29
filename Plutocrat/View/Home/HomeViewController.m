@@ -63,7 +63,7 @@
     [view addSubview:buyoutsStatsView];
     curY += buyoutsStatsView.frame.size.height;
     
-    UIFont * smallFont = [UIFont snFontWithSize:12.0f];
+    UIFont * smallFont = [UIFont regularFontWithSize:12.0f];
     UIColor * paleGray = [UIColor grayWithIntense:168.0f];
 
     tapHere = [[UITextView alloc] initWithFrame:
@@ -148,7 +148,7 @@
                                      bigUserView.frame.size.width,
                                      bigUserView.frame.size.height)];
     
-    UIFont * smallFont = [UIFont snFontWithSize:10.0f];
+    UIFont * smallFont = [UIFont regularFontWithSize:10.0f];
     UIColor * paleGray = [UIColor grayWithIntense:168.0f];
     UIColor * coloredViolet = [UIColor colorWithRed:65.0f / 255.0f
                                               green:12.0f / 255.0f

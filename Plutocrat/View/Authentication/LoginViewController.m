@@ -68,37 +68,37 @@
     [self.view addSubview:scrollableContentHolder];
     
     UIColor * paleGray = [UIColor grayWithIntense:146.0f];
-    const CGFloat bigFontSize = 20.0f;
-    const CGFloat smallFontSize = 12.0f;
+    const CGFloat bigFontSize = 24.0f;
+    const CGFloat smallFontSize = 14.0f;
     const CGFloat textButtonsFontSize = 14.0f;
     CGFloat horizontalOffset = [Globals horizontalOffset];
     CGFloat heightsOfTextFields = 34.0f;
     CGFloat componentsWidth = self.view.bounds.size.width - horizontalOffset * 2;
     
     UILabel * welcome = [[UILabel alloc] initWithFrame:CGRectMake(horizontalOffset,
-                                                                  90.0f,
+                                                                  60.0f,
                                                                   componentsWidth,
                                                                   40.0f)];
     [welcome setText:NSLocalizedStringFromTable(@"WelcomeTo", @"Texts", nil)];
     [welcome setTextColor:paleGray];
-    [welcome setFont:[UIFont snFontWithSize:bigFontSize]];
+    [welcome setFont:[UIFont regularFontWithSize:bigFontSize]];
     [scrollableContentHolder addSubview:welcome];
     
     UITextView * useShares = [[UITextView alloc] initWithFrame:CGRectMake(horizontalOffset,
-                                                                          130.0f,
+                                                                          110.0f,
                                                                           componentsWidth,
                                                                           140.0f)];
     [useShares setEditable:NO];
     [useShares setSelectable:NO];
     [useShares.textContainer setLineFragmentPadding:0.0f];
     [useShares setTextContainerInset:UIEdgeInsetsZero];
-    NSDictionary * baseAttrs = @{NSFontAttributeName:[UIFont snFontWithSize:smallFontSize],
+    NSDictionary * baseAttrs = @{NSFontAttributeName:[UIFont regularFontWithSize:smallFontSize],
                                  NSForegroundColorAttributeName:paleGray};
     
     NSString * useSharesString = NSLocalizedStringFromTable(@"UseShares", @"Texts", nil);
     NSString * stringToBold = NSLocalizedStringFromTable(@"UseSharesToBold", @"Texts", nil);
     
-    NSDictionary * subAttrs = @{NSFontAttributeName:[UIFont snBoldFontWithSize:smallFontSize],
+    NSDictionary * subAttrs = @{NSFontAttributeName:[UIFont boldFontWithSize:smallFontSize],
                                 NSForegroundColorAttributeName:paleGray};
     const NSRange range = [useSharesString rangeOfString:stringToBold];
     
@@ -112,18 +112,18 @@
                                                             componentsWidth,
                                                             30.0f)];
     [actionLabel setTextColor:paleGray];
-    [actionLabel setFont:[UIFont snFontWithSize:bigFontSize]];
+    [actionLabel setFont:[UIFont regularFontWithSize:bigFontSize]];
     [scrollableContentHolder addSubview:actionLabel];
     
     
     displayName = [[UITextField alloc] initWithFrame:CGRectMake(horizontalOffset,
-                                                                290.0f,
+                                                                300.0f,
                                                                 componentsWidth,
                                                                 heightsOfTextFields)];
     [displayName setPlaceholder:NSLocalizedStringFromTable(@"DisplayName", @"Labels", nil)];
     [displayName setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [displayName setReturnKeyType:UIReturnKeyNext];
-    [displayName setFont:[UIFont snFontWithSize:smallFontSize]];
+    [displayName setFont:[UIFont regularFontWithSize:smallFontSize]];
     [displayName setDelegate:self];
     [displayName setHidden:YES];
     [scrollableContentHolder addSubview:displayName];
@@ -142,7 +142,7 @@
     [email setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [email setKeyboardType:UIKeyboardTypeEmailAddress];
     [email setReturnKeyType:UIReturnKeyNext];
-    [email setFont:[UIFont snFontWithSize:smallFontSize]];
+    [email setFont:[UIFont regularFontWithSize:smallFontSize]];
     [email setDelegate:self];
     [scrollableContentHolder addSubview:email];
     
@@ -161,7 +161,7 @@
     [password setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [password setSecureTextEntry:YES];
     [password setReturnKeyType:UIReturnKeyDone];
-    [password setFont:[UIFont snFontWithSize:smallFontSize]];
+    [password setFont:[UIFont regularFontWithSize:smallFontSize]];
     [password setDelegate:self];
     [scrollableContentHolder addSubview:password];
     
@@ -217,7 +217,7 @@
     [displayName setHidden:userIsRegistered];
     
     [email setFrame:CGRectMake(email.frame.origin.x,
-                              290.0f + modeDiff,
+                              300.0f + modeDiff,
                               email.frame.size.width,
                               email.frame.size.height)];
     

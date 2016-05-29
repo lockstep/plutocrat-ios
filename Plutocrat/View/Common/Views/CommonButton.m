@@ -15,7 +15,7 @@
     CommonButton * button = [[CommonButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 65.0f, 24.0f)];
     [button paintButtonToColor:buttonColor titleColor:titleColor];
     [[button layer] setCornerRadius:4.0f];
-    [[button titleLabel] setFont:[UIFont snFontWithSize:14.0f]];
+    [[button titleLabel] setFont:[UIFont regularFontWithSize:14.0f]];
     return button;
 }
 + (instancetype)smallButtonWithColor:(ButtonColor)buttonColor
@@ -28,13 +28,13 @@
     CommonButton * button = [[CommonButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 110.0f, 24.0f)];
     [button paintButtonToColor:buttonColor titleColor:ButtonColorWhite];
     [[button layer] setCornerRadius:4.0f];
-    [[button titleLabel] setFont:[UIFont snFontWithSize:12.0f]];
+    [[button titleLabel] setFont:[UIFont regularFontWithSize:12.0f]];
     return button;
 }
 
 + (instancetype)textButton:(NSString *)text fontSize:(CGFloat)fontSize
 {
-    UIFont * font = [UIFont snFontWithSize:fontSize];
+    UIFont * font = [UIFont regularFontWithSize:fontSize];
     CGRect rect = [text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 20.0f)
                                      options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                   attributes:@{NSFontAttributeName:font}

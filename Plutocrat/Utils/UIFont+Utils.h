@@ -10,7 +10,7 @@
 
 @interface UIFont (Utils)
 
-+ (instancetype)snFontWithSize:(CGFloat)size;
-+ (instancetype)snBoldFontWithSize:(CGFloat)size;
++ (instancetype)regularFontWithSize:(CGFloat)size;
++ (instancetype)boldFontWithSize:(CGFloat)size;
 
 @end

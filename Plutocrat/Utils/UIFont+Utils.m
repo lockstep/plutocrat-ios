@@ -10,14 +10,14 @@
 
 @implementation UIFont (Utils)
 
-+ (instancetype)snFontWithSize:(CGFloat)size
++ (instancetype)regularFontWithSize:(CGFloat)size
 {
-    return [UIFont fontWithName:@"Sansation-Regular" size:size];
+    return [UIFont fontWithName:@"Helvetica" size:size];
 }
 
-+ (instancetype)snBoldFontWithSize:(CGFloat)size
++ (instancetype)boldFontWithSize:(CGFloat)size
 {
-    return [UIFont fontWithName:@"Sansation-Bold" size:size];
+    return [UIFont fontWithName:@"Helvetica-Bold" size:size];
 }
 
 @end

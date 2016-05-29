@@ -32,7 +32,7 @@
                                                                  bordersOffset,
                                                                  elementsWidth,
                                                                  60.0f)];
-        [successValue setFont:[UIFont snFontWithSize:bigFontSize]];
+        [successValue setFont:[UIFont regularFontWithSize:bigFontSize]];
         [successValue setTextColor:darkGray];
         [successValue setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:successValue];
@@ -42,7 +42,7 @@
                                   bordersOffset,
                                   elementsWidth,
                                   60.0f)];
-        [failedValue setFont:[UIFont snFontWithSize:bigFontSize]];
+        [failedValue setFont:[UIFont regularFontWithSize:bigFontSize]];
         [failedValue setTextColor:darkGray];
         [failedValue setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:failedValue];
@@ -52,7 +52,7 @@
                                     bordersOffset,
                                     elementsWidth,
                                     60.0f)];
-        [defeatedValue setFont:[UIFont snFontWithSize:bigFontSize]];
+        [defeatedValue setFont:[UIFont regularFontWithSize:bigFontSize]];
         [defeatedValue setTextColor:darkGray];
         [defeatedValue setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:defeatedValue];
@@ -67,7 +67,7 @@
                        successValue.frame.origin.y + successValue.frame.size.height,
                        elementsWidth,
                        30.0f)];
-            [label setFont:[UIFont snFontWithSize:smallFontSize]];
+            [label setFont:[UIFont regularFontWithSize:smallFontSize]];
             [label setTextColor:paleGray];
             [label setTextAlignment:NSTextAlignmentCenter];
             [label setNumberOfLines:0];

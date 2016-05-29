@@ -36,7 +36,7 @@
                                         100.0f)];
                                         
                                                                       
-        [warning setFont:[UIFont snFontWithSize:11.0f]];
+        [warning setFont:[UIFont regularFontWithSize:11.0f]];
         [warning setTextColor:[UIColor grayWithIntense:146.0f]];
         [warning setNumberOfLines:0];
         [warning setLineBreakMode:NSLineBreakByWordWrapping];

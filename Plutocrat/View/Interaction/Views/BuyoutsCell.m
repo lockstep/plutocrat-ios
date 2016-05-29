@@ -27,7 +27,7 @@
                                     green:2.0f / 255.0f
                                     blue:2.0f / 255.0f
                                     alpha:1.0f];
-    UIFont * font = [UIFont snFontWithSize:11.0f];
+    UIFont * font = [UIFont regularFontWithSize:11.0f];
     
     switch (state)
     {
