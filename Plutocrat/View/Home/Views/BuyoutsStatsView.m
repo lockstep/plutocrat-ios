@@ -27,9 +27,10 @@
         CGFloat elementsWidth = (self.bounds.size.width - bordersOffset * 6) / 3;
         const CGFloat bigFontSize = 54.0f;
         const CGFloat smallFontSize = 10.0f;
+        const CGFloat verticalOffset = 15.0f;
         
         successValue = [[UILabel alloc] initWithFrame:CGRectMake(bordersOffset,
-                                                                 bordersOffset,
+                                                                 verticalOffset,
                                                                  elementsWidth,
                                                                  60.0f)];
         [successValue setFont:[UIFont regularFontWithSize:bigFontSize]];
@@ -39,7 +40,7 @@
         
         failedValue = [[UILabel alloc] initWithFrame:
                        CGRectMake(successValue.frame.origin.x + elementsWidth +  bordersOffset * 2,
-                                  bordersOffset,
+                                  verticalOffset,
                                   elementsWidth,
                                   60.0f)];
         [failedValue setFont:[UIFont regularFontWithSize:bigFontSize]];
@@ -49,7 +50,7 @@
         
         defeatedValue = [[UILabel alloc] initWithFrame:
                          CGRectMake(failedValue.frame.origin.x + elementsWidth + bordersOffset * 2,
-                                    bordersOffset,
+                                    verticalOffset,
                                     elementsWidth,
                                     60.0f)];
         [defeatedValue setFont:[UIFont regularFontWithSize:bigFontSize]];
@@ -78,7 +79,7 @@
         
         CommonSeparator * sep = [[CommonSeparator alloc] initWithFrame:
                                  CGRectMake(bordersOffset,
-                                            self.bounds.size.height - 1.0f,
+                                            self.bounds.size.height - 12.0f,
                                             self.bounds.size.width - bordersOffset * 2,
                                             1.0f)];
         [self addSubview:sep];
@@ -90,9 +91,9 @@
 
 - (void)fillStub
 {
-    [successValue setText:@"12"];
-    [failedValue setText:@"5"];
-    [defeatedValue setText:@"17"];
+    [successValue setText:@"88"];
+    [failedValue setText:@"88"];
+    [defeatedValue setText:@"88"];
 }
 
 @end

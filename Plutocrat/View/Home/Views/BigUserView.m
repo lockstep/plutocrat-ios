@@ -31,7 +31,7 @@
         const CGFloat smallFontSize = 12.0f;
         
         photo = [[UIImageView alloc] initWithFrame:CGRectMake(bordersOffset,
-                                                              28.0f,
+                                                              25.0f,
                                                               88.0f,
                                                               88.0f)];
         [[photo layer] setCornerRadius:photo.frame.size.width / 2];
@@ -41,7 +41,7 @@
         CGFloat startingXForLabels = bordersOffset + photo.frame.size.width + [Globals offsetFromPhoto];
         
         name = [[UILabel alloc] initWithFrame:CGRectMake(startingXForLabels,
-                                                         28.0f * 1.5f,
+                                                         25.0f * 1.5f,
                                                          self.bounds.size.width - startingXForLabels - bordersOffset,
                                                          28.0f)];
         [name setNumberOfLines:1];

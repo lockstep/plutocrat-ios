@@ -12,7 +12,7 @@
 
 + (CGFloat)horizontalOffset
 {
-    return 28.0f;
+    return 20.0f;
 }
 
 + (CGFloat)horizontalOffsetInTable

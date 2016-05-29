@@ -15,9 +15,9 @@
 "Login" = "Login";
 "ForgotPassword" = "Forgot Password";
 "ManageAccount" = "Manage Account";
-"SuccessfullBuyouts" = "Successful Buyouts";
-"FailedBuyouts" = "Failed Buyouts";
-"DefeatedBuyouts" = "Defeated Buyouts";
+"SuccessfullBuyouts" = "Successful\nBuyouts";
+"FailedBuyouts" = "Failed\nBuyouts";
+"DefeatedBuyouts" = "Defeated\nThreats";
 "SurvivalTime" = "Survival Time";
 "ActiveBuyoutThreat" = "Active Buyout Threat";
 "Deadline" = "Deadline";
