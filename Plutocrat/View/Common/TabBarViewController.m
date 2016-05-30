@@ -32,38 +32,54 @@
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
+    [self.tabBar setTintColor:[UIColor blackColor]];
+    
     hvc = [HomeViewController new];
-    hvc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Home" image:nil tag:0];
+    UIImage * hvcImgInact = [[UIImage imageNamed:@"home-inactive"]
+                             imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage * hvcImgAct = [[UIImage imageNamed:@"home-active"]
+                           imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    hvc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Home"
+                                                   image:hvcImgInact
+                                           selectedImage:hvcImgAct];
 
     tvc = [TargetsViewController new];
-    tvc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Targets" image:nil tag:1];
+    UIImage * tvcImgInact = [[UIImage imageNamed:@"targets-inactive"]
+                             imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage * tvcImgAct = [[UIImage imageNamed:@"targets-active"]
+                           imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    tvc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Targets"
+                                                   image:tvcImgInact
+                                           selectedImage:tvcImgAct ];
     
     bvc = [BuyoutsViewController new];
-    bvc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Buyouts" image:nil tag:2];
+    UIImage * bvcImgInact = [[UIImage imageNamed:@"buyouts-inactive"]
+                             imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage * bvcImgAct = [[UIImage imageNamed:@"buyouts-active"]
+                           imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    bvc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Buyouts"
+                                                   image:bvcImgInact
+                                           selectedImage:bvcImgAct];
     
     svc = [SharesViewController new];
-    svc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Shares" image:nil tag:3];
+    UIImage * svcImgInact = [[UIImage imageNamed:@"shares-inactive"]
+                             imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage * svcImgAct = [[UIImage imageNamed:@"shares-active"]
+                           imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    svc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Shares"
+                                                   image:svcImgInact
+                                           selectedImage:svcImgAct];
     
     avc = [AboutViewController new];
-    avc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"About" image:nil tag:4];
+    UIImage * avcImgInact = [[UIImage imageNamed:@"about-inactive"]
+                             imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage * avcImgAct = [[UIImage imageNamed:@"about-active"]
+                           imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    avc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"About"
+                                                   image:avcImgInact
+                                           selectedImage:avcImgAct];
     
     self.viewControllers = @[hvc, tvc, bvc, svc, avc];
-    // Do any additional setup after loading the view.
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -74,6 +74,8 @@
 		FDA1A6A91CECEE2A00FFB268 /* BuyoutsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA1A6A81CECEE2A00FFB268 /* BuyoutsCell.m */; };
 		FDA1A6AC1CEF5CD200FFB268 /* InitiateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA1A6AB1CEF5CD200FFB268 /* InitiateViewController.m */; };
 		FDA1A6AF1CEF6AD600FFB268 /* SelectShares.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA1A6AE1CEF6AD600FFB268 /* SelectShares.m */; };
+		FDA1A6B11CFC2ED400FFB268 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDA1A6B01CFC2ED400FFB268 /* WebKit.framework */; };
+		FDA1A6B51CFC33F300FFB268 /* AboutHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA1A6B41CFC33F300FFB268 /* AboutHeader.m */; };
 		FDFA5AF81CDA9F9700030A89 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FDFA5AF61CDA9F9700030A89 /* main.m */; };
 		FDFA5AFB1CDA9FAD00030A89 /* Texts.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDFA5AFD1CDA9FAD00030A89 /* Texts.strings */; };
 		FDFA5B011CDAA43600030A89 /* UIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = FDFA5B001CDAA43600030A89 /* UIColor+Utils.m */; };
@@ -195,6 +197,9 @@
 		FDA1A6AB1CEF5CD200FFB268 /* InitiateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InitiateViewController.m; path = View/Interaction/InitiateViewController.m; sourceTree = "<group>"; };
 		FDA1A6AD1CEF6AD600FFB268 /* SelectShares.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectShares.h; path = View/Interaction/Views/SelectShares.h; sourceTree = "<group>"; };
 		FDA1A6AE1CEF6AD600FFB268 /* SelectShares.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectShares.m; path = View/Interaction/Views/SelectShares.m; sourceTree = "<group>"; };
+		FDA1A6B01CFC2ED400FFB268 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		FDA1A6B31CFC33F300FFB268 /* AboutHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutHeader.h; path = View/About/Views/AboutHeader.h; sourceTree = "<group>"; };
+		FDA1A6B41CFC33F300FFB268 /* AboutHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutHeader.m; path = View/About/Views/AboutHeader.m; sourceTree = "<group>"; };
 		FDFA5AF51CDA9F9700030A89 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Supporting Files/Info.plist"; sourceTree = "<group>"; };
 		FDFA5AF61CDA9F9700030A89 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Supporting Files/main.m"; sourceTree = "<group>"; };
 		FDFA5AFC1CDA9FAD00030A89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Texts.strings; sourceTree = "<group>"; };
@@ -207,6 +212,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDA1A6B11CFC2ED400FFB268 /* WebKit.framework in Frameworks */,
 				FD8B5CD61CDFEDD100751642 /* LocalAuthentication.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,6 +443,7 @@
 			isa = PBXGroup;
 			children = (
 				FD8B5CD51CDFEDD100751642 /* LocalAuthentication.framework */,
+				FDA1A6B01CFC2ED400FFB268 /* WebKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -466,6 +473,7 @@
 		FD8B5CDB1CE251BD00751642 /* About */ = {
 			isa = PBXGroup;
 			children = (
+				FDA1A6B21CFC33B900FFB268 /* Views */,
 				FD8B5CDC1CE251D400751642 /* AboutViewController.h */,
 				FD8B5CDD1CE251D400751642 /* AboutViewController.m */,
 			);
@@ -529,6 +537,15 @@
 				FDA1A6881CEB544C00FFB268 /* TargetsBuyoutsHeader.m */,
 				FDA1A69C1CECE31700FFB268 /* TargetsCell.h */,
 				FDA1A69D1CECE31800FFB268 /* TargetsCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		FDA1A6B21CFC33B900FFB268 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FDA1A6B31CFC33F300FFB268 /* AboutHeader.h */,
+				FDA1A6B41CFC33F300FFB268 /* AboutHeader.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -665,6 +682,7 @@
 				FDA1A6821CEB467100FFB268 /* Globals.m in Sources */,
 				FD386A3E1CE4FB3100065BA3 /* AttackerView.m in Sources */,
 				FDA1A69B1CECDD7000FFB268 /* TargetsBuyoutsBaseCell.m in Sources */,
+				FDA1A6B51CFC33F300FFB268 /* AboutHeader.m in Sources */,
 				FD8B5CE21CE2521B00751642 /* ResetPasswordViewController.m in Sources */,
 				FD386A381CE4FA3600065BA3 /* BigUserView.m in Sources */,
 				FDA1A6891CEB544C00FFB268 /* TargetsBuyoutsHeader.m in Sources */,
@@ -806,7 +824,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pavel Dolgov (6CWBHC8UWK)";
-				CURRENT_PROJECT_VERSION = 0.2.1;
+				CURRENT_PROJECT_VERSION = 0.2.2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Plutocrat/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Plutocrat/Supporting Files/Info.plist";
@@ -824,7 +842,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Whitefly Ventures, Inc. (86AUZJL55V)";
-				CURRENT_PROJECT_VERSION = 0.2.1;
+				CURRENT_PROJECT_VERSION = 0.2.2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Plutocrat/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Plutocrat/Supporting Files/Info.plist";

@@ -28,10 +28,11 @@
     [self.header setDelegate:self];
     [self.view addSubview:self.header];
     
-    self.table = [[UITableView alloc] initWithFrame:CGRectMake(0.0f,
-                                                               self.header.frame.size.height,
-                                                               self.view.bounds.size.width,
-                                                               self.view.bounds.size.height - self.header.frame.size.height - 48.0f)];
+    self.table = [[UITableView alloc] initWithFrame:
+                  CGRectMake(0.0f,
+                             self.header.frame.size.height,
+                             self.view.bounds.size.width,
+                             self.view.bounds.size.height - self.header.frame.size.height - 48.0f)];
     [self.table setDelegate:self];
     [self.table setDataSource:self];
     [self.table setSeparatorStyle:UITableViewCellSeparatorStyleNone];

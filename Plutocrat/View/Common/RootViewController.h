@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "LoginViewController.h"
+#import "LeftPanelViewController.h"
 
-@interface RootViewController : UIViewController <LoginViewControllerDelegate>
+@interface RootViewController : UIViewController <LoginViewControllerDelegate, LeftPanelDelegate>
 
 @end

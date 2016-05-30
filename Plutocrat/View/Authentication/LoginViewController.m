@@ -183,7 +183,7 @@
     LAContext *context = [LAContext new];
     if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil])
     {
-        [useTouchId setHidden:NO];
+        [useTouchId setHidden:YES];
     }
     else
     {

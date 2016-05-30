@@ -19,6 +19,8 @@
     NSUInteger minimumValue;
     NSUInteger currentValue;
     NSUInteger maximumValue;
+    NSTimer * buttonsTimer;
+    BOOL blockLastPlusMinusAction;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -53,26 +55,37 @@
         [shares setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:shares];
         
-        minusButton = [[UIButton alloc] initWithFrame:CGRectMake(25.0f,
-                                                                 firstLine.frame.size.height,
-                                                                 60.0f,
-                                                                 58.0f)];
-        [minusButton addTarget:self action:@selector(minus) forControlEvents:UIControlEventTouchUpInside];
-        [minusButton setImage:[UIImage imageNamed:@"minus"] forState:UIControlStateNormal];
+        minusButton = [[UIButton alloc] initWithFrame:
+                       CGRectMake(86.0f,
+                                  shares.frame.origin.y + shares.frame.size.height + 12.0f,
+                                  26.0f,
+                                  26.0f)];
+        [minusButton addTarget:self action:@selector(minusDown)
+              forControlEvents:UIControlEventTouchDown];
+        [minusButton addTarget:self action:@selector(minusUp)
+              forControlEvents:UIControlEventTouchUpInside];
+        
+        [minusButton setImage:[UIImage imageNamed:@"minus-active"] forState:UIControlStateNormal];
+        [minusButton setImage:[UIImage imageNamed:@"minus-inactive"] forState:UIControlStateDisabled];
         [self addSubview:minusButton];
         
-        plusButton = [[UIButton alloc] initWithFrame:CGRectMake(frame.size.width - 95.0f,
-                                                                firstLine.frame.size.height,
-                                                                60.0f,
-                                                                58.0f)];
-        [plusButton addTarget:self action:@selector(plus) forControlEvents:UIControlEventTouchUpInside];
-        [plusButton setImage:[UIImage imageNamed:@"plus"] forState:UIControlStateNormal];
+        plusButton = [[UIButton alloc] initWithFrame:
+                      CGRectMake(frame.size.width - 86.0f - 26.0f,
+                                 shares.frame.origin.y + shares.frame.size.height + 12.0f,
+                                 26.0f,
+                                 26.0f)];
+        [plusButton addTarget:self action:@selector(plusDown)
+             forControlEvents:UIControlEventTouchDown];
+        [plusButton addTarget:self action:@selector(plusUp)
+             forControlEvents:UIControlEventTouchUpInside];
+        [plusButton setImage:[UIImage imageNamed:@"plus-active"] forState:UIControlStateNormal];
+        [plusButton setImage:[UIImage imageNamed:@"plus-inactive"] forState:UIControlStateDisabled];
         [self addSubview:plusButton];
         
         UILabel * lastLine = [[UILabel alloc] initWithFrame:
-                              CGRectMake(0.0f,
+                              CGRectMake(100.0f,
                                          shares.frame.origin.y + shares.frame.size.height,
-                                         frame.size.width,
+                                         frame.size.width - 200.0f,
                                          50.0f)];
         [lastLine setFont:smallFont];
         [lastLine setTextColor:grayColor];
@@ -126,17 +139,61 @@
     [shares setText:[NSString stringWithFormat:@"%lu", (unsigned long)currentValue]];
     [minusButton setEnabled:!(minimumValue == currentValue)];
     [plusButton setEnabled:!(maximumValue == currentValue)];
+    if (currentValue == minimumValue || currentValue == maximumValue)
+    {
+        blockLastPlusMinusAction = YES;
+        [buttonsTimer invalidate];
+        buttonsTimer = nil;
+    }
 }
 
 #pragma mark - buttons
 
-- (void)minus
+const CGFloat timeInterval = 0.1f;
+
+- (void)minusDown
+{
+    buttonsTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(onTimerMinus) userInfo:nil repeats:YES];
+}
+
+- (void)minusUp
+{
+    if (blockLastPlusMinusAction)
+    {
+        blockLastPlusMinusAction = NO;
+        return;
+    }
+    [buttonsTimer invalidate];
+    buttonsTimer = nil;
+    currentValue--;
+    [self setSharesState];
+}
+
+- (void)plusDown
+{
+    buttonsTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(onTimerPlus) userInfo:nil repeats:YES];
+}
+
+- (void)plusUp
+{
+    if (blockLastPlusMinusAction)
+    {
+        blockLastPlusMinusAction = NO;
+        return;
+    }
+    [buttonsTimer invalidate];
+    buttonsTimer = nil;
+    currentValue++;
+    [self setSharesState];
+}
+
+- (void)onTimerMinus
 {
     currentValue--;
     [self setSharesState];
 }
 
-- (void)plus
+- (void)onTimerPlus
 {
     currentValue++;
     [self setSharesState];

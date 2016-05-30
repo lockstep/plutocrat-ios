@@ -40,20 +40,22 @@
         
         CGFloat startingXForLabels = bordersOffset + photo.frame.size.width + [Globals offsetFromPhoto];
         
-        name = [[UILabel alloc] initWithFrame:CGRectMake(startingXForLabels,
-                                                         25.0f * 1.5f,
-                                                         self.bounds.size.width - startingXForLabels - bordersOffset,
-                                                         28.0f)];
+        name = [[UILabel alloc] initWithFrame:
+                CGRectMake(startingXForLabels,
+                           25.0f * 1.5f,
+                           self.bounds.size.width - startingXForLabels - bordersOffset,
+                           28.0f)];
         [name setNumberOfLines:1];
         [name setAdjustsFontSizeToFitWidth:YES];
         [name setTextColor:paleGray];
         [name setFont:[UIFont regularFontWithSize:bigFontSize]];
         [self addSubview:name];
         
-        email = [[UILabel alloc] initWithFrame:CGRectMake(startingXForLabels,
-                                                         name.frame.origin.y + name.frame.size.height + 5.0f,
-                                                         self.bounds.size.width - startingXForLabels - bordersOffset,
-                                                         14.0f)];
+        email = [[UILabel alloc] initWithFrame:
+                 CGRectMake(startingXForLabels,
+                            name.frame.origin.y + name.frame.size.height + 5.0f,
+                            self.bounds.size.width - startingXForLabels - bordersOffset,
+                            14.0f)];
         [email setNumberOfLines:1];
         [email setAdjustsFontSizeToFitWidth:YES];
         [email setTextColor:paleGray];
@@ -73,9 +75,9 @@
         [sharesToMatch setNumberOfLines:1];
         [sharesToMatch setAdjustsFontSizeToFitWidth:YES];
         [sharesToMatch setTextColor:[UIColor colorWithRed:193.0f / 255.0f
-                                            green:1.0f / 255.0f
-                                             blue:1.0f / 255.0f
-                                            alpha:1.0f]];
+                                                    green:1.0f / 255.0f
+                                                     blue:1.0f / 255.0f
+                                                    alpha:1.0f]];
         [sharesToMatch setFont:[UIFont regularFontWithSize:15.0f]];
         [sharesToMatch setHidden:YES];
         [self addSubview:sharesToMatch];

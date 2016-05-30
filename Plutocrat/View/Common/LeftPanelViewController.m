@@ -9,32 +9,117 @@
 #import "LeftPanelViewController.h"
 
 @interface LeftPanelViewController ()
-
+{
+    NSArray * labels;
+}
 @end
 
 @implementation LeftPanelViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
+    labels = @[@"",
+               NSLocalizedStringFromTable(@"ManageAccount", @"Labels", nil),
+               NSLocalizedStringFromTable(@"FAQ", @"Labels", nil),
+               NSLocalizedStringFromTable(@"SignOut", @"Labels", nil)];
+    
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"black_bg_texture"]]];
+    
+    UIImageView * logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
+    [logo setCenter:CGPointMake(self.view.bounds.size.width / 2 * 0.8f, 70.0f)];
+    [self.view addSubview:logo];
 
-    // Do any additional setup after loading the view.
+    UITableView * table = [[UITableView alloc] initWithFrame:
+                           CGRectMake(0.0f, 100.0f, self.view.bounds.size.width * 0.8f, 184.0f)
+                                                       style:UITableViewStylePlain];
+    [table setSeparatorInset:UIEdgeInsetsMake(0.0f,
+                                              25.0f,
+                                              0.0f,
+                                              25.0f)];
+    [table setSeparatorColor:[UIColor grayWithIntense:151.0f]];
+    [table setBackgroundColor:[UIColor clearColor]];
+    [table setDelegate:self];
+    [table setDataSource:self];
+    [self.view addSubview:table];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [labels count];
 }
-*/
+
+static NSString * identifier = @"LeftPanelCellIdentifier";
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (!cell)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        [cell setBackgroundColor:[UIColor clearColor]];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        [[cell textLabel] setTextColor:[UIColor grayWithIntense:168.0f]];
+        [[cell textLabel] setFont:[UIFont regularFontWithSize:16.0f]];
+    }
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [[cell textLabel] setText:[labels objectAtIndex:indexPath.row]];
+}
+
+#pragma mark – Table view
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) return 2.0f;
+    return 60.0f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.row)
+    {
+        case 1:
+        {
+            if ([self.delegate respondsToSelector:@selector(leftPanelViewController:should:)])
+            {
+                [self.delegate leftPanelViewController:self should:NavigateToAccount];
+            }
+        }
+            break;
+            
+        case 2:
+        {
+            if ([self.delegate respondsToSelector:@selector(leftPanelViewController:should:)])
+            {
+                [self.delegate leftPanelViewController:self should:NavigateToFAQ];
+            }
+        }
+            break;
+            
+        case 3:
+        {
+            if ([self.delegate respondsToSelector:@selector(leftPanelViewController:should:)])
+            {
+                [self.delegate leftPanelViewController:self should:NavigateToSignOut];
+            }
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
 
 @end

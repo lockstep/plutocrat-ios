@@ -9,7 +9,6 @@
 #import "RootViewController.h"
 #import "JASidePanelController.h"
 #import "TabBarViewController.h"
-#import "LeftPanelViewController.h"
 
 @interface RootViewController ()
 {
@@ -24,7 +23,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
+    [self initInLoginState];
+}
+
+- (void)initInLoginState
+{
     LoginViewController * loginViewController = [LoginViewController new];
     [loginViewController setDelegate:self];
     [self addChildViewController:loginViewController];
@@ -32,34 +36,54 @@
     [loginViewController setupContentsWhenUserIsRegistered:YES];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)initInReadyState
+{
+    sidePanelViewController = [JASidePanelController new];
+    leftPanelViewController = [LeftPanelViewController new];
+    [leftPanelViewController setDelegate:self];
+    sidePanelViewController.leftPanel = leftPanelViewController;
+    tabBarViewController = [TabBarViewController new];
+    sidePanelViewController.centerPanel = tabBarViewController;
+    [self addChildViewController:sidePanelViewController];
+    [self.view addSubview:sidePanelViewController.view];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark - LoginViewControllerDelegate
 
 - (void)loginViewControllerShouldDismiss:(LoginViewController *)loginViewController
 {
-    sidePanelViewController = [JASidePanelController new];
-    leftPanelViewController = [LeftPanelViewController new];
-    sidePanelViewController.leftPanel = leftPanelViewController;
-    tabBarViewController = [TabBarViewController new];
-    sidePanelViewController.centerPanel = tabBarViewController;
     [loginViewController.view removeFromSuperview];
     [loginViewController removeFromParentViewController];
-    [self addChildViewController:sidePanelViewController];
-    [self.view addSubview:sidePanelViewController.view];
+    [self initInReadyState];
+}
+
+#pragma mark - LeftPanelDelegate
+
+- (void)leftPanelViewController:(LeftPanelViewController *)viewController should:(NavigateTo)dest
+{
+    switch (dest)
+    {
+        case NavigateToAccount:
+            break;
+            
+        case NavigateToFAQ:
+        {
+            [sidePanelViewController showCenterPanelAnimated:YES];
+            [tabBarViewController setSelectedIndex:4];
+        }
+            break;
+            
+        case NavigateToSignOut:
+        {
+            [sidePanelViewController.view removeFromSuperview];
+            [sidePanelViewController removeFromParentViewController];
+            [self initInLoginState];
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 @end
