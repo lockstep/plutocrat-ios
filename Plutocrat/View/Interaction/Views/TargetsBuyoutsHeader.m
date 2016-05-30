@@ -35,7 +35,7 @@
         [self addSubview:background];
         
         noPlutocrat = [[UILabel alloc] initWithFrame:frame];
-        [noPlutocrat setFont:[UIFont snFontWithSize:averageFontSize]];
+        [noPlutocrat setFont:[UIFont regularFontWithSize:averageFontSize]];
         [noPlutocrat setTextColor:[UIColor whiteColor]];
         [noPlutocrat setTextAlignment:NSTextAlignmentCenter];
         [noPlutocrat setText:NSLocalizedStringFromTable(@"NoPlutocrat", @"Labels", nil)];
@@ -60,7 +60,7 @@
                                                          frame.size.width - startingXForLabels * 2,
                                                          24.0f)];
         [name setAdjustsFontSizeToFitWidth:YES];
-        [name setFont:[UIFont snFontWithSize:averageFontSize]];
+        [name setFont:[UIFont regularFontWithSize:averageFontSize]];
         [name setTextColor:[UIColor whiteColor]];
         [name setHidden:YES];
         [self addSubview:name];
@@ -69,7 +69,7 @@
                                                          name.frame.origin.y + name.frame.size.height,
                                                          frame.size.width - startingXForLabels * 2,
                                                          40.0f)];
-        [plutocratBuyouts setFont:[UIFont snFontWithSize:smallFontSize]];
+        [plutocratBuyouts setFont:[UIFont regularFontWithSize:smallFontSize]];
         [plutocratBuyouts setTextColor:[UIColor whiteColor]];
         [plutocratBuyouts setHidden:YES];
         [plutocratBuyouts setNumberOfLines:2];
@@ -85,7 +85,7 @@
         [self addSubview:engageButton];
         
         successfulBuyouts = [[UILabel alloc] initWithFrame:frame];
-        [successfulBuyouts setFont:[UIFont snFontWithSize:bigFontSize]];
+        [successfulBuyouts setFont:[UIFont regularFontWithSize:bigFontSize]];
         [successfulBuyouts setTextColor:[UIColor whiteColor]];
         [successfulBuyouts setTextAlignment:NSTextAlignmentCenter];
         [successfulBuyouts setHidden:YES];

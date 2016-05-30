@@ -31,7 +31,7 @@
         const CGFloat smallFontSize = 12.0f;
         
         photo = [[UIImageView alloc] initWithFrame:CGRectMake(bordersOffset,
-                                                              28.0f,
+                                                              25.0f,
                                                               88.0f,
                                                               88.0f)];
         [[photo layer] setCornerRadius:photo.frame.size.width / 2];
@@ -41,13 +41,13 @@
         CGFloat startingXForLabels = bordersOffset + photo.frame.size.width + [Globals offsetFromPhoto];
         
         name = [[UILabel alloc] initWithFrame:CGRectMake(startingXForLabels,
-                                                         28.0f * 1.5f,
+                                                         25.0f * 1.5f,
                                                          self.bounds.size.width - startingXForLabels - bordersOffset,
                                                          28.0f)];
         [name setNumberOfLines:1];
         [name setAdjustsFontSizeToFitWidth:YES];
         [name setTextColor:paleGray];
-        [name setFont:[UIFont snFontWithSize:bigFontSize]];
+        [name setFont:[UIFont regularFontWithSize:bigFontSize]];
         [self addSubview:name];
         
         email = [[UILabel alloc] initWithFrame:CGRectMake(startingXForLabels,
@@ -57,7 +57,7 @@
         [email setNumberOfLines:1];
         [email setAdjustsFontSizeToFitWidth:YES];
         [email setTextColor:paleGray];
-        [email setFont:[UIFont snFontWithSize:smallFontSize]];
+        [email setFont:[UIFont regularFontWithSize:smallFontSize]];
         [email setHidden:YES];
         [self addSubview:email];
         
@@ -76,7 +76,7 @@
                                             green:1.0f / 255.0f
                                              blue:1.0f / 255.0f
                                             alpha:1.0f]];
-        [sharesToMatch setFont:[UIFont snFontWithSize:15.0f]];
+        [sharesToMatch setFont:[UIFont regularFontWithSize:15.0f]];
         [sharesToMatch setHidden:YES];
         [self addSubview:sharesToMatch];
         

@@ -23,25 +23,25 @@
     if (self)
     {
         const CGFloat bigFontSize = 30.0f;
-        const CGFloat smallFontSize = 24.0f;
+        const CGFloat smallFontSize = 22.0f;
         
         background = [[UIImageView alloc] initWithFrame:frame];
         [self addSubview:background];
         
         firstLine = [[UILabel alloc] initWithFrame:CGRectMake(0.0f,
-                                                              20.0f,
+                                                              25.0f,
                                                               frame.size.width,
                                                               frame.size.height / 2)];
-        [firstLine setFont:[UIFont snFontWithSize:bigFontSize]];
+        [firstLine setFont:[UIFont regularFontWithSize:bigFontSize]];
         [firstLine setTextColor:[UIColor whiteColor]];
         [firstLine setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:firstLine];
         
         secondLine = [[UILabel alloc] initWithFrame:CGRectMake(0.0f,
-                                                               frame.size.height / 2,
+                                                               60.0f,
                                                                frame.size.width,
                                                                frame.size.height / 2)];
-        [secondLine setFont:[UIFont snFontWithSize:smallFontSize]];
+        [secondLine setFont:[UIFont regularFontWithSize:smallFontSize]];
         [secondLine setTextColor:[UIColor whiteColor]];
         [secondLine setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:secondLine];

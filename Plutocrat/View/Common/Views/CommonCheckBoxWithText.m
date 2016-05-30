@@ -18,7 +18,7 @@
     [label setLineBreakMode:NSLineBreakByWordWrapping];
     [label setNumberOfLines:0];
     [label setTextColor:[UIColor grayWithIntense:146.0f]];
-    [label setFont:[UIFont snFontWithSize:12.0f]];
+    [label setFont:[UIFont regularFontWithSize:12.0f]];
     [label setText:text];
     [checkBox addSubview:label];
     

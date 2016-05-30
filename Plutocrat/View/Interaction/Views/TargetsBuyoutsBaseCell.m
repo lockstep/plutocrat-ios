@@ -40,7 +40,7 @@
                                                          self.frame.size.width - startingXForLabels * 2,
                                                          20.0f)];
         [self.name setAdjustsFontSizeToFitWidth:YES];
-        [self.name setFont:[UIFont snFontWithSize:18.0f]];
+        [self.name setFont:[UIFont regularFontWithSize:18.0f]];
         [self.name setTextColor:[UIColor grayWithIntense:114.0f]];
         [self addSubview:self.name];
         
@@ -49,7 +49,7 @@
                                 self.name.frame.origin.y + self.name.frame.size.height - 5.0f,
                                 120.0f,
                                 60.0f)];
-        [self.info setFont:[UIFont snFontWithSize:11.0f]];
+        [self.info setFont:[UIFont regularFontWithSize:11.0f]];
         [self.info setTextColor:[UIColor grayWithIntense:112.0f]];
         [self.info setNumberOfLines:3];
         [self addSubview:self.info];
@@ -63,7 +63,7 @@
         [self addSubview:engageButton];
         
         engageReplace = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 65.0f, 28.0f)];
-        [engageReplace setFont:[UIFont snFontWithSize:11.0f]];
+        [engageReplace setFont:[UIFont regularFontWithSize:11.0f]];
         [engageReplace setTextColor:[UIColor colorWithRed:208.0f / 255.0f green:0.0f blue:0.0f alpha:1.0f]];
         [engageReplace setNumberOfLines:0];
         [engageReplace setLineBreakMode:NSLineBreakByWordWrapping];
