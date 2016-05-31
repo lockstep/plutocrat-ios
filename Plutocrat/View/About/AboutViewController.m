@@ -10,7 +10,7 @@
 #import "AboutHeader.h"
 #import <WebKit/WebKit.h>
 
-#define FAQ_ADDRESS @"https://www.whiteflyventuresinc.com/plutocrat_about.html"
+#define FAQ_ADDRESS @"https://www.whiteflyventuresinc.com/plutocrat/about.html"
 
 @interface AboutViewController ()
 {
@@ -60,6 +60,11 @@ static NSString * progressKeyPath = @"estimatedProgress";
         [progress setHidden:(webView.estimatedProgress == 1.0f)];
         [progress setProgress:webView.estimatedProgress];
     }
+}
+
+- (void)dealloc
+{
+    [webView removeObserver:self forKeyPath:progressKeyPath];
 }
 
 @end
