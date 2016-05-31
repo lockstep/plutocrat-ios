@@ -33,10 +33,7 @@
         UIFont * smallFont = [UIFont regularFontWithSize:18.0f];
         UIFont * bigFont = [UIFont regularFontWithSize:72.0f];
         UIColor * grayColor = [UIColor grayWithIntense:146.0f];
-        UIColor * violetColor = [UIColor colorWithRed:65.0f / 255.0f
-                                                green:12.0f / 255.0f
-                                                 blue:91.0f / 255.0f
-                                                alpha:1.0f];
+        UIColor * violetColor = [UIColor ourViolet];
         
         UILabel * firstLine = [[UILabel alloc] initWithFrame:
                                CGRectMake(0.0f, 0.0f, frame.size.width, 50.0f)];
@@ -64,6 +61,8 @@
               forControlEvents:UIControlEventTouchDown];
         [minusButton addTarget:self action:@selector(minusUp)
               forControlEvents:UIControlEventTouchUpInside];
+        [minusButton addTarget:self action:@selector(minusUp)
+              forControlEvents:UIControlEventTouchUpOutside];
         
         [minusButton setImage:[UIImage imageNamed:@"minus-active"] forState:UIControlStateNormal];
         [minusButton setImage:[UIImage imageNamed:@"minus-inactive"] forState:UIControlStateDisabled];
@@ -78,6 +77,9 @@
              forControlEvents:UIControlEventTouchDown];
         [plusButton addTarget:self action:@selector(plusUp)
              forControlEvents:UIControlEventTouchUpInside];
+        [plusButton addTarget:self action:@selector(plusUp)
+             forControlEvents:UIControlEventTouchUpOutside];
+        
         [plusButton setImage:[UIImage imageNamed:@"plus-active"] forState:UIControlStateNormal];
         [plusButton setImage:[UIImage imageNamed:@"plus-inactive"] forState:UIControlStateDisabled];
         [self addSubview:plusButton];
@@ -137,9 +139,9 @@
 - (void)setSharesState
 {
     [shares setText:[NSString stringWithFormat:@"%lu", (unsigned long)currentValue]];
-    [minusButton setEnabled:!(minimumValue == currentValue)];
-    [plusButton setEnabled:!(maximumValue == currentValue)];
-    if (currentValue == minimumValue || currentValue == maximumValue)
+    [minusButton setEnabled:(minimumValue < currentValue)];
+    [plusButton setEnabled:(maximumValue > currentValue)];
+    if (currentValue <= minimumValue || currentValue >= maximumValue)
     {
         blockLastPlusMinusAction = YES;
         [buttonsTimer invalidate];
@@ -153,36 +155,38 @@ const CGFloat timeInterval = 0.1f;
 
 - (void)minusDown
 {
+    [buttonsTimer invalidate];
     buttonsTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(onTimerMinus) userInfo:nil repeats:YES];
 }
 
 - (void)minusUp
 {
+    [buttonsTimer invalidate];
+    buttonsTimer = nil;
     if (blockLastPlusMinusAction)
     {
         blockLastPlusMinusAction = NO;
         return;
     }
-    [buttonsTimer invalidate];
-    buttonsTimer = nil;
     currentValue--;
     [self setSharesState];
 }
 
 - (void)plusDown
 {
+    [buttonsTimer invalidate];
     buttonsTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(onTimerPlus) userInfo:nil repeats:YES];
 }
 
 - (void)plusUp
 {
+    [buttonsTimer invalidate];
+    buttonsTimer = nil;
     if (blockLastPlusMinusAction)
     {
         blockLastPlusMinusAction = NO;
         return;
     }
-    [buttonsTimer invalidate];
-    buttonsTimer = nil;
     currentValue++;
     [self setSharesState];
 }

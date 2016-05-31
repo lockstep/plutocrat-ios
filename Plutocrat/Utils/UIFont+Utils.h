@@ -12,5 +12,6 @@
 
 + (instancetype)regularFontWithSize:(CGFloat)size;
 + (instancetype)boldFontWithSize:(CGFloat)size;
++ (instancetype)italicFontWithSize:(CGFloat)size;
 
 @end

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SharesTableViewCell.h"
 
-@interface SharesViewController : UIViewController
+@interface SharesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end

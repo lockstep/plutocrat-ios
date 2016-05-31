@@ -38,8 +38,12 @@
 "BuyoutFailed" = "Buyout Failed";
 "BuyoutsCellFormat" = "%@\r\n%i shares %i %@ ago\r\n%@";
 "InitiateBuyoutWith" = "Initiate Buyout With";
+"Share" = "Share";
 "Shares" = "Shares";
 "MinimumBuyout" = "Minimum Buyout";
 "AvailableShares" = "Available Shares";
+"UnusedSharesFormat" = "%i Unused Shares";
+"PerShare" = "Per Share:";
+"Total" = "Total:";
 "FAQ" = "FAQ";
 "SignOut" = "Sign Out";

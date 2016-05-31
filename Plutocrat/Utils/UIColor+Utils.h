@@ -11,5 +11,6 @@
 @interface UIColor (Utils)
 
 + (instancetype)grayWithIntense:(CGFloat)intense;
++ (instancetype)ourViolet;
 
 @end

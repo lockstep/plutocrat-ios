@@ -18,4 +18,12 @@
                            alpha:1.0f];
 }
 
++ (instancetype)ourViolet
+{
+    return [UIColor colorWithRed:65.0f / 255.0f
+                           green:12.0f / 255.0f
+                            blue:91.0f / 255.0f
+                           alpha:1.0f];
+}
+
 @end

@@ -27,7 +27,6 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        const CGFloat bigFontSize = 30.0f;
         const CGFloat averageFontSize = 24.0f;
         const CGFloat smallFontSize = 14.0f;
         
@@ -85,7 +84,7 @@
         [self addSubview:engageButton];
         
         successfulBuyouts = [[UILabel alloc] initWithFrame:frame];
-        [successfulBuyouts setFont:[UIFont regularFontWithSize:bigFontSize]];
+        [successfulBuyouts setFont:[UIFont regularFontWithSize:averageFontSize]];
         [successfulBuyouts setTextColor:[UIColor whiteColor]];
         [successfulBuyouts setTextAlignment:NSTextAlignmentCenter];
         [successfulBuyouts setHidden:YES];

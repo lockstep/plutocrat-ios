@@ -32,7 +32,7 @@
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
-    [self.tabBar setTintColor:[UIColor blackColor]];
+    [self.tabBar setTintColor:[UIColor ourViolet]];
     
     hvc = [HomeViewController new];
     UIImage * hvcImgInact = [[UIImage imageNamed:@"home-inactive"]

@@ -20,4 +20,9 @@
     return [UIFont fontWithName:@"Helvetica-Bold" size:size];
 }
 
++ (instancetype)italicFontWithSize:(CGFloat)size
+{
+    return [UIFont fontWithName:@"HelveticaNeue-Italic" size:size];
+}
+
 @end

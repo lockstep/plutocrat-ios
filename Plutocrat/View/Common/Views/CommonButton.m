@@ -54,6 +54,28 @@
     return button;
 }
 
++ (instancetype)lightButtonWithText:(NSString *)text color:(ButtonColor)buttonColor
+{
+    UIFont * font = [UIFont regularFontWithSize:14.0f];
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 20.0f)
+                                     options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                  attributes:@{NSFontAttributeName:font}
+                                     context:nil];
+    CommonButton * button = [[CommonButton alloc] initWithFrame:CGRectMake(0.0f,
+                                                                           0.0f,
+                                                                           rect.size.width + 30.0f,
+                                                                           rect.size.height + 10.0f)];
+    [[button titleLabel] setFont:font];
+    [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
+    [button paintButtonToColor:ButtonColorWhite titleColor:buttonColor];
+    [button paintBorderToColor:buttonColor];
+    [button.layer setBorderWidth:1.0f];
+    [button.layer setCornerRadius:5.0f];
+    [button.layer setMasksToBounds:YES];
+    [button setText:text];
+    return button;
+}
+
 - (void)setText:(NSString *)text
 {
     [self setTitle:text forState:UIControlStateNormal];
@@ -77,10 +99,7 @@
             break;
             
         case ButtonColorViolet:
-            [self setBackgroundColor:[UIColor colorWithRed:65.0f / 255.0f
-                                                     green:12.0f / 255.0f
-                                                      blue:91.0f / 255.0f
-                                                     alpha:1.0f]];
+            [self setBackgroundColor:[UIColor ourViolet]];
             break;
             
         case ButtonColorWhite:
@@ -106,11 +125,7 @@
             break;
             
         case ButtonColorViolet:
-            [self setTitleColor:[UIColor colorWithRed:65.0f / 255.0f
-                                                green:12.0f / 255.0f
-                                                 blue:91.0f / 255.0f
-                                                alpha:1.0f]
-                       forState:UIControlStateNormal];
+            [self setTitleColor:[UIColor ourViolet] forState:UIControlStateNormal];
             break;
             
         case ButtonColorWhite:
@@ -120,6 +135,35 @@
         default:
             break;
     }
+}
+
+- (void)paintBorderToColor:(ButtonColor)buttonColor
+{
+    switch (buttonColor)
+    {
+        case ButtonColorRed:
+            [self.layer setBorderColor:[UIColor colorWithRed:193.0f / 255.0f
+                                                       green:1.0f / 255.0f
+                                                        blue:1.0f / 255.0f
+                                                       alpha:1.0f].CGColor];
+            break;
+            
+        case ButtonColorGray:
+            [self.layer setBorderColor:[UIColor grayWithIntense:124.0f].CGColor];
+            break;
+            
+        case ButtonColorViolet:
+            [self.layer setBorderColor:[UIColor ourViolet].CGColor];
+            break;
+            
+        case ButtonColorWhite:
+            [self.layer setBorderColor:[UIColor whiteColor].CGColor];
+            break;
+            
+        default:
+            break;
+    }
+
 }
 
 @end

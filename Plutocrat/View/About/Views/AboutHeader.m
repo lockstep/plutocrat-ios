@@ -20,7 +20,7 @@
         [self addSubview:background];
         
         UILabel * faq = [[UILabel alloc] initWithFrame:frame];
-        [faq setFont:[UIFont regularFontWithSize:20.0f]];
+        [faq setFont:[UIFont regularFontWithSize:24.0f]];
         [faq setTextColor:[UIColor whiteColor]];
         [faq setTextAlignment:NSTextAlignmentCenter];
         [faq setText:NSLocalizedStringFromTable(@"FAQ", @"Labels", nil)];
