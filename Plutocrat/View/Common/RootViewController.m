@@ -8,7 +8,6 @@
 
 #import "RootViewController.h"
 #import "JASidePanelController.h"
-#import "TabBarViewController.h"
 
 @interface RootViewController ()
 {
@@ -43,27 +42,23 @@
     [leftPanelViewController setDelegate:self];
     sidePanelViewController.leftPanel = leftPanelViewController;
     tabBarViewController = [TabBarViewController new];
+    [tabBarViewController setCustomDelegate:self];
     sidePanelViewController.centerPanel = tabBarViewController;
     [self addChildViewController:sidePanelViewController];
     [self.view addSubview:sidePanelViewController.view];
 }
 
-#pragma mark - LoginViewControllerDelegate
+#pragma mark - Navigation
 
-- (void)loginViewControllerShouldDismiss:(LoginViewController *)loginViewController
-{
-    [loginViewController.view removeFromSuperview];
-    [loginViewController removeFromParentViewController];
-    [self initInReadyState];
-}
-
-#pragma mark - LeftPanelDelegate
-
-- (void)leftPanelViewController:(LeftPanelViewController *)viewController should:(NavigateTo)dest
+- (void)navigateTo:(NavigateTo)dest
 {
     switch (dest)
     {
         case NavigateToAccount:
+            break;
+            
+        case NavigateToTargets:
+            [tabBarViewController setSelectedIndex:1];
             break;
             
         case NavigateToFAQ:
@@ -84,6 +79,29 @@
         default:
             break;
     }
+}
+
+#pragma mark - LoginViewControllerDelegate
+
+- (void)loginViewControllerShouldDismiss:(LoginViewController *)loginViewController
+{
+    [loginViewController.view removeFromSuperview];
+    [loginViewController removeFromParentViewController];
+    [self initInReadyState];
+}
+
+#pragma mark - LeftPanelDelegate
+
+- (void)leftPanelViewController:(LeftPanelViewController *)viewController shouldNavigateTo:(NavigateTo)dest
+{
+    [self navigateTo:dest];
+}
+
+#pragma mark - TabBarViewControllerDelegate
+
+- (void)tabBarViewController:(TabBarViewController *)controller shouldNavigateTo:(NavigateTo)dest
+{
+    [self navigateTo:dest];
 }
 
 @end

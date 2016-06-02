@@ -35,7 +35,7 @@
              CGRectMake(0.0f,
                         header.frame.size.height,
                         self.view.bounds.size.width,
-                        self.view.bounds.size.height - header.frame.size.height - 48.0f)
+                        self.view.bounds.size.height - header.frame.size.height - [Globals tabBarHeight])
                                          style:UITableViewStylePlain];
     [table setDelegate:self];
     [table setDataSource:self];

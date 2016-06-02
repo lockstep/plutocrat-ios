@@ -78,6 +78,7 @@
 		FDA1A6B51CFC33F300FFB268 /* AboutHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA1A6B41CFC33F300FFB268 /* AboutHeader.m */; };
 		FDA1A6B91CFD5B4200FFB268 /* SharesHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA1A6B81CFD5B4200FFB268 /* SharesHeader.m */; };
 		FDA1A6BC1CFD8B4300FFB268 /* SharesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA1A6BB1CFD8B4300FFB268 /* SharesTableViewCell.m */; };
+		FDA1A6BF1D001DF700FFB268 /* HomeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA1A6BE1D001DF700FFB268 /* HomeInfo.m */; };
 		FDFA5AF81CDA9F9700030A89 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FDFA5AF61CDA9F9700030A89 /* main.m */; };
 		FDFA5AFB1CDA9FAD00030A89 /* Texts.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDFA5AFD1CDA9FAD00030A89 /* Texts.strings */; };
 		FDFA5B011CDAA43600030A89 /* UIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = FDFA5B001CDAA43600030A89 /* UIColor+Utils.m */; };
@@ -206,6 +207,8 @@
 		FDA1A6B81CFD5B4200FFB268 /* SharesHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SharesHeader.m; path = View/Shares/Views/SharesHeader.m; sourceTree = "<group>"; };
 		FDA1A6BA1CFD8B4300FFB268 /* SharesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharesTableViewCell.h; path = View/Shares/Views/SharesTableViewCell.h; sourceTree = "<group>"; };
 		FDA1A6BB1CFD8B4300FFB268 /* SharesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SharesTableViewCell.m; path = View/Shares/Views/SharesTableViewCell.m; sourceTree = "<group>"; };
+		FDA1A6BD1D001DF700FFB268 /* HomeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeInfo.h; path = View/Home/Views/HomeInfo.h; sourceTree = "<group>"; };
+		FDA1A6BE1D001DF700FFB268 /* HomeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeInfo.m; path = View/Home/Views/HomeInfo.m; sourceTree = "<group>"; };
 		FDFA5AF51CDA9F9700030A89 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Supporting Files/Info.plist"; sourceTree = "<group>"; };
 		FDFA5AF61CDA9F9700030A89 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Supporting Files/main.m"; sourceTree = "<group>"; };
 		FDFA5AFC1CDA9FAD00030A89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Texts.strings; sourceTree = "<group>"; };
@@ -282,6 +285,8 @@
 				FD386A3A1CE4FAC800065BA3 /* BuyoutsStatsView.m */,
 				FD386A4C1CE5385800065BA3 /* HomeHeader.h */,
 				FD386A4D1CE5385800065BA3 /* HomeHeader.m */,
+				FDA1A6BD1D001DF700FFB268 /* HomeInfo.h */,
+				FDA1A6BE1D001DF700FFB268 /* HomeInfo.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -695,6 +700,7 @@
 				FD386A341CE3637F00065BA3 /* RootViewController.m in Sources */,
 				FD386A051CE349C600065BA3 /* User.m in Sources */,
 				FD8B5CF41CE252AE00751642 /* SharesViewController.m in Sources */,
+				FDA1A6BF1D001DF700FFB268 /* HomeInfo.m in Sources */,
 				FD8B5CC01CDBE6A600751642 /* UIFont+Utils.m in Sources */,
 				FD386A2A1CE3516800065BA3 /* Compact.m in Sources */,
 				FDA1A69E1CECE31800FFB268 /* TargetsCell.m in Sources */,
@@ -844,11 +850,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pavel Dolgov (6CWBHC8UWK)";
-				CURRENT_PROJECT_VERSION = 0.2.3;
+				CURRENT_PROJECT_VERSION = 0.2.4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Plutocrat/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Plutocrat/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.whiteflyventuresinc.Plutocrat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -862,11 +868,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Whitefly Ventures, Inc. (86AUZJL55V)";
-				CURRENT_PROJECT_VERSION = 0.2.3;
+				CURRENT_PROJECT_VERSION = 0.2.4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Plutocrat/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Plutocrat/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.whiteflyventuresinc.Plutocrat;
 				PRODUCT_NAME = "$(TARGET_NAME)";

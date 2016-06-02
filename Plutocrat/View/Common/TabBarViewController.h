@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HomeViewController.h"
 
-@interface TabBarViewController : UITabBarController
+@class TabBarViewController;
+
+@protocol TabBarViewControllerDelegate <NSObject>
+@required
+
+- (void)tabBarViewController:(TabBarViewController *)controller shouldNavigateTo:(NavigateTo)dest;
+
+@end
+
+@interface TabBarViewController : UITabBarController <HomeViewControllerDelegate>
+
+@property (nonatomic, weak) id <TabBarViewControllerDelegate> customDelegate;
 
 @end

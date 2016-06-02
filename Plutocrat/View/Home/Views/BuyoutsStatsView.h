@@ -10,4 +10,6 @@
 
 @interface BuyoutsStatsView : UIView
 
+- (void)setSuccessful:(NSUInteger)successful failed:(NSUInteger)failed defeated:(NSUInteger)defeated;
+
 @end

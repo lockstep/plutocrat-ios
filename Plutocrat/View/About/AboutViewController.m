@@ -40,7 +40,7 @@ static NSString * progressKeyPath = @"estimatedProgress";
                CGRectMake(0.0f,
                           header.frame.size.height,
                           self.view.bounds.size.width,
-                          self.view.bounds.size.height - header.frame.size.height - 48.0f)];
+                          self.view.bounds.size.height - header.frame.size.height - [Globals tabBarHeight])];
     [webView addObserver:self forKeyPath:progressKeyPath options:0 context:nil];
     [self.view addSubview:webView];
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:FAQ_ADDRESS]]];

@@ -48,7 +48,7 @@
                            CGRectMake(0.0f,
                                       header.frame.size.height,
                                       self.view.bounds.size.width,
-                                      self.view.bounds.size.height - header.frame.size.height - 48.0f)];
+                                      self.view.bounds.size.height - header.frame.size.height - [Globals tabBarHeight])];
     [view setContentSize:CGSizeMake(view.frame.size.width, view.frame.size.height + 1.0f)];
     [self.view addSubview:view];
     

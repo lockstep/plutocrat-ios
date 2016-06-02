@@ -83,17 +83,17 @@
                                             self.bounds.size.width - bordersOffset * 2,
                                             1.0f)];
         [self addSubview:sep];
-        
-        [self fillStub];
     }
     return self;
 }
 
-- (void)fillStub
+#pragma mark - public
+
+- (void)setSuccessful:(NSUInteger)successful failed:(NSUInteger)failed defeated:(NSUInteger)defeated
 {
-    [successValue setText:@"88"];
-    [failedValue setText:@"88"];
-    [defeatedValue setText:@"88"];
+    [successValue setText:[NSString stringWithFormat:@"%lu", (unsigned long)successful]];
+    [failedValue setText:[NSString stringWithFormat:@"%lu", (unsigned long)failed]];
+    [defeatedValue setText:[NSString stringWithFormat:@"%lu", (unsigned long)defeated]];
 }
 
 @end

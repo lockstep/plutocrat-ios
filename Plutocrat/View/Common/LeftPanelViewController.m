@@ -92,27 +92,27 @@ static NSString * identifier = @"LeftPanelCellIdentifier";
     {
         case 1:
         {
-            if ([self.delegate respondsToSelector:@selector(leftPanelViewController:should:)])
+            if ([self.delegate respondsToSelector:@selector(leftPanelViewController:shouldNavigateTo:)])
             {
-                [self.delegate leftPanelViewController:self should:NavigateToAccount];
+                [self.delegate leftPanelViewController:self shouldNavigateTo:NavigateToAccount];
             }
         }
             break;
             
         case 2:
         {
-            if ([self.delegate respondsToSelector:@selector(leftPanelViewController:should:)])
+            if ([self.delegate respondsToSelector:@selector(leftPanelViewController:shouldNavigateTo:)])
             {
-                [self.delegate leftPanelViewController:self should:NavigateToFAQ];
+                [self.delegate leftPanelViewController:self shouldNavigateTo:NavigateToFAQ];
             }
         }
             break;
             
         case 3:
         {
-            if ([self.delegate respondsToSelector:@selector(leftPanelViewController:should:)])
+            if ([self.delegate respondsToSelector:@selector(leftPanelViewController:shouldNavigateTo:)])
             {
-                [self.delegate leftPanelViewController:self should:NavigateToSignOut];
+                [self.delegate leftPanelViewController:self shouldNavigateTo:NavigateToSignOut];
             }
         }
             break;

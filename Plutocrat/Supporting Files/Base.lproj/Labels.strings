@@ -14,10 +14,9 @@
 "UseTouchId" = "Enable Touch ID";
 "Login" = "Login";
 "ForgotPassword" = "Forgot Password";
-"ManageAccount" = "Manage Account";
-"SuccessfullBuyouts" = "Successful\nBuyouts";
-"FailedBuyouts" = "Failed\nBuyouts";
-"DefeatedBuyouts" = "Defeated\nThreats";
+"SuccessfullBuyouts" = "Successful\r\nBuyouts";
+"FailedBuyouts" = "Failed\r\nBuyouts";
+"DefeatedBuyouts" = "Defeated\r\nThreats";
 "SurvivalTime" = "Survival Time";
 "ActiveBuyoutThreat" = "Active Buyout Threat";
 "Deadline" = "Deadline";
@@ -47,3 +46,4 @@
 "Total" = "Total:";
 "FAQ" = "FAQ";
 "SignOut" = "Sign Out";
+"GettingStarted" = "Getting Started";

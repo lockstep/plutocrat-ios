@@ -8,11 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM (NSUInteger, NavigateTo)
+{
+    NavigateToAccount,
+    NavigateToFAQ,
+    NavigateToTargets,
+    NavigateToSignOut
+};
+
 @interface Globals : NSObject
 
 + (CGFloat)horizontalOffset;
 + (CGFloat)horizontalOffsetInTable;
 + (CGFloat)cellHeight;
 + (CGFloat)offsetFromPhoto;
++ (CGFloat)tabBarHeight;
 
 @end

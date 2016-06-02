@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "LoginViewController.h"
 #import "LeftPanelViewController.h"
+#import "TabBarViewController.h"
 
-@interface RootViewController : UIViewController <LoginViewControllerDelegate, LeftPanelDelegate>
+@interface RootViewController : UIViewController <LoginViewControllerDelegate, LeftPanelDelegate, TabBarViewControllerDelegate>
 
 @end

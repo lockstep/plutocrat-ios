@@ -30,4 +30,9 @@
     return 20.0f;
 }
 
++ (CGFloat)tabBarHeight
+{
+    return 49.0f;
+}
+
 @end

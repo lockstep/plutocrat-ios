@@ -18,9 +18,8 @@
     HomeHeader * homeHeader;
     BigUserView * bigUserView;
     BuyoutsStatsView * buyoutsStatsView;
-    UITextView * tapHere;
+    HomeInfo * infoView;
     AttackerView * attackerView;
-    UILabel * youWereBoughtOut;
     NSUInteger tapCount;
 }
 @end
@@ -39,65 +38,39 @@
                                                               134.0f)];
     [self.view addSubview:homeHeader];
     
-    view = [[UIScrollView alloc] initWithFrame:
-            CGRectMake(0.0f,
-                       homeHeader.frame.size.height,
-                       self.view.bounds.size.width,
-                       self.view.bounds.size.height - homeHeader.frame.size.height)];
-    [view setContentSize:CGSizeMake(view.bounds.size.width, view.bounds.size.height + 1.0f)];
+    view = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0f,
+                                                          homeHeader.frame.size.height,
+                                                          self.view.bounds.size.width,
+                                                          self.view.bounds.size.height - homeHeader.frame.size.height - [Globals tabBarHeight])];
     [self.view addSubview:view];
     
-    CGFloat curY = 0.0f;
     bigUserView = [[BigUserView alloc] initWithFrame:CGRectMake(0.0f,
                                                                 0.0f,
                                                                 self.view.bounds.size.width,
                                                                 136.0f)];
     [view addSubview:bigUserView];
-    curY += bigUserView.frame.size.height;
     
     buyoutsStatsView = [[BuyoutsStatsView alloc] initWithFrame:CGRectMake(0.0f,
-                                                                          curY,
+                                                                          0.0f,
                                                                           self.view.bounds.size.width,
                                                                           136.0f)];
-    [buyoutsStatsView setHidden:YES];
     [view addSubview:buyoutsStatsView];
-    curY += buyoutsStatsView.frame.size.height;
     
-    UIFont * smallFont = [UIFont regularFontWithSize:12.0f];
-    UIColor * paleGray = [UIColor grayWithIntense:168.0f];
-
-    tapHere = [[UITextView alloc] initWithFrame:
-               CGRectMake(0.0f,
-                          curY + (self.view.bounds.size.height - 396.0f - 80.0f - 40.0f) / 2,
-                          self.view.bounds.size.width,
-                          80.0f)];
-    [tapHere setEditable:NO];
-    [tapHere setSelectable:NO];
-    [tapHere setHidden:YES];
-    [view addSubview:tapHere];
-
+    infoView = [[HomeInfo alloc] initWithFrame:CGRectMake(0.0f,
+                                                          0.0f,
+                                                          self.view.bounds.size.width,
+                                                          136.0f)];
+    [infoView setDelegate:self];
+    [view addSubview:infoView];
     
     attackerView = [[AttackerView alloc] initWithFrame:CGRectMake(0.0f,
                                                                   0.0f,
                                                                   self.view.bounds.size.width,
                                                                   270.0f)];
-    [attackerView setHidden:YES];
     [view addSubview:attackerView];
-    curY = attackerView.frame.size.height;
     
-    youWereBoughtOut = [[UILabel alloc] initWithFrame:
-                        CGRectMake(0.0f,
-                                   curY + (self.view.bounds.size.height - 396.0f - 50.0f - 40.0f) / 2,
-                                   self.view.bounds.size.width,
-                                   50.0f)];
-    [youWereBoughtOut setHidden:YES];
-    [youWereBoughtOut setFont:smallFont];
-    [youWereBoughtOut setTextColor:paleGray];
-    [youWereBoughtOut setTextAlignment:NSTextAlignmentCenter];
-    [youWereBoughtOut setNumberOfLines:0];
-    [youWereBoughtOut setLineBreakMode:NSLineBreakByWordWrapping];
-    [view addSubview:youWereBoughtOut];
-    
+
+#pragma mark - stubbed
     
     UIButton * but = [UIButton buttonWithType:UIButtonTypeContactAdd];
     [but addTarget:self action:@selector(change) forControlEvents:UIControlEventTouchUpInside];
@@ -106,12 +79,54 @@
     [homeHeader addSubview:but];
     tapCount = 1;
     [self stub1];
-    // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - layout
+
+- (void)layBasicInfoWhenAttacked:(BOOL)attacked
+{
+    CGFloat curY = attacked ? attackerView.frame.size.height : 0.0f;
+    
+    [bigUserView setCenter:CGPointMake(bigUserView.center.x, curY + bigUserView.frame.size.height / 2)];
+    
+    curY += bigUserView.frame.size.height;
+    
+    [buyoutsStatsView setCenter:CGPointMake(buyoutsStatsView.center.x,
+                                            curY + buyoutsStatsView.frame.size.height / 2)];
+    
+    curY += buyoutsStatsView.frame.size.height;
+    
+    [infoView setCenter:CGPointMake(infoView.center.x, curY + infoView.frame.size.height / 2)];
+    
+    curY += infoView.frame.size.height;
+    
+    if (curY > view.frame.size.height)
+    {
+        [view setContentSize:CGSizeMake(view.bounds.size.width, curY)];
+    }
+    else
+    {
+        [view setContentSize:CGSizeMake(view.bounds.size.width, view.bounds.size.height + 1.0f)];
+    }
+    
+    [attackerView setHidden:!attacked];
+}
+
+#pragma mark - HomeInfoDelegate
+
+- (void)homeInfoShouldNavigateToTargets:(HomeInfo *)homeInfo
+{
+    if ([self.delegate respondsToSelector:@selector(homeViewController:shouldNavigateTo:)])
+    {
+        [self.delegate homeViewController:self shouldNavigateTo:NavigateToTargets];
+    }
+    [infoView setType:HomeInfoTypePush];
+}
+
+- (void)homeInfoShouldEnablePushes:(HomeInfo *)homeInfo
+{
+    [infoView setType:HomeInfoTypeCommon];
+    [infoView setBuyouts:4];
 }
 
 #pragma mark - stub
@@ -140,91 +155,40 @@
 
 - (void)stub1
 {
+    [self layBasicInfoWhenAttacked:NO];
+    
     [homeHeader setType:HomeHeaderTypeCommon];
     [homeHeader setDate:[NSDate dateWithTimeInterval:-127526 sinceDate:[NSDate date]]];
+    
+    [buyoutsStatsView setSuccessful:88 failed:88 defeated:88];
     [bigUserView fillStub1];
-    [bigUserView setFrame:CGRectMake(bigUserView.frame.origin.x,
-                                     0.0f,
-                                     bigUserView.frame.size.width,
-                                     bigUserView.frame.size.height)];
-    
-    UIFont * smallFont = [UIFont regularFontWithSize:10.0f];
-    UIColor * paleGray = [UIColor grayWithIntense:168.0f];
-    UIColor * coloredViolet = [UIColor colorWithRed:65.0f / 255.0f
-                                              green:12.0f / 255.0f
-                                               blue:91.0f / 255.0f
-                                              alpha:1.0f];
-    NSDictionary * baseAttrs = @{NSFontAttributeName:smallFont,
-                                 NSForegroundColorAttributeName:paleGray};
-    
-    NSString * tapHereStr = [NSString stringWithFormat:
-                             NSLocalizedStringFromTable(@"TapHere", @"Texts", nil), 4];
-    
-    NSMutableAttributedString * attrStr = [[NSMutableAttributedString alloc] initWithString:tapHereStr attributes:baseAttrs];
-    
-    NSString * stringToColor1 = NSLocalizedStringFromTable(@"TapHereColored1", @"Texts", nil);
-    NSString * stringToColor2 = [NSString stringWithFormat:
-                                 NSLocalizedStringFromTable(@"TapHereColored2", @"Texts", nil), 4];
-    NSString * stringToColor3 = NSLocalizedStringFromTable(@"TapHereColored3", @"Texts", nil);
-    
-    NSArray * arr = @[stringToColor1, stringToColor2, stringToColor3];
-    
-    for (int i = 0; i < 3; ++i)
-    {
-        NSDictionary * subAttrs = @{NSFontAttributeName:smallFont,
-                                    NSForegroundColorAttributeName:coloredViolet};
-        const NSRange range = [tapHereStr rangeOfString:[arr objectAtIndex:i]];
-        [attrStr setAttributes:subAttrs range:range];
-    }
-    [tapHere setAttributedText:attrStr];
-    [tapHere setTextAlignment:NSTextAlignmentCenter];
-    [tapHere setHidden:NO];
-    [buyoutsStatsView setHidden:NO];
-    [attackerView setHidden:YES];
-    [youWereBoughtOut setHidden:YES];
+    [infoView setType:HomeInfoTypeFind];
 }
 
 - (void)stub2
 {
+    [self layBasicInfoWhenAttacked:YES];
+    
     [homeHeader setType:HomeHeaderTypeThreated];
     [homeHeader setDate:[NSDate dateWithTimeInterval:-127526 sinceDate:[NSDate date]]];
+    
+    [buyoutsStatsView setSuccessful:88 failed:88 defeated:88];
     [bigUserView fillStub1];
-    [bigUserView setFrame:CGRectMake(bigUserView.frame.origin.x,
-                                     270.0f,
-                                     bigUserView.frame.size.width,
-                                     bigUserView.frame.size.height)];
-    [tapHere setHidden:YES];
-    [buyoutsStatsView setHidden:YES];
-    [attackerView setHidden:NO];
-    [youWereBoughtOut setHidden:YES];
+    [infoView setType:HomeInfoTypeCommon];
+    [infoView setBuyouts:4];
 }
 
 - (void)stub3
 {
+    [self layBasicInfoWhenAttacked:NO];
+    
     [homeHeader setType:HomeHeaderTypeDefeated];
     [homeHeader setDate:[NSDate dateWithTimeInterval:-127526 sinceDate:[NSDate date]]];
+    
+    [buyoutsStatsView setSuccessful:88 failed:88 defeated:88];
     [bigUserView fillStub1];
-    [bigUserView setFrame:CGRectMake(bigUserView.frame.origin.x,
-                                     0.0f,
-                                     bigUserView.frame.size.width,
-                                     bigUserView.frame.size.height)];
-    [tapHere setHidden:YES];
-    [buyoutsStatsView setHidden:NO];
-    [attackerView setHidden:YES];
-    [youWereBoughtOut setHidden:NO];
-    [youWereBoughtOut setText:
-     [NSString stringWithFormat:NSLocalizedStringFromTable(@"YourWereBoughtOut", @"Texts", nil),
-                               @"Aaron Pinchai", 32, 4]];
+    [infoView setType:HomeInfoTypeDefeated];
+    [infoView setName:@"Aaron Pinchai" shares:32 daysAgo:4];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

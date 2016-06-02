@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HomeInfo.h"
 
-@interface HomeViewController : UIViewController
+@class HomeViewController;
+
+@protocol HomeViewControllerDelegate <NSObject>
+@required
+
+- (void)homeViewController:(HomeViewController *)controller shouldNavigateTo:(NavigateTo)dest;
+
+@end
+
+@interface HomeViewController : UIViewController <HomeInfoDelegate>
+
+@property (nonatomic, weak) id <HomeViewControllerDelegate> delegate;
 
 @end

@@ -8,7 +8,6 @@
 
 #import "TabBarViewController.h"
 
-#import "HomeViewController.h"
 #import "TargetsViewController.h"
 #import "BuyoutsViewController.h"
 #import "SharesViewController.h"
@@ -35,6 +34,7 @@
     [self.tabBar setTintColor:[UIColor ourViolet]];
     
     hvc = [HomeViewController new];
+    [hvc setDelegate:self];
     UIImage * hvcImgInact = [[UIImage imageNamed:@"home-inactive"]
                              imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIImage * hvcImgAct = [[UIImage imageNamed:@"home-active"]
@@ -80,6 +80,16 @@
                                            selectedImage:avcImgAct];
     
     self.viewControllers = @[hvc, tvc, bvc, svc, avc];
+}
+
+#pragma mark - HomeViewControllerDelegate
+
+- (void)homeViewController:(HomeViewController *)controller shouldNavigateTo:(NavigateTo)dest
+{
+    if ([self.customDelegate respondsToSelector:@selector(tabBarViewController:shouldNavigateTo:)])
+    {
+        [self.customDelegate tabBarViewController:self shouldNavigateTo:dest];
+    }
 }
 
 @end

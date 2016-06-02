@@ -8,19 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM (NSUInteger, NavigateTo)
-{
-    NavigateToAccount,
-    NavigateToFAQ,
-    NavigateToSignOut
-};
-
 @class LeftPanelViewController;
 
 @protocol LeftPanelDelegate <NSObject>
 @required
 
-- (void)leftPanelViewController:(LeftPanelViewController *)viewController should:(NavigateTo)dest;
+- (void)leftPanelViewController:(LeftPanelViewController *)viewController shouldNavigateTo:(NavigateTo)dest;
 
 @end
 
