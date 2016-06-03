@@ -15,6 +15,7 @@
 @required
 
 - (void)tabBarViewController:(TabBarViewController *)controller shouldNavigateTo:(NavigateTo)dest;
+- (void)tabBarViewControllerAskedForPushes:(TabBarViewController *)controller;
 
 @end
 

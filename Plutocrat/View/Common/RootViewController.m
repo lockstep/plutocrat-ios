@@ -104,4 +104,10 @@
     [self navigateTo:dest];
 }
 
+- (void)tabBarViewControllerAskedForPushes:(TabBarViewController *)controller
+{
+    UIUserNotificationSettings * settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound) categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+}
+
 @end

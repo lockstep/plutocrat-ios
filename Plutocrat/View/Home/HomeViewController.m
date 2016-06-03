@@ -125,6 +125,10 @@
 
 - (void)homeInfoShouldEnablePushes:(HomeInfo *)homeInfo
 {
+    if ([self.delegate respondsToSelector:@selector(homeViewControllerAskedForPushes:)])
+    {
+        [self.delegate homeViewControllerAskedForPushes:self];
+    }
     [infoView setType:HomeInfoTypeCommon];
     [infoView setBuyouts:4];
 }

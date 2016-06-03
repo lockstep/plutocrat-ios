@@ -15,6 +15,7 @@
 @required
 
 - (void)homeViewController:(HomeViewController *)controller shouldNavigateTo:(NavigateTo)dest;
+- (void)homeViewControllerAskedForPushes:(HomeViewController *)controller;
 
 @end
 

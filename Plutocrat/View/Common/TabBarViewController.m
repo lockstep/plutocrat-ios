@@ -92,4 +92,12 @@
     }
 }
 
+- (void)homeViewControllerAskedForPushes:(HomeViewController *)controller
+{
+    if ([self.customDelegate respondsToSelector:@selector(tabBarViewControllerAskedForPushes:)])
+    {
+        [self.customDelegate tabBarViewControllerAskedForPushes:self];
+    }
+}
+
 @end
