@@ -69,6 +69,7 @@ static NSString * identifier = @"SharesCellIdentifier";
     if (!cell)
     {
         cell = [[SharesTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        [cell setDelegate:self];
     }
     return cell;
 }
@@ -83,6 +84,39 @@ static NSString * identifier = @"SharesCellIdentifier";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [Globals cellHeight];
+}
+
+#pragma mark - Shares Cell Delegate
+
+- (void)buttonTappedToByOnCell:(SharesTableViewCell *)cell
+{
+    SKProductsRequest * req = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:@"com.whiteflyventuresinc.Plutocrat.One"]];
+    [req setDelegate:self];
+   // [req start];
+}
+
+#pragma mark - Products Request Delegate
+
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
+{
+    SKProduct * product = [response.products lastObject];
+    SKPayment * payment = [SKPayment paymentWithProduct:product];
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+    [[SKPaymentQueue defaultQueue] addPayment:payment];
+}
+
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray<SKPaymentTransaction *> *)transactions
+{
+    for (SKPaymentTransaction * trans in transactions)
+    {
+        if (trans.transactionState == SKPaymentTransactionStatePurchased)
+        {
+            NSURL * receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
+            NSData * receipt = [NSData dataWithContentsOfURL:receiptURL];
+            NSLog(@"%lu", [receipt length]);
+            [[SKPaymentQueue defaultQueue] finishTransaction:trans];
+        }
+    }
 }
 
 #pragma mark - stub

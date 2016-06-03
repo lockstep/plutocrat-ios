@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <StoreKit/StoreKit.h>
 #import "SharesTableViewCell.h"
 
-@interface SharesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface SharesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SKProductsRequestDelegate, SKPaymentTransactionObserver, SharesCellDelegate>
 
 @end

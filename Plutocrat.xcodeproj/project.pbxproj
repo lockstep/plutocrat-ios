@@ -36,6 +36,7 @@
 		FD386A4E1CE5385800065BA3 /* HomeHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A4D1CE5385800065BA3 /* HomeHeader.m */; };
 		FD45A0BF1CD7735100304EC0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0BE1CD7735100304EC0 /* AppDelegate.m */; };
 		FD45A0CA1CD7735100304EC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD45A0C91CD7735100304EC0 /* Assets.xcassets */; };
+		FD5239571D0151B600983C07 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5239561D0151B600983C07 /* StoreKit.framework */; };
 		FD8B5CAE1CDBE27000751642 /* Labels.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD8B5CAC1CDBE27000751642 /* Labels.strings */; };
 		FD8B5CB81CDBE53E00751642 /* Sansation-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD8B5CB21CDBE53E00751642 /* Sansation-Bold.ttf */; };
 		FD8B5CB91CDBE53E00751642 /* Sansation-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD8B5CB31CDBE53E00751642 /* Sansation-BoldItalic.ttf */; };
@@ -139,6 +140,7 @@
 		FD45A0BD1CD7735100304EC0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FD45A0BE1CD7735100304EC0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FD45A0C91CD7735100304EC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FD5239561D0151B600983C07 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		FD8B5CAD1CDBE27000751642 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "Supporting Files/Base.lproj/Labels.strings"; sourceTree = "<group>"; };
 		FD8B5CB21CDBE53E00751642 /* Sansation-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Sansation-Bold.ttf"; path = "Misc assets/Fonts/Sansation-Bold.ttf"; sourceTree = "<group>"; };
 		FD8B5CB31CDBE53E00751642 /* Sansation-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Sansation-BoldItalic.ttf"; path = "Misc assets/Fonts/Sansation-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD5239571D0151B600983C07 /* StoreKit.framework in Frameworks */,
 				FDA1A6B11CFC2ED400FFB268 /* WebKit.framework in Frameworks */,
 				FD8B5CD61CDFEDD100751642 /* LocalAuthentication.framework in Frameworks */,
 			);
@@ -454,6 +457,7 @@
 			isa = PBXGroup;
 			children = (
 				FD8B5CD51CDFEDD100751642 /* LocalAuthentication.framework */,
+				FD5239561D0151B600983C07 /* StoreKit.framework */,
 				FDA1A6B01CFC2ED400FFB268 /* WebKit.framework */,
 			);
 			name = Frameworks;
@@ -621,6 +625,9 @@
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 86AUZJL55V;
 						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};

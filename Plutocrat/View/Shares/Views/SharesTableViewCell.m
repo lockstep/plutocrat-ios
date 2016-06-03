@@ -92,9 +92,20 @@
         buy = [CommonButton lightButtonWithText:NSLocalizedStringFromTable(@"BUY", @"Buttons", nil)
                                           color:ButtonColorViolet];
         [buy setCenter:CGPointMake(self.bounds.size.width - [Globals horizontalOffsetInTable] - buy.frame.size.width / 2, [Globals cellHeight] / 2)];
+        [buy addTarget:self action:@selector(tapped) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:buy];
     }
     return self;
+}
+
+#pragma mark - button
+
+- (void)tapped
+{
+    if ([self.delegate respondsToSelector:@selector(buttonTappedToByOnCell:)])
+    {
+        [self.delegate buttonTappedToByOnCell:self];
+    }
 }
 
 #pragma mark - public
