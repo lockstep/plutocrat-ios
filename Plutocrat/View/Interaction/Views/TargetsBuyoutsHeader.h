@@ -17,7 +17,7 @@ typedef NS_ENUM (NSUInteger, TargetsBuyoutsHeaderType)
 
 @protocol TargetsBuyotsHeaderDelegate <NSObject>
 
-- (void)buttonTappedToEngage:(BOOL)toEngage;
+- (void)buttonTappedToEngage;
 
 @end
 
@@ -29,6 +29,6 @@ typedef NS_ENUM (NSUInteger, TargetsBuyoutsHeaderType)
 - (void)setImage:(UIImage *)image;
 - (void)setName:(NSString *)nameString;
 - (void)setNumberOfBuyouts:(NSUInteger)number;
-- (void)setButtonToEngageState:(BOOL)state;
+- (void)buttonHide:(BOOL)hide;
 
 @end

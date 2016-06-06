@@ -19,7 +19,6 @@
     CommonButton * engageButton;
     UILabel * successfulBuyouts;
     BOOL plutocratExists;
-    BOOL buttonEngages;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -74,8 +73,7 @@
         [plutocratBuyouts setNumberOfLines:2];
         [self addSubview:plutocratBuyouts];
         
-        engageButton = [CommonButton smallButtonWithColor:ButtonColorWhite titleColor:ButtonColorViolet];
-        [engageButton setText:NSLocalizedStringFromTable(@"ENGAGE", @"Buttons", nil)];
+        engageButton = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"ENGAGE", @"Buttons", nil) color:ButtonColorViolet];
         [engageButton setCenter:
          CGPointMake(frame.size.width - bordersOffset - engageButton.frame.size.width / 2,
                      frame.size.height / 2 + 10.0f)];
@@ -89,8 +87,6 @@
         [successfulBuyouts setTextAlignment:NSTextAlignmentCenter];
         [successfulBuyouts setHidden:YES];
         [self addSubview:successfulBuyouts];
-        
-        buttonEngages = YES;
     }
     return self;
 }
@@ -163,20 +159,18 @@
     }
 }
 
-- (void)setButtonToEngageState:(BOOL)state
+- (void)buttonHide:(BOOL)hide
 {
-    buttonEngages = state;
-    if (state) [engageButton setText:NSLocalizedStringFromTable(@"ENGAGE", @"Buttons", nil)];
-    else [engageButton setText:NSLocalizedStringFromTable(@"ABORT", @"Buttons", nil)];
+    [engageButton setHidden:hide];
 }
 
 #pragma mark - Button
 
 - (void)buttonTapped
 {
-    if ([self.delegate respondsToSelector:@selector(buttonTappedToEngage:)])
+    if ([self.delegate respondsToSelector:@selector(buttonTappedToEngage)])
     {
-        [self.delegate buttonTappedToEngage:buttonEngages];
+        [self.delegate buttonTappedToEngage];
     }
 }
 

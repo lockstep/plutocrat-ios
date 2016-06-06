@@ -13,7 +13,6 @@
 "Password" = "Password";
 "UseTouchId" = "Enable Touch ID";
 "Login" = "Login";
-"ForgotPassword" = "Forgot Password";
 "SuccessfullBuyouts" = "Successful\r\nBuyouts";
 "FailedBuyouts" = "Failed\r\nBuyouts";
 "DefeatedBuyouts" = "Defeated\r\nThreats";
@@ -44,6 +43,7 @@
 "UnusedSharesFormat" = "%i Unused Shares";
 "PerShare" = "Per Share:";
 "Total" = "Total:";
+"ManageAccount" = "Manage Account";
 "FAQ" = "FAQ";
 "SignOut" = "Sign Out";
 "GettingStarted" = "Getting Started";

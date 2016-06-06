@@ -63,7 +63,7 @@
         [email setHidden:YES];
         [self addSubview:email];
         
-        manageButton = [CommonButton lightButtonWithText:NSLocalizedStringFromTable(@"ManageAccount", @"Buttons", nil) color:ButtonColorViolet];
+        manageButton = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"ManageAccount", @"Buttons", nil) color:ButtonColorViolet];
         [manageButton setFrame:CGRectMake(startingXForLabels,
                                           email.frame.origin.y + email.frame.size.height + 5.0f,
                                           manageButton.frame.size.width,

@@ -35,4 +35,9 @@
     return 49.0f;
 }
 
++ (CGFloat)headerHeight
+{
+    return 134.0f;
+}
+
 @end

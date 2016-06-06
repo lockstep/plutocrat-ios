@@ -24,7 +24,7 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     self.header = [[TargetsBuyoutsHeader alloc] initWithFrame:
-              CGRectMake(0.0f, 0.0f, self.view.bounds.size.width, [Globals cellHeight] + 20.0f)];
+              CGRectMake(0.0f, 0.0f, self.view.bounds.size.width, [Globals headerHeight])];
     [self.header setDelegate:self];
     [self.view addSubview:self.header];
     
@@ -67,14 +67,11 @@
 
 #pragma mark - TargetsBuyotsHeaderDelegate
 
-- (void)buttonTappedToEngage:(BOOL)toEngage
+- (void)buttonTappedToEngage
 {
-    if (toEngage)
-    {
-        InitiateViewController * ivc = [[InitiateViewController alloc] init];
-        [self addChildViewController:ivc];
-        [self.view addSubview:ivc.view];
-    }
+    InitiateViewController * ivc = [[InitiateViewController alloc] init];
+    [self addChildViewController:ivc];
+    [self.view addSubview:ivc.view];
 }
 
 #pragma mark - global stub

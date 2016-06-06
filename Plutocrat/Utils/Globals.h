@@ -23,5 +23,6 @@ typedef NS_ENUM (NSUInteger, NavigateTo)
 + (CGFloat)cellHeight;
 + (CGFloat)offsetFromPhoto;
 + (CGFloat)tabBarHeight;
++ (CGFloat)headerHeight;
 
 @end

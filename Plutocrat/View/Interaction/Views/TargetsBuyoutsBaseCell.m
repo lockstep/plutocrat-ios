@@ -14,7 +14,6 @@
 {
     CommonButton * engageButton;
     UILabel * engageReplace;
-    BOOL buttonEngages;
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -54,7 +53,7 @@
         [self.info setNumberOfLines:3];
         [self addSubview:self.info];
         
-        engageButton = [CommonButton smallButtonWithColor:ButtonColorGray titleColor:ButtonColorWhite];
+        engageButton = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"ENGAGE", @"Buttons", nil) color:ButtonColorViolet];
         [engageButton setCenter:
          CGPointMake(self.frame.size.width - bordersOffset - engageButton.frame.size.width / 2,
                      [Globals cellHeight] / 2)];
@@ -92,9 +91,7 @@
     {
         case EngageButtonDefaultState:
             [engageButton setHidden:NO];
-            [engageButton setText:NSLocalizedStringFromTable(@"ENGAGE", @"Buttons", nil)];
             [engageReplace setHidden:YES];
-            buttonEngages = YES;
             break;
             
         case EngageButtonUnderThreatState:
@@ -114,12 +111,10 @@
             [engageReplace setHidden:NO];
             [engageReplace setText:NSLocalizedStringFromTable(@"Eliminated", @"Labels", nil)];
             break;
-            
-        case EngageButtonToAbortState:
-            [engageButton setHidden:NO];
-            [engageButton setText:NSLocalizedStringFromTable(@"ABORT", @"Buttons", nil)];
+
+        case EngageButtonHidden:
+            [engageButton setHidden:YES];
             [engageReplace setHidden:YES];
-            buttonEngages = NO;
             break;
             
         default:
@@ -131,9 +126,9 @@
 
 - (void)buttonTapped
 {
-    if ([self.delegate respondsToSelector:@selector(buttonTappedToEngage:onCell:)])
+    if ([self.delegate respondsToSelector:@selector(buttonTappedToEngageOnCell:)])
     {
-        [self.delegate buttonTappedToEngage:buttonEngages onCell:self];
+        [self.delegate buttonTappedToEngageOnCell:self];
     }
 }
 

@@ -89,8 +89,8 @@
         [totalVal setTextAlignment:NSTextAlignmentRight];
         [self addSubview:totalVal];
         
-        buy = [CommonButton lightButtonWithText:NSLocalizedStringFromTable(@"BUY", @"Buttons", nil)
-                                          color:ButtonColorViolet];
+        buy = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"BUY", @"Buttons", nil)
+                                     color:ButtonColorViolet];
         [buy setCenter:CGPointMake(self.bounds.size.width - [Globals horizontalOffsetInTable] - buy.frame.size.width / 2, [Globals cellHeight] / 2)];
         [buy addTarget:self action:@selector(tapped) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:buy];

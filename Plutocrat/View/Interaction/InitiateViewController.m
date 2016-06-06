@@ -9,6 +9,8 @@
 #import "InitiateViewController.h"
 #import "SelectShares.h"
 #import "CommonButton.h"
+#import "TargetsBuyoutsHeader.h"
+#import "TargetsCell.h"
 
 @interface InitiateViewController ()
 {
@@ -30,7 +32,6 @@
     header = [[TargetsBuyoutsHeader alloc] initWithFrame:
               CGRectMake(0.0f, 0.0f, self.view.bounds.size.width, [Globals cellHeight] + 20.0f)];
     [header setHidden:YES];
-    [header setDelegate:self];
     [self.view addSubview:header];
     
     anotherBack = [[UIImageView alloc] initWithFrame:header.frame];
@@ -40,7 +41,6 @@
     anotherHeader = [[TargetsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     [anotherHeader setFrame:CGRectMake(0.0f, 20.0f, self.view.bounds.size.width, [Globals cellHeight])];
     [anotherHeader setBackgroundColor:[UIColor whiteColor]];
-    [anotherHeader setDelegate:self];
     [anotherHeader setHidden:YES];
     [self.view addSubview:anotherHeader];
     
@@ -49,7 +49,6 @@
                                       header.frame.size.height,
                                       self.view.bounds.size.width,
                                       self.view.bounds.size.height - header.frame.size.height - [Globals tabBarHeight])];
-    [view setContentSize:CGSizeMake(view.frame.size.width, view.frame.size.height + 1.0f)];
     [self.view addSubview:view];
     
     selectShares = [[SelectShares alloc] initWithFrame:
@@ -59,18 +58,20 @@
                                300.0f)];
     [view addSubview:selectShares];
     
-    CommonButton * abort = [CommonButton smallButtonWithColor:ButtonColorGray];
-    [abort setText:NSLocalizedStringFromTable(@"ABORT", @"Buttons", nil)];
+    CommonButton * abort = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"ABORT", @"Buttons", nil) color:ButtonColorGray];
     [abort setCenter:CGPointMake([Globals horizontalOffsetInTable] + abort.frame.size.width / 2, selectShares.frame.size.height + abort.frame.size.height / 2 + 40.0f)];
     [abort addTarget:self action:@selector(abortTapped) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:abort];
     
-    CommonButton * execute = [CommonButton smallButtonWithColor:ButtonColorViolet];
-    [execute setText:NSLocalizedStringFromTable(@"EXECUTE", @"Buttons", nil)];
+    CommonButton * execute = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"EXECUTE", @"Buttons", nil) color:ButtonColorViolet];
     [execute setCenter:CGPointMake(self.view.bounds.size.width - [Globals horizontalOffsetInTable] - execute.frame.size.width / 2, selectShares.frame.size.height + execute.frame.size.height / 2 + 40.0f)];
     [execute addTarget:self action:@selector(executeTapped) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:execute];
- 
+
+    CGFloat contentY = MAX(execute.frame.origin.y + execute.frame.size.height + 20.0f,
+                           view.frame.size.height + 1.0f);
+    [view setContentSize:CGSizeMake(view.frame.size.width, contentY)];
+
     [self stub2];
 }
 
@@ -113,16 +114,6 @@
     }
 }
 
-#pragma mark - TargetsBuyoutsCellDelegate
-
-- (void)buttonTappedToEngage:(BOOL)toEngage onCell:(TargetsBuyoutsBaseCell *)cell
-{
-    if (!toEngage)
-    {
-        [self exit];
-    }
-}
-
 #pragma mark - stub
 
 - (void)stubName:(NSString *)name
@@ -132,7 +123,7 @@
     [anotherHeader setHidden:NO];
     [[anotherHeader photo] setImage:[UIImage imageNamed:name]];
     [[anotherHeader name] setText:name];
-    [anotherHeader setEngageButtonState:EngageButtonToAbortState];
+    [anotherHeader setEngageButtonState:EngageButtonHidden];
     [self stubCell:anotherHeader];
 }
 
@@ -143,7 +134,7 @@
     [header setImage:[UIImage imageNamed:@"me"]];
     [header setName:@"Pavel Dolgov"];
     [header setNumberOfBuyouts:35];
-    [header setButtonToEngageState:NO];
+    [header buttonHide:YES];
     [anotherBack setHidden:YES];
     [anotherHeader setHidden:YES];
     [selectShares setMin:12 value:12 max:23];

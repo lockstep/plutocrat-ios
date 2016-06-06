@@ -10,60 +10,16 @@
 
 @implementation CommonButton
 
-+ (instancetype)smallButtonWithColor:(ButtonColor)buttonColor titleColor:(ButtonColor)titleColor
++ (instancetype)buttonWithText:(NSString *)text color:(ButtonColor)buttonColor
 {
-    CommonButton * button = [[CommonButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 65.0f, 24.0f)];
-    [button paintButtonToColor:buttonColor titleColor:titleColor];
-    [[button layer] setCornerRadius:4.0f];
-    [[button titleLabel] setFont:[UIFont regularFontWithSize:14.0f]];
-    return button;
-}
-+ (instancetype)smallButtonWithColor:(ButtonColor)buttonColor
-{
-    return [self smallButtonWithColor:buttonColor titleColor:ButtonColorWhite];
-}
-
-+ (instancetype)bigButtonWithColor:(ButtonColor)buttonColor
-{
-    CommonButton * button = [[CommonButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 110.0f, 24.0f)];
-    [button paintButtonToColor:buttonColor titleColor:ButtonColorWhite];
-    [[button layer] setCornerRadius:4.0f];
-    [[button titleLabel] setFont:[UIFont regularFontWithSize:12.0f]];
-    return button;
-}
-
-+ (instancetype)textButton:(NSString *)text fontSize:(CGFloat)fontSize
-{
-    UIFont * font = [UIFont regularFontWithSize:fontSize];
+    UIFont * font = [UIFont regularFontWithSize:12.0f];
     CGRect rect = [text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 20.0f)
                                      options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                   attributes:@{NSFontAttributeName:font}
                                      context:nil];
     CommonButton * button = [[CommonButton alloc] initWithFrame:CGRectMake(0.0f,
                                                                            0.0f,
-                                                                           rect.size.width,
-                                                                           rect.size.height)];
-    [[button titleLabel] setFont:font];
-    [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-    [button setTitleColor:[UIColor colorWithRed:65.0f / 255.0f
-                                          green:12.0f / 255.0f
-                                           blue:91.0f / 255.0f
-                                          alpha:1.0f] forState:UIControlStateNormal];
-
-    [button setText:text];
-    return button;
-}
-
-+ (instancetype)lightButtonWithText:(NSString *)text color:(ButtonColor)buttonColor
-{
-    UIFont * font = [UIFont regularFontWithSize:14.0f];
-    CGRect rect = [text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 20.0f)
-                                     options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
-                                  attributes:@{NSFontAttributeName:font}
-                                     context:nil];
-    CommonButton * button = [[CommonButton alloc] initWithFrame:CGRectMake(0.0f,
-                                                                           0.0f,
-                                                                           rect.size.width + 30.0f,
+                                                                           rect.size.width + 25.0f,
                                                                            rect.size.height + 10.0f)];
     [[button titleLabel] setFont:font];
     [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
@@ -72,13 +28,8 @@
     [button.layer setBorderWidth:1.0f];
     [button.layer setCornerRadius:5.0f];
     [button.layer setMasksToBounds:YES];
-    [button setText:text];
+    [button setTitle:text forState:UIControlStateNormal];
     return button;
-}
-
-- (void)setText:(NSString *)text
-{
-    [self setTitle:text forState:UIControlStateNormal];
 }
 
 #pragma mark - private
@@ -163,7 +114,6 @@
         default:
             break;
     }
-
 }
 
 @end

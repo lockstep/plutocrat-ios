@@ -43,14 +43,12 @@
         [warning setText:NSLocalizedStringFromTable(@"WARNING", @"Texts", nil)];
         [self addSubview:warning];
         
-        CommonButton * accept = [CommonButton bigButtonWithColor:ButtonColorRed];
-        [accept setText:NSLocalizedStringFromTable(@"ACCEPT", @"Buttons", nil)];
+        CommonButton * accept = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"ACCEPT", @"Buttons", nil) color:ButtonColorRed];
         [accept setCenter:CGPointMake(bordersOffset + accept.frame.size.width / 2,
                                       236.0f + accept.frame.size.height / 2)];
         [self addSubview:accept];
         
-        CommonButton * match = [CommonButton bigButtonWithColor:ButtonColorViolet];
-        [match setText:NSLocalizedStringFromTable(@"MATCH", @"Buttons", nil)];
+        CommonButton * match = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"MATCH", @"Buttons", nil) color:ButtonColorViolet];
         [match setCenter:CGPointMake(self.frame.size.width -  bordersOffset - match.frame.size.width / 2,
                                       236.0f + match.frame.size.height / 2)];
         [self addSubview:match];

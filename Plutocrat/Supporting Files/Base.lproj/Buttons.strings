@@ -6,7 +6,7 @@
   Copyright © 2016 Whitefly Ventures. All rights reserved.
 */
 
-"ENTER" = "ENTER";
+"SUBMIT" = "SUBMIT";
 "ACCEPT" = "ACCEPT DEFEAT";
 "MATCH" = "MATCH SHARES";
 "ENGAGE" = "ENGAGE";
@@ -16,3 +16,6 @@
 "ManageAccount" = "Manage Account";
 "FINDTARGET" = "FIND TARGET";
 "ENABLENOTIFICATIONS" = "ENABLE NOTIFICATIONS";
+"EULA" = "EULA";
+"PRIVACY" = "PRIVACY";
+"FORGOTPASSWORD" = "FORGOT PASSWORD";

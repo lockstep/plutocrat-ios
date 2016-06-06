@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TargetsBuyoutsHeader.h"
-#import "TargetsCell.h"
 
 typedef NS_ENUM (NSUInteger, BackImageType)
 {
@@ -16,7 +14,7 @@ typedef NS_ENUM (NSUInteger, BackImageType)
     BackImageTypeBuyouts
 };
 
-@interface InitiateViewController : UIViewController <TargetsBuyotsHeaderDelegate, TargetsBuyoutsCellDelegate>
+@interface InitiateViewController : UIViewController
 
 - (void)stubName:(NSString *)name;
 - (void)setBackImageType:(BackImageType)type;

@@ -35,7 +35,7 @@
     homeHeader = [[HomeHeader alloc] initWithFrame:CGRectMake(0.0f,
                                                               0.0f,
                                                               self.view.bounds.size.width,
-                                                              134.0f)];
+                                                              [Globals headerHeight])];
     [self.view addSubview:homeHeader];
     
     view = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0f,

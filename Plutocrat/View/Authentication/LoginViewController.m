@@ -14,19 +14,23 @@
 
 #import <LocalAuthentication/LAContext.h>
 
+#define EULA_ADDRESS @"http://www.whiteflyventuresinc.com/plutocrat/eula.html"
+#define PRIVACY_ADDRESS @"https://www.whiteflyventuresinc.com/plutocrat/privacy.html"
+
 @interface LoginViewController ()
 {
     BOOL loginMode;
-    UIView * scrollableContentHolder;
+    UIScrollView * view;
     UILabel * actionLabel;
     UITextField * displayName;
     UITextField * email;
     UITextField * password;
-    CommonCheckBoxWithText * useTouchId;
-    CommonButton * enterButton;
+    CommonButton * submitButton;
     CommonButton * loginButton;
-    CommonButton * forgotPasswordButton;
     CommonButton * registerButton;
+    CommonButton * eulaButton;
+    CommonButton * privacyButton;
+    CommonButton * forgotPasswordButton;
 }
 @end
 
@@ -51,73 +55,31 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     [self setupCommon];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow:)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
 }
 
 - (void)setupCommon
 {
-    scrollableContentHolder = [[UIView alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:scrollableContentHolder];
-    
+    view = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:view];
+
     UIColor * paleGray = [UIColor grayWithIntense:146.0f];
     const CGFloat bigFontSize = 24.0f;
     const CGFloat smallFontSize = 14.0f;
-    const CGFloat textButtonsFontSize = 14.0f;
     CGFloat horizontalOffset = [Globals horizontalOffset];
     CGFloat heightsOfTextFields = 34.0f;
     CGFloat componentsWidth = self.view.bounds.size.width - horizontalOffset * 2;
-    
-    UILabel * welcome = [[UILabel alloc] initWithFrame:CGRectMake(horizontalOffset,
-                                                                  60.0f,
-                                                                  componentsWidth,
-                                                                  40.0f)];
-    [welcome setText:NSLocalizedStringFromTable(@"WelcomeTo", @"Texts", nil)];
-    [welcome setTextColor:paleGray];
-    [welcome setFont:[UIFont regularFontWithSize:bigFontSize]];
-    [scrollableContentHolder addSubview:welcome];
-    
-    UITextView * useShares = [[UITextView alloc] initWithFrame:CGRectMake(horizontalOffset,
-                                                                          110.0f,
-                                                                          componentsWidth,
-                                                                          140.0f)];
-    [useShares setEditable:NO];
-    [useShares setSelectable:NO];
-    [useShares.textContainer setLineFragmentPadding:0.0f];
-    [useShares setTextContainerInset:UIEdgeInsetsZero];
-    NSDictionary * baseAttrs = @{NSFontAttributeName:[UIFont regularFontWithSize:smallFontSize],
-                                 NSForegroundColorAttributeName:paleGray};
-    
-    NSString * useSharesString = NSLocalizedStringFromTable(@"UseShares", @"Texts", nil);
-    NSString * stringToBold = NSLocalizedStringFromTable(@"UseSharesToBold", @"Texts", nil);
-    
-    NSDictionary * subAttrs = @{NSFontAttributeName:[UIFont boldFontWithSize:smallFontSize],
-                                NSForegroundColorAttributeName:paleGray};
-    const NSRange range = [useSharesString rangeOfString:stringToBold];
-    
-    NSMutableAttributedString * attrStr = [[NSMutableAttributedString alloc] initWithString:useSharesString attributes:baseAttrs];
-    [attrStr setAttributes:subAttrs range:range];
-    [useShares setAttributedText:attrStr];
-    [scrollableContentHolder addSubview:useShares];
-    
+
     actionLabel = [[UILabel alloc] initWithFrame:CGRectMake(horizontalOffset,
-                                                            250.0f,
+                                                            50.0f,
                                                             componentsWidth,
                                                             30.0f)];
     [actionLabel setTextColor:paleGray];
     [actionLabel setFont:[UIFont regularFontWithSize:bigFontSize]];
-    [scrollableContentHolder addSubview:actionLabel];
+    [view addSubview:actionLabel];
     
     
     displayName = [[UITextField alloc] initWithFrame:CGRectMake(horizontalOffset,
-                                                                300.0f,
+                                                                100.0f,
                                                                 componentsWidth,
                                                                 heightsOfTextFields)];
     [displayName setPlaceholder:NSLocalizedStringFromTable(@"DisplayName", @"Labels", nil)];
@@ -126,7 +88,7 @@
     [displayName setFont:[UIFont regularFontWithSize:smallFontSize]];
     [displayName setDelegate:self];
     [displayName setHidden:YES];
-    [scrollableContentHolder addSubview:displayName];
+    [view addSubview:displayName];
     
     CommonSeparator * sep = [[CommonSeparator alloc] initWithFrame:CGRectMake(0.0f,
                                                                               0.0f,
@@ -144,7 +106,7 @@
     [email setReturnKeyType:UIReturnKeyNext];
     [email setFont:[UIFont regularFontWithSize:smallFontSize]];
     [email setDelegate:self];
-    [scrollableContentHolder addSubview:email];
+    [view addSubview:email];
     
     CommonSeparator * sep1 = [[CommonSeparator alloc] initWithFrame:CGRectMake(0.0f,
                                                                                0.0f,
@@ -163,7 +125,7 @@
     [password setReturnKeyType:UIReturnKeyDone];
     [password setFont:[UIFont regularFontWithSize:smallFontSize]];
     [password setDelegate:self];
-    [scrollableContentHolder addSubview:password];
+    [view addSubview:password];
     
     CommonSeparator * sep2 = [[CommonSeparator alloc] initWithFrame:CGRectMake(0.0f,
                                                                                0.0f,
@@ -176,37 +138,40 @@
                                                                                componentsWidth,
                                                                                1.0f)];
     [password addSubview:sep3];
+
+    submitButton = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"SUBMIT", @"Buttons", nil) color:ButtonColorViolet];
+    [submitButton addTarget:self action:@selector(submitButtonTouched) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:submitButton];
     
-    useTouchId = [CommonCheckBoxWithText checkBoxWithText:NSLocalizedStringFromTable(@"UseTouchId", @"Labels", nil) size:CGSizeMake(componentsWidth, 20.0f) defaultState:YES];
-    [self.view addSubview:useTouchId];
-    
-    LAContext *context = [LAContext new];
-    if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil])
-    {
-        [useTouchId setHidden:YES];
-    }
-    else
-    {
-        [useTouchId setHidden:YES];
-    }
-    
-    enterButton = [CommonButton smallButtonWithColor:ButtonColorGray];
-    [enterButton setText:NSLocalizedStringFromTable(@"ENTER", @"Buttons", nil)];
-    [enterButton addTarget:self action:@selector(enterButtonTouched) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:enterButton];
-    
-    loginButton = [CommonButton textButton:NSLocalizedStringFromTable(@"Login", @"Labels", nil)
-                   fontSize:textButtonsFontSize];
+    loginButton = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"LOGIN", @"Buttons", nil) color:ButtonColorViolet];
     [loginButton addTarget:self action:@selector(loginButtonTouched) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:loginButton];
+    [view addSubview:loginButton];
     
-    forgotPasswordButton = [CommonButton textButton:NSLocalizedStringFromTable(@"ForgotPassword", @"Labels", nil) fontSize:textButtonsFontSize];
-    [forgotPasswordButton addTarget:self action:@selector(forgotPasswordButtonTouched) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:forgotPasswordButton];
-    
-    registerButton = [CommonButton textButton:NSLocalizedStringFromTable(@"Register", @"Labels", nil) fontSize:textButtonsFontSize];
+    registerButton = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"REGISTER", @"Buttons", nil) color:ButtonColorViolet];
     [registerButton addTarget:self action:@selector(registerButtonTouched) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:registerButton];
+    [view addSubview:registerButton];
+
+    eulaButton = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"EULA", @"Buttons", nil) color:ButtonColorGray];
+    [eulaButton setCenter:CGPointMake(view.frame.size.width / 2 + eulaButton.frame.size.width / 2,
+                                      view.bounds.size.height - eulaButton.frame.size.height)];
+    [eulaButton addTarget:self action:@selector(eulaButtonTouched) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:eulaButton];
+
+    privacyButton = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"PRIVACY", @"Buttons", nil) color:ButtonColorGray];
+    [privacyButton setCenter:
+     CGPointMake(view.frame.size.width - horizontalOffset -  privacyButton.frame.size.width / 2,
+                 view.bounds.size.height - privacyButton.frame.size.height)];
+    [privacyButton addTarget:self action:@selector(privacyButtonTouched) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:privacyButton];
+
+    forgotPasswordButton = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"FORGOTPASSWORD", @"Buttons", nil) color:ButtonColorGray];
+    [forgotPasswordButton setCenter:
+     CGPointMake(view.frame.size.width - horizontalOffset -  forgotPasswordButton.frame.size.width / 2,
+                 view.bounds.size.height - forgotPasswordButton.frame.size.height)];
+    [forgotPasswordButton addTarget:self action:@selector(forgotPasswordButtonTouched) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:forgotPasswordButton];
+
+    [view setContentSize:CGSizeMake(view.frame.size.width, view.frame.size.height + 1.0f)];
 }
 
 - (void)setupDerived:(BOOL)userIsRegistered
@@ -217,7 +182,7 @@
     [displayName setHidden:userIsRegistered];
     
     [email setFrame:CGRectMake(email.frame.origin.x,
-                              300.0f + modeDiff,
+                              100.0f + modeDiff,
                               email.frame.size.width,
                               email.frame.size.height)];
     
@@ -225,33 +190,20 @@
                                   email.frame.origin.y + heightsOfTextFields,
                                   password.frame.size.width,
                                   password.frame.size.height)];
-    
-    [useTouchId setFrame:CGRectMake(password.frame.origin.x,
-                                    password.frame.origin.y + heightsOfTextFields + 10.0f,
-                                    useTouchId.frame.size.width,
-                                    useTouchId.frame.size.height)];
-    
-    CGFloat enterButtonOriginY = useTouchId.frame.origin.y;
-    if (!useTouchId.isHidden) enterButtonOriginY += useTouchId.frame.size.height + 10.0f;
-    
-    [enterButton setFrame:CGRectMake(password.frame.origin.x,
-                                enterButtonOriginY,
-                                enterButton.frame.size.width,
-                                enterButton.frame.size.height)];
-    
-    CGFloat spaceLeftStartPoint = enterButton.frame.origin.y + enterButton.frame.size.height;
-    CGFloat spaceLeftHeight = self.view.bounds.size.height - spaceLeftStartPoint;
-    CGFloat spaceLeftCenter = spaceLeftStartPoint + spaceLeftHeight / 2;
+
+    [submitButton setCenter:CGPointMake(password.frame.origin.x + submitButton.frame.size.width / 2,
+                                        password.frame.origin.y + heightsOfTextFields + submitButton.frame.size.height / 2 + 20.0f)];
+
     [loginButton setCenter:CGPointMake(password.frame.origin.x + loginButton.frame.size.width / 2,
-                                       spaceLeftCenter)];
-    [forgotPasswordButton setCenter:CGPointMake(password.frame.origin.x + forgotPasswordButton.frame.size.width / 2,
-                                                spaceLeftCenter - 15.0f)];
+                                       view.bounds.size.height - loginButton.frame.size.height)];
     [registerButton setCenter:CGPointMake(password.frame.origin.x + registerButton.frame.size.width / 2,
-                                          spaceLeftCenter + 15.0f)];
-    
+                                          view.bounds.size.height - registerButton.frame.size.height)];
+
     [loginButton setHidden:userIsRegistered];
-    [forgotPasswordButton setHidden:!userIsRegistered];
     [registerButton setHidden:!userIsRegistered];
+    [eulaButton setHidden:userIsRegistered];
+    [privacyButton setHidden:userIsRegistered];
+    [forgotPasswordButton setHidden:!userIsRegistered];
     
     if (userIsRegistered)
     {
@@ -282,59 +234,9 @@
     return NO;
 }
 
-#pragma mark - Keyboard
-
-static CGFloat fieldsAndKeyboardTotalHeight = 620.0f;
-
-CGFloat scrollingHeight()
-{
-    CGFloat res = 0.0f;
-    if ([UIScreen mainScreen].bounds.size.height < fieldsAndKeyboardTotalHeight) // small iPhones
-    {
-        res = fieldsAndKeyboardTotalHeight - [UIScreen mainScreen].bounds.size.height;
-    }
-    return res;
-}
-
-- (void)keyboardWillShow:(NSNotification *)notification
-{
-    CGRect frame = scrollableContentHolder.frame;
-    if (frame.origin.y < 0.0f) return;
-    
-    void (^animations)() = ^() {
-        CGRect frame = scrollableContentHolder.frame;
-        frame.origin.y -= scrollingHeight();
-        scrollableContentHolder.frame = frame;
-    };
-    
-    [UIView animateWithDuration:0.5f
-                          delay:0.0f
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:animations
-                     completion:nil];
-}
-
-- (void)keyboardWillHide:(NSNotification *)notification
-{
-    CGRect frame = scrollableContentHolder.frame;
-    if (frame.origin.y >= 0.0f) return;
-    
-    void (^animations)() = ^() {
-        CGRect frame = scrollableContentHolder.frame;
-        frame.origin.y += scrollingHeight();
-        scrollableContentHolder.frame = frame;
-    };
-    
-    [UIView animateWithDuration:0.5f
-                          delay:0.0f
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:animations
-                     completion:nil];
-}
-
 #pragma mark - Buttons handlers
 
-- (void)enterButtonTouched
+- (void)submitButtonTouched
 {
     if ([self.delegate respondsToSelector:@selector(loginViewControllerShouldDismiss:)])
     {
@@ -367,14 +269,24 @@ CGFloat scrollingHeight()
     [self setupContentsWhenUserIsRegistered:YES];
 }
 
-- (void)forgotPasswordButtonTouched
-{
-    //TODO: to forgot password screen
-}
-
 - (void)registerButtonTouched
 {
     [self setupContentsWhenUserIsRegistered:NO];
+}
+
+- (void)eulaButtonTouched
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:EULA_ADDRESS]];
+}
+
+- (void)privacyButtonTouched
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:PRIVACY_ADDRESS]];
+}
+
+- (void)forgotPasswordButtonTouched
+{
+
 }
 
 @end

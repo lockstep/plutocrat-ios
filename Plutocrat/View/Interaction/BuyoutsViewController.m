@@ -49,34 +49,31 @@
 
 #pragma mark - TargetsBuyoutsCellDelegate
 
-- (void)buttonTappedToEngage:(BOOL)toEngage onCell:(TargetsBuyoutsBaseCell *)cell
+- (void)buttonTappedToEngageOnCell:(TargetsBuyoutsBaseCell *)cell
 {
-    if (toEngage)
-    {
+    CGRect frame = cell.frame;
+    frame.origin.y += self.table.frame.origin.y;
+    cell.frame = frame;
+    [self.view addSubview:cell];
+    void (^animations)() = ^() {
         CGRect frame = cell.frame;
-        frame.origin.y += self.table.frame.origin.y;
+        frame.origin.y = 20.0f;
         cell.frame = frame;
-        [self.view addSubview:cell];
-        void (^animations)() = ^() {
-            CGRect frame = cell.frame;
-            frame.origin.y = 20.0f;
-            cell.frame = frame;
-        };
-        
-        [UIView animateWithDuration:0.5f
-                              delay:0.0f
-                            options:UIViewAnimationOptionCurveEaseOut
-                         animations:animations
-                         completion:^(BOOL finished){
-                             InitiateViewController * ivc = [[InitiateViewController alloc] init];
-                             [self addChildViewController:ivc];
-                             [self.view addSubview:ivc.view];
-                             [ivc stubName:[self.source objectAtIndex:cell.tag]];
-                             [ivc setBackImageType:BackImageTypeBuyouts];
-                             [cell removeFromSuperview];
-                             [self.table reloadData];
-                         }];
-    }
+    };
+    
+    [UIView animateWithDuration:0.5f
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:animations
+                     completion:^(BOOL finished){
+                         InitiateViewController * ivc = [[InitiateViewController alloc] init];
+                         [self addChildViewController:ivc];
+                         [self.view addSubview:ivc.view];
+                         [ivc stubName:[self.source objectAtIndex:cell.tag]];
+                         [ivc setBackImageType:BackImageTypeBuyouts];
+                         [cell removeFromSuperview];
+                         [self.table reloadData];
+                     }];
 }
 
 #pragma mark - stub

@@ -14,13 +14,13 @@ typedef NS_ENUM (NSUInteger, EngageButtonState)
     EngageButtonUnderThreatState,
     EngageButtonAttackingYouState,
     EngageButtonEliminatedState,
-    EngageButtonToAbortState
+    EngageButtonHidden
 };
 
 @class TargetsBuyoutsBaseCell;
 @protocol TargetsBuyoutsCellDelegate <NSObject>
 
-- (void)buttonTappedToEngage:(BOOL)toEngage onCell:(TargetsBuyoutsBaseCell *)cell;
+- (void)buttonTappedToEngageOnCell:(TargetsBuyoutsBaseCell *)cell;
 
 @end
 

@@ -33,7 +33,7 @@ static NSString * progressKeyPath = @"estimatedProgress";
                             CGRectMake(0.0f,
                                        0.0f,
                                        self.view.bounds.size.width,
-                                       [Globals cellHeight] + 20.0f)];
+                                       [Globals headerHeight])];
     [self.view addSubview:header];
 
     webView = [[WKWebView alloc] initWithFrame:

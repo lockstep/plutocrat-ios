@@ -42,13 +42,14 @@
         [info setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:info];
         
-        find = [CommonButton lightButtonWithText:NSLocalizedStringFromTable(@"FINDTARGET", @"Buttons", nil) color:ButtonColorViolet];
+        find = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"FINDTARGET", @"Buttons", nil)
+                                      color:ButtonColorViolet];
         [find setCenter:CGPointMake(frame.size.width / 2, 95.0f)];
         [find setHidden:YES];
         [find addTarget:self action:@selector(findTapped) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:find];
         
-        enable = [CommonButton lightButtonWithText:NSLocalizedStringFromTable(@"ENABLENOTIFICATIONS", @"Buttons", nil) color:ButtonColorViolet];
+        enable = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"ENABLENOTIFICATIONS", @"Buttons", nil) color:ButtonColorViolet];
         [enable setCenter:CGPointMake(frame.size.width / 2, 95.0f)];
         [enable setHidden:YES];
         [enable addTarget:self action:@selector(enableTapped) forControlEvents:UIControlEventTouchUpInside];
