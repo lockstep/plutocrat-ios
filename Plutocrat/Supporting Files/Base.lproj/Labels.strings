@@ -47,3 +47,10 @@
 "FAQ" = "FAQ";
 "SignOut" = "Sign Out";
 "GettingStarted" = "Getting Started";
+"ACCOUNT" = "ACCOUNT";
+"TapToChange" = "tap to change";
+"NewPassword" = "New Password";
+"CurrentPassword" = "Current Password";
+"EmailEvents" = "Enable email notifications on Plutocrat events (buyout outcomes, new threats, etc).";
+"EmailUpdates" = "Enable emails with general Plutocrat updates.";
+"PasswordRequired" = "Your current password is required for all account updates.";

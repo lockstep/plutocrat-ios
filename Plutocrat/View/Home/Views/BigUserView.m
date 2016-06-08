@@ -68,6 +68,7 @@
                                           email.frame.origin.y + email.frame.size.height + 5.0f,
                                           manageButton.frame.size.width,
                                           manageButton.frame.size.height)];
+        [manageButton addTarget:self action:@selector(manageButtonTapped) forControlEvents:UIControlEventTouchUpInside];
         [manageButton setHidden:YES];
         [self addSubview:manageButton];
         
@@ -89,6 +90,18 @@
     }
     return self;
 }
+
+#pragma mark - button
+
+- (void)manageButtonTapped
+{
+    if ([self.delegate respondsToSelector:@selector(bigUserViewShouldOpenAccount:)])
+    {
+        [self.delegate bigUserViewShouldOpenAccount:self];
+    }
+}
+
+#pragma mark - stub
 
 - (void)fillStub1
 {

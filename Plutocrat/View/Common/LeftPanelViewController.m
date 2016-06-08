@@ -42,6 +42,7 @@
     [table setBackgroundColor:[UIColor clearColor]];
     [table setDelegate:self];
     [table setDataSource:self];
+    [table setScrollEnabled:NO];
     [self.view addSubview:table];
 }
 

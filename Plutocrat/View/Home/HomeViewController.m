@@ -8,7 +8,6 @@
 
 #import "HomeViewController.h"
 #import "HomeHeader.h"
-#import "BigUserView.h"
 #import "BuyoutsStatsView.h"
 #import "AttackerView.h"
 
@@ -48,6 +47,7 @@
                                                                 0.0f,
                                                                 self.view.bounds.size.width,
                                                                 136.0f)];
+    [bigUserView setDelegate:self];
     [view addSubview:bigUserView];
     
     buyoutsStatsView = [[BuyoutsStatsView alloc] initWithFrame:CGRectMake(0.0f,
@@ -131,6 +131,16 @@
     }
     [infoView setType:HomeInfoTypeCommon];
     [infoView setBuyouts:4];
+}
+
+#pragma mark - BigUserViewDelegate
+
+- (void)bigUserViewShouldOpenAccount:(BigUserView *)view
+{
+    if ([self.delegate respondsToSelector:@selector(homeViewController:shouldNavigateTo:)])
+    {
+        [self.delegate homeViewController:self shouldNavigateTo:NavigateToAccount];
+    }
 }
 
 #pragma mark - stub

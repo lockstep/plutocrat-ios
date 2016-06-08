@@ -11,7 +11,7 @@
 #import "TargetsViewController.h"
 #import "BuyoutsViewController.h"
 #import "SharesViewController.h"
-#import "AboutViewController.h"
+#import "AccountViewController.h"
 
 @interface TabBarViewController ()
 {
@@ -19,7 +19,7 @@
     TargetsViewController * tvc;
     BuyoutsViewController * bvc;
     SharesViewController * svc;
-    AboutViewController * avc;
+    AccountViewController * avc;
 }
 @end
 
@@ -70,12 +70,12 @@
                                                    image:svcImgInact
                                            selectedImage:svcImgAct];
     
-    avc = [AboutViewController new];
-    UIImage * avcImgInact = [[UIImage imageNamed:@"about-inactive"]
+    avc = [AccountViewController new];
+    UIImage * avcImgInact = [[UIImage imageNamed:@"settings-inactive"]
                              imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIImage * avcImgAct = [[UIImage imageNamed:@"about-active"]
+    UIImage * avcImgAct = [[UIImage imageNamed:@"settings-active"]
                            imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    avc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"About"
+    avc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Account"
                                                    image:avcImgInact
                                            selectedImage:avcImgAct];
     

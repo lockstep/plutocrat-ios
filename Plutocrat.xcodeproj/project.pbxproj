@@ -34,6 +34,7 @@
 		FD386A4A1CE51B3E00065BA3 /* 779@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FD386A471CE51B3E00065BA3 /* 779@2x.png */; };
 		FD386A4B1CE51B3E00065BA3 /* 779@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FD386A481CE51B3E00065BA3 /* 779@3x.png */; };
 		FD386A4E1CE5385800065BA3 /* HomeHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A4D1CE5385800065BA3 /* HomeHeader.m */; };
+		FD4553CF1D07FBED00554618 /* CommonHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4553CE1D07FBED00554618 /* CommonHeader.m */; };
 		FD45A0BF1CD7735100304EC0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0BE1CD7735100304EC0 /* AppDelegate.m */; };
 		FD45A0CA1CD7735100304EC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD45A0C91CD7735100304EC0 /* Assets.xcassets */; };
 		FD5239571D0151B600983C07 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5239561D0151B600983C07 /* StoreKit.framework */; };
@@ -51,7 +52,6 @@
 		FD8B5CD11CDFE6A400751642 /* Buttons.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD8B5CCF1CDFE6A400751642 /* Buttons.strings */; };
 		FD8B5CD41CDFE93600751642 /* CommonCheckBoxWithText.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CD31CDFE93600751642 /* CommonCheckBoxWithText.m */; };
 		FD8B5CD61CDFEDD100751642 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8B5CD51CDFEDD100751642 /* LocalAuthentication.framework */; };
-		FD8B5CDE1CE251D400751642 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CDD1CE251D400751642 /* AboutViewController.m */; };
 		FD8B5CE21CE2521B00751642 /* ResetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CE11CE2521B00751642 /* ResetPasswordViewController.m */; };
 		FD8B5CE51CE2525100751642 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CE41CE2525100751642 /* AccountViewController.m */; };
 		FD8B5CF01CE2528300751642 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CEF1CE2528300751642 /* HomeViewController.m */; };
@@ -76,8 +76,6 @@
 		FDA1A6AC1CEF5CD200FFB268 /* InitiateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA1A6AB1CEF5CD200FFB268 /* InitiateViewController.m */; };
 		FDA1A6AF1CEF6AD600FFB268 /* SelectShares.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA1A6AE1CEF6AD600FFB268 /* SelectShares.m */; };
 		FDA1A6B11CFC2ED400FFB268 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDA1A6B01CFC2ED400FFB268 /* WebKit.framework */; };
-		FDA1A6B51CFC33F300FFB268 /* AboutHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA1A6B41CFC33F300FFB268 /* AboutHeader.m */; };
-		FDA1A6B91CFD5B4200FFB268 /* SharesHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA1A6B81CFD5B4200FFB268 /* SharesHeader.m */; };
 		FDA1A6BC1CFD8B4300FFB268 /* SharesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA1A6BB1CFD8B4300FFB268 /* SharesTableViewCell.m */; };
 		FDA1A6BF1D001DF700FFB268 /* HomeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA1A6BE1D001DF700FFB268 /* HomeInfo.m */; };
 		FDFA5AF81CDA9F9700030A89 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FDFA5AF61CDA9F9700030A89 /* main.m */; };
@@ -136,6 +134,8 @@
 		FD386A481CE51B3E00065BA3 /* 779@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "779@3x.png"; path = "Misc assets/Stubs/779@3x.png"; sourceTree = "<group>"; };
 		FD386A4C1CE5385800065BA3 /* HomeHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeHeader.h; path = View/Home/Views/HomeHeader.h; sourceTree = "<group>"; };
 		FD386A4D1CE5385800065BA3 /* HomeHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeHeader.m; path = View/Home/Views/HomeHeader.m; sourceTree = "<group>"; };
+		FD4553CD1D07FBED00554618 /* CommonHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonHeader.h; path = View/Common/Views/CommonHeader.h; sourceTree = "<group>"; };
+		FD4553CE1D07FBED00554618 /* CommonHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonHeader.m; path = View/Common/Views/CommonHeader.m; sourceTree = "<group>"; };
 		FD45A0B71CD7735100304EC0 /* Plutocrat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plutocrat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD45A0BD1CD7735100304EC0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FD45A0BE1CD7735100304EC0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -161,8 +161,6 @@
 		FD8B5CD21CDFE93600751642 /* CommonCheckBoxWithText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonCheckBoxWithText.h; path = View/Common/Views/CommonCheckBoxWithText.h; sourceTree = "<group>"; };
 		FD8B5CD31CDFE93600751642 /* CommonCheckBoxWithText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonCheckBoxWithText.m; path = View/Common/Views/CommonCheckBoxWithText.m; sourceTree = "<group>"; };
 		FD8B5CD51CDFEDD100751642 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
-		FD8B5CDC1CE251D400751642 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutViewController.h; path = View/About/AboutViewController.h; sourceTree = "<group>"; };
-		FD8B5CDD1CE251D400751642 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutViewController.m; path = View/About/AboutViewController.m; sourceTree = "<group>"; };
 		FD8B5CE01CE2521B00751642 /* ResetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResetPasswordViewController.h; path = View/Authentication/ResetPasswordViewController.h; sourceTree = "<group>"; };
 		FD8B5CE11CE2521B00751642 /* ResetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResetPasswordViewController.m; path = View/Authentication/ResetPasswordViewController.m; sourceTree = "<group>"; };
 		FD8B5CE31CE2525100751642 /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountViewController.h; path = View/Account/AccountViewController.h; sourceTree = "<group>"; };
@@ -203,10 +201,6 @@
 		FDA1A6AD1CEF6AD600FFB268 /* SelectShares.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectShares.h; path = View/Interaction/Views/SelectShares.h; sourceTree = "<group>"; };
 		FDA1A6AE1CEF6AD600FFB268 /* SelectShares.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectShares.m; path = View/Interaction/Views/SelectShares.m; sourceTree = "<group>"; };
 		FDA1A6B01CFC2ED400FFB268 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		FDA1A6B31CFC33F300FFB268 /* AboutHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutHeader.h; path = View/About/Views/AboutHeader.h; sourceTree = "<group>"; };
-		FDA1A6B41CFC33F300FFB268 /* AboutHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutHeader.m; path = View/About/Views/AboutHeader.m; sourceTree = "<group>"; };
-		FDA1A6B71CFD5B4200FFB268 /* SharesHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharesHeader.h; path = View/Shares/Views/SharesHeader.h; sourceTree = "<group>"; };
-		FDA1A6B81CFD5B4200FFB268 /* SharesHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SharesHeader.m; path = View/Shares/Views/SharesHeader.m; sourceTree = "<group>"; };
 		FDA1A6BA1CFD8B4300FFB268 /* SharesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharesTableViewCell.h; path = View/Shares/Views/SharesTableViewCell.h; sourceTree = "<group>"; };
 		FDA1A6BB1CFD8B4300FFB268 /* SharesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SharesTableViewCell.m; path = View/Shares/Views/SharesTableViewCell.m; sourceTree = "<group>"; };
 		FDA1A6BD1D001DF700FFB268 /* HomeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeInfo.h; path = View/Home/Views/HomeInfo.h; sourceTree = "<group>"; };
@@ -372,7 +366,6 @@
 		FD45A0D81CD8DAA200304EC0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FD8B5CDB1CE251BD00751642 /* About */,
 				FD8B5CDF1CE251DD00751642 /* Account */,
 				FD8B5CC21CDBFF5600751642 /* Authentication */,
 				FD8B5CC71CDBFFBD00751642 /* Common */,
@@ -443,12 +436,14 @@
 		FD8B5CC81CDBFFDB00751642 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FD8B5CC91CDBFFFA00751642 /* CommonSeparator.h */,
-				FD8B5CCA1CDBFFFA00751642 /* CommonSeparator.m */,
 				FD8B5CCC1CDFCFED00751642 /* CommonButton.h */,
 				FD8B5CCD1CDFCFED00751642 /* CommonButton.m */,
 				FD8B5CD21CDFE93600751642 /* CommonCheckBoxWithText.h */,
 				FD8B5CD31CDFE93600751642 /* CommonCheckBoxWithText.m */,
+				FD4553CD1D07FBED00554618 /* CommonHeader.h */,
+				FD4553CE1D07FBED00554618 /* CommonHeader.m */,
+				FD8B5CC91CDBFFFA00751642 /* CommonSeparator.h */,
+				FD8B5CCA1CDBFFFA00751642 /* CommonSeparator.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -483,16 +478,6 @@
 				FD386A1E1CE34BB700065BA3 /* UserManager.m */,
 			);
 			name = Model;
-			sourceTree = "<group>";
-		};
-		FD8B5CDB1CE251BD00751642 /* About */ = {
-			isa = PBXGroup;
-			children = (
-				FD8B5CDC1CE251D400751642 /* AboutViewController.h */,
-				FD8B5CDD1CE251D400751642 /* AboutViewController.m */,
-				FDA1A6B21CFC33B900FFB268 /* Views */,
-			);
-			name = About;
 			sourceTree = "<group>";
 		};
 		FD8B5CDF1CE251DD00751642 /* Account */ = {
@@ -557,20 +542,9 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		FDA1A6B21CFC33B900FFB268 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				FDA1A6B31CFC33F300FFB268 /* AboutHeader.h */,
-				FDA1A6B41CFC33F300FFB268 /* AboutHeader.m */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
 		FDA1A6B61CFD5B1900FFB268 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FDA1A6B71CFD5B4200FFB268 /* SharesHeader.h */,
-				FDA1A6B81CFD5B4200FFB268 /* SharesHeader.m */,
 				FDA1A6BA1CFD8B4300FFB268 /* SharesTableViewCell.h */,
 				FDA1A6BB1CFD8B4300FFB268 /* SharesTableViewCell.m */,
 			);
@@ -699,7 +673,6 @@
 				FD8B5CF91CE252BF00751642 /* LeftPanelViewController.m in Sources */,
 				FD386A1F1CE34BB700065BA3 /* UserManager.m in Sources */,
 				FD386A311CE3517A00065BA3 /* JASidePanelController.m in Sources */,
-				FDA1A6B91CFD5B4200FFB268 /* SharesHeader.m in Sources */,
 				FD386A081CE34A3C00065BA3 /* DateUtility.m in Sources */,
 				FD386A191CE34B9600065BA3 /* AFSecurityPolicy.m in Sources */,
 				FD386A4E1CE5385800065BA3 /* HomeHeader.m in Sources */,
@@ -720,7 +693,7 @@
 				FDA1A6821CEB467100FFB268 /* Globals.m in Sources */,
 				FD386A3E1CE4FB3100065BA3 /* AttackerView.m in Sources */,
 				FDA1A69B1CECDD7000FFB268 /* TargetsBuyoutsBaseCell.m in Sources */,
-				FDA1A6B51CFC33F300FFB268 /* AboutHeader.m in Sources */,
+				FD4553CF1D07FBED00554618 /* CommonHeader.m in Sources */,
 				FD8B5CE21CE2521B00751642 /* ResetPasswordViewController.m in Sources */,
 				FD386A381CE4FA3600065BA3 /* BigUserView.m in Sources */,
 				FDA1A6891CEB544C00FFB268 /* TargetsBuyoutsHeader.m in Sources */,
@@ -728,7 +701,6 @@
 				FD386A041CE349C600065BA3 /* Buyout.m in Sources */,
 				FDFA5B011CDAA43600030A89 /* UIColor+Utils.m in Sources */,
 				FD386A1C1CE34B9600065BA3 /* AFURLSessionManager.m in Sources */,
-				FD8B5CDE1CE251D400751642 /* AboutViewController.m in Sources */,
 				FDA1A6BC1CFD8B4300FFB268 /* SharesTableViewCell.m in Sources */,
 				FD386A1B1CE34B9600065BA3 /* AFURLResponseSerialization.m in Sources */,
 				FD386A1A1CE34B9600065BA3 /* AFURLRequestSerialization.m in Sources */,

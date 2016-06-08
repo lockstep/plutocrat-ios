@@ -8,7 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class BigUserView;
+
+@protocol BigUserViewDelegate <NSObject>
+@optional
+
+- (void)bigUserViewShouldOpenAccount:(BigUserView *)view;
+
+@end
+
 @interface BigUserView : UIView
+
+@property (nonatomic, weak) id <BigUserViewDelegate> delegate;
 
 - (void)fillStub1;
 - (void)fillStub2;

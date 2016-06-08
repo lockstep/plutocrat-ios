@@ -8,6 +8,9 @@
 
 #import "RootViewController.h"
 #import "JASidePanelController.h"
+#import "AccountViewController.h"
+
+#define FAQ_ADDRESS @"https://www.whiteflyventuresinc.com/plutocrat/about.html"
 
 @interface RootViewController ()
 {
@@ -55,6 +58,8 @@
     switch (dest)
     {
         case NavigateToAccount:
+            [sidePanelViewController showCenterPanelAnimated:YES];
+            [tabBarViewController setSelectedIndex:4];
             break;
             
         case NavigateToTargets:
@@ -62,18 +67,13 @@
             break;
             
         case NavigateToFAQ:
-        {
-            [sidePanelViewController showCenterPanelAnimated:YES];
-            [tabBarViewController setSelectedIndex:4];
-        }
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:FAQ_ADDRESS]];
             break;
             
         case NavigateToSignOut:
-        {
             [sidePanelViewController.view removeFromSuperview];
             [sidePanelViewController removeFromParentViewController];
             [self initInLoginState];
-        }
             break;
             
         default:
