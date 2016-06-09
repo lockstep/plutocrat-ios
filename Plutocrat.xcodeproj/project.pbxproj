@@ -35,6 +35,8 @@
 		FD386A4B1CE51B3E00065BA3 /* 779@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FD386A481CE51B3E00065BA3 /* 779@3x.png */; };
 		FD386A4E1CE5385800065BA3 /* HomeHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A4D1CE5385800065BA3 /* HomeHeader.m */; };
 		FD4553CF1D07FBED00554618 /* CommonHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4553CE1D07FBED00554618 /* CommonHeader.m */; };
+		FD4553D21D09629700554618 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4553D11D09629700554618 /* Settings.m */; };
+		FD4553DA1D09886700554618 /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4553D91D09886700554618 /* KeychainWrapper.m */; };
 		FD45A0BF1CD7735100304EC0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0BE1CD7735100304EC0 /* AppDelegate.m */; };
 		FD45A0CA1CD7735100304EC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD45A0C91CD7735100304EC0 /* Assets.xcassets */; };
 		FD5239571D0151B600983C07 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5239561D0151B600983C07 /* StoreKit.framework */; };
@@ -136,6 +138,10 @@
 		FD386A4D1CE5385800065BA3 /* HomeHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeHeader.m; path = View/Home/Views/HomeHeader.m; sourceTree = "<group>"; };
 		FD4553CD1D07FBED00554618 /* CommonHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonHeader.h; path = View/Common/Views/CommonHeader.h; sourceTree = "<group>"; };
 		FD4553CE1D07FBED00554618 /* CommonHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonHeader.m; path = View/Common/Views/CommonHeader.m; sourceTree = "<group>"; };
+		FD4553D01D09629700554618 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Settings.h; path = Model/Settings.h; sourceTree = "<group>"; };
+		FD4553D11D09629700554618 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Settings.m; path = Model/Settings.m; sourceTree = "<group>"; };
+		FD4553D81D09886700554618 /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeychainWrapper.h; path = ThirdParty/KeychainWrapper/KeychainWrapper.h; sourceTree = "<group>"; };
+		FD4553D91D09886700554618 /* KeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeychainWrapper.m; path = ThirdParty/KeychainWrapper/KeychainWrapper.m; sourceTree = "<group>"; };
 		FD45A0B71CD7735100304EC0 /* Plutocrat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plutocrat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD45A0BD1CD7735100304EC0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FD45A0BE1CD7735100304EC0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -308,6 +314,15 @@
 			name = Stubs;
 			sourceTree = "<group>";
 		};
+		FD4553D71D09885700554618 /* KeychainWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				FD4553D81D09886700554618 /* KeychainWrapper.h */,
+				FD4553D91D09886700554618 /* KeychainWrapper.m */,
+			);
+			name = KeychainWrapper;
+			sourceTree = "<group>";
+		};
 		FD45A0AE1CD7735100304EC0 = {
 			isa = PBXGroup;
 			children = (
@@ -358,6 +373,7 @@
 			children = (
 				FD386A091CE34B8A00065BA3 /* AFNetworking */,
 				FD386A201CE3515700065BA3 /* CollectionUtils */,
+				FD4553D71D09885700554618 /* KeychainWrapper */,
 				FD386A2E1CE3516B00065BA3 /* SidePanel */,
 			);
 			name = ThirdParty;
@@ -472,6 +488,8 @@
 			children = (
 				FD386A001CE349C600065BA3 /* Buyout.h */,
 				FD386A011CE349C600065BA3 /* Buyout.m */,
+				FD4553D01D09629700554618 /* Settings.h */,
+				FD4553D11D09629700554618 /* Settings.m */,
 				FD386A021CE349C600065BA3 /* User.h */,
 				FD386A031CE349C600065BA3 /* User.m */,
 				FD386A1D1CE34BB700065BA3 /* UserManager.h */,
@@ -671,6 +689,7 @@
 				FDA1A6AF1CEF6AD600FFB268 /* SelectShares.m in Sources */,
 				FDA1A6981CEB968600FFB268 /* BuyoutsViewController.m in Sources */,
 				FD8B5CF91CE252BF00751642 /* LeftPanelViewController.m in Sources */,
+				FD4553D21D09629700554618 /* Settings.m in Sources */,
 				FD386A1F1CE34BB700065BA3 /* UserManager.m in Sources */,
 				FD386A311CE3517A00065BA3 /* JASidePanelController.m in Sources */,
 				FD386A081CE34A3C00065BA3 /* DateUtility.m in Sources */,
@@ -713,6 +732,7 @@
 				FD386A181CE34B9600065BA3 /* AFNetworkReachabilityManager.m in Sources */,
 				FD8B5CE51CE2525100751642 /* AccountViewController.m in Sources */,
 				FD386A2B1CE3516800065BA3 /* CUCompactArray.m in Sources */,
+				FD4553DA1D09886700554618 /* KeychainWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

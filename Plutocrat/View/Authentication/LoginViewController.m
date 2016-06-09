@@ -11,6 +11,9 @@
 #import "CommonCheckBoxWithText.h"
 #import "CommonButton.h"
 #import "ApiConnector.h"
+#import "UserManager.h"
+#import "Settings.h"
+#import "KeychainWrapper.h"
 
 #import <LocalAuthentication/LAContext.h>
 
@@ -31,6 +34,8 @@
     CommonButton * eulaButton;
     CommonButton * privacyButton;
     CommonButton * forgotPasswordButton;
+    KeychainWrapper * wrapper;
+    UIActivityIndicatorView * iView;
 }
 @end
 
@@ -172,6 +177,8 @@
     [view addSubview:forgotPasswordButton];
 
     [view setContentSize:CGSizeMake(view.frame.size.width, view.frame.size.height + 1.0f)];
+
+    wrapper = [KeychainWrapper new];
 }
 
 - (void)setupDerived:(BOOL)userIsRegistered
@@ -208,9 +215,33 @@
     if (userIsRegistered)
     {
         [actionLabel setText:NSLocalizedStringFromTable(@"SignIn", @"Labels", nil)];
+        LAContext * context = [LAContext new];
+        if ([Settings isTouchIDEnabled] && [context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil])
+        {
+            [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:NSLocalizedStringFromTable(@"UseTouchIDToLogin", @"Labels", nil) reply:^(BOOL success, NSError * error)
+             {
+                 if (success)
+                 {
+                     dispatch_async(dispatch_get_main_queue(), ^{
+                         [email setText:[Settings userEmail]];
+                         [password setText:@"xxxxxxxx"];
+                     });
+                     [self loginWithEmail:[Settings userEmail]
+                                 password:[wrapper myObjectForKey:(__bridge id)kSecValueData]];
+                 }
+                 else
+                 {
+                     if (error.code != 3 && error.code != -2)
+                     {
+                         [self showAlertWithErrorText:[error localizedDescription]];
+                     }
+                 }
+             }];
+        }
     }
     else
     {
+        [Settings setDefaults];
         [actionLabel setText:NSLocalizedStringFromTable(@"Register", @"Labels", nil)];
     }
 }
@@ -238,30 +269,33 @@
 
 - (void)submitButtonTouched
 {
-    if ([self.delegate respondsToSelector:@selector(loginViewControllerShouldDismiss:)])
+    if (loginMode)
     {
-        [self.delegate loginViewControllerShouldDismiss:self];
+        NSString * emailStr = email.text;
+        NSString * passwordStr = password.text;
+        if (emailStr.length * passwordStr.length == 0)
+        {
+            [self showAlertEmptyFields];
+        }
+        else
+        {
+            [self loginWithEmail:emailStr password:passwordStr];
+        }
     }
-    
-//    if (loginMode)
-//    {
-//        NSString * emailStr = email.text;
-//        NSString * passwordStr = password.text;
-//        [ApiConnector signInWithEmail:emailStr password:passwordStr completion:
-//         ^(NSDictionary * response, NSString * error) {
-//             
-//         }];
-//    }
-//    else
-//    {
-//        NSString * displayNameStr = displayName.text;
-//        NSString * emailStr = email.text;
-//        NSString * passwordStr = password.text;
-//        [ApiConnector signUpWithDisplayName:displayNameStr email:emailStr password:passwordStr completion:
-//         ^(NSDictionary * response, NSString * error) {
-//            
-//        }];
-//    }
+    else
+    {
+        NSString * displayNameStr = displayName.text;
+        NSString * emailStr = email.text;
+        NSString * passwordStr = password.text;
+        if (displayNameStr.length * emailStr.length * passwordStr.length == 0)
+        {
+            [self showAlertEmptyFields];
+        }
+        else
+        {
+            [self registerWithName:displayNameStr email:emailStr password:passwordStr];
+        }
+    }
 }
 
 - (void)loginButtonTouched
@@ -287,6 +321,121 @@
 - (void)forgotPasswordButtonTouched
 {
 
+}
+
+#pragma mark - Login and Register
+
+- (void)loginWithEmail:(NSString *)emailStr password:(NSString *)passwordStr
+{
+    [self startActivity];
+    [ApiConnector signInWithEmail:emailStr password:passwordStr completion:
+     ^(NSDictionary * response, NSString * error) {
+         if (!error)
+         {
+             [Settings setUserEmail:emailStr];
+             [wrapper mySetObject:passwordStr forKey:(__bridge id)kSecValueData];
+             if ([self.delegate respondsToSelector:@selector(loginViewControllerShouldDismiss:)])
+             {
+                 [self.delegate loginViewControllerShouldDismiss:self];
+             }
+         }
+         else
+         {
+             [self stopActivity];
+             [self showAlertWithErrorText:error];
+         }
+     }];
+}
+
+- (void)registerWithName:(NSString *)nameStr email:(NSString *)emailStr password:(NSString *)passwordStr
+{
+    [self startActivity];
+    [ApiConnector signUpWithDisplayName:nameStr email:emailStr password:passwordStr completion:
+     ^(NSDictionary * response, NSString * error)
+     {
+         if (!error)
+         {
+             if ([self.delegate respondsToSelector:@selector(loginViewControllerShouldDismiss:)])
+             {
+                 [self.delegate loginViewControllerShouldDismiss:self];
+             }
+         }
+         else
+         {
+             [self stopActivity];
+             [self showAlertWithErrorText:error];
+         }
+     }];
+}
+
+#pragma mark - Activity
+
+- (void)startActivity
+{
+    iView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [iView setCenter:self.view.center];
+        [self.view addSubview:iView];
+        [iView startAnimating];
+        [submitButton setEnabled:NO];
+        [email setUserInteractionEnabled:NO];
+        [password setUserInteractionEnabled:NO];
+        [displayName setUserInteractionEnabled:NO];
+        [email resignFirstResponder];
+        [password resignFirstResponder];
+        [displayName resignFirstResponder];
+        [loginButton setEnabled:NO];
+        [registerButton setEnabled:NO];
+        [eulaButton setEnabled:NO];
+        [privacyButton setEnabled:NO];
+        [forgotPasswordButton setEnabled:NO];
+    });
+}
+
+- (void)stopActivity
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [submitButton setEnabled:YES];
+        [email setUserInteractionEnabled:YES];
+        [password setUserInteractionEnabled:YES];
+        [displayName setUserInteractionEnabled:YES];
+        [loginButton setEnabled:YES];
+        [registerButton setEnabled:YES];
+        [eulaButton setEnabled:YES];
+        [privacyButton setEnabled:YES];
+        [forgotPasswordButton setEnabled:YES];
+        [iView removeFromSuperview];
+    });
+}
+
+#pragma mark - Alerts
+
+- (void)showAlertEmptyFields
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"Alert", @"Labels", nil)
+            message:NSLocalizedStringFromTable(@"EmptyFields", @"Labels", nil) preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction * defaultAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                 style:UIAlertActionStyleDefault
+                                                               handler:nil];
+
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    });
+}
+
+- (void)showAlertWithErrorText:(NSString *)text
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"Error", @"Labels", nil)
+            message:text preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction * defaultAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                 style:UIAlertActionStyleDefault
+                                                               handler:nil];
+
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    });
 }
 
 @end

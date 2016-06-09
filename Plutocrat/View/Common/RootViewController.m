@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 #import "JASidePanelController.h"
 #import "AccountViewController.h"
+#import "UserManager.h"
 
 #define FAQ_ADDRESS @"https://www.whiteflyventuresinc.com/plutocrat/about.html"
 
@@ -25,7 +26,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     [self initInLoginState];
 }
 
@@ -35,7 +35,7 @@
     [loginViewController setDelegate:self];
     [self addChildViewController:loginViewController];
     [self.view addSubview:loginViewController.view];
-    [loginViewController setupContentsWhenUserIsRegistered:YES];
+    [loginViewController setupContentsWhenUserIsRegistered:[UserManager hasLastLogin]];
 }
 
 - (void)initInReadyState

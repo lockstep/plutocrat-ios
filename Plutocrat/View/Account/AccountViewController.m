@@ -10,6 +10,8 @@
 #import "CommonSeparator.h"
 #import "CommonHeader.h"
 #import "CommonButton.h"
+#import "Settings.h"
+#import <LocalAuthentication/LAContext.h>
 
 @interface AccountViewController ()
 {
@@ -20,6 +22,7 @@
     UITextField * newPassword;
     UISwitch * eventsSwitch;
     UISwitch * updatesSwitch;
+    UISwitch * touchIDSwitch;
     UITextField * currentPassword;
 }
 @end
@@ -184,13 +187,30 @@
     CGFloat switchLabsOriginX = eventsSwitch.frame.origin.x + eventsSwitch.frame.size.width + 10.0f;
     curY += 50.0f;
     [curYs addObject:@(curY)];
-    labs = @[NSLocalizedStringFromTable(@"EmailEvents", @"Labels", nil),
-             NSLocalizedStringFromTable(@"EmailUpdates", @"Labels", nil)];
 
     updatesSwitch = [UISwitch new];
     [updatesSwitch setCenter:CGPointMake(horizontalOffset + updatesSwitch.frame.size.width / 2,
                                          curY + updatesSwitch.frame.size.height / 2)];
     [view addSubview:updatesSwitch];
+
+    labs = @[NSLocalizedStringFromTable(@"EmailEvents", @"Labels", nil),
+             NSLocalizedStringFromTable(@"EmailUpdates", @"Labels", nil)];
+
+    LAContext * context = [LAContext new];
+    if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil])
+    {
+        curY += 55.0f;
+        touchIDSwitch = [UISwitch new];
+
+        [touchIDSwitch setCenter:CGPointMake(horizontalOffset + touchIDSwitch.frame.size.width / 2,
+                                             curY + touchIDSwitch.frame.size.height / 2)];
+        [view addSubview:touchIDSwitch];
+
+        labs = @[NSLocalizedStringFromTable(@"EmailEvents", @"Labels", nil),
+                 NSLocalizedStringFromTable(@"EmailUpdates", @"Labels", nil),
+                 NSLocalizedStringFromTable(@"TouchID", @"Labels", nil)];
+        [curYs addObject:@(curY)];
+    }
 
     [curYs enumerateObjectsUsingBlock:^(NSNumber * obj, NSUInteger idx, BOOL * stop)
      {
@@ -262,7 +282,7 @@
     curY += heightsOfTextFields + 10.0f;
 
     UILabel * currentPasswordReq = [[UILabel alloc] initWithFrame:
-                                    CGRectMake(horizontalOffset,
+                                    CGRectMake(0.0f,
                                                curY,
                                                componentsWidth,
                                                50.0f)];
@@ -274,19 +294,22 @@
     [currentPasswordReq setText:NSLocalizedStringFromTable(@"PasswordRequired", @"Labels", nil)];
     [view addSubview:currentPasswordReq];
     [currentPasswordReq sizeToFit];
+    [currentPasswordReq setCenter:CGPointMake(view.frame.size.width / 2, currentPasswordReq.center.y)];
 
     curY += currentPasswordReq.frame.size.height + 20.0f;
 
     CommonButton * button = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"SAVE", @"Buttons", nil) color:ButtonColorViolet];
     [button setCenter:CGPointMake(horizontalOffset + button.frame.size.width / 2,
                                   curY + button.frame.size.height / 2)];
+    [button addTarget:self action:@selector(saveTapped) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:button];
 
     curY += button.frame.size.height + 20.0f;
 
     CGFloat totalY = MAX(curY, view.frame.size.height + 1.0f);
     [view setContentSize:CGSizeMake(view.frame.size.width, totalY)];
-    [self stub];
+
+    [self setSwitches];
 }
 
 #pragma mark - Image
@@ -360,14 +383,22 @@
     return NO;
 }
 
-#pragma mark - stub
+#pragma mark - Load data
 
-- (void)stub
+- (void)setSwitches
 {
-    [photo setImage:[UIImage imageNamed:@"778.png"]];
-    [displayName setText:@"Danielle Steele"];
-    [email setText:@"danielle@watershedcapital.com"];
-    [eventsSwitch setOn:YES];
+    [eventsSwitch setOn:[Settings isEventsNotificationsEnabled]];
+    [updatesSwitch setOn:[Settings isUpdatesEmailsEnabled]];
+    [touchIDSwitch setOn:[Settings isTouchIDEnabled]];
+}
+
+#pragma mark - Save data
+
+- (void)saveTapped
+{
+    [Settings enableEventsNotifiations:eventsSwitch.isOn];
+    [Settings enableUpdatesEmails:updatesSwitch.isOn];
+    [Settings enableTouchID:touchIDSwitch.isOn];
 }
 
 @end

@@ -53,4 +53,9 @@
 "CurrentPassword" = "Current Password";
 "EmailEvents" = "Enable email notifications on Plutocrat events (buyout outcomes, new threats, etc).";
 "EmailUpdates" = "Enable emails with general Plutocrat updates.";
+"TouchID" = "Enable TouchID";
 "PasswordRequired" = "Your current password is required for all account updates.";
+"Alert" = "Alert";
+"Error" = "Error";
+"EmptyFields" = "Please fill in all fields";
+"UseTouchIDToLogin" = "Use TouchID to login";
