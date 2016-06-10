@@ -67,10 +67,12 @@
         [perShareVal setFont:[UIFont regularFontWithSize:12.0f]];
         [perShareVal setTextColor:[UIColor grayWithIntense:114.0f]];
         [perShareVal setTextAlignment:NSTextAlignmentRight];
+        [perShareVal setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin];
         [self addSubview:perShareVal];
         
         CommonSeparator * sep = [[CommonSeparator alloc] initWithFrame:
                                  CGRectMake(visual.frame.size.width + [Globals horizontalOffsetInTable] * 2, [Globals cellHeight] / 2, 120.0f, 1.0f)];
+        [sep setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
         [self addSubview:sep];
         
         UILabel * totalLab = [[UILabel alloc] initWithFrame:
@@ -87,12 +89,14 @@
         [totalVal setFont:[UIFont italicFontWithSize:12.0f]];
         [totalVal setTextColor:[UIColor grayWithIntense:114.0f]];
         [totalVal setTextAlignment:NSTextAlignmentRight];
+        [totalVal setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin];
         [self addSubview:totalVal];
         
         buy = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"BUY", @"Buttons", nil)
                                      color:ButtonColorViolet];
         [buy setCenter:CGPointMake(self.bounds.size.width - [Globals horizontalOffsetInTable] - buy.frame.size.width / 2, [Globals cellHeight] / 2)];
         [buy addTarget:self action:@selector(tapped) forControlEvents:UIControlEventTouchUpInside];
+        [buy setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin];
         [self addSubview:buy];
     }
     return self;

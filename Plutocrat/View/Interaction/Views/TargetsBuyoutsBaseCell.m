@@ -59,6 +59,7 @@
                      [Globals cellHeight] / 2)];
         [engageButton setHidden:YES];
         [engageButton addTarget:self action:@selector(buttonTapped) forControlEvents:UIControlEventTouchUpInside];
+        [engageButton setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin];
         [self addSubview:engageButton];
         
         engageReplace = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 65.0f, 28.0f)];
@@ -71,6 +72,7 @@
         [engageReplace setCenter:
          CGPointMake(self.frame.size.width - bordersOffset - engageReplace.frame.size.width / 2,
                                              [Globals cellHeight] / 2)];
+        [engageReplace setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin];
         [self addSubview:engageReplace];
         
         CommonSeparator * sep = [[CommonSeparator alloc] initWithFrame:
@@ -78,6 +80,7 @@
                                             [Globals cellHeight] - 1.0f,
                                             self.frame.size.width - [Globals horizontalOffsetInTable] * 2,
                                             1.0f)];
+        [sep setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
         [self addSubview:sep];
     }
     return self;

@@ -347,17 +347,18 @@
 {
     if (textField == newPassword)
     {
-        [view setContentSize:CGSizeMake(view.frame.size.width, view.contentSize.height + 70.0f)];
-        [view scrollRectToVisible:CGRectMake(0.0f, view.contentSize.height, view.frame.size.width, 1.0f)
-                         animated:YES];
+        if (self.view.frame.size.height < 600.0f)
+        {
+            [view setContentSize:CGSizeMake(view.frame.size.width, view.contentSize.height + 20.0f)];
+            [view scrollRectToVisible:CGRectMake(0.0f, view.contentSize.height - 1.0f, view.frame.size.width, 1.0f) animated:YES];
+        }
         [view setScrollEnabled:NO];
         [currentPassword setUserInteractionEnabled:NO];
     }
     if (textField == currentPassword)
     {
-        [view setContentSize:CGSizeMake(view.frame.size.width, view.contentSize.height + 70.0f)];
-        [view scrollRectToVisible:CGRectMake(0.0f, view.contentSize.height, view.frame.size.width, 1.0f)
-                         animated:YES];
+        [view setContentSize:CGSizeMake(view.frame.size.width, view.contentSize.height + 100.0f)];
+        [view scrollRectToVisible:CGRectMake(0.0f, view.contentSize.height - 1.0f, view.frame.size.width, 1.0f) animated:YES];
         [view setScrollEnabled:NO];
         [newPassword setUserInteractionEnabled:NO];
     }
@@ -367,14 +368,17 @@
 {
     if (textField == newPassword)
     {
-        [view setContentSize:CGSizeMake(view.frame.size.width, view.contentSize.height - 70.0f)];
-        [view scrollRectToVisible:textField.frame animated:YES];
+        if (self.view.frame.size.height < 600.0f)
+        {
+            [view setContentSize:CGSizeMake(view.frame.size.width, view.contentSize.height - 20.0f)];
+            [view scrollRectToVisible:textField.frame animated:YES];
+        }
         [view setScrollEnabled:YES];
         [currentPassword setUserInteractionEnabled:YES];
     }
     if (textField == currentPassword)
     {
-        [view setContentSize:CGSizeMake(view.frame.size.width, view.contentSize.height - 70.0f)];
+        [view setContentSize:CGSizeMake(view.frame.size.width, view.contentSize.height - 100.0f)];
         [view scrollRectToVisible:textField.frame animated:YES];
         [view setScrollEnabled:YES];
         [newPassword setUserInteractionEnabled:YES];
