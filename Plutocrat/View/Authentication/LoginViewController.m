@@ -355,6 +355,8 @@
      {
          if (!error)
          {
+             [Settings setUserEmail:emailStr];
+             [wrapper mySetObject:passwordStr forKey:(__bridge id)kSecValueData];
              if ([self.delegate respondsToSelector:@selector(loginViewControllerShouldDismiss:)])
              {
                  [self.delegate loginViewControllerShouldDismiss:self];
