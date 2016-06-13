@@ -18,7 +18,7 @@
 @property int failedBuyoutsCount;
 @property int matchedBuyoutsCount;
 @property (nonatomic, retain) NSString *profileImageUrl;
-@property BOOL underBuyouyThreat;
+@property BOOL underBuyoutThreat;
 @property BOOL attackingCurrentUser;
 @property (nonatomic, retain) NSDate *defeatedAt;
 @property BOOL isPlutocrat;

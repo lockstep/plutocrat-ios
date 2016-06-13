@@ -23,7 +23,7 @@
     }
     user.matchedBuyoutsCount = [userDict[@"matched_buyouts_count"] intValue];
     user.profileImageUrl = userDict[@"profile_image_url"];
-    user.underBuyouyThreat = [userDict[@"under_buyout_threat"] boolValue];
+    user.underBuyoutThreat = [userDict[@"under_buyout_threat"] boolValue];
     user.attackingCurrentUser = [userDict[@"attacking_current_user"] boolValue];
     user.defeatedAt = [DateUtility dateFromString:userDict[@"defeated_at"]];
     user.isPlutocrat = [userDict[@"is_plutocrat"] boolValue];

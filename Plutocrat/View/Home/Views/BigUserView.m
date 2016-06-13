@@ -9,6 +9,7 @@
 #import "BigUserView.h"
 #import "CommonSeparator.h"
 #import "CommonButton.h"
+#import "ApiConnector.h"
 
 @implementation BigUserView
 {
@@ -34,6 +35,7 @@
                                                               25.0f,
                                                               88.0f,
                                                               88.0f)];
+        [photo setImage:[UIImage imageNamed:@"empty-profile-image"]];
         [[photo layer] setCornerRadius:photo.frame.size.width / 2];
         [[photo layer] setMasksToBounds:YES];
         [self addSubview:photo];
@@ -101,24 +103,32 @@
     }
 }
 
-#pragma mark - stub
+#pragma mark - private
 
-- (void)fillStub1
+- (void)setPhotoUrl:(NSString *)url
+               name:(NSString *)nameStr
+              email:(NSString *)emailStr
+      sharesToMatch:(NSUInteger)toMatch
 {
-    [photo setImage:[UIImage imageNamed:@"778.png"]];
-    [name setText:@"Danielle Steele"];
-    [email setText:@"danielle@watershedcapital.com"];
-    [email setHidden:NO];
-    [manageButton setHidden:NO];
-    [separator setHidden:NO];
-}
+    [name setText:nameStr];
+    [email setText:emailStr];
+    [email setHidden:toMatch];
+    [manageButton setHidden:toMatch];
+    [separator setHidden:toMatch];
+    [sharesToMatch setText:[NSString stringWithFormat:@"%lu %@", toMatch, NSLocalizedStringFromTable(@"SharesToMatch", @"Labels", nil)]];
+    [sharesToMatch setHidden:!toMatch];
+    UIActivityIndicatorView * photoActivity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [photoActivity setCenter:CGPointMake(photo.frame.size.width / 2, photo.frame.size.height / 2)];
+    [photo addSubview:photoActivity];
+    [photoActivity startAnimating];
+    [ApiConnector processImageDataWithURLString:url andBlock:^(NSData * imageData) {
+        [photoActivity removeFromSuperview];
+        if (imageData)
+        {
+            [photo setImage:[UIImage imageWithData:imageData]];
+        }
+    }];
 
-- (void)fillStub2
-{
-    [photo setImage:[UIImage imageNamed:@"779.png"]];
-    [name setText:@"Aaron Pinchai"];
-    [sharesToMatch setText:@"Shares to Match: 23"];
-    [sharesToMatch setHidden:NO];
 }
 
 @end

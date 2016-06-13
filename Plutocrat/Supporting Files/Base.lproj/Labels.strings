@@ -13,6 +13,7 @@
 "Password" = "Password";
 "UseTouchId" = "Enable Touch ID";
 "Login" = "Login";
+"SharesToMatch" = "Shares to Match";
 "SuccessfullBuyouts" = "Successful\r\nBuyouts";
 "FailedBuyouts" = "Failed\r\nBuyouts";
 "DefeatedBuyouts" = "Defeated\r\nThreats";
@@ -54,8 +55,9 @@
 "EmailEvents" = "Enable email notifications on Plutocrat events (buyout outcomes, new threats, etc).";
 "EmailUpdates" = "Enable emails with general Plutocrat updates.";
 "TouchID" = "Enable TouchID";
-"PasswordRequired" = "Your current password is required for all account updates.";
+"PasswordRequired" = "Your current password is required only if you want to change it.";
 "Alert" = "Alert";
 "Error" = "Error";
 "EmptyFields" = "Please fill in all fields";
+"EmptyPassword" = "You need to enter current password if you want to change it";
 "UseTouchIDToLogin" = "Use TouchID to login";

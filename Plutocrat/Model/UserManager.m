@@ -106,4 +106,9 @@
     return headers[key];
 }
 
++ (NSDictionary *)userDict
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:USER_KEY];
+}
+
 @end

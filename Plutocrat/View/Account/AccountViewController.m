@@ -10,7 +10,10 @@
 #import "CommonSeparator.h"
 #import "CommonHeader.h"
 #import "CommonButton.h"
+#import "User.h"
+#import "UserManager.h"
 #import "Settings.h"
+#import "ApiConnector.h"
 #import <LocalAuthentication/LAContext.h>
 
 @interface AccountViewController ()
@@ -24,6 +27,9 @@
     UISwitch * updatesSwitch;
     UISwitch * touchIDSwitch;
     UITextField * currentPassword;
+    CommonButton * button;
+    User * user;
+    UIActivityIndicatorView * iView;
 }
 @end
 
@@ -62,6 +68,7 @@
     CGFloat curY = 20.0f;
 
     photo = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 88.0f, 88.0f)];
+    [photo setImage:[UIImage imageNamed:@"empty-profile-image"]];
     [[photo layer] setCornerRadius:photo.frame.size.width / 2];
     [[photo layer] setMasksToBounds:YES];
     [photo setCenter:CGPointMake(self.view.bounds.size.width / 2, curY + photo.frame.size.height / 2)];
@@ -298,7 +305,7 @@
 
     curY += currentPasswordReq.frame.size.height + 20.0f;
 
-    CommonButton * button = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"SAVE", @"Buttons", nil) color:ButtonColorViolet];
+    button = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"SAVE", @"Buttons", nil) color:ButtonColorViolet];
     [button setCenter:CGPointMake(horizontalOffset + button.frame.size.width / 2,
                                   curY + button.frame.size.height / 2)];
     [button addTarget:self action:@selector(saveTapped) forControlEvents:UIControlEventTouchUpInside];
@@ -309,7 +316,11 @@
     CGFloat totalY = MAX(curY, view.frame.size.height + 1.0f);
     [view setContentSize:CGSizeMake(view.frame.size.width, totalY)];
 
+    user = [User userFromDict:[UserManager userDict]];
+    user.email = [Settings userEmail];
+
     [self setSwitches];
+    [self setData];
 }
 
 #pragma mark - Image
@@ -396,13 +407,126 @@
     [touchIDSwitch setOn:[Settings isTouchIDEnabled]];
 }
 
+- (void)setData
+{
+    [displayName setText:user.displayName];
+    [email setText:user.email];
+    UIActivityIndicatorView * photoActivity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [photoActivity setCenter:CGPointMake(photo.frame.size.width / 2, photo.frame.size.height / 2)];
+    [photo addSubview:photoActivity];
+    [photoActivity startAnimating];
+    [ApiConnector processImageDataWithURLString:user.profileImageUrl andBlock:^(NSData * imageData) {
+        [photoActivity removeFromSuperview];
+        if (imageData)
+        {
+            [photo setImage:[UIImage imageWithData:imageData]];
+        }
+    }];
+}
+
 #pragma mark - Save data
 
 - (void)saveTapped
 {
-    [Settings enableEventsNotifiations:eventsSwitch.isOn];
-    [Settings enableUpdatesEmails:updatesSwitch.isOn];
-    [Settings enableTouchID:touchIDSwitch.isOn];
+    if (newPassword.text.length > 0 && currentPassword.text.length == 0)
+    {
+        [self showAlertEmptyPassword];
+        return;
+    }
+    [self startActivity];
+    [ApiConnector updateProfileWithUserId:user.identifier
+                                    email:user.email
+                              newPassword:newPassword.text
+                          currentPassword:currentPassword.text
+                              displayName:displayName.text
+                             profileImage:photo.image
+                               eventsEmails:eventsSwitch.isOn
+                            updatesEmails:updatesSwitch.isOn
+                               completion:^(NSDictionary * response, NSString * error) {
+                                   [self stopActivity];
+                                   if (!error)
+                                   {
+                                       user = [User userFromDict:response];
+                                       user.email = user.email;
+                                       [Settings enableEventsNotifiations:eventsSwitch.isOn];
+                                       [Settings enableUpdatesEmails:updatesSwitch.isOn];
+                                       [Settings enableTouchID:touchIDSwitch.isOn];
+                                   }
+                                   else
+                                   {
+                                       [self showAlertWithErrorText:error];
+                                   }
+                               }];
+}
+
+
+#pragma mark - Activity
+
+- (void)startActivity
+{
+    iView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [iView setCenter:self.view.center];
+        [self.view addSubview:iView];
+        [iView startAnimating];
+        [photo setUserInteractionEnabled:NO];
+        [email setUserInteractionEnabled:NO];
+        [currentPassword setUserInteractionEnabled:NO];
+        [displayName setUserInteractionEnabled:NO];
+        [newPassword setUserInteractionEnabled:NO];
+        [eventsSwitch setUserInteractionEnabled:NO];
+        [updatesSwitch setUserInteractionEnabled:NO];
+        [touchIDSwitch setUserInteractionEnabled:NO];
+        [button setEnabled:NO];
+        [view setScrollEnabled:NO];
+    });
+}
+
+- (void)stopActivity
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [photo setUserInteractionEnabled:YES];
+        [email setUserInteractionEnabled:YES];
+        [currentPassword setUserInteractionEnabled:YES];
+        [displayName setUserInteractionEnabled:YES];
+        [newPassword setUserInteractionEnabled:YES];
+        [eventsSwitch setUserInteractionEnabled:YES];
+        [updatesSwitch setUserInteractionEnabled:YES];
+        [touchIDSwitch setUserInteractionEnabled:YES];
+        [button setEnabled:YES];
+        [view setScrollEnabled:YES];
+        [iView removeFromSuperview];
+    });
+}
+
+#pragma mark - Alerts
+
+- (void)showAlertEmptyPassword
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"Alert", @"Labels", nil)
+            message:NSLocalizedStringFromTable(@"EmptyPassword", @"Labels", nil) preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction * defaultAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                 style:UIAlertActionStyleDefault
+                                                               handler:nil];
+
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    });
+}
+
+- (void)showAlertWithErrorText:(NSString *)text
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"Error", @"Labels", nil)
+                                                                        message:text preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction * defaultAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                 style:UIAlertActionStyleDefault
+                                                               handler:nil];
+
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    });
 }
 
 @end

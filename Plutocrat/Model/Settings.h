@@ -22,6 +22,9 @@
 + (NSString *)userEmail;
 + (BOOL)setUserEmail:(NSString *)email;
 
++ (NSUInteger)typeOfHomeAlert;
++ (BOOL)setTypeOfHomeAlert:(NSUInteger)type;
+
 + (BOOL)setDefaults;
 
 @end

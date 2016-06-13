@@ -12,6 +12,7 @@
 #define UPDATES_EMAILS_KEY @"updatesEmailsKey"
 #define TOUCH_ID_KEY @"touchIDKey"
 #define USER_EMAIL_KEY @"userEmailKey"
+#define HOME_ALERT_TYPE_KEY @"HomeAlertTypeKey"
 
 @implementation Settings
 
@@ -59,13 +60,24 @@
     return [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
++ (NSUInteger)typeOfHomeAlert
+{
+    return [[NSUserDefaults standardUserDefaults] integerForKey:HOME_ALERT_TYPE_KEY];
+}
+
++ (BOOL)setTypeOfHomeAlert:(NSUInteger)type
+{
+    [[NSUserDefaults standardUserDefaults] setInteger:type forKey:HOME_ALERT_TYPE_KEY];
+    return [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 + (BOOL)setDefaults
 {
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:EVENTS_NOTIFICATIONS_KEY];
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:UPDATES_EMAILS_KEY];
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TOUCH_ID_KEY];
+    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:HOME_ALERT_TYPE_KEY];
     return [[NSUserDefaults standardUserDefaults] synchronize];
-
 }
 
 @end

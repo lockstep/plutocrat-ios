@@ -768,8 +768,15 @@ NSTimeInterval const kAFUploadStream3GSuggestedDelay = 0.2;
     NSParameterAssert(name);
 
     NSMutableDictionary *mutableHeaders = [NSMutableDictionary dictionary];
-    [mutableHeaders setValue:[NSString stringWithFormat:@"form-data; name=\"%@\"", name] forKey:@"Content-Disposition"];
-
+    if ([UIImage imageWithData:data])
+    {
+        [mutableHeaders setValue:[NSString stringWithFormat:@"form-data; name=\"%@\"; filename=\"image.png\"", name] forKey:@"Content-Disposition"];
+        [mutableHeaders setValue:@"image/png" forKey:@"Content-Type"];
+    }
+    else
+    {
+        [mutableHeaders setValue:[NSString stringWithFormat:@"form-data; name=\"%@\"", name] forKey:@"Content-Disposition"];
+    }
     [self appendPartWithHeaders:mutableHeaders body:data];
 }
 

@@ -25,7 +25,6 @@
                                                                  0.0f,
                                                                  frame.size.width,
                                                                  136.0f)];
-        [attacker fillStub2];
         [self addSubview:attacker];
         
         CGFloat bordersOffset = [Globals horizontalOffset];

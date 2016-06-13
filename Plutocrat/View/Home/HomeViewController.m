@@ -10,6 +10,9 @@
 #import "HomeHeader.h"
 #import "BuyoutsStatsView.h"
 #import "AttackerView.h"
+#import "User.h"
+#import "UserManager.h"
+#import "Settings.h"
 
 @interface HomeViewController ()
 {
@@ -19,7 +22,8 @@
     BuyoutsStatsView * buyoutsStatsView;
     HomeInfo * infoView;
     AttackerView * attackerView;
-    NSUInteger tapCount;
+    User * user;
+    NSTimer * timer;
 }
 @end
 
@@ -68,17 +72,32 @@
                                                                   self.view.bounds.size.width,
                                                                   270.0f)];
     [view addSubview:attackerView];
-    
 
-#pragma mark - stubbed
-    
-    UIButton * but = [UIButton buttonWithType:UIButtonTypeContactAdd];
-    [but addTarget:self action:@selector(change) forControlEvents:UIControlEventTouchUpInside];
-    [but setCenter:CGPointMake(30.0f, 30.0f)];
-    [but setAlpha:0.1f];
-    [homeHeader addSubview:but];
-    tapCount = 1;
-    [self stub1];
+    user = [User userFromDict:[UserManager userDict]];
+    user.email = [Settings userEmail];
+
+    if (user.underBuyoutThreat)
+    {
+        timer = [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                                 target:self
+                                               selector:@selector(onTimerBack)
+                                               userInfo:nil
+                                                repeats:YES];
+        [self styleAttacked];
+    }
+    else if (user.defeatedAt)
+    {
+        [self styleDefeated];
+    }
+    else
+    {
+        timer = [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                                 target:self
+                                               selector:@selector(onTimerForward)
+                                               userInfo:nil
+                                                repeats:YES];
+        [self styleNormal];
+    }
 }
 
 #pragma mark - layout
@@ -143,43 +162,24 @@
     }
 }
 
-#pragma mark - stub
-
-- (void)change
-{
-    if (tapCount == 3)
-    {
-        tapCount = 1;
-        [self stub1];
-        return;
-    }
-    if (tapCount == 1)
-    {
-        tapCount = 2;
-        [self stub2];
-        return;
-    }
-    if (tapCount == 2)
-    {
-        tapCount = 3;
-        [self stub3];
-        return;
-    }
-}
-
-- (void)stub1
+- (void)styleNormal
 {
     [self layBasicInfoWhenAttacked:NO];
     
     [homeHeader setType:HomeHeaderTypeCommon];
-    [homeHeader setDate:[NSDate dateWithTimeInterval:-127526 sinceDate:[NSDate date]]];
+    [homeHeader setDate:user.registeredAt];
     
-    [buyoutsStatsView setSuccessful:88 failed:88 defeated:88];
-    [bigUserView fillStub1];
-    [infoView setType:HomeInfoTypeFind];
+    [buyoutsStatsView setSuccessful:user.successfulBuyoutsCount
+                             failed:user.failedBuyoutsCount
+                           defeated:user.matchedBuyoutsCount];
+    [bigUserView setPhotoUrl:user.profileImageUrl
+                        name:user.displayName
+                       email:user.email
+               sharesToMatch:0];
+    [infoView setType:[Settings typeOfHomeAlert]];
 }
 
-- (void)stub2
+- (void)styleAttacked
 {
     [self layBasicInfoWhenAttacked:YES];
     
@@ -187,12 +187,11 @@
     [homeHeader setDate:[NSDate dateWithTimeInterval:-127526 sinceDate:[NSDate date]]];
     
     [buyoutsStatsView setSuccessful:88 failed:88 defeated:88];
-    [bigUserView fillStub1];
     [infoView setType:HomeInfoTypeCommon];
     [infoView setBuyouts:4];
 }
 
-- (void)stub3
+- (void)styleDefeated
 {
     [self layBasicInfoWhenAttacked:NO];
     
@@ -200,9 +199,20 @@
     [homeHeader setDate:[NSDate dateWithTimeInterval:-127526 sinceDate:[NSDate date]]];
     
     [buyoutsStatsView setSuccessful:88 failed:88 defeated:88];
-    [bigUserView fillStub1];
     [infoView setType:HomeInfoTypeDefeated];
     [infoView setName:@"Aaron Pinchai" shares:32 daysAgo:4];
+}
+
+#pragma mark - Timer
+
+- (void)onTimerBack
+{
+
+}
+
+- (void)onTimerForward
+{
+    [homeHeader setDate:user.registeredAt];
 }
 
 @end

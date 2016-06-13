@@ -13,6 +13,8 @@
 #import "SharesViewController.h"
 #import "AccountViewController.h"
 
+#import "Settings.h"
+
 @interface TabBarViewController ()
 {
     HomeViewController * hvc;
@@ -88,6 +90,7 @@
 {
     if ([self.customDelegate respondsToSelector:@selector(tabBarViewController:shouldNavigateTo:)])
     {
+        [Settings setTypeOfHomeAlert:1];
         [self.customDelegate tabBarViewController:self shouldNavigateTo:dest];
     }
 }
@@ -96,6 +99,7 @@
 {
     if ([self.customDelegate respondsToSelector:@selector(tabBarViewControllerAskedForPushes:)])
     {
+        [Settings setTypeOfHomeAlert:2];
         [self.customDelegate tabBarViewControllerAskedForPushes:self];
     }
 }

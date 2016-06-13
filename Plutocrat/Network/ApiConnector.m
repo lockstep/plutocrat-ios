@@ -95,7 +95,6 @@ enum ApiMethod {
     } else {
         urlRequest = [requestSerializer requestWithMethod:methodString URLString:urlString parameters:normalParams error:nil];
     }
-    
     if ([UserManager isLogin]) {
         [urlRequest setValue:[UserManager getHeader:@"Access-Token"] forHTTPHeaderField:@"Access-Token"];
         [urlRequest setValue:[UserManager getHeader:@"Token-Type"] forHTTPHeaderField:@"Token-Type"];
@@ -206,8 +205,14 @@ enum ApiMethod {
     }];
 }
 
-+ (void)updateProfileWithUserId:(int)userId email:(NSString *)email newPassword:(NSString *)newPassword currentPassword:(NSString *)currentPassword displayName:(NSString *)displayName profileImage:(UIImage *)image completion:(void (^)(NSDictionary *response, NSString *error))completion {
-    NSDictionary *params = @{ @"email": email, @"password": newPassword, @"password_confirmation": newPassword, @"display_name": displayName, @"profile_image": image, @"current_password": currentPassword };
++ (void)updateProfileWithUserId:(int)userId email:(NSString *)email newPassword:(NSString *)newPassword currentPassword:(NSString *)currentPassword displayName:(NSString *)displayName profileImage:(UIImage *)image eventsEmails:(BOOL)eventsEmails updatesEmails:(BOOL)updatesEmails completion:(void (^)(NSDictionary *, NSString *))completion {
+    NSDictionary *paramNoPass = @{ @"email": email, @"display_name": displayName, @"profile_image": image, @"transactional_emails_enabled": [self boolToString:eventsEmails], @"product_emails_enabled": [self boolToString:updatesEmails]};
+    NSMutableDictionary * params = [paramNoPass mutableCopy];
+    if (newPassword.length > 0)
+    {
+        [params setObject:newPassword forKey:@"password"];
+        [params setObject:currentPassword forKey:@"current_password"];
+    }
     [self connectApi:[NSString stringWithFormat:PROFILE, userId] method:Patch params:params json:YES completion:^(NSDictionary *headers, id responseObject, NSString *error) {
         completion(responseObject, error);
     }];
@@ -262,5 +267,24 @@ enum ApiMethod {
     }];
 }
 
++ (void)processImageDataWithURLString:(NSString *)urlString andBlock:(void (^)(NSData * imageData))processImage
+{
+    NSURL * url = [NSURL URLWithString:urlString];
+
+    dispatch_queue_t callerQueue = dispatch_get_main_queue();
+    dispatch_queue_t downloadQueue = dispatch_queue_create("com.myapp.processsmagequeue", NULL);
+    dispatch_async(downloadQueue, ^{
+        NSData * imageData = [NSData dataWithContentsOfURL:url];
+
+        dispatch_async(callerQueue, ^{
+            processImage(imageData);
+        });
+    });
+}
+
++ (NSString *)boolToString:(BOOL)input
+{
+    return input ? @"true" : @"false";
+}
 
 @end

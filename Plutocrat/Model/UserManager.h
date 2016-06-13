@@ -17,5 +17,6 @@
 + (NSString *)getHeader:(NSString *)key;
 + (BOOL)hasLastLogin;
 + (int)lastLogin;
++ (NSDictionary *)userDict;
 
 @end
