@@ -14,6 +14,8 @@
 {
     CommonButton * engageButton;
     UILabel * engageReplace;
+    UIActivityIndicatorView * iView;
+    CommonSeparator * sep;
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -31,6 +33,7 @@
                                                               74.0f)];
         [[self.photo layer] setCornerRadius:self.photo.frame.size.width / 2];
         [[self.photo layer] setMasksToBounds:YES];
+        [self.photo setImage:[UIImage imageNamed:@"empty-profile-image"]];
         [self addSubview:self.photo];
         
         CGFloat startingXForLabels = bordersOffset + self.photo.frame.size.width + [Globals offsetFromPhoto];
@@ -75,11 +78,11 @@
         [engageReplace setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin];
         [self addSubview:engageReplace];
         
-        CommonSeparator * sep = [[CommonSeparator alloc] initWithFrame:
-                                 CGRectMake([Globals horizontalOffsetInTable],
-                                            [Globals cellHeight] - 1.0f,
-                                            self.frame.size.width - [Globals horizontalOffsetInTable] * 2,
-                                            1.0f)];
+        sep = [[CommonSeparator alloc] initWithFrame:
+               CGRectMake([Globals horizontalOffsetInTable],
+                          [Globals cellHeight] - 1.0f,
+                          self.frame.size.width - [Globals horizontalOffsetInTable] * 2,
+                          1.0f)];
         [sep setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
         [self addSubview:sep];
     }
@@ -123,6 +126,27 @@
         default:
             break;
     }
+}
+
+- (void)setLoading:(BOOL)loading
+{
+    if (loading)
+    {
+        iView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        [iView setCenter:CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2)];
+        [self addSubview:iView];
+        [iView startAnimating];
+    }
+    else
+    {
+        [iView removeFromSuperview];
+    }
+    [sep setHidden:loading];
+    [self.photo setHidden:loading];
+    [self.name setHidden:loading];
+    [self.info setHidden:loading];
+    [engageButton setHidden:loading];
+    [engageReplace setHidden:loading];
 }
 
 #pragma mark - button

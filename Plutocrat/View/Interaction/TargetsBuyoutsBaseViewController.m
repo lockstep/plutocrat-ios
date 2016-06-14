@@ -27,6 +27,9 @@
               CGRectMake(0.0f, 0.0f, self.view.bounds.size.width, [Globals headerHeight])];
     [self.header setDelegate:self];
     [self.view addSubview:self.header];
+
+    self.source = [NSMutableArray array];
+    self.currentPage = 1;
     
     self.table = [[UITableView alloc] initWithFrame:
                   CGRectMake(0.0f,
@@ -37,8 +40,6 @@
     [self.table setDataSource:self];
     [self.table setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.view addSubview:self.table];
-    
-    [self stub];
 }
 
 #pragma mark - Table view data source
@@ -50,7 +51,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.source count];
+    if ([self.source count] == 0) return 0;
+    NSUInteger extraRow = (self.currentPage == NSUIntegerMax) ? 0 : 1;
+    return [self.source count] + extraRow;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -72,14 +75,6 @@
     InitiateViewController * ivc = [[InitiateViewController alloc] init];
     [self addChildViewController:ivc];
     [self.view addSubview:ivc.view];
-}
-
-#pragma mark - global stub
-
-- (void)stub
-{
-    self.source = @[@"Aaron Pinchai", @"Sara Mayer", @"Peter Cook", @"M. Dorsey"];
-    [self.table reloadData];
 }
 
 @end

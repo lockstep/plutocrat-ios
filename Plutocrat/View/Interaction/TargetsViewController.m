@@ -8,10 +8,13 @@
 
 #import "TargetsViewController.h"
 #import "InitiateViewController.h"
+#import "ApiConnector.h"
+#import "DateUtility.h"
 
 @interface TargetsViewController ()
 {
     NSString * identifier;
+    BOOL loading;
 }
 @end
 
@@ -25,26 +28,46 @@
     
     [self.table registerClass:NSClassFromString(@"TargetsCell") forCellReuseIdentifier:identifier];
         
-    [self stub2];
+    [self stub1];
+    [self loadData];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TargetsCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TargetsCell * tCell = (TargetsCell *)cell;
-    [[tCell photo] setImage:[UIImage imageNamed:[self.source objectAtIndex:indexPath.row]]];
-    [[tCell name] setText:[self.source objectAtIndex:indexPath.row]];
-    [tCell setTag:indexPath.row];
-    if (!tCell.delegate)
+    if (indexPath.row == [self.source count] - 1 && !loading && self.currentPage != NSUIntegerMax)
     {
-        [tCell setDelegate:self];
+        loading = YES;
+        [self loadData];
     }
-    [self stubCell:tCell];
+    else
+    {
+        TargetsCell * tCell = (TargetsCell *)cell;
+        [tCell setTag:indexPath.row];
+        if (!tCell.delegate)
+        {
+            [tCell setDelegate:self];
+        }
+        User * user;
+        if (indexPath.row != [self.source count])
+        {
+            user = [self.source objectAtIndex:indexPath.row];
+            [tCell setLoading:NO];
+            [tCell setBuyouts:user.successfulBuyoutsCount threats:user.matchedBuyoutsCount days:[DateUtility daysFromNow:user.registeredAt]];
+            [[tCell name] setText:user.displayName];
+            [tCell setEngageButtonState:user.underBuyoutThreat];
+            [tCell.photo setUrl:user.profileImageUrl];
+        }
+        else
+        {
+            [tCell setLoading:YES];
+        }
+    }
 }
 
 #pragma mark - TargetsBuyoutsCellDelegate
@@ -76,6 +99,49 @@
                      }];
 }
 
+#pragma mark - Load Data
+
+- (void)loadData
+{
+    if (self.currentPage == NSUIntegerMax)
+    {
+        return;
+    }
+    [ApiConnector getUsersWithPage:self.currentPage completion:^(NSArray * users, NSUInteger perPage, BOOL isLastPage, NSString * error) {
+        loading = NO;
+        if (!error)
+        {
+            NSUInteger oldDataCount = [self.source count];
+            [self.source addObjectsFromArray:users];
+            NSUInteger startingIndex = self.currentPage == 1 ? 0 : 1;
+            if (isLastPage)
+            {
+                self.currentPage = NSUIntegerMax;
+            }
+            else
+            {
+                self.currentPage++;
+            }
+            NSMutableArray * indexPathes = [NSMutableArray array];
+            for (NSUInteger i = startingIndex; i < users.count; ++i)
+            {
+                NSIndexPath * newIndexPath = [NSIndexPath indexPathForRow:oldDataCount + i inSection:0];
+                [indexPathes addObject:newIndexPath];
+            }
+            if (self.currentPage != NSUIntegerMax)
+            {
+                NSIndexPath * newIndexPath = [NSIndexPath indexPathForRow:oldDataCount + users.count inSection:0];
+                [indexPathes addObject:newIndexPath];
+            }
+            [self.table insertRowsAtIndexPaths:indexPathes withRowAnimation:UITableViewRowAnimationNone];
+            if (oldDataCount > 0)
+            {
+                [self.table reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:oldDataCount inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+            }
+        }
+    }];
+}
+
 #pragma mark - stub
 
 - (void)stub1
@@ -89,16 +155,6 @@
     [self.header setImage:[UIImage imageNamed:@"me"]];
     [self.header setName:@"Pavel Dolgov"];
     [self.header setNumberOfBuyouts:35];
-}
-
-- (void)stubCell:(TargetsCell *)cell
-{
-    int rndValue1 = arc4random() % 30;
-    int rndValue2 = arc4random() % 15;
-    int rndValue3 = arc4random() % 120;
-    int rndValue4 = arc4random() % 2;
-    [cell setBuyouts:rndValue1 threats:rndValue2 days:rndValue3];
-    [cell setEngageButtonState:rndValue4];
 }
 
 @end

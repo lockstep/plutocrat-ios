@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) TargetsBuyoutsHeader * header;
 @property (nonatomic, strong) UITableView * table;
-@property (nonatomic, copy) NSArray * source;
+@property NSUInteger currentPage;
+@property (nonatomic, strong) NSMutableArray * source;
 
 @end

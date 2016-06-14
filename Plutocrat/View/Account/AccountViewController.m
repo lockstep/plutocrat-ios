@@ -14,6 +14,7 @@
 #import "UserManager.h"
 #import "Settings.h"
 #import "ApiConnector.h"
+#import "UIImageView+Cached.h"
 #import <LocalAuthentication/LAContext.h>
 
 @interface AccountViewController ()
@@ -411,17 +412,7 @@
 {
     [displayName setText:user.displayName];
     [email setText:user.email];
-    UIActivityIndicatorView * photoActivity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    [photoActivity setCenter:CGPointMake(photo.frame.size.width / 2, photo.frame.size.height / 2)];
-    [photo addSubview:photoActivity];
-    [photoActivity startAnimating];
-    [ApiConnector processImageDataWithURLString:user.profileImageUrl andBlock:^(NSData * imageData) {
-        [photoActivity removeFromSuperview];
-        if (imageData)
-        {
-            [photo setImage:[UIImage imageWithData:imageData]];
-        }
-    }];
+    [photo setUrl:user.profileImageUrl];
 }
 
 #pragma mark - Save data

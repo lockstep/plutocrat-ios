@@ -30,7 +30,7 @@
 
 + (void)getProfileWithUserId:(int)userId completion:(void (^)(User *user, NSString *error))completion;
 
-+ (void)getUsersWithPage:(int)page completion:(void (^)(NSArray *users, NSString *error))completion;
++ (void)getUsersWithPage:(NSUInteger)page completion:(void (^)(NSArray *users, NSUInteger perPage, BOOL isLastPage, NSString *error))completion;
 + (void)getBuyoutsWithPage:(int)page completion:(void (^)(NSArray *buyouts, NSString *error))completion;
 
 + (void)purchaseShare:(int)bundleSize quantity:(int)quantity appleReceiptData:(NSData *)appleReceiptData completion:(void (^)(NSString *error))completion;

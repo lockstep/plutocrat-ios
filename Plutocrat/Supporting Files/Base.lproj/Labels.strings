@@ -55,9 +55,9 @@
 "EmailEvents" = "Enable email notifications on Plutocrat events (buyout outcomes, new threats, etc).";
 "EmailUpdates" = "Enable emails with general Plutocrat updates.";
 "TouchID" = "Enable TouchID";
-"PasswordRequired" = "Your current password is required only if you want to change it.";
+"PasswordRequired" = "Your current password is required in order to change your password.";
 "Alert" = "Alert";
 "Error" = "Error";
 "EmptyFields" = "Please fill in all fields";
-"EmptyPassword" = "You need to enter current password if you want to change it";
+"EmptyPassword" = "Please enter you current password";
 "UseTouchIDToLogin" = "Use TouchID to login";

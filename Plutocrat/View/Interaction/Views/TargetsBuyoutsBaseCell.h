@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIImageView+Cached.h"
 
 typedef NS_ENUM (NSUInteger, EngageButtonState)
 {
@@ -32,5 +33,6 @@ typedef NS_ENUM (NSUInteger, EngageButtonState)
 @property (nonatomic, strong) UILabel * info;
 
 - (void)setEngageButtonState:(EngageButtonState)state;
+- (void)setLoading:(BOOL)loading;
 
 @end

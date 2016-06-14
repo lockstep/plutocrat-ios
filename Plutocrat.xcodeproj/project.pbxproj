@@ -37,6 +37,8 @@
 		FD4553CF1D07FBED00554618 /* CommonHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4553CE1D07FBED00554618 /* CommonHeader.m */; };
 		FD4553D21D09629700554618 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4553D11D09629700554618 /* Settings.m */; };
 		FD4553DA1D09886700554618 /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4553D91D09886700554618 /* KeychainWrapper.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		FD4553DD1D109C4600554618 /* UIImageView+Cached.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4553DC1D109C4600554618 /* UIImageView+Cached.m */; };
+		FD4553E01D109C9900554618 /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4553DF1D109C9900554618 /* ImageCache.m */; };
 		FD45A0BF1CD7735100304EC0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0BE1CD7735100304EC0 /* AppDelegate.m */; };
 		FD45A0CA1CD7735100304EC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD45A0C91CD7735100304EC0 /* Assets.xcassets */; };
 		FD5239571D0151B600983C07 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5239561D0151B600983C07 /* StoreKit.framework */; };
@@ -142,6 +144,10 @@
 		FD4553D11D09629700554618 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Settings.m; path = Model/Settings.m; sourceTree = "<group>"; };
 		FD4553D81D09886700554618 /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeychainWrapper.h; path = ThirdParty/KeychainWrapper/KeychainWrapper.h; sourceTree = "<group>"; };
 		FD4553D91D09886700554618 /* KeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeychainWrapper.m; path = ThirdParty/KeychainWrapper/KeychainWrapper.m; sourceTree = "<group>"; };
+		FD4553DB1D109C4600554618 /* UIImageView+Cached.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+Cached.h"; path = "Utils/UIImageView+Cached.h"; sourceTree = "<group>"; };
+		FD4553DC1D109C4600554618 /* UIImageView+Cached.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+Cached.m"; path = "Utils/UIImageView+Cached.m"; sourceTree = "<group>"; };
+		FD4553DE1D109C9900554618 /* ImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageCache.h; path = Utils/ImageCache.h; sourceTree = "<group>"; };
+		FD4553DF1D109C9900554618 /* ImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageCache.m; path = Utils/ImageCache.m; sourceTree = "<group>"; };
 		FD45A0B71CD7735100304EC0 /* Plutocrat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plutocrat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD45A0BD1CD7735100304EC0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FD45A0BE1CD7735100304EC0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -576,10 +582,14 @@
 				FD386A071CE34A3C00065BA3 /* DateUtility.m */,
 				FDA1A6801CEB467100FFB268 /* Globals.h */,
 				FDA1A6811CEB467100FFB268 /* Globals.m */,
+				FD4553DE1D109C9900554618 /* ImageCache.h */,
+				FD4553DF1D109C9900554618 /* ImageCache.m */,
 				FDFA5AFF1CDAA43600030A89 /* UIColor+Utils.h */,
 				FDFA5B001CDAA43600030A89 /* UIColor+Utils.m */,
 				FD8B5CBE1CDBE6A600751642 /* UIFont+Utils.h */,
 				FD8B5CBF1CDBE6A600751642 /* UIFont+Utils.m */,
+				FD4553DB1D109C4600554618 /* UIImageView+Cached.h */,
+				FD4553DC1D109C4600554618 /* UIImageView+Cached.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -685,6 +695,7 @@
 			files = (
 				FD386A2D1CE3516800065BA3 /* CUJSONSerialization.m in Sources */,
 				FD45A0BF1CD7735100304EC0 /* AppDelegate.m in Sources */,
+				FD4553DD1D109C4600554618 /* UIImageView+Cached.m in Sources */,
 				FD8B5CC51CDBFF8D00751642 /* LoginViewController.m in Sources */,
 				FDA1A6AF1CEF6AD600FFB268 /* SelectShares.m in Sources */,
 				FDA1A6981CEB968600FFB268 /* BuyoutsViewController.m in Sources */,
@@ -716,6 +727,7 @@
 				FD8B5CE21CE2521B00751642 /* ResetPasswordViewController.m in Sources */,
 				FD386A381CE4FA3600065BA3 /* BigUserView.m in Sources */,
 				FDA1A6891CEB544C00FFB268 /* TargetsBuyoutsHeader.m in Sources */,
+				FD4553E01D109C9900554618 /* ImageCache.m in Sources */,
 				FD386A171CE34B9600065BA3 /* AFHTTPSessionManager.m in Sources */,
 				FD386A041CE349C600065BA3 /* Buyout.m in Sources */,
 				FDFA5B011CDAA43600030A89 /* UIColor+Utils.m in Sources */,
@@ -856,7 +868,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 0.3.2;
+				CURRENT_PROJECT_VERSION = 0.3.3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Plutocrat/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Plutocrat/Supporting Files/Info.plist";
@@ -876,7 +888,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 0.3.2;
+				CURRENT_PROJECT_VERSION = 0.3.3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Plutocrat/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Plutocrat/Supporting Files/Info.plist";

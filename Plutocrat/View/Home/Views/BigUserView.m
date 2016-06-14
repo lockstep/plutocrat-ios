@@ -115,19 +115,9 @@
     [email setHidden:toMatch];
     [manageButton setHidden:toMatch];
     [separator setHidden:toMatch];
-    [sharesToMatch setText:[NSString stringWithFormat:@"%lu %@", toMatch, NSLocalizedStringFromTable(@"SharesToMatch", @"Labels", nil)]];
+    [sharesToMatch setText:[NSString stringWithFormat:@"%lu %@", (unsigned long)toMatch, NSLocalizedStringFromTable(@"SharesToMatch", @"Labels", nil)]];
     [sharesToMatch setHidden:!toMatch];
-    UIActivityIndicatorView * photoActivity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    [photoActivity setCenter:CGPointMake(photo.frame.size.width / 2, photo.frame.size.height / 2)];
-    [photo addSubview:photoActivity];
-    [photoActivity startAnimating];
-    [ApiConnector processImageDataWithURLString:url andBlock:^(NSData * imageData) {
-        [photoActivity removeFromSuperview];
-        if (imageData)
-        {
-            [photo setImage:[UIImage imageWithData:imageData]];
-        }
-    }];
+    [photo setUrl:url];
 
 }
 

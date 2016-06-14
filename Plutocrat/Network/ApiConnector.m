@@ -226,16 +226,20 @@ enum ApiMethod {
     }];
 }
 
-+ (void)getUsersWithPage:(int)page completion:(void (^)(NSArray *users, NSString *error))completion {
++ (void)getUsersWithPage:(NSUInteger)page completion:(void (^)(NSArray *users, NSUInteger perPage, BOOL isLastPage, NSString *error))completion {
     NSDictionary *params = @{ @"page": @(page) };
     [self connectApi:GET_USERS method:Get params:params json:NO completion:^(NSDictionary *headers, id responseObject, NSString *error) {
-        NSMutableArray *users = [NSMutableArray array];
-        NSArray *userArray = responseObject[@"users"];
+        NSMutableArray * users = [NSMutableArray array];
+        NSArray * userArray = responseObject[@"users"];
+        NSDictionary *meta = responseObject[@"meta"];
+        NSUInteger current_page = [(NSString *)meta[@"current_page"] integerValue];
+        NSUInteger total_pages = [(NSString *)meta[@"total_pages"] integerValue];
+        NSUInteger perPage = [(NSString *)meta[@"per_page"] integerValue];
         for (NSDictionary *userDict in userArray) {
-            User *user = [User userFromDict:userDict];
+            User * user = [User userFromDict:userDict];
             [users addObject:user];
         }
-        completion(users, error);
+        completion(users, perPage, current_page==total_pages, error);
     }];
 }
 
@@ -270,12 +274,10 @@ enum ApiMethod {
 + (void)processImageDataWithURLString:(NSString *)urlString andBlock:(void (^)(NSData * imageData))processImage
 {
     NSURL * url = [NSURL URLWithString:urlString];
-
     dispatch_queue_t callerQueue = dispatch_get_main_queue();
     dispatch_queue_t downloadQueue = dispatch_queue_create("com.myapp.processsmagequeue", NULL);
     dispatch_async(downloadQueue, ^{
         NSData * imageData = [NSData dataWithContentsOfURL:url];
-
         dispatch_async(callerQueue, ^{
             processImage(imageData);
         });
