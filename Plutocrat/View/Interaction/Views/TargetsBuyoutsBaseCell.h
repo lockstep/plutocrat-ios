@@ -34,5 +34,6 @@ typedef NS_ENUM (NSUInteger, EngageButtonState)
 
 - (void)setEngageButtonState:(EngageButtonState)state;
 - (void)setLoading:(BOOL)loading;
+- (void)hideSep;
 
 @end

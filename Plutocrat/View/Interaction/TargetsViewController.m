@@ -15,6 +15,7 @@
 {
     NSString * identifier;
     BOOL loading;
+    UIActivityIndicatorView * iView;
 }
 @end
 
@@ -28,44 +29,49 @@
     
     [self.table registerClass:NSClassFromString(@"TargetsCell") forCellReuseIdentifier:identifier];
         
-    [self stub1];
+    [self noPlutocrat];
     [self loadData];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    TargetsCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    cell.tag = indexPath.row;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == [self.source count] - 1 && !loading && self.currentPage != NSUIntegerMax)
+    TargetsCell * tCell = (TargetsCell *)cell;
+    if (indexPath.row == [self.source count] && self.currentPage != NSUIntegerMax)
     {
-        loading = YES;
+        [tCell setLoading:YES];
         [self loadData];
     }
     else
     {
-        TargetsCell * tCell = (TargetsCell *)cell;
+        __weak TargetsCell * tCell = (TargetsCell *)cell;
         [tCell setTag:indexPath.row];
         if (!tCell.delegate)
         {
             [tCell setDelegate:self];
         }
-        User * user;
-        if (indexPath.row != [self.source count])
+        User * user = [self.source objectAtIndex:indexPath.row];
+        [tCell setLoading:NO];
+        [tCell setBuyouts:user.successfulBuyoutsCount threats:user.matchedBuyoutsCount days:[DateUtility daysFromNow:user.registeredAt]];
+        [[tCell name] setText:user.displayName];
+        [tCell setEngageButtonState:user.underBuyoutThreat];
+        [tCell.photo setUrl:user.profileImageUrl compeltionHandler:^(UIImage * image)
+         {
+             if (cell.tag == indexPath.row)
+             {
+                 [tCell.photo setImage:image];
+                 [tCell setNeedsLayout];
+             }
+         }];
+        if (indexPath.row == [self.source count] - 1 && self.currentPage == NSUIntegerMax)
         {
-            user = [self.source objectAtIndex:indexPath.row];
-            [tCell setLoading:NO];
-            [tCell setBuyouts:user.successfulBuyoutsCount threats:user.matchedBuyoutsCount days:[DateUtility daysFromNow:user.registeredAt]];
-            [[tCell name] setText:user.displayName];
-            [tCell setEngageButtonState:user.underBuyoutThreat];
-            [tCell.photo setUrl:user.profileImageUrl];
-        }
-        else
-        {
-            [tCell setLoading:YES];
+            [tCell hideSep];
         }
     }
 }
@@ -103,16 +109,46 @@
 
 - (void)loadData
 {
-    if (self.currentPage == NSUIntegerMax)
+    if (self.currentPage == NSUIntegerMax || loading)
     {
         return;
     }
+    loading = YES;
+    if ([self.source count] == 0)
+    {
+        iView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        [iView setCenter:CGPointMake(self.table.frame.size.width / 2, self.table.frame.size.height / 2)];
+        [self.table addSubview:iView];
+        [self.table setScrollEnabled:NO];
+        [iView startAnimating];
+    }
     [ApiConnector getUsersWithPage:self.currentPage completion:^(NSArray * users, NSUInteger perPage, BOOL isLastPage, NSString * error) {
         loading = NO;
+        [iView removeFromSuperview];
+        [self.table setScrollEnabled:YES];
         if (!error)
         {
+            NSMutableArray * filteredOfPlutocrat = [NSMutableArray arrayWithArray:users];
+            __block User * plutocrat;
+            [filteredOfPlutocrat enumerateObjectsUsingBlock:^(User * user, NSUInteger idx, BOOL * stop)
+             {
+                 if (user.isPlutocrat)
+                 {
+                     plutocrat = user;
+                     *stop = YES;
+                 }
+             }];
+            if (plutocrat)
+            {
+                [filteredOfPlutocrat removeObject:plutocrat];
+                [self setPlutocrat:plutocrat];
+            }
+            else
+            {
+                [self noPlutocrat];
+            }
             NSUInteger oldDataCount = [self.source count];
-            [self.source addObjectsFromArray:users];
+            [self.source addObjectsFromArray:filteredOfPlutocrat];
             NSUInteger startingIndex = self.currentPage == 1 ? 0 : 1;
             if (isLastPage)
             {
@@ -142,19 +178,17 @@
     }];
 }
 
-#pragma mark - stub
-
-- (void)stub1
+- (void)noPlutocrat
 {
     [self.header setType:TargetsHeaderNoPlutocrat];
 }
 
-- (void)stub2
+- (void)setPlutocrat:(User *)plutocrat
 {
     [self.header setType:TargetsHeaderWithPlutocrat];
-    [self.header setImage:[UIImage imageNamed:@"me"]];
-    [self.header setName:@"Pavel Dolgov"];
-    [self.header setNumberOfBuyouts:35];
+    [self.header setImageUrl:plutocrat.profileImageUrl];
+    [self.header setName:plutocrat.displayName];
+    [self.header setNumberOfBuyouts:plutocrat.successfulBuyoutsCount];
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import "TargetsBuyoutsHeader.h"
 #import "CommonButton.h"
+#import "UIImageView+Cached.h"
 
 @implementation TargetsBuyoutsHeader
 {
@@ -49,6 +50,7 @@
         [[photo layer] setBorderColor:[UIColor whiteColor].CGColor];
         [[photo layer] setBorderWidth:2.0f];
         [[photo layer] setMasksToBounds:YES];
+        [photo setImage:[UIImage imageNamed:@"empty-profile-image"]];
         [photo setHidden:YES];
         [self addSubview:photo];
         
@@ -135,9 +137,9 @@
     }
 }
 
-- (void)setImage:(UIImage *)image
+- (void)setImageUrl:(NSString *)url
 {
-    [photo setImage:image];
+    [photo setUrl:url compeltionHandler:nil];
 }
 
 - (void)setName:(NSString *)nameString

@@ -117,7 +117,7 @@
     [separator setHidden:toMatch];
     [sharesToMatch setText:[NSString stringWithFormat:@"%lu %@", (unsigned long)toMatch, NSLocalizedStringFromTable(@"SharesToMatch", @"Labels", nil)]];
     [sharesToMatch setHidden:!toMatch];
-    [photo setUrl:url];
+    [photo setUrl:url compeltionHandler:nil];
 
 }
 

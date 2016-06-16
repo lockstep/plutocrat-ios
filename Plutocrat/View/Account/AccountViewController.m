@@ -412,7 +412,7 @@
 {
     [displayName setText:user.displayName];
     [email setText:user.email];
-    [photo setUrl:user.profileImageUrl];
+    [photo setUrl:user.profileImageUrl compeltionHandler:nil];
 }
 
 #pragma mark - Save data

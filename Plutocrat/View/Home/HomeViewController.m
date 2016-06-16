@@ -176,6 +176,8 @@
                         name:user.displayName
                        email:user.email
                sharesToMatch:0];
+    [UserManager getHeader:@"asas"];
+ //   [infoView setBuyouts:<#(NSUInteger)#>]
     [infoView setType:[Settings typeOfHomeAlert]];
 }
 

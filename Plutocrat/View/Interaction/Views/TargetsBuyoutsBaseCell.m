@@ -33,8 +33,7 @@
                                                               74.0f)];
         [[self.photo layer] setCornerRadius:self.photo.frame.size.width / 2];
         [[self.photo layer] setMasksToBounds:YES];
-        [self.photo setImage:[UIImage imageNamed:@"empty-profile-image"]];
-        [self addSubview:self.photo];
+        [self.contentView addSubview:self.photo];
         
         CGFloat startingXForLabels = bordersOffset + self.photo.frame.size.width + [Globals offsetFromPhoto];
         self.name = [[UILabel alloc] initWithFrame:CGRectMake(startingXForLabels,
@@ -44,7 +43,7 @@
         [self.name setAdjustsFontSizeToFitWidth:YES];
         [self.name setFont:[UIFont regularFontWithSize:18.0f]];
         [self.name setTextColor:[UIColor grayWithIntense:114.0f]];
-        [self addSubview:self.name];
+        [self.contentView addSubview:self.name];
         
         self.info = [[UILabel alloc] initWithFrame:
                      CGRectMake(startingXForLabels,
@@ -54,7 +53,7 @@
         [self.info setFont:[UIFont regularFontWithSize:11.0f]];
         [self.info setTextColor:[UIColor grayWithIntense:112.0f]];
         [self.info setNumberOfLines:3];
-        [self addSubview:self.info];
+        [self.contentView addSubview:self.info];
         
         engageButton = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"ENGAGE", @"Buttons", nil) color:ButtonColorViolet];
         [engageButton setCenter:
@@ -63,7 +62,7 @@
         [engageButton setHidden:YES];
         [engageButton addTarget:self action:@selector(buttonTapped) forControlEvents:UIControlEventTouchUpInside];
         [engageButton setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin];
-        [self addSubview:engageButton];
+        [self.contentView addSubview:engageButton];
         
         engageReplace = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 65.0f, 28.0f)];
         [engageReplace setFont:[UIFont regularFontWithSize:11.0f]];
@@ -76,7 +75,7 @@
          CGPointMake(self.frame.size.width - bordersOffset - engageReplace.frame.size.width / 2,
                                              [Globals cellHeight] / 2)];
         [engageReplace setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin];
-        [self addSubview:engageReplace];
+        [self.contentView addSubview:engageReplace];
         
         sep = [[CommonSeparator alloc] initWithFrame:
                CGRectMake([Globals horizontalOffsetInTable],
@@ -84,9 +83,20 @@
                           self.frame.size.width - [Globals horizontalOffsetInTable] * 2,
                           1.0f)];
         [sep setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-        [self addSubview:sep];
+        [self.contentView addSubview:sep];
     }
     return self;
+}
+
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    [self.photo setImage:nil];
+    [self.name setText:@""];
+    [self.info setText:@""];
+    [engageButton setHidden:YES];
+    [engageReplace setHidden:YES];
+    [sep setHidden:YES];
 }
 
 #pragma mark - public
@@ -134,7 +144,7 @@
     {
         iView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         [iView setCenter:CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2)];
-        [self addSubview:iView];
+        [self.contentView addSubview:iView];
         [iView startAnimating];
     }
     else
@@ -147,6 +157,11 @@
     [self.info setHidden:loading];
     [engageButton setHidden:loading];
     [engageReplace setHidden:loading];
+}
+
+- (void)hideSep
+{
+    [sep setHidden:YES];
 }
 
 #pragma mark - button

@@ -12,8 +12,9 @@
 
 @implementation UIImageView (Cached)
 
-- (void)setUrl:(NSString *)url
+- (void)setUrl:(NSString *)url compeltionHandler:(void (^)(UIImage * image))completion
 {
+    [self setImage:[UIImage imageNamed:@"empty-profile-image"]];
     __block UIImage * image = [[ImageCache cache] objectForKey:url];
     if (image)
     {
@@ -26,10 +27,19 @@
         [self addSubview:photoActivity];
         [photoActivity startAnimating];
         [ApiConnector processImageDataWithURLString:url andBlock:^(NSData * imageData) {
-            [photoActivity removeFromSuperview];
-            image = imageData ? [UIImage imageWithData:imageData] : [[UIImage alloc] init];
-            [self setImage:image];
+            image = imageData ? [UIImage imageWithData:imageData] : [UIImage imageNamed:@"empty-profile-image"];
             [[ImageCache cache] setObject:image forKey:url];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [photoActivity removeFromSuperview];
+                if (!completion)
+                {
+                    [self setImage:image];
+                }
+                else
+                {
+                    completion(image);
+                }
+            });
         }];
     }
 }

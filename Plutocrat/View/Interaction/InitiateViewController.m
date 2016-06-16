@@ -131,7 +131,7 @@
 {
     [header setHidden:NO];
     [header setType:TargetsHeaderWithPlutocrat];
-    [header setImage:[UIImage imageNamed:@"me"]];
+  //  [header setImage:[UIImage imageNamed:@"me"]];
     [header setName:@"Pavel Dolgov"];
     [header setNumberOfBuyouts:35];
     [header buttonHide:YES];
