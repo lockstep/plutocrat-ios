@@ -89,7 +89,7 @@
     return [[NSUserDefaults standardUserDefaults] objectForKey:USER_KEY][@"display_name"];
 }
 
-+ (int)successfulBuyouts {
++ (NSUInteger)successfulBuyouts {
     return [[[NSUserDefaults standardUserDefaults] objectForKey:USER_KEY][@"successful_buyouts_count"] intValue];
 }
 

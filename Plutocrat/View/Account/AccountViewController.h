@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class AccountViewController;
+
+@protocol AccountViewControllerDelegate <NSObject>
+@required
+
+- (void)accountViewControllerUpdatedData:(AccountViewController *)accountViewController;
+
+@end
+
 @interface AccountViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
+
+@property (nonatomic, weak) id <AccountViewControllerDelegate> delegate;
 
 @end

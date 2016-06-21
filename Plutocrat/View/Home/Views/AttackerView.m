@@ -7,25 +7,21 @@
 //
 
 #import "AttackerView.h"
-#import "BigUserView.h"
 #import "CommonButton.h"
 #import "CommonSeparator.h"
 
 @implementation AttackerView
-{
-    BigUserView * attacker;
-}
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self)
     {
-        attacker = [[BigUserView alloc] initWithFrame:CGRectMake(0.0f,
-                                                                 0.0f,
-                                                                 frame.size.width,
-                                                                 136.0f)];
-        [self addSubview:attacker];
+        self.attacker = [[BigUserView alloc] initWithFrame:CGRectMake(0.0f,
+                                                                      0.0f,
+                                                                      frame.size.width,
+                                                                      136.0f)];
+        [self addSubview:self.attacker];
         
         CGFloat bordersOffset = [Globals horizontalOffset];
         UILabel * warning = [[UILabel alloc] initWithFrame:

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BigUserView.h"
 
 @interface AttackerView : UIView
+
+@property (nonatomic, strong) BigUserView * attacker;
 
 @end

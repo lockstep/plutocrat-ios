@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD310E411D18FFF90051930A /* InboundBuyout.m in Sources */ = {isa = PBXBuildFile; fileRef = FD310E401D18FFF90051930A /* InboundBuyout.m */; };
 		FD3869ED1CE3473700065BA3 /* ApiConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3869EC1CE3473700065BA3 /* ApiConnector.m */; };
 		FD386A041CE349C600065BA3 /* Buyout.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A011CE349C600065BA3 /* Buyout.m */; };
 		FD386A051CE349C600065BA3 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A031CE349C600065BA3 /* User.m */; };
@@ -88,6 +89,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FD310E3F1D18FFF90051930A /* InboundBuyout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InboundBuyout.h; path = Model/InboundBuyout.h; sourceTree = "<group>"; };
+		FD310E401D18FFF90051930A /* InboundBuyout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InboundBuyout.m; path = Model/InboundBuyout.m; sourceTree = "<group>"; };
 		FD3869EB1CE3473700065BA3 /* ApiConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApiConnector.h; path = Network/ApiConnector.h; sourceTree = "<group>"; };
 		FD3869EC1CE3473700065BA3 /* ApiConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApiConnector.m; path = Network/ApiConnector.m; sourceTree = "<group>"; };
 		FD386A001CE349C600065BA3 /* Buyout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Buyout.h; path = Model/Buyout.h; sourceTree = "<group>"; };
@@ -500,6 +503,8 @@
 				FD386A031CE349C600065BA3 /* User.m */,
 				FD386A1D1CE34BB700065BA3 /* UserManager.h */,
 				FD386A1E1CE34BB700065BA3 /* UserManager.m */,
+				FD310E3F1D18FFF90051930A /* InboundBuyout.h */,
+				FD310E401D18FFF90051930A /* InboundBuyout.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -701,6 +706,7 @@
 				FDA1A6981CEB968600FFB268 /* BuyoutsViewController.m in Sources */,
 				FD8B5CF91CE252BF00751642 /* LeftPanelViewController.m in Sources */,
 				FD4553D21D09629700554618 /* Settings.m in Sources */,
+				FD310E411D18FFF90051930A /* InboundBuyout.m in Sources */,
 				FD386A1F1CE34BB700065BA3 /* UserManager.m in Sources */,
 				FD386A311CE3517A00065BA3 /* JASidePanelController.m in Sources */,
 				FD386A081CE34A3C00065BA3 /* DateUtility.m in Sources */,

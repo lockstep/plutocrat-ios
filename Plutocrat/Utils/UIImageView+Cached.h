@@ -10,6 +10,6 @@
 
 @interface UIImageView (Cached)
 
-- (void)setUrl:(NSString *)url compeltionHandler:(void (^)(UIImage * image))completion;
+- (void)setUrl:(NSString *)url initials:(NSString *)initials compeltionHandler:(void (^)(UIImage * image))completion;
 
 @end

@@ -13,6 +13,7 @@
 #import "User.h"
 #import "UserManager.h"
 #import "Settings.h"
+#import "ApiConnector.h"
 
 @interface HomeViewController ()
 {
@@ -73,8 +74,26 @@
                                                                   270.0f)];
     [view addSubview:attackerView];
 
+    [self updateData];
+}
+
+#pragma mark - public
+
+- (void)updateData
+{
+    [timer invalidate];
+    
     user = [User userFromDict:[UserManager userDict]];
-    user.email = [Settings userEmail];
+
+    [buyoutsStatsView setSuccessful:user.successfulBuyoutsCount
+                             failed:user.failedBuyoutsCount
+                           defeated:user.matchedBuyoutsCount];
+
+    [bigUserView setPhotoUrl:user.profileImageUrl
+                    initials:user.initials
+                        name:user.displayName
+                       email:user.email
+               sharesToMatch:0];
 
     if (user.underBuyoutThreat)
     {
@@ -149,7 +168,57 @@
         [self.delegate homeViewControllerAskedForPushes:self];
     }
     [infoView setType:HomeInfoTypeCommon];
-    [infoView setBuyouts:4];
+}
+
+- (void)styleNormal
+{
+    [self layBasicInfoWhenAttacked:NO];
+    
+    [homeHeader setType:HomeHeaderTypeCommon];
+    [homeHeader setDate:user.registeredAt];
+    [infoView setBuyouts:user.buyoutsUntilPlutocratCount];
+    [infoView setType:[Settings typeOfHomeAlert]];
+}
+
+- (void)styleAttacked
+{
+    [self layBasicInfoWhenAttacked:YES];
+    
+    [homeHeader setType:HomeHeaderTypeThreated];
+    [homeHeader setDate:user.inboundBuyout.deadlineAt];
+
+    UIActivityIndicatorView * __block iView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [iView setCenter:CGPointMake(attackerView.attacker.frame.size.width / 2,
+                                 attackerView.attacker.frame.size.height / 2)];
+    [attackerView.attacker addSubview:iView];
+    [iView startAnimating];
+    [ApiConnector getProfileWithUserId:user.inboundBuyout.initiatingUserId
+                            completion:^(User * attacker, NSString * error)
+                            {
+                                [iView removeFromSuperview];
+                                if (!error)
+                                {
+                                    [attackerView.attacker setPhotoUrl:attacker.profileImageUrl
+                                                              initials:attacker.initials
+                                                                  name:attacker.displayName
+                                                                 email:attacker.email
+                                                        sharesToMatch:user.inboundBuyout.numberOfShares];
+                                }
+                            }];
+
+    [infoView setType:HomeInfoTypeCommon];
+    [infoView setBuyouts:user.buyoutsUntilPlutocratCount];
+}
+
+- (void)styleDefeated
+{
+    [self layBasicInfoWhenAttacked:NO];
+    
+    [homeHeader setType:HomeHeaderTypeDefeated];
+    [homeHeader setDate:[NSDate dateWithTimeInterval:-127526 sinceDate:[NSDate date]]];
+    
+    [infoView setType:HomeInfoTypeDefeated];
+    [infoView setName:@"Aaron Pinchai" shares:32 daysAgo:4];
 }
 
 #pragma mark - BigUserViewDelegate
@@ -162,54 +231,11 @@
     }
 }
 
-- (void)styleNormal
-{
-    [self layBasicInfoWhenAttacked:NO];
-    
-    [homeHeader setType:HomeHeaderTypeCommon];
-    [homeHeader setDate:user.registeredAt];
-    
-    [buyoutsStatsView setSuccessful:user.successfulBuyoutsCount
-                             failed:user.failedBuyoutsCount
-                           defeated:user.matchedBuyoutsCount];
-    [bigUserView setPhotoUrl:user.profileImageUrl
-                        name:user.displayName
-                       email:user.email
-               sharesToMatch:0];
-    [UserManager getHeader:@"asas"];
- //   [infoView setBuyouts:<#(NSUInteger)#>]
-    [infoView setType:[Settings typeOfHomeAlert]];
-}
-
-- (void)styleAttacked
-{
-    [self layBasicInfoWhenAttacked:YES];
-    
-    [homeHeader setType:HomeHeaderTypeThreated];
-    [homeHeader setDate:[NSDate dateWithTimeInterval:-127526 sinceDate:[NSDate date]]];
-    
-    [buyoutsStatsView setSuccessful:88 failed:88 defeated:88];
-    [infoView setType:HomeInfoTypeCommon];
-    [infoView setBuyouts:4];
-}
-
-- (void)styleDefeated
-{
-    [self layBasicInfoWhenAttacked:NO];
-    
-    [homeHeader setType:HomeHeaderTypeDefeated];
-    [homeHeader setDate:[NSDate dateWithTimeInterval:-127526 sinceDate:[NSDate date]]];
-    
-    [buyoutsStatsView setSuccessful:88 failed:88 defeated:88];
-    [infoView setType:HomeInfoTypeDefeated];
-    [infoView setName:@"Aaron Pinchai" shares:32 daysAgo:4];
-}
-
-#pragma mark - Timer
+#pragma mark - timer
 
 - (void)onTimerBack
 {
-
+    [homeHeader setDate:user.inboundBuyout.deadlineAt];
 }
 
 - (void)onTimerForward

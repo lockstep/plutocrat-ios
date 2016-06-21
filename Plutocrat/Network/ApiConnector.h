@@ -18,7 +18,7 @@
 + (void)requestPasswordWithEmail:(NSString *)email completion:(void (^)(NSString *error))completion;
 + (void)resetPasswordWithToken:(NSString *)token password:(NSString *)password completion:(void (^)(NSString *error))completion;
 
-+ (void)updateProfileWithUserId:(int)userId
++ (void)updateProfileWithUserId:(NSUInteger)userId
                           email:(NSString *)email
                     newPassword:(NSString *)newPassword
                 currentPassword:(NSString *)currentPassword
@@ -28,13 +28,17 @@
                   updatesEmails:(BOOL)updatesEmails
                      completion:(void (^)(NSDictionary *response, NSString *error))completion;
 
-+ (void)getProfileWithUserId:(int)userId completion:(void (^)(User *user, NSString *error))completion;
++ (void)getProfileWithUserId:(NSUInteger)userId completion:(void (^)(User *user, NSString *error))completion;
 
 + (void)getUsersWithPage:(NSUInteger)page completion:(void (^)(NSArray *users, NSUInteger perPage, BOOL isLastPage, NSString *error))completion;
 + (void)getBuyoutsWithPage:(int)page completion:(void (^)(NSArray *buyouts, NSString *error))completion;
 
 + (void)purchaseShare:(int)bundleSize quantity:(int)quantity appleReceiptData:(NSData *)appleReceiptData completion:(void (^)(NSString *error))completion;
-+ (void)initiateBuyout:(int)bundleSize quantity:(int)quantity appleReceiptData:(NSString *)appleReceiptData completion:(void (^)(int availableSharesCount, int minimumAmount, NSString *error))completion;
-+ (void)processImageDataWithURLString:(NSString *)urlString andBlock:(void (^)(NSData * imageData))processImage;
+
++ (void)initiateBuyoutToUser:(NSUInteger)userId
+                  completion:(void (^)(NSUInteger availableSharesCount, NSUInteger minimumAmount, NSString * error))completion;
+
++ (void)processImageDataWithURLString:(NSString *)urlString
+                             andBlock:(void (^)(NSData * imageData))processImage;
 
 @end

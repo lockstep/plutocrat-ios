@@ -18,5 +18,6 @@
 + (BOOL)hasLastLogin;
 + (int)lastLogin;
 + (NSDictionary *)userDict;
++ (NSUInteger)successfulBuyouts;
 
 @end

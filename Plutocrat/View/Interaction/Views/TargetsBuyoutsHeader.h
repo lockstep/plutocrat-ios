@@ -26,7 +26,7 @@ typedef NS_ENUM (NSUInteger, TargetsBuyoutsHeaderType)
 @property (nonatomic, weak) id <TargetsBuyotsHeaderDelegate> delegate;
 
 - (void)setType:(TargetsBuyoutsHeaderType)type;
-- (void)setImageUrl:(NSString *)url;
+- (void)setImageUrl:(NSString *)url initials:(NSString *)initials;
 - (void)setName:(NSString *)nameString;
 - (void)setNumberOfBuyouts:(NSUInteger)number;
 - (void)buttonHide:(BOOL)hide;

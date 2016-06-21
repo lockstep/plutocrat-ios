@@ -106,6 +106,7 @@
 #pragma mark - private
 
 - (void)setPhotoUrl:(NSString *)url
+           initials:(NSString *)initials
                name:(NSString *)nameStr
               email:(NSString *)emailStr
       sharesToMatch:(NSUInteger)toMatch
@@ -115,9 +116,9 @@
     [email setHidden:toMatch];
     [manageButton setHidden:toMatch];
     [separator setHidden:toMatch];
-    [sharesToMatch setText:[NSString stringWithFormat:@"%lu %@", (unsigned long)toMatch, NSLocalizedStringFromTable(@"SharesToMatch", @"Labels", nil)]];
+    [sharesToMatch setText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"SharesToMatchFormat", @"Labels", nil), toMatch]];
     [sharesToMatch setHidden:!toMatch];
-    [photo setUrl:url compeltionHandler:nil];
+    [photo setUrl:url initials:initials compeltionHandler:nil];
 
 }
 

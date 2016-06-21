@@ -31,6 +31,7 @@
     CommonButton * button;
     User * user;
     UIActivityIndicatorView * iView;
+    BOOL addedHeight;
 }
 @end
 
@@ -357,6 +358,8 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    if (addedHeight) return;
+    addedHeight = YES;
     if (textField == newPassword)
     {
         if (self.view.frame.size.height < 600.0f)
@@ -364,20 +367,19 @@
             [view setContentSize:CGSizeMake(view.frame.size.width, view.contentSize.height + 20.0f)];
             [view scrollRectToVisible:CGRectMake(0.0f, view.contentSize.height - 1.0f, view.frame.size.width, 1.0f) animated:YES];
         }
-        [view setScrollEnabled:NO];
         [currentPassword setUserInteractionEnabled:NO];
     }
     if (textField == currentPassword)
     {
         [view setContentSize:CGSizeMake(view.frame.size.width, view.contentSize.height + 100.0f)];
         [view scrollRectToVisible:CGRectMake(0.0f, view.contentSize.height - 1.0f, view.frame.size.width, 1.0f) animated:YES];
-        [view setScrollEnabled:NO];
         [newPassword setUserInteractionEnabled:NO];
     }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    addedHeight = NO;
     if (textField == newPassword)
     {
         if (self.view.frame.size.height < 600.0f)
@@ -385,14 +387,12 @@
             [view setContentSize:CGSizeMake(view.frame.size.width, view.contentSize.height - 20.0f)];
             [view scrollRectToVisible:textField.frame animated:YES];
         }
-        [view setScrollEnabled:YES];
         [currentPassword setUserInteractionEnabled:YES];
     }
     if (textField == currentPassword)
     {
         [view setContentSize:CGSizeMake(view.frame.size.width, view.contentSize.height - 100.0f)];
         [view scrollRectToVisible:textField.frame animated:YES];
-        [view setScrollEnabled:YES];
         [newPassword setUserInteractionEnabled:YES];
     }
     [textField resignFirstResponder];
@@ -412,7 +412,7 @@
 {
     [displayName setText:user.displayName];
     [email setText:user.email];
-    [photo setUrl:user.profileImageUrl compeltionHandler:nil];
+    [photo setUrl:user.profileImageUrl initials:user.initials compeltionHandler:nil];
 }
 
 #pragma mark - Save data
@@ -438,10 +438,14 @@
                                    if (!error)
                                    {
                                        user = [User userFromDict:response];
-                                       user.email = user.email;
                                        [Settings enableEventsNotifiations:eventsSwitch.isOn];
                                        [Settings enableUpdatesEmails:updatesSwitch.isOn];
                                        [Settings enableTouchID:touchIDSwitch.isOn];
+                                       [self showAlertOk];
+                                       if ([self.delegate respondsToSelector:@selector(accountViewControllerUpdatedData:)])
+                                       {
+                                           [self.delegate accountViewControllerUpdatedData:self];
+                                       }
                                    }
                                    else
                                    {
@@ -517,6 +521,17 @@
 
         [alert addAction:defaultAction];
         [self presentViewController:alert animated:YES completion:nil];
+    });
+}
+
+- (void)showAlertOk
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:nil message:NSLocalizedStringFromTable(@"SettingsUpdated", @"Labels", nil) preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alert animated:YES completion:nil];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [alert dismissViewControllerAnimated:YES completion:nil];
+        });
     });
 }
 

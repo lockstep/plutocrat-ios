@@ -23,6 +23,7 @@
 @property (nonatomic, weak) id <BigUserViewDelegate> delegate;
 
 - (void)setPhotoUrl:(NSString *)url
+           initials:(NSString *)initials
                name:(NSString *)nameStr
               email:(NSString *)emailStr
       sharesToMatch:(NSUInteger)toMatch;

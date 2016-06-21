@@ -24,4 +24,6 @@
 
 @property (nonatomic, weak) id <HomeViewControllerDelegate> delegate;
 
+- (void)updateData;
+
 @end

@@ -11,7 +11,6 @@
 #import "TargetsViewController.h"
 #import "BuyoutsViewController.h"
 #import "SharesViewController.h"
-#import "AccountViewController.h"
 
 #import "Settings.h"
 
@@ -73,6 +72,7 @@
                                            selectedImage:svcImgAct];
     
     avc = [AccountViewController new];
+    [avc setDelegate:self];
     UIImage * avcImgInact = [[UIImage imageNamed:@"settings-inactive"]
                              imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIImage * avcImgAct = [[UIImage imageNamed:@"settings-active"]
@@ -102,6 +102,13 @@
         [Settings setTypeOfHomeAlert:2];
         [self.customDelegate tabBarViewControllerAskedForPushes:self];
     }
+}
+
+#pragma mark - AccountViewControllerDelegate
+
+- (void)accountViewControllerUpdatedData:(AccountViewController *)accountViewController
+{
+    [hvc updateData];
 }
 
 @end

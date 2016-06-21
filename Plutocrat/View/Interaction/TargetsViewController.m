@@ -61,7 +61,7 @@
         [tCell setBuyouts:user.successfulBuyoutsCount threats:user.matchedBuyoutsCount days:[DateUtility daysFromNow:user.registeredAt]];
         [[tCell name] setText:user.displayName];
         [tCell setEngageButtonState:user.underBuyoutThreat];
-        [tCell.photo setUrl:user.profileImageUrl compeltionHandler:^(UIImage * image)
+        [tCell.photo setUrl:user.profileImageUrl initials:user.initials compeltionHandler:^(UIImage * image)
          {
              if (cell.tag == indexPath.row)
              {
@@ -186,7 +186,7 @@
 - (void)setPlutocrat:(User *)plutocrat
 {
     [self.header setType:TargetsHeaderWithPlutocrat];
-    [self.header setImageUrl:plutocrat.profileImageUrl];
+    [self.header setImageUrl:plutocrat.profileImageUrl initials:plutocrat.initials];
     [self.header setName:plutocrat.displayName];
     [self.header setNumberOfBuyouts:plutocrat.successfulBuyoutsCount];
 }

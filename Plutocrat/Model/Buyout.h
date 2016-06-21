@@ -15,7 +15,7 @@
 @property (nonatomic, retain) NSDate *initiatedAt;
 @property (nonatomic, retain) NSString *initiatedTimeAgo;
 @property (nonatomic, retain) NSDate *deadlineAt;
-@property int amount;
+@property NSUInteger numberOfShares;
 @property (nonatomic, retain) NSString *state;
 @property (nonatomic, retain) NSDate *resolvedAt;
 @property (nonatomic, retain) NSString *resolvedTimeAgo;

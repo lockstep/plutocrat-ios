@@ -8,6 +8,8 @@
 
 #import "BuyoutsViewController.h"
 #import "InitiateViewController.h"
+#import "UserManager.h"
+#import "Buyout.h"
 
 @interface BuyoutsViewController ()
 {
@@ -25,26 +27,54 @@
     
     [self.table registerClass:NSClassFromString(@"BuyoutsCell") forCellReuseIdentifier:identifier];
     
-    [self stub1];
+    [self loadStatic];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BuyoutsCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    cell.tag = indexPath.row;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BuyoutsCell * bCell = (BuyoutsCell *)cell;
-    [[bCell photo] setImage:[UIImage imageNamed:[self.source objectAtIndex:indexPath.row]]];
-    [[bCell name] setText:[self.source objectAtIndex:indexPath.row]];
-    [bCell setTag:indexPath.row];
-    if (!bCell.delegate)
+    if (indexPath.row == [self.source count] && self.currentPage != NSUIntegerMax)
     {
-        [bCell setDelegate:self];
+        [bCell setLoading:YES];
+        [self loadData];
     }
-    [self stubCell:bCell];
+    else
+    {
+//        Buyout * buyout = [self.source objectAtIndex:indexPath.row];
+//        switch (buyout.)
+//        {
+//            case BuyoutCellDefaultState:
+//                [cell setEngageButtonState:EngageButtonAttackingYouState];
+//                break;
+//
+//            case BuyoutCellSuccessedState:
+//                [cell setEngageButtonState:EngageButtonEliminatedState];
+//                break;
+//
+//            case BuyoutCellYouFailedState:
+//                [cell setEngageButtonState:EngageButtonDefaultState];
+//                break;
+//
+//            case BuyoutCellHeFailed:
+//                [cell setEngageButtonState:EngageButtonDefaultState];
+//                break;
+//                
+//            default:
+//                break;
+//        }
+        if (!bCell.delegate)
+        {
+            [bCell setDelegate:self];
+        }
+        [self stubCell:bCell];
+    }
 }
 
 #pragma mark - TargetsBuyoutsCellDelegate
@@ -76,12 +106,17 @@
                      }];
 }
 
-#pragma mark - stub
+#pragma mark - Load Data
 
-- (void)stub1
+- (void)loadStatic
 {
     [self.header setType:BuyoutsHeader];
-    [self.header setNumberOfBuyouts:32];
+    [self.header setNumberOfBuyouts:[UserManager successfulBuyouts]];
+}
+
+- (void)loadData
+{
+
 }
 
 - (void)stubCell:(BuyoutsCell *)cell

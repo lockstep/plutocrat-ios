@@ -7,22 +7,31 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "InboundBuyout.h"
 
 @interface User : NSObject
 
-@property int identifier;
-@property (nonatomic, retain) NSString *displayName;
-@property (nonatomic, retain) NSString *email;
-@property (nonatomic, retain) NSDate *registeredAt;
-@property int successfulBuyoutsCount;
-@property int failedBuyoutsCount;
-@property int matchedBuyoutsCount;
-@property (nonatomic, retain) NSString *profileImageUrl;
+@property NSUInteger identifier;
+
+@property (nonatomic, copy) NSString * displayName;
+@property (nonatomic, copy) NSString * email;
+@property (nonatomic, copy) NSString * initials;
+@property (nonatomic, copy) NSString * profileImageUrl;
+
+@property NSUInteger successfulBuyoutsCount;
+@property NSUInteger failedBuyoutsCount;
+@property NSUInteger matchedBuyoutsCount;
+@property NSUInteger buyoutsUntilPlutocratCount;
+
 @property BOOL underBuyoutThreat;
 @property BOOL attackingCurrentUser;
-@property (nonatomic, retain) NSDate *defeatedAt;
 @property BOOL isPlutocrat;
 
-+ (User *)userFromDict:(NSDictionary *)userDict;
+@property (nonatomic, copy) NSDate * registeredAt;
+@property (nonatomic, copy) NSDate * defeatedAt;
+
+@property (nonatomic, strong) InboundBuyout * inboundBuyout;
+
++ (instancetype)userFromDict:(NSDictionary *)userDict;
 
 @end

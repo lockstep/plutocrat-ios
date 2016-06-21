@@ -137,9 +137,9 @@
     }
 }
 
-- (void)setImageUrl:(NSString *)url
+- (void)setImageUrl:(NSString *)url initials:(NSString *)initials
 {
-    [photo setUrl:url compeltionHandler:nil];
+    [photo setUrl:url initials:initials compeltionHandler:nil];
 }
 
 - (void)setName:(NSString *)nameString

@@ -17,7 +17,7 @@
     buyout.initiatedAt = [DateUtility dateFromString:buyoutDict[@"initiated_at"]];
     buyout.initiatedTimeAgo = buyoutDict[@"initiated_time_ago"];
     buyout.deadlineAt = [DateUtility dateFromString:buyoutDict[@"deadline_at"]];
-    buyout.amount = [buyoutDict[@"amount"] intValue];
+    buyout.numberOfShares = [buyoutDict[@"number_of_shares"] unsignedIntegerValue];
     buyout.state = buyoutDict[@"state"];
     buyout.resolvedAt = [DateUtility dateFromString:buyoutDict[@"resolved_at"]];
     buyout.resolvedTimeAgo = buyoutDict[@"resolved_time_ago"];

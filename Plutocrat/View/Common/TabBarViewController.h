@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "HomeViewController.h"
+#import "AccountViewController.h"
 
 @class TabBarViewController;
 
@@ -19,7 +20,7 @@
 
 @end
 
-@interface TabBarViewController : UITabBarController <HomeViewControllerDelegate>
+@interface TabBarViewController : UITabBarController <HomeViewControllerDelegate, AccountViewControllerDelegate>
 
 @property (nonatomic, weak) id <TabBarViewControllerDelegate> customDelegate;
 

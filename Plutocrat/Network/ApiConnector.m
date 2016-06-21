@@ -22,11 +22,11 @@
 #define SIGN_UP @"users"
 #define SIGN_OUT @"users/sign_out"
 #define PASSWORD @"users/password"
-#define PROFILE @"users/%d"
+#define PROFILE @"users/%lu"
 #define GET_USERS @"users"
 #define GET_BUYOUTS @"users/%d/buyouts"
 #define SHARE_PURCHASE @"users/%d/share_purchase"
-#define NEW_BUYOUT @"users/%d/buyouts/new"
+#define NEW_BUYOUT @"users/%lu/buyouts/new"
 
 @implementation ApiConnector
 
@@ -205,7 +205,7 @@ enum ApiMethod {
     }];
 }
 
-+ (void)updateProfileWithUserId:(int)userId email:(NSString *)email newPassword:(NSString *)newPassword currentPassword:(NSString *)currentPassword displayName:(NSString *)displayName profileImage:(UIImage *)image eventsEmails:(BOOL)eventsEmails updatesEmails:(BOOL)updatesEmails completion:(void (^)(NSDictionary *, NSString *))completion {
++ (void)updateProfileWithUserId:(NSUInteger)userId email:(NSString *)email newPassword:(NSString *)newPassword currentPassword:(NSString *)currentPassword displayName:(NSString *)displayName profileImage:(UIImage *)image eventsEmails:(BOOL)eventsEmails updatesEmails:(BOOL)updatesEmails completion:(void (^)(NSDictionary *, NSString *))completion {
     NSDictionary *paramNoPass = @{ @"email": email, @"display_name": displayName, @"profile_image": image, @"transactional_emails_enabled": [self boolToString:eventsEmails], @"product_emails_enabled": [self boolToString:updatesEmails]};
     NSMutableDictionary * params = [paramNoPass mutableCopy];
     if (newPassword.length > 0)
@@ -213,12 +213,17 @@ enum ApiMethod {
         [params setObject:newPassword forKey:@"password"];
         [params setObject:currentPassword forKey:@"current_password"];
     }
-    [self connectApi:[NSString stringWithFormat:PROFILE, userId] method:Patch params:params json:YES completion:^(NSDictionary *headers, id responseObject, NSString *error) {
+    [self connectApi:[NSString stringWithFormat:PROFILE, userId] method:Patch params:params json:YES completion:^(NSDictionary *headers, id responseObject, NSString *error)
+    {
+        if (!error)
+        {
+            [UserManager storeUser:responseObject[@"user"] headers:headers];
+        }
         completion(responseObject, error);
     }];
 }
 
-+ (void)getProfileWithUserId:(int)userId completion:(void (^)(User *user, NSString *error))completion {
++ (void)getProfileWithUserId:(NSUInteger)userId completion:(void (^)(User *user, NSString *error))completion {
     NSDictionary *params = nil;
     [self connectApi:[NSString stringWithFormat:PROFILE, userId] method:Get params:params json:YES completion:^(NSDictionary *headers, id responseObject, NSString *error) {
         User *user = [User userFromDict:responseObject[@"user"]];
@@ -226,7 +231,8 @@ enum ApiMethod {
     }];
 }
 
-+ (void)getUsersWithPage:(NSUInteger)page completion:(void (^)(NSArray *users, NSUInteger perPage, BOOL isLastPage, NSString *error))completion {
++ (void)getUsersWithPage:(NSUInteger)page completion:(void (^)(NSArray *, NSUInteger, BOOL, NSString *))completion
+{
     NSDictionary *params = @{ @"page": @(page) };
     [self connectApi:GET_USERS method:Get params:params json:NO completion:^(NSDictionary *headers, id responseObject, NSString *error) {
         NSMutableArray * users = [NSMutableArray array];
@@ -263,11 +269,12 @@ enum ApiMethod {
     }];
 }
 
-+ (void)initiateBuyout:(int)bundleSize quantity:(int)quantity appleReceiptData:(NSString *)appleReceiptData completion:(void (^)(int availableSharesCount, int minimumAmount, NSString *error))completion {
-    NSDictionary *params = @{ @"initiating_user_id": @([UserManager currentUserId]) };
-    [self connectApi:[NSString stringWithFormat:NEW_BUYOUT, [UserManager currentUserId]] method:Get params:params json:NO completion:^(NSDictionary *headers, id responseObject, NSString *error) {
++ (void)initiateBuyoutToUser:(NSUInteger)userId
+                  completion:(void (^)(NSUInteger, NSUInteger, NSString *))completion
+{
+    [self connectApi:[NSString stringWithFormat:NEW_BUYOUT, (unsigned long)userId] method:Get params:nil json:NO completion:^(NSDictionary *headers, id responseObject, NSString *error) {
         NSDictionary *newBuyout = responseObject[@"new_buyout"];
-        completion([newBuyout[@"available_shares_count"] intValue], [newBuyout[@"minimum_amount"] intValue], error);
+        completion([newBuyout[@"available_shares_count"] unsignedIntegerValue], [newBuyout[@"minimum_amount"] unsignedIntegerValue], error);
     }];
 }
 
