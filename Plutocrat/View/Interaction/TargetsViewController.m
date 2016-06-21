@@ -95,10 +95,11 @@
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:animations
                      completion:^(BOOL finished){
+                         User * target = [self.source objectAtIndex:cell.tag];
                          InitiateViewController * ivc = [[InitiateViewController alloc] init];
                          [self addChildViewController:ivc];
                          [self.view addSubview:ivc.view];
-                         [ivc stubName:[self.source objectAtIndex:cell.tag]];
+                         [ivc setUser:target];
                          [ivc setBackImageType:BackImageTypeTargets];
                          [cell removeFromSuperview];
                          [self.table reloadData];

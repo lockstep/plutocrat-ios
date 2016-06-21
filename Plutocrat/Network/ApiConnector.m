@@ -274,7 +274,7 @@ enum ApiMethod {
 {
     [self connectApi:[NSString stringWithFormat:NEW_BUYOUT, (unsigned long)userId] method:Get params:nil json:NO completion:^(NSDictionary *headers, id responseObject, NSString *error) {
         NSDictionary *newBuyout = responseObject[@"new_buyout"];
-        completion([newBuyout[@"available_shares_count"] unsignedIntegerValue], [newBuyout[@"minimum_amount"] unsignedIntegerValue], error);
+        completion([newBuyout[@"available_shares_count"] unsignedIntegerValue], [newBuyout[@"minimum_buyout_shares"] unsignedIntegerValue], error);
     }];
 }
 

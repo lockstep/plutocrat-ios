@@ -99,7 +99,7 @@
                          InitiateViewController * ivc = [[InitiateViewController alloc] init];
                          [self addChildViewController:ivc];
                          [self.view addSubview:ivc.view];
-                         [ivc stubName:[self.source objectAtIndex:cell.tag]];
+                     //    [ivc stubName:[self.source objectAtIndex:cell.tag]];
                          [ivc setBackImageType:BackImageTypeBuyouts];
                          [cell removeFromSuperview];
                          [self.table reloadData];

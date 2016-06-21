@@ -497,14 +497,14 @@
 			children = (
 				FD386A001CE349C600065BA3 /* Buyout.h */,
 				FD386A011CE349C600065BA3 /* Buyout.m */,
+				FD310E3F1D18FFF90051930A /* InboundBuyout.h */,
+				FD310E401D18FFF90051930A /* InboundBuyout.m */,
 				FD4553D01D09629700554618 /* Settings.h */,
 				FD4553D11D09629700554618 /* Settings.m */,
 				FD386A021CE349C600065BA3 /* User.h */,
 				FD386A031CE349C600065BA3 /* User.m */,
 				FD386A1D1CE34BB700065BA3 /* UserManager.h */,
 				FD386A1E1CE34BB700065BA3 /* UserManager.m */,
-				FD310E3F1D18FFF90051930A /* InboundBuyout.h */,
-				FD310E401D18FFF90051930A /* InboundBuyout.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -874,7 +874,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 0.3.4;
+				CURRENT_PROJECT_VERSION = 0.4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Plutocrat/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Plutocrat/Supporting Files/Info.plist";
@@ -894,7 +894,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 0.3.4;
+				CURRENT_PROJECT_VERSION = 0.4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Plutocrat/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Plutocrat/Supporting Files/Info.plist";

@@ -16,9 +16,10 @@
     return [formatter dateFromString:dateString];
 }
 
-+ (int)daysFromNow:(NSDate *)date {
-    int days = [date timeIntervalSinceNow] / 86400;
-    return abs(days);
++ (NSUInteger)daysFromNow:(NSDate *)date
+{
+    NSUInteger days = [[NSDate date] timeIntervalSinceDate:date] / 86400;
+    return days;
 }
 
 + (NSString *)timeUntilNow:(NSDate *)date {

@@ -12,5 +12,6 @@
 
 + (instancetype)grayWithIntense:(CGFloat)intense;
 + (instancetype)ourViolet;
++ (instancetype)ourRed;
 
 @end

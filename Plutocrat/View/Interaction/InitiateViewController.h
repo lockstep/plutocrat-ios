@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 typedef NS_ENUM (NSUInteger, BackImageType)
 {
@@ -16,7 +17,7 @@ typedef NS_ENUM (NSUInteger, BackImageType)
 
 @interface InitiateViewController : UIViewController
 
-- (void)stubName:(NSString *)name;
+- (void)setUser:(User *)user;
 - (void)setBackImageType:(BackImageType)type;
 
 @end

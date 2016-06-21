@@ -187,7 +187,7 @@
     [homeHeader setType:HomeHeaderTypeThreated];
     [homeHeader setDate:user.inboundBuyout.deadlineAt];
 
-    UIActivityIndicatorView * __block iView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    UIActivityIndicatorView * iView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [iView setCenter:CGPointMake(attackerView.attacker.frame.size.width / 2,
                                  attackerView.attacker.frame.size.height / 2)];
     [attackerView.attacker addSubview:iView];

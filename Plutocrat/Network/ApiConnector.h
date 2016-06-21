@@ -12,8 +12,15 @@
 
 @interface ApiConnector : NSObject
 
-+ (void)signInWithEmail:(NSString *)email password:(NSString *)password completion:(void (^)(NSDictionary *response, NSString *error))completion;
-+ (void)signUpWithDisplayName:(NSString *)displayName email:(NSString *)email password:(NSString *)password completion:(void (^)(NSDictionary *response, NSString *error))completion;
++ (void)signInWithEmail:(NSString *)email
+               password:(NSString *)password
+             completion:(void (^)(NSDictionary *response, NSString *error))completion;
+
++ (void)signUpWithDisplayName:(NSString *)displayName
+                        email:(NSString *)email
+                     password:(NSString *)password
+                   completion:(void (^)(NSDictionary *response, NSString *error))completion;
+
 + (void)signOutWithCompletion:(void (^)(NSString *error))completion;
 + (void)requestPasswordWithEmail:(NSString *)email completion:(void (^)(NSString *error))completion;
 + (void)resetPasswordWithToken:(NSString *)token password:(NSString *)password completion:(void (^)(NSString *error))completion;
@@ -28,7 +35,8 @@
                   updatesEmails:(BOOL)updatesEmails
                      completion:(void (^)(NSDictionary *response, NSString *error))completion;
 
-+ (void)getProfileWithUserId:(NSUInteger)userId completion:(void (^)(User *user, NSString *error))completion;
++ (void)getProfileWithUserId:(NSUInteger)userId
+                  completion:(void (^)(User *user, NSString *error))completion;
 
 + (void)getUsersWithPage:(NSUInteger)page completion:(void (^)(NSArray *users, NSUInteger perPage, BOOL isLastPage, NSString *error))completion;
 + (void)getBuyoutsWithPage:(int)page completion:(void (^)(NSArray *buyouts, NSString *error))completion;

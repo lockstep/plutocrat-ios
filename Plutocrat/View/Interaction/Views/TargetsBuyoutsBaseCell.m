@@ -66,7 +66,7 @@
         
         engageReplace = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 65.0f, 28.0f)];
         [engageReplace setFont:[UIFont regularFontWithSize:11.0f]];
-        [engageReplace setTextColor:[UIColor colorWithRed:208.0f / 255.0f green:0.0f blue:0.0f alpha:1.0f]];
+        [engageReplace setTextColor:[UIColor ourRed]];
         [engageReplace setNumberOfLines:0];
         [engageReplace setLineBreakMode:NSLineBreakByWordWrapping];
         [engageReplace setHidden:YES];

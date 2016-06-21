@@ -11,7 +11,7 @@
 @interface DateUtility : NSObject
 
 + (NSDate *)dateFromString:(NSString *)dateString;
-+ (int)daysFromNow:(NSDate *)date;
++ (NSUInteger)daysFromNow:(NSDate *)date;
 + (NSString *)timeUntilNow:(NSDate *)date;
 
 @end

@@ -11,6 +11,8 @@
 #import "CommonButton.h"
 #import "TargetsBuyoutsHeader.h"
 #import "TargetsCell.h"
+#import "DateUtility.h"
+#import "ApiConnector.h"
 
 @interface InitiateViewController ()
 {
@@ -18,6 +20,7 @@
     UIImageView * anotherBack;
     TargetsCell * anotherHeader;
     SelectShares * selectShares;
+    CommonButton * execute;
 }
 @end
 
@@ -63,16 +66,49 @@
     [abort addTarget:self action:@selector(abortTapped) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:abort];
     
-    CommonButton * execute = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"EXECUTE", @"Buttons", nil) color:ButtonColorViolet];
+    execute = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"EXECUTE", @"Buttons", nil) color:ButtonColorViolet];
     [execute setCenter:CGPointMake(self.view.bounds.size.width - [Globals horizontalOffsetInTable] - execute.frame.size.width / 2, selectShares.frame.size.height + execute.frame.size.height / 2 + 40.0f)];
+    [execute setUserInteractionEnabled:NO];
     [execute addTarget:self action:@selector(executeTapped) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:execute];
 
     CGFloat contentY = MAX(execute.frame.origin.y + execute.frame.size.height + 20.0f,
                            view.frame.size.height + 1.0f);
     [view setContentSize:CGSizeMake(view.frame.size.width, contentY)];
+}
 
-    [self stub2];
+#pragma mark - public
+
+- (void)setUser:(User *)user
+{
+    [header setHidden:YES];
+    [anotherBack setHidden:NO];
+    [anotherHeader setHidden:NO];
+    [[anotherHeader photo] setUrl:user.profileImageUrl initials:user.initials compeltionHandler:nil];
+    [[anotherHeader name] setText:user.displayName];
+    [anotherHeader setEngageButtonState:EngageButtonHidden];
+    [anotherHeader setBuyouts:user.successfulBuyoutsCount
+                      threats:user.matchedBuyoutsCount
+                         days:[DateUtility daysFromNow:user.registeredAt]];
+    UIActivityIndicatorView * iView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [iView setCenter:CGPointMake(selectShares.frame.size.width / 2, selectShares.frame.size.height / 2)];
+    [selectShares addSubview:iView];
+    [selectShares setUserInteractionEnabled:NO];
+    [iView startAnimating];
+    [ApiConnector initiateBuyoutToUser:user.identifier
+                            completion:^(NSUInteger availableSharesCount, NSUInteger minimumAmount, NSString * error)
+     {
+         [iView removeFromSuperview];
+         if (!error)
+         {
+             [selectShares setMin:minimumAmount value:minimumAmount max:availableSharesCount];
+             [selectShares setUserInteractionEnabled:YES];
+             if (minimumAmount <= availableSharesCount)
+             {
+                 [execute setUserInteractionEnabled:YES];
+             }
+         }
+     }];
 }
 
 - (void)setBackImageType:(BackImageType)type
@@ -92,7 +128,7 @@
     }
 }
 
-#pragma mark - Buttons
+#pragma mark - buttons
 
 - (void)abortTapped
 {
@@ -118,13 +154,7 @@
 
 - (void)stubName:(NSString *)name
 {
-    [header setHidden:YES];
-    [anotherBack setHidden:NO];
-    [anotherHeader setHidden:NO];
-    [[anotherHeader photo] setImage:[UIImage imageNamed:name]];
-    [[anotherHeader name] setText:name];
-    [anotherHeader setEngageButtonState:EngageButtonHidden];
-    [self stubCell:anotherHeader];
+
 }
 
 - (void)stub2

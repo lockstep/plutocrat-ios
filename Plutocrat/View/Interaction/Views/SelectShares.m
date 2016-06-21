@@ -108,7 +108,6 @@
                                     140.0f,
                                     16.0f)];
         [minimumBuyout setFont:tinyFont];
-        [minimumBuyout setTextColor:grayColor];
         [self addSubview:minimumBuyout];
         
         availableShares = [[UILabel alloc] initWithFrame:
@@ -212,6 +211,14 @@ const CGFloat timeInterval = 0.1f;
     maximumValue = max;
     [minimumBuyout setText:
      [NSString stringWithFormat:@"%@: %lu", NSLocalizedStringFromTable(@"MinimumBuyout", @"Labels", nil), (unsigned long)min]];
+    if (min > max)
+    {
+        [minimumBuyout setTextColor:[UIColor ourRed]];
+    }
+    else
+    {
+        [minimumBuyout setTextColor:[UIColor grayWithIntense:146.0f]];
+    }
     [availableShares setText:
      [NSString stringWithFormat:@"%@: %lu", NSLocalizedStringFromTable(@"AvailableShares", @"Labels", nil), (unsigned long)max]];
     [self setSharesState];
