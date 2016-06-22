@@ -216,7 +216,11 @@
     {
         [actionLabel setText:NSLocalizedStringFromTable(@"SignIn", @"Labels", nil)];
         LAContext * context = [LAContext new];
-        if ([Settings isTouchIDEnabled] && [context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil])
+        if ([Settings isTouchIDEnabled] &&
+            [context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil] &&
+            [[Settings userEmail] length] > 0 &&
+            [[wrapper myObjectForKey:(__bridge id)kSecValueData] isKindOfClass:[NSString class]] &&
+            [[wrapper myObjectForKey:(__bridge id)kSecValueData] length] > 0)
         {
             [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:NSLocalizedStringFromTable(@"UseTouchIDToLogin", @"Labels", nil) reply:^(BOOL success, NSError * error)
              {

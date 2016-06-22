@@ -32,6 +32,7 @@
     User * user;
     UIActivityIndicatorView * iView;
     BOOL addedHeight;
+    BOOL imageChanged;
 }
 @end
 
@@ -319,7 +320,6 @@
     [view setContentSize:CGSizeMake(view.frame.size.width, totalY)];
 
     user = [User userFromDict:[UserManager userDict]];
-    user.email = [Settings userEmail];
 
     [self setSwitches];
     [self setData];
@@ -347,6 +347,7 @@
     UIImage * chosenImage = info[UIImagePickerControllerEditedImage];
     [photo setImage:chosenImage];
     [picker dismissViewControllerAnimated:YES completion:nil];
+    imageChanged = YES;
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -358,42 +359,29 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if (addedHeight) return;
-    addedHeight = YES;
-    if (textField == newPassword)
-    {
-        if (self.view.frame.size.height < 600.0f)
-        {
-            [view setContentSize:CGSizeMake(view.frame.size.width, view.contentSize.height + 20.0f)];
-            [view scrollRectToVisible:CGRectMake(0.0f, view.contentSize.height - 1.0f, view.frame.size.width, 1.0f) animated:YES];
-        }
-        [currentPassword setUserInteractionEnabled:NO];
-    }
     if (textField == currentPassword)
     {
+        if (addedHeight) return;
+        addedHeight = YES;
         [view setContentSize:CGSizeMake(view.frame.size.width, view.contentSize.height + 100.0f)];
         [view scrollRectToVisible:CGRectMake(0.0f, view.contentSize.height - 1.0f, view.frame.size.width, 1.0f) animated:YES];
-        [newPassword setUserInteractionEnabled:NO];
+    }
+    else
+    {
+        if (!addedHeight) return;
+        addedHeight = NO;
+        [view setContentSize:CGSizeMake(view.frame.size.width, view.contentSize.height - 100.0f)];
+        [view scrollRectToVisible:textField.frame animated:YES];
     }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     addedHeight = NO;
-    if (textField == newPassword)
-    {
-        if (self.view.frame.size.height < 600.0f)
-        {
-            [view setContentSize:CGSizeMake(view.frame.size.width, view.contentSize.height - 20.0f)];
-            [view scrollRectToVisible:textField.frame animated:YES];
-        }
-        [currentPassword setUserInteractionEnabled:YES];
-    }
     if (textField == currentPassword)
     {
         [view setContentSize:CGSizeMake(view.frame.size.width, view.contentSize.height - 100.0f)];
         [view scrollRectToVisible:textField.frame animated:YES];
-        [newPassword setUserInteractionEnabled:YES];
     }
     [textField resignFirstResponder];
     return NO;
@@ -424,20 +412,27 @@
         [self showAlertEmptyPassword];
         return;
     }
+    if (![email.text isEqualToString:user.email] && currentPassword.text.length == 0)
+    {
+        [self showAlertEmptyPassword];
+        return;
+    }
     [self startActivity];
     [ApiConnector updateProfileWithUserId:user.identifier
-                                    email:user.email
+                                    email:email.text
                               newPassword:newPassword.text
                           currentPassword:currentPassword.text
                               displayName:displayName.text
-                             profileImage:photo.image
-                               eventsEmails:eventsSwitch.isOn
+                             profileImage:imageChanged ? photo.image : nil
+                             eventsEmails:eventsSwitch.isOn
                             updatesEmails:updatesSwitch.isOn
                                completion:^(NSDictionary * response, NSString * error) {
                                    [self stopActivity];
+                                   currentPassword.text = @"";
+                                   newPassword.text = @"";
                                    if (!error)
                                    {
-                                       user = [User userFromDict:response];
+                                       user = [User userFromDict:[UserManager userDict]];
                                        [Settings enableEventsNotifiations:eventsSwitch.isOn];
                                        [Settings enableUpdatesEmails:updatesSwitch.isOn];
                                        [Settings enableTouchID:touchIDSwitch.isOn];

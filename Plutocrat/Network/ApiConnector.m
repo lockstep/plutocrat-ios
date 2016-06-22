@@ -121,7 +121,13 @@ enum ApiMethod {
             case 200:
             case 201: {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    completion(httpResponse.allHeaderFields, responseDict, nil);
+                    NSDictionary * meta = responseDict[@"meta"];
+                    NSString * err;
+                    if (meta[@"errors"])
+                    {
+                        err = [self sanitizedError:[[[meta[@"errors"] allValues] firstObject] description]];
+                    }
+                    completion(httpResponse.allHeaderFields, responseDict, err);
                 });
             }
                 break;
@@ -205,15 +211,39 @@ enum ApiMethod {
     }];
 }
 
-+ (void)updateProfileWithUserId:(NSUInteger)userId email:(NSString *)email newPassword:(NSString *)newPassword currentPassword:(NSString *)currentPassword displayName:(NSString *)displayName profileImage:(UIImage *)image eventsEmails:(BOOL)eventsEmails updatesEmails:(BOOL)updatesEmails completion:(void (^)(NSDictionary *, NSString *))completion {
-    NSDictionary *paramNoPass = @{ @"email": email, @"display_name": displayName, @"profile_image": image, @"transactional_emails_enabled": [self boolToString:eventsEmails], @"product_emails_enabled": [self boolToString:updatesEmails]};
-    NSMutableDictionary * params = [paramNoPass mutableCopy];
-    if (newPassword.length > 0)
++ (void)updateProfileWithUserId:(NSUInteger)userId
+                          email:(NSString *)email
+                    newPassword:(NSString *)newPassword
+                currentPassword:(NSString *)currentPassword
+                    displayName:(NSString *)displayName
+                   profileImage:(UIImage *)image
+                   eventsEmails:(BOOL)eventsEmails
+                  updatesEmails:(BOOL)updatesEmails
+                     completion:(void (^)(NSDictionary *, NSString *))completion
+{
+    NSDictionary * paramsStatic = @{@"email": email,
+                                    @"display_name": displayName,
+                                    @"transactional_emails_enabled": @(eventsEmails),
+                                    @"product_emails_enabled": @(updatesEmails)};
+    NSMutableDictionary * params = [paramsStatic mutableCopy];
+    if (newPassword.length > 0 && currentPassword.length > 0)
     {
         [params setObject:newPassword forKey:@"password"];
         [params setObject:currentPassword forKey:@"current_password"];
     }
-    [self connectApi:[NSString stringWithFormat:PROFILE, userId] method:Patch params:params json:YES completion:^(NSDictionary *headers, id responseObject, NSString *error)
+    if (currentPassword.length > 0 && email.length > 0)
+    {
+        [params setObject:currentPassword forKey:@"current_password"];
+    }
+    if (image)
+    {
+        [params setObject:image forKey:@"profile_image"];
+    }
+    [self connectApi:[NSString stringWithFormat:PROFILE, userId]
+              method:Patch
+              params:params
+                json:YES
+          completion:^(NSDictionary * headers, id responseObject, NSString * error)
     {
         if (!error)
         {
@@ -249,7 +279,9 @@ enum ApiMethod {
     }];
 }
 
-+ (void)getBuyoutsWithPage:(int)page completion:(void (^)(NSArray *buyouts, NSString *error))completion {
++ (void)getBuyoutsWithPage:(NSUInteger)page
+                completion:(void (^)(NSArray *, NSString *))completion
+{
     NSDictionary *params = @{ @"page": @(page) };
     [self connectApi:[NSString stringWithFormat:GET_BUYOUTS, [UserManager currentUserId]] method:Get params:params json:NO completion:^(NSDictionary *headers, id responseObject, NSString *error) {
         NSMutableArray *buyouts = [NSMutableArray array];
@@ -262,7 +294,10 @@ enum ApiMethod {
     }];
 }
 
-+ (void)purchaseShare:(int)bundleSize quantity:(int)quantity appleReceiptData:(NSData *)appleReceiptData completion:(void (^)(NSString *error))completion {
++ (void)purchaseShare:(NSUInteger)bundleSize
+             quantity:(NSUInteger)quantity
+     appleReceiptData:(NSData *)appleReceiptData completion:(void (^)(NSString *))completion
+{
     NSDictionary *params = @{ @"share_purchase": @{ @"apple_receipt_data": [appleReceiptData base64EncodedStringWithOptions:0], @"bundle_size": @(bundleSize), @"quantity": @(quantity) } };
     [self connectApi:[NSString stringWithFormat:SHARE_PURCHASE, [UserManager currentUserId]] method:Post params:params json:YES completion:^(NSDictionary *headers, id responseObject, NSString *error) {
         completion(error);
@@ -291,9 +326,9 @@ enum ApiMethod {
     });
 }
 
-+ (NSString *)boolToString:(BOOL)input
++ (NSString *)sanitizedError:(NSString *)error
 {
-    return input ? @"true" : @"false";
+    return [[[[error stringByReplacingOccurrencesOfString:@"(" withString:@""] stringByReplacingOccurrencesOfString:@")" withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
 }
 
 @end

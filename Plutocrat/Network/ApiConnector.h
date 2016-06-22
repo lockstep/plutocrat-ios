@@ -14,16 +14,21 @@
 
 + (void)signInWithEmail:(NSString *)email
                password:(NSString *)password
-             completion:(void (^)(NSDictionary *response, NSString *error))completion;
+             completion:(void (^)(NSDictionary * response, NSString * error))completion;
 
 + (void)signUpWithDisplayName:(NSString *)displayName
                         email:(NSString *)email
                      password:(NSString *)password
-                   completion:(void (^)(NSDictionary *response, NSString *error))completion;
+                   completion:(void (^)(NSDictionary * response, NSString * error))completion;
 
-+ (void)signOutWithCompletion:(void (^)(NSString *error))completion;
-+ (void)requestPasswordWithEmail:(NSString *)email completion:(void (^)(NSString *error))completion;
-+ (void)resetPasswordWithToken:(NSString *)token password:(NSString *)password completion:(void (^)(NSString *error))completion;
++ (void)signOutWithCompletion:(void (^)(NSString * error))completion;
+
++ (void)requestPasswordWithEmail:(NSString *)email
+                      completion:(void (^)(NSString * error))completion;
+
++ (void)resetPasswordWithToken:(NSString *)token
+                      password:(NSString *)password
+                    completion:(void (^)(NSString * error))completion;
 
 + (void)updateProfileWithUserId:(NSUInteger)userId
                           email:(NSString *)email
@@ -33,15 +38,21 @@
                    profileImage:(UIImage *)image
                    eventsEmails:(BOOL)eventsEmails
                   updatesEmails:(BOOL)updatesEmails
-                     completion:(void (^)(NSDictionary *response, NSString *error))completion;
+                     completion:(void (^)(NSDictionary * response, NSString * error))completion;
 
 + (void)getProfileWithUserId:(NSUInteger)userId
-                  completion:(void (^)(User *user, NSString *error))completion;
+                  completion:(void (^)(User * user, NSString * error))completion;
 
-+ (void)getUsersWithPage:(NSUInteger)page completion:(void (^)(NSArray *users, NSUInteger perPage, BOOL isLastPage, NSString *error))completion;
-+ (void)getBuyoutsWithPage:(int)page completion:(void (^)(NSArray *buyouts, NSString *error))completion;
++ (void)getUsersWithPage:(NSUInteger)page
+              completion:(void (^)(NSArray * users, NSUInteger perPage, BOOL isLastPage, NSString * error))completion;
 
-+ (void)purchaseShare:(int)bundleSize quantity:(int)quantity appleReceiptData:(NSData *)appleReceiptData completion:(void (^)(NSString *error))completion;
++ (void)getBuyoutsWithPage:(NSUInteger)page
+                completion:(void (^)(NSArray * buyouts, NSString * error))completion;
+
++ (void)purchaseShare:(NSUInteger)bundleSize
+             quantity:(NSUInteger)quantity
+     appleReceiptData:(NSData *)appleReceiptData
+           completion:(void (^)(NSString * error))completion;
 
 + (void)initiateBuyoutToUser:(NSUInteger)userId
                   completion:(void (^)(NSUInteger availableSharesCount, NSUInteger minimumAmount, NSString * error))completion;
