@@ -20,7 +20,10 @@
     UIImageView * anotherBack;
     TargetsCell * anotherHeader;
     SelectShares * selectShares;
+    CommonButton * abort;
     CommonButton * execute;
+    NSUInteger userId;
+    NSUInteger cellTag;
 }
 @end
 
@@ -61,7 +64,7 @@
                                300.0f)];
     [view addSubview:selectShares];
     
-    CommonButton * abort = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"ABORT", @"Buttons", nil) color:ButtonColorGray];
+    abort = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"ABORT", @"Buttons", nil) color:ButtonColorGray];
     [abort setCenter:CGPointMake([Globals horizontalOffsetInTable] + abort.frame.size.width / 2, selectShares.frame.size.height + abort.frame.size.height / 2 + 40.0f)];
     [abort addTarget:self action:@selector(abortTapped) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:abort];
@@ -79,8 +82,10 @@
 
 #pragma mark - public
 
-- (void)setUser:(User *)user
+- (void)setUser:(User *)user cellTag:(NSUInteger)tag
 {
+    cellTag = tag;
+    userId = user.identifier;
     [header setHidden:YES];
     [anotherBack setHidden:NO];
     [anotherHeader setHidden:NO];
@@ -95,8 +100,8 @@
     [selectShares addSubview:iView];
     [selectShares setUserInteractionEnabled:NO];
     [iView startAnimating];
-    [ApiConnector initiateBuyoutToUser:user.identifier
-                            completion:^(NSUInteger availableSharesCount, NSUInteger minimumAmount, NSString * error)
+    [ApiConnector prepareBuyoutToUser:user.identifier
+                           completion:^(NSUInteger availableSharesCount, NSUInteger minimumAmount, NSString * error)
      {
          [iView removeFromSuperview];
          if (!error)
@@ -137,7 +142,31 @@
 
 - (void)executeTapped
 {
-    [self exit];
+    [execute setEnabled:NO];
+    [abort setEnabled:NO];
+    UIActivityIndicatorView * iView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [iView setCenter:CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.size.height / 2)];
+    [self.view addSubview:iView];
+    [iView startAnimating];
+    [ApiConnector initiateBuyoutToUser:userId
+                        amountOfShares:[selectShares value]
+                            completion:^(Buyout * buyout, NSString * error)
+     {
+         [execute setEnabled:YES];
+         [abort setEnabled:YES];
+         [iView removeFromSuperview];
+         if (!error)
+         {
+             [self showAlertOk:^()
+              {
+                  if ([self.delegate respondsToSelector:@selector(initiateViewController:initiatedBuyoutAndShouldRefreshCellWithTag:)])
+                  {
+                      [self.delegate initiateViewController:self initiatedBuyoutAndShouldRefreshCellWithTag:cellTag];
+                  }
+                  [self exit];
+              }];
+         }
+     }];
 }
 
 #pragma mark - TargetsBuyotsHeaderDelegate
@@ -182,6 +211,36 @@
 {
     [self.view removeFromSuperview];
     [self removeFromParentViewController];
+}
+
+#pragma mark - Alerts
+
+- (void)showAlertWithErrorText:(NSString *)text
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"Error", @"Labels", nil)
+                                                                        message:text preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction * defaultAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                 style:UIAlertActionStyleDefault
+                                                               handler:nil];
+
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    });
+}
+
+- (void)showAlertOk:(void (^)())completion
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:nil message:NSLocalizedStringFromTable(@"SuccessfulInitiation", @"Labels", nil) preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alert animated:YES completion:nil];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [alert dismissViewControllerAnimated:YES completion:^()
+            {
+                completion();
+            }];
+        });
+    });
 }
 
 @end

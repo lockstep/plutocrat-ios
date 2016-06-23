@@ -7,9 +7,9 @@
 //
 
 #import "TargetsViewController.h"
-#import "InitiateViewController.h"
 #import "ApiConnector.h"
 #import "DateUtility.h"
+#import "UserManager.h"
 
 @interface TargetsViewController ()
 {
@@ -60,7 +60,11 @@
         [tCell setLoading:NO];
         [tCell setBuyouts:user.successfulBuyoutsCount threats:user.matchedBuyoutsCount days:[DateUtility daysFromNow:user.registeredAt]];
         [[tCell name] setText:user.displayName];
-        [tCell setEngageButtonState:user.underBuyoutThreat];
+        [tCell setEngageButtonState:EngageButtonDefaultState];
+        if (user.identifier == [UserManager currentUserId])
+            [tCell setEngageButtonState:EngageButtonHidden];
+        else if (user.underBuyoutThreat)
+            [tCell setEngageButtonState:EngageButtonUnderThreatState];
         [tCell.photo setUrl:user.profileImageUrl initials:user.initials compeltionHandler:^(UIImage * image)
          {
              if (cell.tag == indexPath.row)
@@ -99,8 +103,9 @@
                          InitiateViewController * ivc = [[InitiateViewController alloc] init];
                          [self addChildViewController:ivc];
                          [self.view addSubview:ivc.view];
-                         [ivc setUser:target];
+                         [ivc setUser:target cellTag:cell.tag];
                          [ivc setBackImageType:BackImageTypeTargets];
+                         [ivc setDelegate:self];
                          [cell removeFromSuperview];
                          [self.table reloadData];
                      }];
@@ -177,6 +182,13 @@
             }
         }
     }];
+}
+
+#pragma mark - InitiateViewControllerDelegate
+
+- (void)initiateViewController:(InitiateViewController *)controller initiatedBuyoutAndShouldRefreshCellWithTag:(NSUInteger)tag
+{
+    [self.table reloadData];
 }
 
 - (void)noPlutocrat

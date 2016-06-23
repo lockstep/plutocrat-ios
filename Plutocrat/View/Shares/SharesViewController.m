@@ -8,6 +8,7 @@
 
 #import "SharesViewController.h"
 #import "CommonHeader.h"
+#import "UserManager.h"
 
 @interface SharesViewController ()
 {
@@ -92,7 +93,7 @@ static NSString * identifier = @"SharesCellIdentifier";
 {
     SKProductsRequest * req = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:@"com.whiteflyventuresinc.Plutocrat.One"]];
     [req setDelegate:self];
-//    [req start];
+   // [req start];
 }
 
 #pragma mark - Products Request Delegate
@@ -114,7 +115,8 @@ static NSString * identifier = @"SharesCellIdentifier";
             NSURL * receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
             NSData * receipt = [NSData dataWithContentsOfURL:receiptURL];
             NSLog(@"Length of receipt is: %lu", (unsigned long)[receipt length]);
-            [[SKPaymentQueue defaultQueue] finishTransaction:trans];
+            NSLog(@"%@", [receipt base64EncodedStringWithOptions:0]);
+          //  [[SKPaymentQueue defaultQueue] finishTransaction:trans];
         }
     }
 }
@@ -123,7 +125,7 @@ static NSString * identifier = @"SharesCellIdentifier";
 
 - (void)stub
 {
-    [header setText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"UnusedSharesFormat", @"Labels", nil), 23]];
+    [header setText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"UnusedSharesFormat", @"Labels", nil), [UserManager availableShares]]];
     source = @[@1, @5, @10, @50];
     [table reloadData];
 }

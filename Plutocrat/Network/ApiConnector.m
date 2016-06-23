@@ -26,7 +26,10 @@
 #define GET_USERS @"users"
 #define GET_BUYOUTS @"users/%d/buyouts"
 #define SHARE_PURCHASE @"users/%d/share_purchase"
-#define NEW_BUYOUT @"users/%lu/buyouts/new"
+#define PREPARE_BUYOUT @"users/%lu/buyouts/new"
+#define INITIATE_BUYOUT @"users/%lu/buyout"
+#define MATCH_BUYOUT @"buyouts/%lu/match"
+#define FAIL_TO_MATCH_BUYOUT @"buyouts/%lu/fail_to_match"
 
 @implementation ApiConnector
 
@@ -43,8 +46,12 @@ enum ApiMethod {
     Post, Get, Delete, Patch
 };
 
-+ (void)connectApi:(NSString *)apiName method:(enum ApiMethod)method params:(NSDictionary *)params json:(BOOL)json completion:(void (^)(NSDictionary *header, id responseObject, NSString *error))completion {
-    
++ (void)connectApi:(NSString *)apiName
+            method:(enum ApiMethod)method
+            params:(NSDictionary *)params
+              json:(BOOL)json
+        completion:(void (^)(NSDictionary * header, id responseObject, NSString * error))completion
+{    
     NSString *urlString = [self getApiFullPath:apiName];
     
     NSMutableURLRequest *urlRequest;
@@ -304,13 +311,73 @@ enum ApiMethod {
     }];
 }
 
-+ (void)initiateBuyoutToUser:(NSUInteger)userId
-                  completion:(void (^)(NSUInteger, NSUInteger, NSString *))completion
++ (void)prepareBuyoutToUser:(NSUInteger)userId
+                 completion:(void (^)(NSUInteger, NSUInteger, NSString *))completion
 {
-    [self connectApi:[NSString stringWithFormat:NEW_BUYOUT, (unsigned long)userId] method:Get params:nil json:NO completion:^(NSDictionary *headers, id responseObject, NSString *error) {
-        NSDictionary *newBuyout = responseObject[@"new_buyout"];
-        completion([newBuyout[@"available_shares_count"] unsignedIntegerValue], [newBuyout[@"minimum_buyout_shares"] unsignedIntegerValue], error);
+    [self connectApi:[NSString stringWithFormat:PREPARE_BUYOUT, (unsigned long)userId]
+              method:Get
+              params:nil
+                json:NO
+          completion:^(NSDictionary *headers, id responseObject, NSString *error)
+    {
+        NSDictionary * newBuyout = responseObject[@"new_buyout"];
+        NSUInteger availableSharesCount = [newBuyout[@"available_shares_count"] unsignedIntegerValue];
+        NSUInteger minimumBuyoutShares = [newBuyout[@"minimum_buyout_shares"] unsignedIntegerValue];
+        completion(availableSharesCount, minimumBuyoutShares, error);
     }];
+}
+
++ (void)initiateBuyoutToUser:(NSUInteger)userId
+              amountOfShares:(NSUInteger)amount
+                  completion:(void (^)(Buyout *, NSString *))completion
+{
+    NSDictionary * params = @{@"buyout":@{@"number_of_shares":@(amount)}};
+    [self connectApi:[NSString stringWithFormat:INITIATE_BUYOUT, (unsigned long)userId]
+              method:Post
+              params:params
+                json:YES
+          completion:^(NSDictionary * headers, id responseObject, NSString * error)
+     {
+         NSDictionary * buyoutDict = responseObject[@"buyout"];
+         Buyout * buyout = [Buyout buyoutFromDict:buyoutDict];
+         completion(buyout, error);
+     }];
+}
+
++ (void)matchBuyout:(NSUInteger)buyoutId
+         completion:(void (^)(User *, NSString *))completion
+{
+    [self connectApi:[NSString stringWithFormat:MATCH_BUYOUT, (unsigned long)buyoutId]
+              method:Patch
+              params:nil
+                json:NO
+          completion:^(NSDictionary * headers, id responseObject, NSString * error)
+     {
+         if (!error)
+         {
+             [UserManager storeUser:responseObject[@"user"] headers:headers];
+         }
+         User * user = [User userFromDict:responseObject[@"user"]];
+         completion(user, error);
+     }];
+}
+
++ (void)failToMatchBuyout:(NSUInteger)buyoutId
+               completion:(void (^)(User *, NSString *))completion
+{
+    [self connectApi:[NSString stringWithFormat:FAIL_TO_MATCH_BUYOUT, (unsigned long)buyoutId]
+              method:Patch
+              params:nil
+                json:NO
+          completion:^(NSDictionary * headers, id responseObject, NSString * error)
+     {
+         if (!error)
+         {
+             [UserManager storeUser:responseObject[@"user"] headers:headers];
+         }
+         User * user = [User userFromDict:responseObject[@"user"]];
+         completion(user, error);
+     }];
 }
 
 + (void)processImageDataWithURLString:(NSString *)urlString andBlock:(void (^)(NSData * imageData))processImage

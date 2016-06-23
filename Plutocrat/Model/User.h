@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "InboundBuyout.h"
 
+@class Buyout;
+
 @interface User : NSObject
 
 @property NSUInteger identifier;
@@ -21,6 +23,7 @@
 @property NSUInteger successfulBuyoutsCount;
 @property NSUInteger failedBuyoutsCount;
 @property NSUInteger matchedBuyoutsCount;
+@property NSUInteger availableSharesCount;
 @property NSUInteger buyoutsUntilPlutocratCount;
 
 @property BOOL underBuyoutThreat;
@@ -31,6 +34,7 @@
 @property (nonatomic, copy) NSDate * defeatedAt;
 
 @property (nonatomic, strong) InboundBuyout * inboundBuyout;
+@property (nonatomic, strong) Buyout * terminalBuyout;
 
 + (instancetype)userFromDict:(NSDictionary *)userDict;
 

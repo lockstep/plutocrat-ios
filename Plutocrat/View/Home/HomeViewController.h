@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BigUserView.h"
 #import "HomeInfo.h"
+#import "AttackerView.h"
 
 @class HomeViewController;
 
@@ -20,7 +21,7 @@
 
 @end
 
-@interface HomeViewController : UIViewController <HomeInfoDelegate, BigUserViewDelegate>
+@interface HomeViewController : UIViewController <HomeInfoDelegate, BigUserViewDelegate, AttackerViewDelegate>
 
 @property (nonatomic, weak) id <HomeViewControllerDelegate> delegate;
 

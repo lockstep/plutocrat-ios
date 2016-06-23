@@ -9,7 +9,6 @@
 #import "HomeViewController.h"
 #import "HomeHeader.h"
 #import "BuyoutsStatsView.h"
-#import "AttackerView.h"
 #import "User.h"
 #import "UserManager.h"
 #import "Settings.h"
@@ -72,6 +71,7 @@
                                                                   0.0f,
                                                                   self.view.bounds.size.width,
                                                                   270.0f)];
+    [attackerView setDelegate:self];
     [view addSubview:attackerView];
 
     [self updateData];
@@ -104,7 +104,7 @@
                                                 repeats:YES];
         [self styleAttacked];
     }
-    else if (user.defeatedAt)
+    else if (user.terminalBuyout)
     {
         [self styleDefeated];
     }
@@ -178,6 +178,7 @@
     [homeHeader setDate:user.registeredAt];
     [infoView setBuyouts:user.buyoutsUntilPlutocratCount];
     [infoView setType:[Settings typeOfHomeAlert]];
+
 }
 
 - (void)styleAttacked
@@ -186,26 +187,12 @@
     
     [homeHeader setType:HomeHeaderTypeThreated];
     [homeHeader setDate:user.inboundBuyout.deadlineAt];
-
-    UIActivityIndicatorView * iView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    [iView setCenter:CGPointMake(attackerView.attacker.frame.size.width / 2,
-                                 attackerView.attacker.frame.size.height / 2)];
-    [attackerView.attacker addSubview:iView];
-    [iView startAnimating];
-    [ApiConnector getProfileWithUserId:user.inboundBuyout.initiatingUserId
-                            completion:^(User * attacker, NSString * error)
-                            {
-                                [iView removeFromSuperview];
-                                if (!error)
-                                {
-                                    [attackerView.attacker setPhotoUrl:attacker.profileImageUrl
-                                                              initials:attacker.initials
-                                                                  name:attacker.displayName
-                                                                 email:attacker.email
-                                                        sharesToMatch:user.inboundBuyout.numberOfShares];
-                                }
-                            }];
-
+    User * attacker = user.inboundBuyout.initiatingUser;
+    [attackerView.attacker setPhotoUrl:attacker.profileImageUrl
+                              initials:attacker.initials
+                                  name:attacker.displayName
+                                 email:attacker.email
+                         sharesToMatch:user.inboundBuyout.numberOfShares];
     [infoView setType:HomeInfoTypeCommon];
     [infoView setBuyouts:user.buyoutsUntilPlutocratCount];
 }
@@ -231,16 +218,127 @@
     }
 }
 
+#pragma mark - AttackerViewDelegate
+
+- (void)attackerViewDidAcceptDefeat:(AttackerView *)view
+{
+    [self showAlertAskForDefeatWithHandler:^()
+     {
+         [attackerView setUserInteractionEnabled:NO];
+         UIActivityIndicatorView * iView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+         [iView setCenter:CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.size.height / 2)];
+         [self.view addSubview:iView];
+         [iView startAnimating];
+         [ApiConnector failToMatchBuyout:user.inboundBuyout.identifier
+                              completion:^(User * user, NSString * error)
+          {
+              [iView removeFromSuperview];
+              if (!error)
+              {
+                  [self updateData];
+              }
+              else
+              {
+                  [self showAlertWithErrorText:error];
+              }
+          }];
+     }];
+}
+
+- (void)attackerViewDidMatchShares:(AttackerView *)view
+{
+    if (user.availableSharesCount < user.inboundBuyout.numberOfShares)
+    {
+        [self showAlertNotEnoughShares];
+    }
+    else
+    {
+        [attackerView setUserInteractionEnabled:NO];
+        UIActivityIndicatorView * iView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        [iView setCenter:CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.size.height / 2)];
+        [self.view addSubview:iView];
+        [iView startAnimating];
+        [ApiConnector matchBuyout:user.inboundBuyout.identifier
+                       completion:^(User * user, NSString * error)
+         {
+             [iView removeFromSuperview];
+             if (!error)
+             {
+                 [self updateData];
+             }
+             else
+             {
+                 [self showAlertWithErrorText:error];
+             }
+         }];
+    }
+}
+
 #pragma mark - timer
 
 - (void)onTimerBack
 {
     [homeHeader setDate:user.inboundBuyout.deadlineAt];
+    if ([user.inboundBuyout.deadlineAt timeIntervalSinceNow] >= 0)
+    {
+        [timer invalidate];
+        timer = nil;
+        [ApiConnector getProfileWithUserId:user.identifier
+                                completion:^(User * user, NSString * error)
+         {
+             [self updateData];
+         }];
+    }
 }
 
 - (void)onTimerForward
 {
     [homeHeader setDate:user.registeredAt];
+}
+
+#pragma mark - Alerts
+
+- (void)showAlertAskForDefeatWithHandler:(void (^)())handler
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"Alert", @"Labels", nil) message:NSLocalizedStringFromTable(@"AskForDefeat", @"Labels", nil) preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction * badAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"YES", @"Labels", nil)
+                                                             style:UIAlertActionStyleDestructive
+                                                           handler:handler];
+        UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"Cancel", @"Labels", nil)
+                                                                style:UIAlertActionStyleCancel
+                                                              handler:nil];
+
+        [alert addAction:badAction];
+        [alert addAction:cancelAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    });
+}
+
+- (void)showAlertNotEnoughShares
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"Alert", @"Labels", nil) message:NSLocalizedStringFromTable(@"NotEnoughShares", @"Labels", nil) preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction * defaultAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                 style:UIAlertActionStyleDefault
+                                                               handler:nil];
+
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    });
+}
+
+- (void)showAlertWithErrorText:(NSString *)text
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"Error", @"Labels", nil) message:text preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction * defaultAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                 style:UIAlertActionStyleDefault
+                                                               handler:nil];
+
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    });
 }
 
 @end

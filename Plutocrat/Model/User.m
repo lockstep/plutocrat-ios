@@ -24,6 +24,7 @@
     user.successfulBuyoutsCount = [userDict[@"successful_buyouts_count"] unsignedIntegerValue];
     user.failedBuyoutsCount = [userDict[@"failed_buyouts_count"] unsignedIntegerValue];
     user.matchedBuyoutsCount = [userDict[@"matched_buyouts_count"] unsignedIntegerValue];
+    user.availableSharesCount = [userDict[@"available_shares_count"] unsignedIntegerValue];
     user.buyoutsUntilPlutocratCount = [userDict[@"buyouts_until_plutocrat_count"] unsignedIntegerValue];
     
     user.underBuyoutThreat = [userDict[@"under_buyout_threat"] boolValue];
@@ -33,7 +34,10 @@
     user.registeredAt = [DateUtility dateFromString:userDict[@"registered_at"]];
     user.defeatedAt = [DateUtility dateFromString:userDict[@"defeated_at"]];
 
-    user.inboundBuyout = [InboundBuyout buyoutFromDict:userDict[@"active_inbound_buyout"]];
+    if (userDict[@"active_inbound_buyout"])
+    {
+        user.inboundBuyout = [InboundBuyout buyoutFromDict:userDict[@"active_inbound_buyout"]];
+    }
 
     return user;
 }

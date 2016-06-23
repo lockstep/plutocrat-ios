@@ -8,19 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
+@class User;
+
 @interface InboundBuyout : NSObject
 
 @property NSUInteger identifier;
 @property NSUInteger numberOfShares;
-@property NSUInteger initiatingUserId;
 @property NSUInteger targetUserId;
 
-@property (nonatomic, copy) NSDate * createdAt;
 @property (nonatomic, copy) NSDate * initiatedAt;
 @property (nonatomic, copy) NSDate * deadlineAt;
-@property (nonatomic, copy) NSDate * updatedAt;
+@property (nonatomic, copy) NSDate * resolvedAt;
 
+@property (nonatomic, copy) NSString * initiatedTimeAgo;
+@property (nonatomic, copy) NSString * resolvedTimeAgo;
 @property (nonatomic, copy) NSString * state;
+
+@property (nonatomic, strong) User * initiatingUser;
 
 + (instancetype)buyoutFromDict:(NSDictionary *)buyoutDict;
 

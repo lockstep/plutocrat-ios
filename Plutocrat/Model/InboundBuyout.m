@@ -8,6 +8,7 @@
 
 #import "InboundBuyout.h"
 #import "DateUtility.h"
+#import "User.h"
 
 @implementation InboundBuyout
 
@@ -17,15 +18,17 @@
 
     buyout.identifier = [buyoutDict[@"id"] unsignedIntegerValue];
     buyout.numberOfShares = [buyoutDict[@"number_of_shares"] unsignedIntegerValue];
-    buyout.initiatingUserId = [buyoutDict[@"initiating_user_id"] unsignedIntegerValue];
     buyout.targetUserId = [buyoutDict[@"target_user_id"] unsignedIntegerValue];
 
-    buyout.createdAt = [DateUtility dateFromString:buyoutDict[@"created_at"]];
     buyout.initiatedAt = [DateUtility dateFromString:buyoutDict[@"initiated_at"]];
     buyout.deadlineAt = [DateUtility dateFromString:buyoutDict[@"deadline_at"]];
-    buyout.updatedAt = [DateUtility dateFromString:buyoutDict[@"updated_at"]];
+    buyout.resolvedAt = [DateUtility dateFromString:buyoutDict[@"resolved_at"]];
 
+    buyout.initiatedTimeAgo = buyoutDict[@"initiated_time_ago"];
+    buyout.resolvedTimeAgo = buyoutDict[@"resolved_time_ago"];
     buyout.state = buyoutDict[@"state"];
+
+    buyout.initiatingUser = [User userFromDict:buyoutDict[@"initiating_user"]];
 
     return buyout;
 }

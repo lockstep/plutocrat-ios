@@ -19,5 +19,6 @@
 + (int)lastLogin;
 + (NSDictionary *)userDict;
 + (NSUInteger)successfulBuyouts;
++ (NSUInteger)availableShares;
 
 @end

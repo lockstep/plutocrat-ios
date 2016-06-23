@@ -41,11 +41,13 @@
         CommonButton * accept = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"ACCEPT", @"Buttons", nil) color:ButtonColorRed];
         [accept setCenter:CGPointMake(bordersOffset + accept.frame.size.width / 2,
                                       236.0f + accept.frame.size.height / 2)];
+        [accept addTarget:self action:@selector(acceptTapped) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:accept];
         
         CommonButton * match = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"MATCH", @"Buttons", nil) color:ButtonColorViolet];
         [match setCenter:CGPointMake(self.frame.size.width -  bordersOffset - match.frame.size.width / 2,
                                       236.0f + match.frame.size.height / 2)];
+        [match addTarget:self action:@selector(matchTapped) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:match];
         
         CommonSeparator * sep = [[CommonSeparator alloc] initWithFrame:
@@ -56,6 +58,24 @@
         [self addSubview:sep];
     }
     return self;
+}
+
+#pragma mark - buttons
+
+- (void)acceptTapped
+{
+    if ([self.delegate respondsToSelector:@selector(attackerViewDidAcceptDefeat:)])
+    {
+        [self.delegate attackerViewDidAcceptDefeat:self];
+    }
+}
+
+- (void)matchTapped
+{
+    if ([self.delegate respondsToSelector:@selector(attackerViewDidMatchShares:)])
+    {
+        [self.delegate attackerViewDidMatchShares:self];
+    }
 }
 
 @end

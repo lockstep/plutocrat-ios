@@ -10,10 +10,25 @@
 
 @implementation DateUtility
 
++ (NSDate *)toLocalTime:(NSDate *)date
+{
+    NSTimeZone *tz = [NSTimeZone defaultTimeZone];
+    NSInteger seconds = [tz secondsFromGMTForDate:date];
+    return [NSDate dateWithTimeInterval: seconds sinceDate:date];
+}
+
++ (NSDate *)toGlobalTime:(NSDate *)date
+{
+    NSTimeZone *tz = [NSTimeZone defaultTimeZone];
+    NSInteger seconds = -[tz secondsFromGMTForDate:date];
+    return [NSDate dateWithTimeInterval: seconds sinceDate:date];
+}
+
 + (NSDate *)dateFromString:(NSString *)dateString {
+    if (!dateString) return [NSDate distantPast];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
-    return [formatter dateFromString:dateString];
+    return [self toLocalTime:[formatter dateFromString:dateString]];
 }
 
 + (NSUInteger)daysFromNow:(NSDate *)date

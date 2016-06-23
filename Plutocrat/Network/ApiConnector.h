@@ -54,8 +54,19 @@
      appleReceiptData:(NSData *)appleReceiptData
            completion:(void (^)(NSString * error))completion;
 
++ (void)prepareBuyoutToUser:(NSUInteger)userId
+                 completion:(void (^)(NSUInteger availableSharesCount, NSUInteger minimumAmount, NSString * error))completion;
+
 + (void)initiateBuyoutToUser:(NSUInteger)userId
-                  completion:(void (^)(NSUInteger availableSharesCount, NSUInteger minimumAmount, NSString * error))completion;
+              amountOfShares:(NSUInteger)amount
+                  completion:(void (^)(Buyout * buyout, NSString * error))completion;
+
++ (void)matchBuyout:(NSUInteger)buyoutId
+         completion:(void (^)(User * user, NSString * error))completion;
+
+
++ (void)failToMatchBuyout:(NSUInteger)buyoutId
+               completion:(void (^)(User * user, NSString * error))completion;
 
 + (void)processImageDataWithURLString:(NSString *)urlString
                              andBlock:(void (^)(NSData * imageData))processImage;

@@ -15,9 +15,20 @@ typedef NS_ENUM (NSUInteger, BackImageType)
     BackImageTypeBuyouts
 };
 
+@class InitiateViewController;
+
+@protocol InitiateViewControllerDelegate <NSObject>
+@required
+
+- (void)initiateViewController:(InitiateViewController *)controller initiatedBuyoutAndShouldRefreshCellWithTag:(NSUInteger)tag;
+
+@end
+
 @interface InitiateViewController : UIViewController
 
-- (void)setUser:(User *)user;
+@property (nonatomic, weak) id <InitiateViewControllerDelegate> delegate;
+
+- (void)setUser:(User *)user cellTag:(NSUInteger)tag;
 - (void)setBackImageType:(BackImageType)type;
 
 @end

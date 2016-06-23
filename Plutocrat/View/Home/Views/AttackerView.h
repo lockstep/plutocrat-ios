@@ -9,8 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "BigUserView.h"
 
+@class AttackerView;
+
+@protocol AttackerViewDelegate <NSObject>
+@required
+
+- (void)attackerViewDidAcceptDefeat:(AttackerView *)view;
+- (void)attackerViewDidMatchShares:(AttackerView *)view;
+
+@end
+
 @interface AttackerView : UIView
 
+@property (nonatomic, weak) id <AttackerViewDelegate> delegate;
 @property (nonatomic, strong) BigUserView * attacker;
 
 @end

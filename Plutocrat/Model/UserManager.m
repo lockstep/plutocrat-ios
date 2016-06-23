@@ -90,7 +90,12 @@
 }
 
 + (NSUInteger)successfulBuyouts {
-    return [[[NSUserDefaults standardUserDefaults] objectForKey:USER_KEY][@"successful_buyouts_count"] intValue];
+    return [[[NSUserDefaults standardUserDefaults] objectForKey:USER_KEY][@"successful_buyouts_count"] unsignedIntegerValue];
+}
+
++ (NSUInteger)availableShares
+{
+    return [[[NSUserDefaults standardUserDefaults] objectForKey:USER_KEY][@"available_shares_count"] unsignedIntegerValue];
 }
 
 + (int)failedBuyouts {
