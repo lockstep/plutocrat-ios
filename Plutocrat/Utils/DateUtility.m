@@ -27,7 +27,7 @@
 + (NSDate *)dateFromString:(NSString *)dateString {
     if (!dateString) return [NSDate distantPast];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
     return [self toLocalTime:[formatter dateFromString:dateString]];
 }
 

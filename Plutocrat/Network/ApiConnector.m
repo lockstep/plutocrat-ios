@@ -246,7 +246,7 @@ enum ApiMethod {
     {
         [params setObject:image forKey:@"profile_image"];
     }
-    [self connectApi:[NSString stringWithFormat:PROFILE, userId]
+    [self connectApi:[NSString stringWithFormat:PROFILE, (unsigned long)userId]
               method:Patch
               params:params
                 json:YES
@@ -262,7 +262,7 @@ enum ApiMethod {
 
 + (void)getProfileWithUserId:(NSUInteger)userId completion:(void (^)(User *user, NSString *error))completion {
     NSDictionary *params = nil;
-    [self connectApi:[NSString stringWithFormat:PROFILE, userId] method:Get params:params json:YES completion:^(NSDictionary *headers, id responseObject, NSString *error) {
+    [self connectApi:[NSString stringWithFormat:PROFILE, (unsigned long)userId] method:Get params:params json:YES completion:^(NSDictionary *headers, id responseObject, NSString *error) {
         User *user = [User userFromDict:responseObject[@"user"]];
         completion(user, error);
     }];

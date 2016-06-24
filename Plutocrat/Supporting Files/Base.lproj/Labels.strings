@@ -63,7 +63,7 @@
 "UseTouchIDToLogin" = "Use TouchID to login";
 "SettingsUpdated" = "Your settings were updated successfully";
 "SuccessfulInitiation" = "You successfully initiated buyout";
-"AskForDefeat" = "Are you sure you want to accept defeat? It will result in you permanent account suspension.";
+"AskForDefeat" = "Are you sure you want to accept defeat? It will result in permanent account suspension.";
 "YES" = "YES";
 "Cancel" = "Cancel";
 "NotEnoughShares" = "You do not have enough shares";
