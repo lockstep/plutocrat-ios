@@ -64,9 +64,16 @@
         {
             if (buyout.targetUser.identifier == [UserManager currentUserId])
             {
-                [bCell setEngageButtonState:EngageButtonHidden];
-                if (buyout.state == BuyoutStateMatched) state = BuyoutCellHeFailedState;
-                else state = BuyoutCellIncomingState;
+                if (buyout.state == BuyoutStateMatched)
+                {
+                    state = BuyoutCellHeFailedState;
+                    if (buyout.initiatingUser.underBuyoutThreat) [bCell setEngageButtonState:EngageButtonUnderThreatState];
+                }
+                else
+                {
+                    state = BuyoutCellIncomingState;
+                    [bCell setEngageButtonState:EngageButtonAttackingYouState];
+                }
                 [[bCell name] setText:buyout.initiatingUser.displayName];
                 [bCell.photo setUrl:buyout.initiatingUser.profileImageUrl initials:buyout.initiatingUser.initials compeltionHandler:^(UIImage * image)
                  {
@@ -79,10 +86,31 @@
             }
             else
             {
-                if (buyout.targetUser.underBuyoutThreat) [bCell setEngageButtonState:EngageButtonUnderThreatState];
-                if (buyout.targetUser.defeatedAt) [bCell setEngageButtonState:EngageButtonHidden];
-                if (buyout.state == BuyoutStateMatched) state = BuyoutCellYouFailedState;
-                else state = BuyoutCellOutcomingState;
+                if (buyout.state == BuyoutStateMatched)
+                {
+                    state = BuyoutCellYouFailedState;
+                    if (buyout.targetUser.attackingCurrentUser)
+                    {
+                        [bCell setEngageButtonState:EngageButtonAttackingYouState];
+                    }
+                    else if (buyout.targetUser.underBuyoutThreat)
+                    {
+                        [bCell setEngageButtonState:EngageButtonUnderThreatState];
+                    }
+                    else if (buyout.targetUser.defeatedAt)
+                    {
+                        [bCell setEngageButtonState:EngageButtonEliminatedState];
+                    }
+                    else
+                    {
+                        [bCell setEngageButtonState:EngageButtonDefaultState];
+                    }
+                }
+                else
+                {
+                    state = BuyoutCellOutcomingState;
+                    [bCell setEngageButtonState:EngageButtonUnderThreatState];
+                }
                 [[bCell name] setText:buyout.targetUser.displayName];
                 [bCell.photo setUrl:buyout.targetUser.profileImageUrl initials:buyout.targetUser.initials compeltionHandler:^(UIImage * image)
                  {

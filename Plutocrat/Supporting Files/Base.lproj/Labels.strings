@@ -33,7 +33,6 @@
 "hours" = "hours";
 "days" = "days";
 "OutcomePending" = "Outcome Pending";
-"IncomePending" = "Income Pending";
 "BuyoutSucceeded" = "Buyout Succeeded";
 "BuyoutFailed" = "Buyout Failed";
 "BuyoutsCellFormat" = "%@\r\n%i shares %@ ago %@";

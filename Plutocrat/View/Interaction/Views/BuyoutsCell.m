@@ -39,7 +39,7 @@
 
         case BuyoutCellIncomingState:
             firstLine = NSLocalizedStringFromTable(@"ThreatedYouWith", @"Labels", nil);
-            status = NSLocalizedStringFromTable(@"IncomePending", @"Labels", nil);
+            status = NSLocalizedStringFromTable(@"OutcomePending", @"Labels", nil);
             lastRowColor = gray;
             break;
 
