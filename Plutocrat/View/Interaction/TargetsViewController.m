@@ -65,6 +65,8 @@
             [tCell setEngageButtonState:EngageButtonHidden];
         else if (user.underBuyoutThreat)
             [tCell setEngageButtonState:EngageButtonUnderThreatState];
+        else if (user.attackingCurrentUser)
+            [tCell setEngageButtonState:EngageButtonAttackingYouState];
         [tCell.photo setUrl:user.profileImageUrl initials:user.initials compeltionHandler:^(UIImage * image)
          {
              if (cell.tag == indexPath.row)
