@@ -9,18 +9,29 @@
 #import <Foundation/Foundation.h>
 #import "User.h"
 
+typedef NS_ENUM (NSUInteger, BuyoutState)
+{
+    BuyoutStateInitiated,
+    BuyoutStateMatched,
+    BuyoutStateSucceeded
+};
+
 @interface Buyout : NSObject
 
-@property int identifier;
-@property (nonatomic, retain) NSDate *initiatedAt;
-@property (nonatomic, retain) NSString *initiatedTimeAgo;
-@property (nonatomic, retain) NSDate *deadlineAt;
+@property NSUInteger identifier;
 @property NSUInteger numberOfShares;
-@property (nonatomic, retain) NSString *state;
-@property (nonatomic, retain) NSDate *resolvedAt;
-@property (nonatomic, retain) NSString *resolvedTimeAgo;
-@property (nonatomic, retain) User *initiatingUser;
-@property (nonatomic, retain) User *targetUser;
+
+@property BuyoutState state;
+
+@property (nonatomic, retain) NSDate * initiatedAt;
+@property (nonatomic, retain) NSDate * deadlineAt;
+@property (nonatomic, retain) NSDate * resolvedAt;
+
+@property (nonatomic, retain) NSString * initiatedTimeAgo;
+@property (nonatomic, retain) NSString * resolvedTimeAgo;
+
+@property (nonatomic, retain) User * initiatingUser;
+@property (nonatomic, retain) User * targetUser;
 
 + (Buyout *)buyoutFromDict:(NSDictionary *)buyoutDict;
 

@@ -24,7 +24,7 @@
 #define PASSWORD @"users/password"
 #define PROFILE @"users/%lu"
 #define GET_USERS @"users"
-#define GET_BUYOUTS @"users/%d/buyouts"
+#define GET_BUYOUTS @"users/%lu/buyouts"
 #define SHARE_PURCHASE @"users/%d/share_purchase"
 #define PREPARE_BUYOUT @"users/%lu/buyouts/new"
 #define INITIATE_BUYOUT @"users/%lu/buyout"
@@ -122,8 +122,7 @@ enum ApiMethod {
         long statusCode = httpResponse.statusCode;
         NSLog(@"response(%ld, %ld): %@", statusCode, (long)error.code, responseObject);
         NSDictionary *responseDict = [responseObject cu_compactDictionary];
-        NSLog(@"After Remove Null rfesponse(%ld, %ld): %@", statusCode, (long)error.code, responseDict);
-        
+
         switch (statusCode) {
             case 200:
             case 201: {
@@ -134,7 +133,7 @@ enum ApiMethod {
                     {
                         err = [self sanitizedError:[[[meta[@"errors"] allValues] firstObject] description]];
                     }
-                    completion(httpResponse.allHeaderFields, responseDict, err);
+                    completion(httpResponse.allHeaderFields, [responseDict copy], err);
                 });
             }
                 break;
@@ -142,21 +141,21 @@ enum ApiMethod {
             case 401: {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     NSArray *errors = responseObject[@"meta"][@"errors"][@"auth"];
-                    completion(httpResponse.allHeaderFields, responseDict, errors.firstObject);//@"Invalid login credentials. Please try again.");
+                    completion(httpResponse.allHeaderFields, [responseDict copy], errors.firstObject);//@"Invalid login credentials. Please try again.");
                 });
             }
                 break;
                 
             case 404: {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    completion(httpResponse.allHeaderFields, responseDict, @"Host is not reachable at this time. Please try again.");
+                    completion(httpResponse.allHeaderFields, [responseDict copy], @"Host is not reachable at this time. Please try again.");
                 });
             }
                 break;
                 
             default: {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    completion(httpResponse.allHeaderFields, responseDict, @"Unknown error has occured. Please try again.");
+                    completion(httpResponse.allHeaderFields, [responseDict copy], @"Unknown error has occured. Please try again.");
                 });
             }
                 break;
@@ -287,17 +286,27 @@ enum ApiMethod {
 }
 
 + (void)getBuyoutsWithPage:(NSUInteger)page
-                completion:(void (^)(NSArray *, NSString *))completion
+                completion:(void (^)(NSArray *, NSUInteger, BOOL, NSString *))completion
 {
     NSDictionary *params = @{ @"page": @(page) };
-    [self connectApi:[NSString stringWithFormat:GET_BUYOUTS, [UserManager currentUserId]] method:Get params:params json:NO completion:^(NSDictionary *headers, id responseObject, NSString *error) {
-        NSMutableArray *buyouts = [NSMutableArray array];
-        NSArray *buyoutArray = responseObject[@"buyouts"];
-        for (NSDictionary *buyoutDict in buyoutArray) {
-            Buyout *buyout = [Buyout buyoutFromDict:buyoutDict];
-            [buyouts addObject:buyout];
-        }
-        completion(buyouts, error);
+    [self connectApi:[NSString stringWithFormat:GET_BUYOUTS, (unsigned long)[UserManager currentUserId]]
+              method:Get
+              params:params
+                json:NO
+          completion:^(NSDictionary * headers, id responseObject, NSString * error)
+     {
+         NSDictionary *meta = responseObject[@"meta"];
+         NSUInteger current_page = [(NSString *)meta[@"current_page"] integerValue];
+         NSUInteger total_pages = [(NSString *)meta[@"total_pages"] integerValue];
+         NSUInteger perPage = [(NSString *)meta[@"per_page"] integerValue];
+         NSMutableArray * buyouts = [NSMutableArray array];
+         NSArray * buyoutArray = responseObject[@"buyouts"];
+         for (NSDictionary * buyoutDict in buyoutArray)
+         {
+             Buyout *buyout = [Buyout buyoutFromDict:buyoutDict];
+             [buyouts addObject:buyout];
+         }
+         completion(buyouts, perPage, current_page==total_pages, error);
     }];
 }
 

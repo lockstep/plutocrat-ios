@@ -10,14 +10,15 @@
 
 typedef NS_ENUM (NSUInteger, BuyoutCellState)
 {
-    BuyoutCellDefaultState,
+    BuyoutCellOutcomingState,
+    BuyoutCellIncomingState,
     BuyoutCellSuccessedState,
     BuyoutCellYouFailedState,
-    BuyoutCellHeFailed
+    BuyoutCellHeFailedState
 };
 
 @interface BuyoutsCell : TargetsBuyoutsBaseCell
 
-- (void)setShares:(NSUInteger)shares time:(NSUInteger)time state:(BuyoutCellState)state;
+- (void)setShares:(NSUInteger)shares timeAgo:(NSString *)timeAgo state:(BuyoutCellState)state;
 
 @end

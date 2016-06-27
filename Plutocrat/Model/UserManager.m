@@ -14,7 +14,7 @@
 
 @implementation UserManager
 
-+ (void)storeUser:(NSDictionary *)userDict headers:(NSDictionary *)headerDict {
++ (void)storeUser:(NSDictionary *)userDict headers:(NSDictionary *)headerDict { 
     /*
      user =     {
      "attacking_current_user" = 0;

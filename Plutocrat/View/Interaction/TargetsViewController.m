@@ -88,7 +88,8 @@
     frame.origin.y += self.table.frame.origin.y;
     cell.frame = frame;
     [self.view addSubview:cell];
-    void (^animations)() = ^() {
+    void (^animations)() = ^()
+    {
         CGRect frame = cell.frame;
         frame.origin.y = 20.0f;
         cell.frame = frame;
@@ -98,17 +99,18 @@
                           delay:0.0f
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:animations
-                     completion:^(BOOL finished){
-                         User * target = [self.source objectAtIndex:cell.tag];
-                         InitiateViewController * ivc = [[InitiateViewController alloc] init];
-                         [self addChildViewController:ivc];
-                         [self.view addSubview:ivc.view];
-                         [ivc setUser:target cellTag:cell.tag];
-                         [ivc setBackImageType:BackImageTypeTargets];
-                         [ivc setDelegate:self];
-                         [cell removeFromSuperview];
-                         [self.table reloadData];
-                     }];
+                     completion:^(BOOL finished)
+    {
+        User * target = [self.source objectAtIndex:cell.tag];
+        InitiateViewController * ivc = [[InitiateViewController alloc] init];
+        [self addChildViewController:ivc];
+        [self.view addSubview:ivc.view];
+        [ivc setUser:target cellTag:cell.tag];
+        [ivc setBackImageType:BackImageTypeTargets];
+        [ivc setDelegate:self];
+        [cell removeFromSuperview];
+        [self.table reloadData];
+    }];
 }
 
 #pragma mark - Load Data

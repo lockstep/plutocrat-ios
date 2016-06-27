@@ -47,7 +47,7 @@
               completion:(void (^)(NSArray * users, NSUInteger perPage, BOOL isLastPage, NSString * error))completion;
 
 + (void)getBuyoutsWithPage:(NSUInteger)page
-                completion:(void (^)(NSArray * buyouts, NSString * error))completion;
+                completion:(void (^)(NSArray * users, NSUInteger perPage, BOOL isLastPage, NSString * error))completion;
 
 + (void)purchaseShare:(NSUInteger)bundleSize
              quantity:(NSUInteger)quantity

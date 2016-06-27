@@ -17,15 +17,9 @@
     return [NSDate dateWithTimeInterval: seconds sinceDate:date];
 }
 
-+ (NSDate *)toGlobalTime:(NSDate *)date
++ (NSDate *)dateFromString:(NSString *)dateString
 {
-    NSTimeZone *tz = [NSTimeZone defaultTimeZone];
-    NSInteger seconds = -[tz secondsFromGMTForDate:date];
-    return [NSDate dateWithTimeInterval: seconds sinceDate:date];
-}
-
-+ (NSDate *)dateFromString:(NSString *)dateString {
-    if (!dateString) return [NSDate distantPast];
+    if (!dateString) return nil;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
     return [self toLocalTime:[formatter dateFromString:dateString]];
@@ -37,7 +31,8 @@
     return days;
 }
 
-+ (NSString *)timeUntilNow:(NSDate *)date {
++ (NSString *)timeUntilNow:(NSDate *)date
+{
     long interval = fabs([date timeIntervalSinceNow]);
     long days = interval / 86400;
     interval %= 86400;
