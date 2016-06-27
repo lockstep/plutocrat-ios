@@ -26,10 +26,8 @@
 
 @implementation TabBarViewController
 
-- (void)viewDidLoad
+- (void)setupDefeated:(BOOL)defeated
 {
-    [super viewDidLoad];
-    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     [self.tabBar setTintColor:[UIColor ourViolet]];
@@ -43,6 +41,13 @@
     hvc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Home"
                                                    image:hvcImgInact
                                            selectedImage:hvcImgAct];
+
+    if (defeated)
+    {
+        self.viewControllers = @[hvc, [UIViewController new], [UIViewController new], [UIViewController new], [UIViewController new]];
+        [self.tabBar setUserInteractionEnabled:NO];
+        return;
+    }
 
     tvc = [TargetsViewController new];
     UIImage * tvcImgInact = [[UIImage imageNamed:@"targets-inactive"]

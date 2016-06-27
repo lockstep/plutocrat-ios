@@ -73,6 +73,11 @@
     return [[NSUserDefaults standardUserDefaults] objectForKey:USER_KEY] != nil;
 }
 
++ (BOOL)isDefeated
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:USER_KEY][@"terminal_buyout"] != nil;
+}
+
 + (BOOL)hasLastLogin {
     return [[NSUserDefaults standardUserDefaults] objectForKey:LAST_LOGIN_KEY] != nil;
 }

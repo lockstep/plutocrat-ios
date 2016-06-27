@@ -13,6 +13,7 @@
 + (void)storeUser:(NSDictionary *)userDict headers:(NSDictionary *)headerDict;
 + (void)removeUser;
 + (BOOL)isLogin;
++ (BOOL)isDefeated;
 + (int)currentUserId;
 + (NSString *)getHeader:(NSString *)key;
 + (BOOL)hasLastLogin;

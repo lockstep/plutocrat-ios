@@ -93,6 +93,7 @@ static NSString * identifier = @"LeftPanelCellIdentifier";
     {
         case 1:
         {
+            if (self.defeated) return;
             if ([self.delegate respondsToSelector:@selector(leftPanelViewController:shouldNavigateTo:)])
             {
                 [self.delegate leftPanelViewController:self shouldNavigateTo:NavigateToAccount];

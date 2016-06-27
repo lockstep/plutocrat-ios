@@ -22,6 +22,8 @@
 
 @interface TabBarViewController : UITabBarController <HomeViewControllerDelegate, AccountViewControllerDelegate>
 
+- (void)setupDefeated:(BOOL)defeated;
+
 @property (nonatomic, weak) id <TabBarViewControllerDelegate> customDelegate;
 
 @end

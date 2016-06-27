@@ -42,9 +42,11 @@
     sidePanelViewController = [JASidePanelController new];
     leftPanelViewController = [LeftPanelViewController new];
     [leftPanelViewController setDelegate:self];
+    leftPanelViewController.defeated = [UserManager isDefeated];
     sidePanelViewController.leftPanel = leftPanelViewController;
     tabBarViewController = [TabBarViewController new];
     [tabBarViewController setCustomDelegate:self];
+    [tabBarViewController setupDefeated:[UserManager isDefeated]];
     sidePanelViewController.centerPanel = tabBarViewController;
     [self addChildViewController:sidePanelViewController];
     [self.view addSubview:sidePanelViewController.view];

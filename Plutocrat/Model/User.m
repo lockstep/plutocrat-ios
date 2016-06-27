@@ -8,6 +8,7 @@
 
 #import "User.h"
 #import "DateUtility.h"
+#import "Buyout.h"
 
 @implementation User
 
@@ -37,6 +38,11 @@
     if (userDict[@"active_inbound_buyout"])
     {
         user.inboundBuyout = [InboundBuyout buyoutFromDict:userDict[@"active_inbound_buyout"]];
+    }
+
+    if (userDict[@"terminal_buyout"])
+    {
+        user.terminalBuyout = [Buyout buyoutFromDict:userDict[@"terminal_buyout"]];
     }
 
     return user;
