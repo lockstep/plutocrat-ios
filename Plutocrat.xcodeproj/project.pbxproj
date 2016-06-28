@@ -55,7 +55,6 @@
 		FD8B5CCB1CDBFFFA00751642 /* CommonSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CCA1CDBFFFA00751642 /* CommonSeparator.m */; };
 		FD8B5CCE1CDFCFED00751642 /* CommonButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CCD1CDFCFED00751642 /* CommonButton.m */; };
 		FD8B5CD11CDFE6A400751642 /* Buttons.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD8B5CCF1CDFE6A400751642 /* Buttons.strings */; };
-		FD8B5CD41CDFE93600751642 /* CommonCheckBoxWithText.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CD31CDFE93600751642 /* CommonCheckBoxWithText.m */; };
 		FD8B5CD61CDFEDD100751642 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8B5CD51CDFEDD100751642 /* LocalAuthentication.framework */; };
 		FD8B5CE21CE2521B00751642 /* ResetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CE11CE2521B00751642 /* ResetPasswordViewController.m */; };
 		FD8B5CE51CE2525100751642 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CE41CE2525100751642 /* AccountViewController.m */; };
@@ -173,8 +172,6 @@
 		FD8B5CCC1CDFCFED00751642 /* CommonButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonButton.h; path = View/Common/Views/CommonButton.h; sourceTree = "<group>"; };
 		FD8B5CCD1CDFCFED00751642 /* CommonButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonButton.m; path = View/Common/Views/CommonButton.m; sourceTree = "<group>"; };
 		FD8B5CD01CDFE6A400751642 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "Supporting Files/Base.lproj/Buttons.strings"; sourceTree = "<group>"; };
-		FD8B5CD21CDFE93600751642 /* CommonCheckBoxWithText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonCheckBoxWithText.h; path = View/Common/Views/CommonCheckBoxWithText.h; sourceTree = "<group>"; };
-		FD8B5CD31CDFE93600751642 /* CommonCheckBoxWithText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonCheckBoxWithText.m; path = View/Common/Views/CommonCheckBoxWithText.m; sourceTree = "<group>"; };
 		FD8B5CD51CDFEDD100751642 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		FD8B5CE01CE2521B00751642 /* ResetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResetPasswordViewController.h; path = View/Authentication/ResetPasswordViewController.h; sourceTree = "<group>"; };
 		FD8B5CE11CE2521B00751642 /* ResetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResetPasswordViewController.m; path = View/Authentication/ResetPasswordViewController.m; sourceTree = "<group>"; };
@@ -463,8 +460,6 @@
 			children = (
 				FD8B5CCC1CDFCFED00751642 /* CommonButton.h */,
 				FD8B5CCD1CDFCFED00751642 /* CommonButton.m */,
-				FD8B5CD21CDFE93600751642 /* CommonCheckBoxWithText.h */,
-				FD8B5CD31CDFE93600751642 /* CommonCheckBoxWithText.m */,
 				FD4553CD1D07FBED00554618 /* CommonHeader.h */,
 				FD4553CE1D07FBED00554618 /* CommonHeader.m */,
 				FD8B5CC91CDBFFFA00751642 /* CommonSeparator.h */,
@@ -716,7 +711,6 @@
 				FDA1A6A91CECEE2A00FFB268 /* BuyoutsCell.m in Sources */,
 				FD386A3B1CE4FAC800065BA3 /* BuyoutsStatsView.m in Sources */,
 				FDA1A6951CEB967900FFB268 /* TargetsViewController.m in Sources */,
-				FD8B5CD41CDFE93600751642 /* CommonCheckBoxWithText.m in Sources */,
 				FDA1A6921CEB961100FFB268 /* TargetsBuyoutsBaseViewController.m in Sources */,
 				FD8B5CF01CE2528300751642 /* HomeViewController.m in Sources */,
 				FD386A341CE3637F00065BA3 /* RootViewController.m in Sources */,

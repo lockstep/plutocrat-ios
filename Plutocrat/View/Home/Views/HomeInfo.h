@@ -32,6 +32,6 @@ typedef NS_ENUM (NSUInteger, HomeInfoType)
 
 - (void)setType:(HomeInfoType)type;
 - (void)setBuyouts:(NSUInteger)buyouts;
-- (void)setName:(NSString *)name shares:(NSUInteger)shares daysAgo:(NSUInteger)days;
+- (void)setName:(NSString *)name shares:(NSUInteger)shares timeAgo:(NSString *)timeAgo;
 
 @end

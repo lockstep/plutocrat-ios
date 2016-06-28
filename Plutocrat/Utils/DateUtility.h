@@ -13,5 +13,6 @@
 + (NSDate *)dateFromString:(NSString *)dateString;
 + (NSUInteger)daysFromNow:(NSDate *)date;
 + (NSString *)timeUntilNow:(NSDate *)date;
++ (NSString *)timeFromDate:(NSDate *)start toDate:(NSDate *)end;
 
 @end

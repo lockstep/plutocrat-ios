@@ -43,4 +43,16 @@
     return [NSString stringWithFormat:@"%ld d %ld h %ld m %ld s", days, hours, minutes, seconds];
 }
 
++ (NSString *)timeFromDate:(NSDate *)start toDate:(NSDate *)end
+{
+    long interval = [end timeIntervalSinceDate:start];
+    long days = interval / 86400;
+    interval %= 86400;
+    long hours = interval / 3600;
+    interval %= 3600;
+    long minutes = interval / 60;
+    long seconds = interval % 60;
+    return [NSString stringWithFormat:@"%ld d %ld h %ld m %ld s", days, hours, minutes, seconds];
+}
+
 @end

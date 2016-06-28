@@ -8,12 +8,12 @@
 
 #import "LoginViewController.h"
 #import "CommonSeparator.h"
-#import "CommonCheckBoxWithText.h"
 #import "CommonButton.h"
 #import "ApiConnector.h"
 #import "UserManager.h"
 #import "Settings.h"
 #import "KeychainWrapper.h"
+#import "ResetPasswordViewController.h"
 
 #import <LocalAuthentication/LAContext.h>
 
@@ -324,7 +324,8 @@
 
 - (void)forgotPasswordButtonTouched
 {
-
+    ResetPasswordViewController * rpvc = [ResetPasswordViewController new];
+    [self presentViewController:rpvc animated:YES completion:nil];
 }
 
 #pragma mark - Login and Register

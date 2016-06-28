@@ -200,12 +200,16 @@
 - (void)styleDefeated
 {
     [self layBasicInfoWhenAttacked:NO];
-    
+
     [homeHeader setType:HomeHeaderTypeDefeated];
-    [homeHeader setDate:[NSDate dateWithTimeInterval:-127526 sinceDate:[NSDate date]]];
-    
+    [homeHeader setSurvavalFromDate:user.registeredAt toDate:user.defeatedAt];
+
+    [bigUserView setUserInteractionEnabled:NO];
+
     [infoView setType:HomeInfoTypeDefeated];
-    [infoView setName:@"Aaron Pinchai" shares:32 daysAgo:4];
+    [infoView setName:user.terminalBuyout.initiatingUser.displayName
+               shares:user.terminalBuyout.numberOfShares
+              timeAgo:user.terminalBuyout.resolvedTimeAgo];
 }
 
 #pragma mark - BigUserViewDelegate

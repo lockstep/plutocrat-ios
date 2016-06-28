@@ -117,7 +117,7 @@
         case HomeInfoTypeDefeated:
             [gettingStarted setHidden:YES];
             [info setTextColor:paleGray];
-            [info setFont:smallFont];
+            [info setFont:bigFont];
             [find setHidden:YES];
             [enable setHidden:YES];
             break;
@@ -132,9 +132,9 @@
     [info setText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"YouNeedMore", @"Texts", nil), buyouts]];
 }
 
-- (void)setName:(NSString *)name shares:(NSUInteger)shares daysAgo:(NSUInteger)days
+- (void)setName:(NSString *)name shares:(NSUInteger)shares timeAgo:(NSString *)timeAgo
 {
-    [info setText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"YourWereBoughtOut", @"Texts", nil), name, shares, days]];
+    [info setText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"YourWereBoughtOut", @"Texts", nil), name, shares, timeAgo]];
 }
 
 @end

@@ -19,5 +19,6 @@ typedef NS_ENUM (NSUInteger, HomeHeaderType)
 
 - (void)setType:(HomeHeaderType)type;
 - (void)setDate:(NSDate *)date;
+- (void)setSurvavalFromDate:(NSDate *)registered toDate:(NSDate *)defeated;
 
 @end

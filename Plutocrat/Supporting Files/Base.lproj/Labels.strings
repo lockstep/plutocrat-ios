@@ -11,8 +11,11 @@
 "DisplayName" = "Display Name";
 "Email" = "Email";
 "Password" = "Password";
-"UseTouchId" = "Enable Touch ID";
 "Login" = "Login";
+"ResetToken" = "Reset Token";
+"ResetPassword" = "Reset Password";
+"RequestResetToken" = "Request Reset Token";
+"PasswordResetStep" = "Password Reset: Step ";
 "SharesToMatchFormat" = "Shares to Match: %lu";
 "SuccessfullBuyouts" = "Successful\r\nBuyouts";
 "FailedBuyouts" = "Failed\r\nBuyouts";
@@ -52,6 +55,7 @@
 "TapToChange" = "tap to change";
 "NewPassword" = "New Password";
 "CurrentPassword" = "Current Password";
+"UseTouchId" = "Enable Touch ID";
 "EmailEvents" = "Enable email notifications on Plutocrat events (buyout outcomes, new threats, etc).";
 "EmailUpdates" = "Enable emails with general Plutocrat updates.";
 "TouchID" = "Enable TouchID";

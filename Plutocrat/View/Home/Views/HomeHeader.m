@@ -89,4 +89,10 @@
     [secondLine setText:timeStr];
 }
 
+- (void)setSurvavalFromDate:(NSDate *)registered toDate:(NSDate *)defeated
+{
+    NSString * timeStr = [DateUtility timeFromDate:registered toDate:defeated];
+    [secondLine setText:timeStr];
+}
+
 @end
