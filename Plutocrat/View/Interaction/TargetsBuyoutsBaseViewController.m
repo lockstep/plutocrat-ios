@@ -59,7 +59,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
+    NSAssert(false, @"Should be overrided");
+    return [UITableViewCell new];
 }
 
 #pragma mark – Table view

@@ -150,8 +150,8 @@
              }];
             if (plutocrat)
             {
-                [filteredOfPlutocrat removeObject:plutocrat];
                 [self setPlutocrat:plutocrat];
+                [filteredOfPlutocrat removeObject:plutocrat];
             }
             else
             {
@@ -169,14 +169,14 @@
                 self.currentPage++;
             }
             NSMutableArray * indexPathes = [NSMutableArray array];
-            for (NSUInteger i = startingIndex; i < users.count; ++i)
+            for (NSUInteger i = startingIndex; i < filteredOfPlutocrat.count; ++i)
             {
                 NSIndexPath * newIndexPath = [NSIndexPath indexPathForRow:oldDataCount + i inSection:0];
                 [indexPathes addObject:newIndexPath];
             }
-            if (self.currentPage != NSUIntegerMax)
+            if (self.currentPage != NSUIntegerMax && filteredOfPlutocrat.count > 0)
             {
-                NSIndexPath * newIndexPath = [NSIndexPath indexPathForRow:oldDataCount + users.count inSection:0];
+                NSIndexPath * newIndexPath = [NSIndexPath indexPathForRow:oldDataCount + filteredOfPlutocrat.count inSection:0];
                 [indexPathes addObject:newIndexPath];
             }
             [self.table insertRowsAtIndexPaths:indexPathes withRowAnimation:UITableViewRowAnimationNone];

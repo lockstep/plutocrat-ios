@@ -59,7 +59,7 @@
         }
         Buyout * buyout  = [self.source objectAtIndex:indexPath.row];
         [bCell setLoading:NO];
-        BuyoutCellState state;
+        BuyoutCellState state = BuyoutCellIncomingState;
         if (buyout.state == BuyoutStateMatched || buyout.state == BuyoutStateInitiated)
         {
             if (buyout.targetUser.identifier == [UserManager currentUserId])
@@ -223,7 +223,7 @@
                 NSIndexPath * newIndexPath = [NSIndexPath indexPathForRow:oldDataCount + i inSection:0];
                 [indexPathes addObject:newIndexPath];
             }
-            if (self.currentPage != NSUIntegerMax)
+            if (self.currentPage != NSUIntegerMax && users.count > 0)
             {
                 NSIndexPath * newIndexPath = [NSIndexPath indexPathForRow:oldDataCount + users.count inSection:0];
                 [indexPathes addObject:newIndexPath];
