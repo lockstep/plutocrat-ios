@@ -71,3 +71,5 @@
 "YES" = "YES";
 "Cancel" = "Cancel";
 "NotEnoughShares" = "You do not have enough shares";
+"TokenWasSent" = "Reset token was sent to your email.";
+"PasswordReseted" = "Your password has been reset successfully";

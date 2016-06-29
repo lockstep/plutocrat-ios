@@ -222,32 +222,59 @@
 
 - (void)submitButtonTouched
 {
-    if (haveTokenMode)
+    if (!haveTokenMode)
     {
-//        NSString * emailStr = email.text;
-//        NSString * passwordStr = password.text;
-//        if (emailStr.length * passwordStr.length == 0)
-//        {
-//            [self showAlertEmptyFields];
-//        }
-//        else
-//        {
-//            [self loginWithEmail:emailStr password:passwordStr];
-//        }
+        NSString * emailStr = email.text;
+        if (emailStr.length == 0)
+        {
+            [self showAlertEmptyFields];
+        }
+        else
+        {
+            [self startActivity];
+            [ApiConnector requestPasswordWithEmail:email.text
+                                        completion:^(NSString * error)
+             {
+                 [self stopActivity];
+                 [self showAlertOk:NSLocalizedStringFromTable(@"TokenWasSent", @"Labels", nil)
+                        completion:^()
+                  {
+                     [self setupDerived:YES];
+                 }];
+
+             }];
+        }
     }
     else
     {
-//        NSString * displayNameStr = displayName.text;
-//        NSString * emailStr = email.text;
-//        NSString * passwordStr = password.text;
-//        if (displayNameStr.length * emailStr.length * passwordStr.length == 0)
-//        {
-//            [self showAlertEmptyFields];
-//        }
-//        else
-//        {
-//            [self registerWithName:displayNameStr email:emailStr password:passwordStr];
-//        }
+        NSString * tokenStr = token.text;
+        NSString * passwordStr = password.text;
+        if (tokenStr.length * passwordStr.length == 0)
+        {
+            [self showAlertEmptyFields];
+        }
+        else
+        {
+            [self startActivity];
+            [ApiConnector resetPasswordWithToken:tokenStr
+                                        password:passwordStr
+                                      completion:^(NSString * error)
+             {
+                 [self stopActivity];
+                 if (error)
+                 {
+                     [self showAlertWithErrorText:error];
+                 }
+                 else
+                 {
+                     [self showAlertOk:NSLocalizedStringFromTable(@"PasswordReseted", @"Labels", nil)
+                            completion:^()
+                      {
+                         [self loginButtonTouched];
+                     }];
+                 }
+             }];
+        }
     }
 }
 
@@ -300,8 +327,7 @@
 - (void)showAlertEmptyFields
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"Alert", @"Labels", nil)
-                                                                        message:NSLocalizedStringFromTable(@"EmptyFields", @"Labels", nil) preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"Alert", @"Labels", nil) message:NSLocalizedStringFromTable(@"EmptyFields", @"Labels", nil) preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction * defaultAction = [UIAlertAction actionWithTitle:@"OK"
                                                                  style:UIAlertActionStyleDefault
                                                                handler:nil];
@@ -314,14 +340,24 @@
 - (void)showAlertWithErrorText:(NSString *)text
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"Error", @"Labels", nil)
-                                                                        message:text preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"Error", @"Labels", nil) message:text preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction * defaultAction = [UIAlertAction actionWithTitle:@"OK"
                                                                  style:UIAlertActionStyleDefault
                                                                handler:nil];
         
         [alert addAction:defaultAction];
         [self presentViewController:alert animated:YES completion:nil];
+    });
+}
+
+- (void)showAlertOk:(NSString *)text completion:(void (^)())completion
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:nil message:text preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alert animated:YES completion:nil];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [alert dismissViewControllerAnimated:YES completion:completion];
+        });
     });
 }
 

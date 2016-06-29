@@ -152,7 +152,23 @@ enum ApiMethod {
                 });
             }
                 break;
-                
+
+            case 422: {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSDictionary * meta = responseDict[@"meta"];
+                    NSString * err;
+                    if (meta[@"errors"])
+                    {
+                        if ([meta[@"errors"][@"full_messages"] respondsToSelector:@selector(firstObject)])
+                        {
+                            err = [meta[@"errors"][@"full_messages"] firstObject];
+                        }
+                    }
+                    completion(httpResponse.allHeaderFields, [responseDict copy], err);
+                });
+            }
+                break;
+
             default: {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     completion(httpResponse.allHeaderFields, [responseDict copy], @"Unknown error has occured. Please try again.");
@@ -210,8 +226,10 @@ enum ApiMethod {
     }];
 }
 
-+ (void)resetPasswordWithToken:(NSString *)token password:(NSString *)password completion:(void (^)(NSString *error))completion {
-    NSDictionary *params = @{ @"reset_password_token": token, @"password": password, @"password_confirmation": password };
++ (void)resetPasswordWithToken:(NSString *)token
+                      password:(NSString *)password
+                    completion:(void (^)(NSString *error))completion {
+    NSDictionary *params = @{ @"reset_password_token": token, @"password": password};
     [self connectApi:PASSWORD method:Patch params:params json:YES completion:^(NSDictionary *headers, id responseObject, NSString *error) {
         completion(error);
     }];
