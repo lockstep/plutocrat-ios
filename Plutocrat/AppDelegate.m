@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "RootViewController.h"
 #import "ApiConnector.h"
+#import "UserManager.h"
 
 @interface AppDelegate ()
 {
@@ -28,6 +29,8 @@
     return YES;
 }
 
+#pragma mark - Pushes
+
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
 {
     [[UIApplication sharedApplication] registerForRemoteNotifications];
@@ -45,8 +48,15 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    
+    [ApiConnector getProfileWithUserId:[UserManager currentUserId]
+                            completion:^(User * user, NSString * error) {
+                                [rootViewController updateOnPush];
+                            }];
 }
+
+#pragma mark - change state
+
+//TODO: update
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -13,6 +13,7 @@
 #import "SharesViewController.h"
 
 #import "Settings.h"
+#import "UserManager.h"
 
 @interface TabBarViewController ()
 {
@@ -94,8 +95,20 @@
 - (void)updateOnPush
 {
     [hvc updateData];
-    [tvc updateOnPush];
-    [bvc updateOnPush];
+    if ([UserManager isDefeated])
+    {
+        [self setSelectedIndex:0];
+        tvc.tabBarItem = nil;
+        bvc.tabBarItem = nil;
+        svc.tabBarItem = nil;
+        avc.tabBarItem = nil;
+        [self.tabBar setUserInteractionEnabled:NO];
+    }
+    else
+    {
+        [tvc updateOnPush];
+        [bvc updateOnPush];
+    }
 }
 
 #pragma mark - HomeViewControllerDelegate

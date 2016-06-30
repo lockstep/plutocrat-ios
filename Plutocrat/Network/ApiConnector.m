@@ -349,7 +349,11 @@ enum ApiMethod {
               params:params
                 json:YES
           completion:^(NSDictionary * headers, id responseObject, NSString * error) {
-        User * user = [User userFromDict:responseObject[@"user"]];
+              User * user = [User userFromDict:responseObject[@"user"]];
+              if (!error && [UserManager currentUserId] == userId)
+              {
+                  [UserManager storeUser:responseObject[@"user"] headers:headers];
+              }
         completion(user, error);
     }];
 }
