@@ -25,7 +25,7 @@
 #define PROFILE @"users/%lu"
 #define GET_USERS @"users"
 #define GET_BUYOUTS @"users/%lu/buyouts"
-#define SHARE_PURCHASE @"users/%d/share_purchase"
+#define SHARE_PURCHASE @"users/%lu/share_purchase"
 #define PREPARE_BUYOUT @"users/%lu/buyouts/new"
 #define INITIATE_BUYOUT @"users/%lu/buyout"
 #define MATCH_BUYOUT @"buyouts/%lu/match"
@@ -310,8 +310,7 @@ enum ApiMethod {
               method:Patch
               params:params
                 json:YES
-          completion:^(NSDictionary * headers, id responseObject, NSString * error)
-    {
+          completion:^(NSDictionary * headers, id responseObject, NSString * error) {
         if (!error)
         {
             [UserManager storeUser:responseObject[@"user"] headers:headers];
@@ -320,25 +319,58 @@ enum ApiMethod {
     }];
 }
 
-+ (void)getProfileWithUserId:(NSUInteger)userId completion:(void (^)(User *user, NSString *error))completion {
-    NSDictionary *params = nil;
-    [self connectApi:[NSString stringWithFormat:PROFILE, (unsigned long)userId] method:Get params:params json:YES completion:^(NSDictionary *headers, id responseObject, NSString *error) {
-        User *user = [User userFromDict:responseObject[@"user"]];
++ (void)updateDeviceToken:(NSString *)token
+               completion:(void (^)(User *, NSString *))completion
+{
+    NSDictionary * params = @{@"devices_attributes":@[@{@"token": token, @"platform": @"ios"}]};
+    NSUInteger userId = [UserManager currentUserId];
+    [self connectApi:[NSString stringWithFormat:PROFILE, (unsigned long)userId]
+              method:Patch
+              params:params
+                json:YES
+          completion:^(NSDictionary * headers, id responseObject, NSString * error) {
+              if (!error)
+              {
+                  [UserManager storeUser:responseObject[@"user"] headers:headers];
+              }
+              if (completion)
+              {
+                  completion(responseObject, error);
+              }
+          }];
+}
+
++ (void)getProfileWithUserId:(NSUInteger)userId
+                  completion:(void (^)(User *, NSString *))completion
+{
+    NSDictionary * params = nil;
+    [self connectApi:[NSString stringWithFormat:PROFILE, (unsigned long)userId]
+              method:Get
+              params:params
+                json:YES
+          completion:^(NSDictionary * headers, id responseObject, NSString * error) {
+        User * user = [User userFromDict:responseObject[@"user"]];
         completion(user, error);
     }];
 }
 
-+ (void)getUsersWithPage:(NSUInteger)page completion:(void (^)(NSArray *, NSUInteger, BOOL, NSString *))completion
++ (void)getUsersWithPage:(NSUInteger)page
+              completion:(void (^)(NSArray *, NSUInteger, BOOL, NSString *))completion
 {
-    NSDictionary *params = @{ @"page": @(page) };
-    [self connectApi:GET_USERS method:Get params:params json:NO completion:^(NSDictionary *headers, id responseObject, NSString *error) {
+    NSDictionary * params = @{@"page": @(page)};
+    [self connectApi:GET_USERS
+              method:Get
+              params:params
+                json:NO
+          completion:^(NSDictionary * headers, id responseObject, NSString * error) {
         NSMutableArray * users = [NSMutableArray array];
         NSArray * userArray = responseObject[@"users"];
-        NSDictionary *meta = responseObject[@"meta"];
+        NSDictionary * meta = responseObject[@"meta"];
         NSUInteger current_page = [(NSString *)meta[@"current_page"] integerValue];
         NSUInteger total_pages = [(NSString *)meta[@"total_pages"] integerValue];
         NSUInteger perPage = [(NSString *)meta[@"per_page"] integerValue];
-        for (NSDictionary *userDict in userArray) {
+        for (NSDictionary * userDict in userArray)
+        {
             User * user = [User userFromDict:userDict];
             [users addObject:user];
         }
@@ -349,14 +381,13 @@ enum ApiMethod {
 + (void)getBuyoutsWithPage:(NSUInteger)page
                 completion:(void (^)(NSArray *, NSUInteger, BOOL, NSString *))completion
 {
-    NSDictionary *params = @{ @"page": @(page) };
+    NSDictionary *params = @{@"page": @(page)};
     [self connectApi:[NSString stringWithFormat:GET_BUYOUTS, (unsigned long)[UserManager currentUserId]]
               method:Get
               params:params
                 json:NO
-          completion:^(NSDictionary * headers, id responseObject, NSString * error)
-     {
-         NSDictionary *meta = responseObject[@"meta"];
+          completion:^(NSDictionary * headers, id responseObject, NSString * error) {
+         NSDictionary * meta = responseObject[@"meta"];
          NSUInteger current_page = [(NSString *)meta[@"current_page"] integerValue];
          NSUInteger total_pages = [(NSString *)meta[@"total_pages"] integerValue];
          NSUInteger perPage = [(NSString *)meta[@"per_page"] integerValue];
@@ -373,10 +404,20 @@ enum ApiMethod {
 
 + (void)purchaseShare:(NSUInteger)bundleSize
              quantity:(NSUInteger)quantity
-     appleReceiptData:(NSData *)appleReceiptData completion:(void (^)(NSString *))completion
+     appleReceiptData:(NSData *)appleReceiptData
+           completion:(void (^)(NSString *))completion
 {
-    NSDictionary *params = @{ @"share_purchase": @{ @"apple_receipt_data": [appleReceiptData base64EncodedStringWithOptions:0], @"bundle_size": @(bundleSize), @"quantity": @(quantity) } };
-    [self connectApi:[NSString stringWithFormat:SHARE_PURCHASE, [UserManager currentUserId]] method:Post params:params json:YES completion:^(NSDictionary *headers, id responseObject, NSString *error) {
+    NSDictionary *params = @{@"share_purchase":
+                                 @{@"apple_receipt_data": [appleReceiptData base64EncodedStringWithOptions:0],
+                                   @"bundle_size": @(bundleSize),
+                                   @"quantity": @(quantity)
+                                   }
+                             };
+    [self connectApi:[NSString stringWithFormat:SHARE_PURCHASE, (unsigned long)[UserManager currentUserId]]
+              method:Post
+              params:params
+                json:YES
+          completion:^(NSDictionary * headers, id responseObject, NSString * error) {
         completion(error);
     }];
 }
@@ -388,8 +429,7 @@ enum ApiMethod {
               method:Get
               params:nil
                 json:NO
-          completion:^(NSDictionary *headers, id responseObject, NSString *error)
-    {
+          completion:^(NSDictionary * headers, id responseObject, NSString * error) {
         NSDictionary * newBuyout = responseObject[@"new_buyout"];
         NSUInteger availableSharesCount = [newBuyout[@"available_shares_count"] unsignedIntegerValue];
         NSUInteger minimumBuyoutShares = [newBuyout[@"minimum_buyout_shares"] unsignedIntegerValue];
@@ -401,13 +441,14 @@ enum ApiMethod {
               amountOfShares:(NSUInteger)amount
                   completion:(void (^)(Buyout *, NSString *))completion
 {
-    NSDictionary * params = @{@"buyout":@{@"number_of_shares":@(amount)}};
+    NSDictionary * params = @{@"buyout":
+                                  @{@"number_of_shares":@(amount)}
+                              };
     [self connectApi:[NSString stringWithFormat:INITIATE_BUYOUT, (unsigned long)userId]
               method:Post
               params:params
                 json:YES
-          completion:^(NSDictionary * headers, id responseObject, NSString * error)
-     {
+          completion:^(NSDictionary * headers, id responseObject, NSString * error) {
          NSDictionary * buyoutDict = responseObject[@"buyout"];
          Buyout * buyout = [Buyout buyoutFromDict:buyoutDict];
          completion(buyout, error);
@@ -421,8 +462,7 @@ enum ApiMethod {
               method:Patch
               params:nil
                 json:NO
-          completion:^(NSDictionary * headers, id responseObject, NSString * error)
-     {
+          completion:^(NSDictionary * headers, id responseObject, NSString * error) {
          if (!error)
          {
              [UserManager storeUser:responseObject[@"user"] headers:headers];
@@ -439,8 +479,7 @@ enum ApiMethod {
               method:Patch
               params:nil
                 json:NO
-          completion:^(NSDictionary * headers, id responseObject, NSString * error)
-     {
+          completion:^(NSDictionary * headers, id responseObject, NSString * error) {
          if (!error)
          {
              [UserManager storeUser:responseObject[@"user"] headers:headers];
@@ -450,7 +489,8 @@ enum ApiMethod {
      }];
 }
 
-+ (void)processImageDataWithURLString:(NSString *)urlString andBlock:(void (^)(NSData * imageData))processImage
++ (void)processImageDataWithURLString:(NSString *)urlString
+                             andBlock:(void (^)(NSData *))processImage
 {
     NSURL * url = [NSURL URLWithString:urlString];
     dispatch_queue_t callerQueue = dispatch_get_main_queue();

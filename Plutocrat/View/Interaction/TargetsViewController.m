@@ -28,10 +28,12 @@
     identifier = @"TargetsCell";
     
     [self.table registerClass:NSClassFromString(@"TargetsCell") forCellReuseIdentifier:identifier];
-        
+
     [self noPlutocrat];
     [self loadData];
 }
+
+#pragma mark - TableView
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -124,7 +126,7 @@
         return;
     }
     loading = YES;
-    if ([self.source count] == 0)
+    if ([self.source count] == 0 && !self.pulledToRefresh)
     {
         iView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         [iView setCenter:CGPointMake(self.table.frame.size.width / 2, self.table.frame.size.height / 2)];
@@ -133,6 +135,14 @@
         [iView startAnimating];
     }
     [ApiConnector getUsersWithPage:self.currentPage completion:^(NSArray * users, NSUInteger perPage, BOOL isLastPage, NSString * error) {
+        if (self.pulledToRefresh)
+        {
+            self.pulledToRefresh = NO;
+            [self.refreshControl endRefreshing];
+            self.source = [NSMutableArray new];
+            self.currentPage = 1;
+            [self.table reloadData];
+        }
         loading = NO;
         [iView removeFromSuperview];
         [self.table setScrollEnabled:YES];

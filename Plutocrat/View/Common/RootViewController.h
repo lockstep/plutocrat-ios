@@ -13,4 +13,6 @@
 
 @interface RootViewController : UIViewController <LoginViewControllerDelegate, LeftPanelDelegate, TabBarViewControllerDelegate>
 
+- (void)updateOnPush;
+
 @end

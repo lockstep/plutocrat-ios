@@ -29,7 +29,7 @@
     [self.header setDelegate:self];
     [self.view addSubview:self.header];
 
-    self.source = [NSMutableArray array];
+    self.source = [NSMutableArray new];
     self.currentPage = 1;
     
     self.table = [[UITableView alloc] initWithFrame:
@@ -41,6 +41,34 @@
     [self.table setDataSource:self];
     [self.table setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.view addSubview:self.table];
+
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(handleRefresh) forControlEvents:UIControlEventValueChanged];
+    [self.table addSubview:self.refreshControl];
+}
+
+
+#pragma mark - public
+
+- (void)updateOnPush
+{
+    self.source = [NSMutableArray new];
+    [self.table reloadData];
+    self.currentPage = 1;
+    [self loadData];
+}
+
+#pragma mark - refresh
+
+- (void)handleRefresh
+{
+    self.pulledToRefresh = YES;
+    [self loadData];
+}
+
+- (void)loadData
+{
+    NSAssert(NO, @"Must be overrided");
 }
 
 #pragma mark - Table view data source

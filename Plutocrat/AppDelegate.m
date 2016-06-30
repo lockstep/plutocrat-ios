@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "RootViewController.h"
+#import "ApiConnector.h"
 
 @interface AppDelegate ()
 {
@@ -38,8 +39,13 @@
                                       stringByReplacingOccurrencesOfString: @"<" withString: @""]
                                      stringByReplacingOccurrencesOfString: @">" withString: @""]
                                     stringByReplacingOccurrencesOfString: @" " withString: @""];
+    [ApiConnector updateDeviceToken:deviceTokenString
+                         completion:nil];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
     
-    NSLog(@"The generated device token string is : %@", deviceTokenString);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

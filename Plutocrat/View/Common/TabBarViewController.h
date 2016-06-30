@@ -23,6 +23,7 @@
 @interface TabBarViewController : UITabBarController <HomeViewControllerDelegate, AccountViewControllerDelegate>
 
 - (void)setupDefeated:(BOOL)defeated;
+- (void)updateOnPush;
 
 @property (nonatomic, weak) id <TabBarViewControllerDelegate> customDelegate;
 

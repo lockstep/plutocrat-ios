@@ -28,6 +28,15 @@
     [self initInLoginStateAndReset:NO];
 }
 
+#pragma mark - public
+
+- (void)updateOnPush
+{
+    [tabBarViewController updateOnPush];
+}
+
+#pragma mark - setup
+
 - (void)initInLoginStateAndReset:(BOOL)reset
 {
     LoginViewController * loginViewController = [LoginViewController new];

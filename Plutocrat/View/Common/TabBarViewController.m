@@ -26,6 +26,8 @@
 
 @implementation TabBarViewController
 
+#pragma mark - public
+
 - (void)setupDefeated:(BOOL)defeated
 {
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -87,6 +89,13 @@
                                            selectedImage:avcImgAct];
     
     self.viewControllers = @[hvc, tvc, bvc, svc, avc];
+}
+
+- (void)updateOnPush
+{
+    [hvc updateData];
+    [tvc updateOnPush];
+    [bvc updateOnPush];
 }
 
 #pragma mark - HomeViewControllerDelegate

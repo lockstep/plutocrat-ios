@@ -86,8 +86,8 @@
     return [[[NSUserDefaults standardUserDefaults] objectForKey:LAST_LOGIN_KEY] intValue];
 }
 
-+ (int)currentUserId {
-    return [[[NSUserDefaults standardUserDefaults] objectForKey:USER_KEY][@"id"] intValue];
++ (NSUInteger)currentUserId {
+    return [[[NSUserDefaults standardUserDefaults] objectForKey:USER_KEY][@"id"] unsignedIntegerValue];
 }
 
 + (NSString *)displayName {

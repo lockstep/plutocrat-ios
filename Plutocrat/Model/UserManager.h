@@ -14,7 +14,7 @@
 + (void)removeUser;
 + (BOOL)isLogin;
 + (BOOL)isDefeated;
-+ (int)currentUserId;
++ (NSUInteger)currentUserId;
 + (NSString *)getHeader:(NSString *)key;
 + (BOOL)hasLastLogin;
 + (int)lastLogin;

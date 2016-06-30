@@ -13,7 +13,11 @@
 
 @property (nonatomic, strong) TargetsBuyoutsHeader * header;
 @property (nonatomic, strong) UITableView * table;
+@property (nonatomic, strong) UIRefreshControl * refreshControl;
 @property NSUInteger currentPage;
 @property (nonatomic, strong) NSMutableArray * source;
+@property BOOL pulledToRefresh;
+
+- (void)updateOnPush;
 
 @end

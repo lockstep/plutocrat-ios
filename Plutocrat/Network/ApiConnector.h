@@ -41,6 +41,9 @@
                   updatesEmails:(BOOL)updatesEmails
                      completion:(void (^)(NSDictionary * response, NSString * error))completion;
 
++ (void)updateDeviceToken:(NSString *)token
+               completion:(void (^)(User * user, NSString * error))completion;
+
 + (void)getProfileWithUserId:(NSUInteger)userId
                   completion:(void (^)(User * user, NSString * error))completion;
 
