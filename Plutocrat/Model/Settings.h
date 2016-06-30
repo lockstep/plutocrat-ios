@@ -21,6 +21,7 @@
 
 + (NSString *)userEmail;
 + (BOOL)setUserEmail:(NSString *)email;
++ (BOOL)removeUserEmail;
 
 + (NSUInteger)typeOfHomeAlert;
 + (BOOL)setTypeOfHomeAlert:(NSUInteger)type;

@@ -60,6 +60,12 @@
     return [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
++ (BOOL)removeUserEmail
+{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_EMAIL_KEY];
+    return [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 + (NSUInteger)typeOfHomeAlert
 {
     return [[NSUserDefaults standardUserDefaults] integerForKey:HOME_ALERT_TYPE_KEY];

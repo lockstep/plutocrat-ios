@@ -25,15 +25,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initInLoginState];
+    [self initInLoginStateAndReset:NO];
 }
 
-- (void)initInLoginState
+- (void)initInLoginStateAndReset:(BOOL)reset
 {
     LoginViewController * loginViewController = [LoginViewController new];
     [loginViewController setDelegate:self];
     [self addChildViewController:loginViewController];
     [self.view addSubview:loginViewController.view];
+    if (reset)
+    {
+        [loginViewController flushEmailAndPassword];
+    }
     [loginViewController setupContentsWhenUserIsRegistered:[UserManager hasLastLogin]];
 }
 
@@ -74,7 +78,7 @@
         case NavigateToSignOut:
             [sidePanelViewController.view removeFromSuperview];
             [sidePanelViewController removeFromParentViewController];
-            [self initInLoginState];
+            [self initInLoginStateAndReset:YES];
             break;
             
         default:

@@ -49,6 +49,13 @@
     [self setupDerived:userIsRegistered];
 }
 
+- (void)flushEmailAndPassword
+{
+    [Settings removeUserEmail];
+    wrapper = [KeychainWrapper new];
+    [wrapper resetKeychainItem];
+}
+
 #pragma mark - private
 
 - (void)viewDidLoad

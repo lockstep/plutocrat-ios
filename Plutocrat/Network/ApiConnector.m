@@ -181,28 +181,54 @@ enum ApiMethod {
     [dataTask resume];
 }
 
-+ (void)signInWithEmail:(NSString *)email password:(NSString *)password completion:(void (^)(NSDictionary *response, NSString *error))completion {
-    NSDictionary *params = @{ @"email": email, @"password": password };
-    [self connectApi:SIGN_IN method:Post params:params json:YES completion:^(NSDictionary *headers, id responseObject, NSString *error) {
-        if (!error) {
++ (void)signInWithEmail:(NSString *)email
+               password:(NSString *)password
+             completion:(void (^)(NSDictionary * response, NSString * error))completion
+{
+    NSDictionary * params = @{@"email": email, @"password": password};
+    [self connectApi:SIGN_IN
+              method:Post
+              params:params
+                json:YES
+          completion:^(NSDictionary * headers, id responseObject, NSString * error) {
+        if (!error)
+        {
             [UserManager storeUser:responseObject[@"user"] headers:headers];
         }
         completion(responseObject, error);
     }];
 }
 
-+ (void)signUpWithDisplayName:(NSString *)displayName email:(NSString *)email password:(NSString *)password completion:(void (^)(NSDictionary *response, NSString *error))completion {
-    NSDictionary *params = @{ @"email": email, @"password": password, @"password_confirmation": password, @"display_name": displayName };
-    [self connectApi:SIGN_UP method:Post params:params json:YES completion:^(NSDictionary *headers, id responseObject, NSString *error) {
-        NSDictionary *errors = responseObject[@"meta"][@"errors"];
-        if ([errors[@"display_name"] count] > 0) {
++ (void)signUpWithDisplayName:(NSString *)displayName
+                        email:(NSString *)email
+                     password:(NSString *)password
+                   completion:(void (^)(NSDictionary * response, NSString * error))completion
+{
+    NSDictionary * params = @{@"email": email,
+                              @"password": password,
+                              @"password_confirmation": password,
+                              @"display_name": displayName};
+    [self connectApi:SIGN_UP
+              method:Post
+              params:params
+                json:YES
+          completion:^(NSDictionary * headers, id responseObject, NSString * error) {
+        NSDictionary * errors = responseObject[@"meta"][@"errors"];
+        if ([errors[@"display_name"] count] > 0)
+        {
             completion(responseObject, [NSString stringWithFormat:@"Display name %@", [errors[@"display_name"] firstObject]]);
-        } else if ([errors[@"email"] count] > 0) {
+        }
+        else if ([errors[@"email"] count] > 0)
+        {
             completion(responseObject, [NSString stringWithFormat:@"Email %@", [errors[@"email"] firstObject]]);
-        } else if ([errors[@"password"] count] > 0) {
+        }
+        else if ([errors[@"password"] count] > 0)
+        {
             completion(responseObject, [NSString stringWithFormat:@"Password %@", [errors[@"password"] firstObject]]);
-        } else {
-            if (!error) {
+        } else
+        {
+            if (!error)
+            {
                 [UserManager storeUser:responseObject[@"user"] headers:headers];
             }
             completion(responseObject, error);
@@ -210,18 +236,31 @@ enum ApiMethod {
     }];
 }
 
-+ (void)signOutWithCompletion:(void (^)(NSString *error))completion {
-    [self connectApi:SIGN_OUT method:Delete params:nil json:NO completion:^(NSDictionary *headers, id responseObject, NSString *error) {
-        if (!error) {
++ (void)signOutWithEmail:(NSString *)email
+              completion:(void (^)(NSString *))completion
+{
+    NSDictionary * params = @{@"email": email};
+    [self connectApi:SIGN_OUT
+              method:Delete
+              params:params
+                json:YES
+          completion:^(NSDictionary * headers, id responseObject, NSString * error) {
+        if (!error)
+        {
             [UserManager removeUser];
         }
         completion(error);
     }];
 }
 
-+ (void)requestPasswordWithEmail:(NSString *)email completion:(void (^)(NSString *error))completion {
-    NSDictionary *params = @{ @"email": email };
-    [self connectApi:PASSWORD method:Post params:params json:YES completion:^(NSDictionary *headers, id responseObject, NSString *error) {
++ (void)requestPasswordWithEmail:(NSString *)email
+                      completion:(void (^)(NSString *error))completion
+{
+    NSDictionary * params = @{@"email": email};
+    [self connectApi:PASSWORD
+              method:Post params:params
+                json:YES
+          completion:^(NSDictionary * headers, id responseObject, NSString * error) {
         completion(error);
     }];
 }
@@ -229,8 +268,12 @@ enum ApiMethod {
 + (void)resetPasswordWithToken:(NSString *)token
                       password:(NSString *)password
                     completion:(void (^)(NSString *error))completion {
-    NSDictionary *params = @{ @"reset_password_token": token, @"password": password};
-    [self connectApi:PASSWORD method:Patch params:params json:YES completion:^(NSDictionary *headers, id responseObject, NSString *error) {
+    NSDictionary * params = @{@"reset_password_token": token, @"password": password};
+    [self connectApi:PASSWORD
+              method:Patch
+              params:params
+                json:YES
+          completion:^(NSDictionary * headers, id responseObject, NSString * error) {
         completion(error);
     }];
 }

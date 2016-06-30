@@ -21,7 +21,8 @@
                      password:(NSString *)password
                    completion:(void (^)(NSDictionary * response, NSString * error))completion;
 
-+ (void)signOutWithCompletion:(void (^)(NSString * error))completion;
++ (void)signOutWithEmail:(NSString *)email
+              completion:(void (^)(NSString * error))completion;
 
 + (void)requestPasswordWithEmail:(NSString *)email
                       completion:(void (^)(NSString * error))completion;

@@ -7,6 +7,8 @@
 //
 
 #import "LeftPanelViewController.h"
+#import "ApiConnector.h"
+#import "Settings.h"
 
 @interface LeftPanelViewController ()
 {
@@ -112,10 +114,25 @@ static NSString * identifier = @"LeftPanelCellIdentifier";
             
         case 3:
         {
-            if ([self.delegate respondsToSelector:@selector(leftPanelViewController:shouldNavigateTo:)])
-            {
-                [self.delegate leftPanelViewController:self shouldNavigateTo:NavigateToSignOut];
-            }
+            [self.view setUserInteractionEnabled:NO];
+            UIActivityIndicatorView * iView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+            [iView setCenter:CGPointMake(self.view.bounds.size.width / 2,
+                                         self.view.bounds.size.height / 2)];
+            [self.view addSubview:iView];
+            [iView startAnimating];
+            [ApiConnector signOutWithEmail:[Settings userEmail]
+                                completion:^(NSString * error)
+             {
+                 [self.view setUserInteractionEnabled:YES];
+                 [iView removeFromSuperview];
+                 if (!error)
+                 {
+                     if ([self.delegate respondsToSelector:@selector(leftPanelViewController:shouldNavigateTo:)])
+                     {
+                         [self.delegate leftPanelViewController:self shouldNavigateTo:NavigateToSignOut];
+                     }
+                 }
+             }];
         }
             break;
             

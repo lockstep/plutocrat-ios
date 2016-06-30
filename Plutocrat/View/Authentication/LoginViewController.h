@@ -22,5 +22,6 @@
 @property (nonatomic, weak) id <LoginViewControllerDelegate> delegate;
 
 - (void)setupContentsWhenUserIsRegistered:(BOOL)userIsRegistered;
+- (void)flushEmailAndPassword;
 
 @end
