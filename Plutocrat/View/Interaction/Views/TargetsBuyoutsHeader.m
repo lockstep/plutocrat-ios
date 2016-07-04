@@ -18,6 +18,7 @@
     UILabel * name;
     UILabel * plutocratBuyouts;
     CommonButton * engageButton;
+    UILabel * engageReplace;
     UILabel * successfulBuyouts;
     BOOL plutocratExists;
 }
@@ -82,7 +83,19 @@
         [engageButton setHidden:YES];
         [engageButton addTarget:self action:@selector(buttonTapped) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:engageButton];
-        
+
+        engageReplace = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 65.0f, 28.0f)];
+        [engageReplace setFont:[UIFont regularFontWithSize:11.0f]];
+        [engageReplace setTextColor:[UIColor ourRed]];
+        [engageReplace setNumberOfLines:0];
+        [engageReplace setLineBreakMode:NSLineBreakByWordWrapping];
+        [engageReplace setHidden:YES];
+        [engageReplace setTextAlignment:NSTextAlignmentCenter];
+        [engageReplace setCenter:
+         CGPointMake(self.frame.size.width - bordersOffset - engageReplace.frame.size.width / 2,
+                     frame.size.height / 2 + 10.0f)];
+        [self addSubview:engageReplace];
+
         successfulBuyouts = [[UILabel alloc] initWithFrame:frame];
         [successfulBuyouts setFont:[UIFont regularFontWithSize:averageFontSize]];
         [successfulBuyouts setTextColor:[UIColor whiteColor]];
@@ -106,6 +119,7 @@
             [name setHidden:YES];
             [plutocratBuyouts setHidden:YES];
             [engageButton setHidden:YES];
+            [engageReplace setHidden:YES];
             [successfulBuyouts setHidden:YES];
             plutocratExists = NO;
             break;
@@ -117,10 +131,37 @@
             [name setHidden:NO];
             [plutocratBuyouts setHidden:NO];
             [engageButton setHidden:NO];
+            [engageReplace setHidden:YES];
             [successfulBuyouts setHidden:YES];
             plutocratExists = YES;
             break;
-            
+
+        case TargetsHeaderWithPlutocratUnderThreat:
+            [background setImage:[UIImage imageNamed:@"Background-blue"]];
+            [noPlutocrat setHidden:YES];
+            [photo setHidden:NO];
+            [name setHidden:NO];
+            [plutocratBuyouts setHidden:NO];
+            [engageButton setHidden:YES];
+            [engageReplace setHidden:NO];
+            [engageReplace setText:NSLocalizedStringFromTable(@"UnderThreat", @"Labels", nil)];
+            [successfulBuyouts setHidden:YES];
+            plutocratExists = YES;
+            break;
+
+        case TargetsHeaderWithPlutocratAttackingYou:
+            [background setImage:[UIImage imageNamed:@"Background-blue"]];
+            [noPlutocrat setHidden:YES];
+            [photo setHidden:NO];
+            [name setHidden:NO];
+            [plutocratBuyouts setHidden:NO];
+            [engageButton setHidden:YES];
+            [engageReplace setHidden:NO];
+            [engageReplace setText:NSLocalizedStringFromTable(@"AttackingYou", @"Labels", nil)];
+            [successfulBuyouts setHidden:YES];
+            plutocratExists = YES;
+            break;
+
         case BuyoutsHeader:
             [background setImage:[UIImage imageNamed:@"Background-gray"]];
             [noPlutocrat setHidden:YES];
@@ -128,6 +169,7 @@
             [name setHidden:YES];
             [plutocratBuyouts setHidden:YES];
             [engageButton setHidden:YES];
+            [engageReplace setHidden:YES];
             [successfulBuyouts setHidden:NO];
             plutocratExists = NO;
             break;

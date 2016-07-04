@@ -148,6 +148,7 @@
     [iView setCenter:CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.size.height / 2)];
     [self.view addSubview:iView];
     [iView startAnimating];
+
     [ApiConnector initiateBuyoutToUser:userId
                         amountOfShares:[selectShares value]
                             completion:^(Buyout * buyout, NSString * error)

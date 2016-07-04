@@ -216,7 +216,19 @@
 
 - (void)initiateViewController:(InitiateViewController *)controller initiatedBuyoutAndShouldRefreshCellWithTag:(NSUInteger)tag
 {
-    [self.table reloadData];
+    User * user;
+    if (tag == NSUIntegerMax)
+    {
+        user = pluto;
+        user.underBuyoutThreat = YES;
+        [self setPlutocrat:user];
+    }
+    else
+    {
+        user = [self.source objectAtIndex:tag];
+        user.underBuyoutThreat = YES;
+        [self.table reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:tag inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    }
 }
 
 #pragma mark - Plutocrat
@@ -230,7 +242,16 @@
 
 - (void)setPlutocrat:(User *)plutocrat
 {
-    [self.header setType:TargetsHeaderWithPlutocrat];
+    TargetsBuyoutsHeaderType type = TargetsHeaderWithPlutocrat;
+    if (plutocrat.underBuyoutThreat)
+    {
+        type = TargetsHeaderWithPlutocratUnderThreat;
+    }
+    if (plutocrat.attackingCurrentUser)
+    {
+        type = TargetsHeaderWithPlutocratAttackingYou;
+    }
+    [self.header setType:type];
     [self.header setImageUrl:plutocrat.profileImageUrl initials:plutocrat.initials];
     [self.header setName:plutocrat.displayName];
     [self.header setNumberOfBuyouts:plutocrat.successfulBuyoutsCount];

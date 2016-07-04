@@ -88,7 +88,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FD0076B11D2A246200195E99 /* Plutocrat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Plutocrat.entitlements; sourceTree = "<group>"; };
 		FD310E3F1D18FFF90051930A /* InboundBuyout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InboundBuyout.h; path = Model/InboundBuyout.h; sourceTree = "<group>"; };
 		FD310E401D18FFF90051930A /* InboundBuyout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InboundBuyout.m; path = Model/InboundBuyout.m; sourceTree = "<group>"; };
 		FD3869EB1CE3473700065BA3 /* ApiConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApiConnector.h; path = Network/ApiConnector.h; sourceTree = "<group>"; };
@@ -350,7 +349,6 @@
 		FD45A0B91CD7735100304EC0 /* Plutocrat */ = {
 			isa = PBXGroup;
 			children = (
-				FD0076B11D2A246200195E99 /* Plutocrat.entitlements */,
 				FD45A0BD1CD7735100304EC0 /* AppDelegate.h */,
 				FD45A0BE1CD7735100304EC0 /* AppDelegate.m */,
 				FD45A0C91CD7735100304EC0 /* Assets.xcassets */,
@@ -628,6 +626,8 @@
 					FD45A0B61CD7735100304EC0 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 86AUZJL55V;
+						DevelopmentTeamName = "Whitefly Ventures, Inc.";
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 1;
@@ -868,10 +868,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
-				CODE_SIGN_ENTITLEMENTS = Plutocrat/Plutocrat.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 0.5;
+				CURRENT_PROJECT_VERSION = 0.5.1;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Plutocrat/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Plutocrat/Supporting Files/Info.plist";
@@ -879,7 +879,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.whiteflyventuresinc.Plutocrat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "3bc26c12-29f1-4ecd-a044-8bbb9f2de99d";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -889,10 +890,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
-				CODE_SIGN_ENTITLEMENTS = Plutocrat/Plutocrat.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 0.5;
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Whitefly Ventures, Inc. (86AUZJL55V)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Whitefly Ventures, Inc. (86AUZJL55V)";
+				CURRENT_PROJECT_VERSION = 0.5.1;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Plutocrat/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Plutocrat/Supporting Files/Info.plist";
@@ -900,7 +901,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.whiteflyventuresinc.Plutocrat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "3bc26c12-29f1-4ecd-a044-8bbb9f2de99d";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

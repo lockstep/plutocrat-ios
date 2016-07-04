@@ -12,8 +12,12 @@ typedef NS_ENUM (NSUInteger, TargetsBuyoutsHeaderType)
 {
     TargetsHeaderNoPlutocrat,
     TargetsHeaderWithPlutocrat,
+    TargetsHeaderWithPlutocratUnderThreat,
+    TargetsHeaderWithPlutocratAttackingYou,
     BuyoutsHeader
 };
+
+
 
 @protocol TargetsBuyotsHeaderDelegate <NSObject>
 

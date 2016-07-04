@@ -167,7 +167,8 @@
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:animations
                      completion:^(BOOL finished){
-                         User * target = [self.source objectAtIndex:cell.tag];
+                         Buyout * buyout = [self.source objectAtIndex:cell.tag];
+                         User * target = buyout.targetUser;
                          InitiateViewController * ivc = [[InitiateViewController alloc] init];
                          [self addChildViewController:ivc];
                          [self.view addSubview:ivc.view];
@@ -251,7 +252,7 @@
 
 - (void)initiateViewController:(InitiateViewController *)controller initiatedBuyoutAndShouldRefreshCellWithTag:(NSUInteger)tag
 {
-    [self.table reloadData];
+    [self updateOnPush];
 }
 
 @end
