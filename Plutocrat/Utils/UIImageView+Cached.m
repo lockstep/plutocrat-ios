@@ -73,4 +73,14 @@
     }
 }
 
+- (void)removeInitials
+{
+    UIView * subview = [self.subviews firstObject];
+    if ([subview isKindOfClass:[UILabel class]])
+    {
+        UILabel * lab = (UILabel *)subview;
+        [lab setHidden:YES];
+    }
+}
+
 @end

@@ -124,4 +124,9 @@
     [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
 }
 
+- (void)tabBarViewControllerDidSetDefeated:(TabBarViewController *)controller
+{
+    leftPanelViewController.defeated = YES;
+}
+
 @end

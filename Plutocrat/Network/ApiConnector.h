@@ -53,10 +53,8 @@
 + (void)getBuyoutsWithPage:(NSUInteger)page
                 completion:(void (^)(NSArray * users, NSUInteger perPage, BOOL isLastPage, NSString * error))completion;
 
-+ (void)purchaseShare:(NSUInteger)bundleSize
-             quantity:(NSUInteger)quantity
-     appleReceiptData:(NSData *)appleReceiptData
-           completion:(void (^)(NSString * error))completion;
++ (void)purchaseSharesWithAppleReceiptData:(NSData *)appleReceiptData
+                                completion:(void (^)(NSString * error))completion;
 
 + (void)prepareBuyoutToUser:(NSUInteger)userId
                  completion:(void (^)(NSUInteger availableSharesCount, NSUInteger minimumAmount, NSString * error))completion;

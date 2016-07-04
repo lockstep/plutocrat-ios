@@ -179,33 +179,7 @@
     }
 }
 
-#pragma mark - stub
-
-- (void)stubName:(NSString *)name
-{
-
-}
-
-- (void)stub2
-{
-    [header setHidden:NO];
-    [header setType:TargetsHeaderWithPlutocrat];
-  //  [header setImage:[UIImage imageNamed:@"me"]];
-    [header setName:@"Pavel Dolgov"];
-    [header setNumberOfBuyouts:35];
-    [header buttonHide:YES];
-    [anotherBack setHidden:YES];
-    [anotherHeader setHidden:YES];
-    [selectShares setMin:12 value:12 max:23];
-}
-
-- (void)stubCell:(TargetsCell *)cell
-{
-    int rndValue1 = arc4random() % 30;
-    int rndValue2 = arc4random() % 15;
-    int rndValue3 = arc4random() % 120;
-    [cell setBuyouts:rndValue1 threats:rndValue2 days:rndValue3];
-}
+#pragma mark - exit
 
 - (void)exit
 {

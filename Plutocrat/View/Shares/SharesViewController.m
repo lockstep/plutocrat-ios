@@ -9,12 +9,14 @@
 #import "SharesViewController.h"
 #import "CommonHeader.h"
 #import "UserManager.h"
+#import "ApiConnector.h"
 
 @interface SharesViewController ()
 {
     CommonHeader * header;
     UITableView * table;
     NSArray * source;
+    UIActivityIndicatorView * iView;
 }
 @end
 
@@ -40,17 +42,24 @@
                                          style:UITableViewStylePlain];
     [table setDelegate:self];
     [table setDataSource:self];
-    [table setSeparatorColor:[UIColor grayWithIntense:222.0f]];
     [table setSeparatorInset:UIEdgeInsetsMake(0.0f,
                                               [Globals horizontalOffsetInTable],
                                               0.0f,
                                               [Globals horizontalOffsetInTable])];
     [self.view addSubview:table];
+
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
     
-    [self stub];
+    [self loadData];
 }
 
-#pragma mark - Table view data source
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self loadHeaderData];
+}
+
+#pragma mark - TableView data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -61,6 +70,8 @@
 {
     return [source count];
 }
+
+#pragma mark - TableView
 
 static NSString * identifier = @"SharesCellIdentifier";
 
@@ -77,7 +88,20 @@ static NSString * identifier = @"SharesCellIdentifier";
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self stubCell:(SharesTableViewCell *)cell onIndexPath:indexPath];
+    [self configureCell:(SharesTableViewCell *)cell onIndexPath:indexPath];
+}
+
+- (void)configureCell:(SharesTableViewCell *)cell onIndexPath:(NSIndexPath *)indexPath
+{
+    SKProduct * product = [source objectAtIndex:indexPath.row];
+    NSArray * amts = @[@(SharesAmountFew), @(SharesAmountAverage), @(SharesAmountAverage), @(SharesAmountMany), @(SharesAmountMany)];
+    NSArray * bundleParts = [product.productIdentifier componentsSeparatedByString:@"."];
+    NSUInteger shares = [[bundleParts lastObject] integerValue];
+    NSUInteger price = [product.price unsignedIntegerValue];
+    NSString * currency = [product.priceLocale currencySymbol];
+    NSUInteger visualAmount = [[amts objectAtIndex:indexPath.row] integerValue];
+    [cell setShares:shares price:price currency:currency visualAmount:visualAmount];
+    cell.tag = indexPath.row;
 }
 
 #pragma mark – Table view
@@ -91,19 +115,33 @@ static NSString * identifier = @"SharesCellIdentifier";
 
 - (void)buttonTappedToByOnCell:(SharesTableViewCell *)cell
 {
-    SKProductsRequest * req = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:@"com.whiteflyventuresinc.Plutocrat.One"]];
-    [req setDelegate:self];
-   // [req start];
+    SKProduct * product = [source objectAtIndex:cell.tag];
+    SKPayment * payment = [SKPayment paymentWithProduct:product];
+    [[SKPaymentQueue defaultQueue] addPayment:payment];
 }
 
 #pragma mark - Products Request Delegate
 
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
-    SKProduct * product = [response.products lastObject];
-    SKPayment * payment = [SKPayment paymentWithProduct:product];
-    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-    [[SKPaymentQueue defaultQueue] addPayment:payment];
+    source = [response.products sortedArrayUsingComparator:^NSComparisonResult(SKProduct * first, SKProduct * second) {
+        NSArray * bundleParts = [first.productIdentifier componentsSeparatedByString:@"."];
+        NSUInteger firstVal = [[bundleParts lastObject] integerValue];
+        bundleParts = [second.productIdentifier componentsSeparatedByString:@"."];
+        NSUInteger secondVal = [[bundleParts lastObject] integerValue];
+        if (firstVal < secondVal)
+        {
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        else
+        {
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+    }];
+    [iView removeFromSuperview];
+    [table setScrollEnabled:YES];
+    [table setSeparatorColor:[UIColor grayWithIntense:222.0f]];
+    [table reloadData];
 }
 
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray<SKPaymentTransaction *> *)transactions
@@ -114,30 +152,46 @@ static NSString * identifier = @"SharesCellIdentifier";
         {
             NSURL * receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
             NSData * receipt = [NSData dataWithContentsOfURL:receiptURL];
-            NSLog(@"Length of receipt is: %lu", (unsigned long)[receipt length]);
-            NSLog(@"%@", [receipt base64EncodedStringWithOptions:0]);
-          //  [[SKPaymentQueue defaultQueue] finishTransaction:trans];
+            [ApiConnector purchaseSharesWithAppleReceiptData:receipt
+                                                  completion:^(NSString * error) {
+                                                      if (!error)
+                                                      {
+                                                          [[SKPaymentQueue defaultQueue] finishTransaction:trans];
+                                                      }
+                                                  }];
+          
         }
     }
 }
 
-#pragma mark - stub
+#pragma mark - load data
 
-- (void)stub
+- (void)loadHeaderData
 {
     [header setText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"UnusedSharesFormat", @"Labels", nil), [UserManager availableShares]]];
-    source = @[@1, @5, @10, @50];
-    [table reloadData];
+    UIActivityIndicatorView * iView2 = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [iView2 setCenter:CGPointMake(30.0f, header.frame.size.height / 2)];
+    [header addSubview:iView2];
+    [iView2 startAnimating];
+    [ApiConnector getProfileWithUserId:[UserManager currentUserId]
+                            completion:^(User * user, NSString * error) {
+                                [iView2 removeFromSuperview];
+                                [header setText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"UnusedSharesFormat", @"Labels", nil), [UserManager availableShares]]];
+     }];
 }
 
-- (void)stubCell:(SharesTableViewCell *)cell onIndexPath:(NSIndexPath *)indexPath
+- (void)loadData
 {
-    NSArray * prices = @[@25, @125, @200, @750];
-    NSArray * amts = @[@(SharesAmountFew), @(SharesAmountAverage), @(SharesAmountAverage), @(SharesAmountMany)];
-    NSUInteger shares = [[source objectAtIndex:indexPath.row] integerValue];
-    NSUInteger price = [[prices objectAtIndex:indexPath.row] integerValue];
-    NSUInteger visualAmount = [[amts objectAtIndex:indexPath.row] integerValue];
-    [cell setShares:shares price:price visualAmount:visualAmount];
+    iView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [iView setCenter:CGPointMake(table.frame.size.width / 2, table.frame.size.height / 2)];
+    [table addSubview:iView];
+    [table setScrollEnabled:NO];
+    [table setSeparatorColor:[UIColor clearColor]];
+    [iView startAnimating];
+
+    SKProductsRequest * req = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObjects:@"com.whiteflyventuresinc.plutocrat.shares.1", @"com.whiteflyventuresinc.plutocrat.shares.50", @"com.whiteflyventuresinc.plutocrat.shares.100", @"com.whiteflyventuresinc.plutocrat.shares.200", @"com.whiteflyventuresinc.plutocrat.shares.500", nil]];
+    [req setDelegate:self];
+    [req start];
 }
 
 @end

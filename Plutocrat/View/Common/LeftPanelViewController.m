@@ -127,6 +127,7 @@ static NSString * identifier = @"LeftPanelCellIdentifier";
                  [iView removeFromSuperview];
                  if (!error)
                  {
+                     [Settings setDefaults];
                      if ([self.delegate respondsToSelector:@selector(leftPanelViewController:shouldNavigateTo:)])
                      {
                          [self.delegate leftPanelViewController:self shouldNavigateTo:NavigateToSignOut];

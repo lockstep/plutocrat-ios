@@ -85,6 +85,14 @@
 
 #pragma mark - refresh
 
+- (void)refreshData
+{
+    [ApiConnector getProfileWithUserId:[UserManager currentUserId]
+                            completion:^(User * user, NSString * error) {
+                                [self updateData];
+                            }];
+}
+
 - (void)handleRefresh
 {
     [ApiConnector getProfileWithUserId:[UserManager currentUserId]
@@ -94,14 +102,14 @@
                             }];
 }
 
-#pragma mark - public
+#pragma mark - layout
 
 - (void)updateData
 {
     [timer invalidate];
     
     user = [User userFromDict:[UserManager userDict]];
-
+    
     [buyoutsStatsView setSuccessful:user.successfulBuyoutsCount
                              failed:user.failedBuyoutsCount
                            defeated:user.matchedBuyoutsCount];
@@ -136,8 +144,6 @@
         [self styleNormal];
     }
 }
-
-#pragma mark - layout
 
 - (void)layBasicInfoWhenAttacked:(BOOL)attacked
 {

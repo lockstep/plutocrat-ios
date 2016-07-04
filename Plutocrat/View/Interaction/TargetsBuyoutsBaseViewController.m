@@ -26,7 +26,6 @@
     
     self.header = [[TargetsBuyoutsHeader alloc] initWithFrame:
               CGRectMake(0.0f, 0.0f, self.view.bounds.size.width, [Globals headerHeight])];
-    [self.header setDelegate:self];
     [self.view addSubview:self.header];
 
     self.source = [NSMutableArray new];
@@ -126,8 +125,6 @@
                          InitiateViewController * ivc = [[InitiateViewController alloc] init];
                          [self addChildViewController:ivc];
                          [self.view addSubview:ivc.view];
-                      //   [ivc stubName:[self.source objectAtIndex:cell.tag]];
-                    //     [ivc setBackImageType:BackImageTypeBuyouts];
                          [cell removeFromSuperview];
                          [self.table reloadData];
                      }];

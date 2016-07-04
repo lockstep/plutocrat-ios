@@ -17,6 +17,7 @@
 
 - (void)tabBarViewController:(TabBarViewController *)controller shouldNavigateTo:(NavigateTo)dest;
 - (void)tabBarViewControllerAskedForPushes:(TabBarViewController *)controller;
+- (void)tabBarViewControllerDidSetDefeated:(TabBarViewController *)controller;
 
 @end
 

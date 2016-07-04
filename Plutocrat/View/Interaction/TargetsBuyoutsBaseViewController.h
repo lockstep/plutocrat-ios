@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TargetsBuyoutsHeader.h"
 
-@interface TargetsBuyoutsBaseViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, TargetsBuyotsHeaderDelegate>
+@interface TargetsBuyoutsBaseViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) TargetsBuyoutsHeader * header;
 @property (nonatomic, strong) UITableView * table;

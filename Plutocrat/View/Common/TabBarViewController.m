@@ -94,21 +94,7 @@
 
 - (void)updateOnPush
 {
-    [hvc updateData];
-    if ([UserManager isDefeated])
-    {
-        [self setSelectedIndex:0];
-        tvc.tabBarItem = nil;
-        bvc.tabBarItem = nil;
-        svc.tabBarItem = nil;
-        avc.tabBarItem = nil;
-        [self.tabBar setUserInteractionEnabled:NO];
-    }
-    else
-    {
-        [tvc updateOnPush];
-        [bvc updateOnPush];
-    }
+    [hvc refreshData];
 }
 
 #pragma mark - HomeViewControllerDelegate
@@ -138,6 +124,10 @@
     bvc.tabBarItem = nil;
     svc.tabBarItem = nil;
     avc.tabBarItem = nil;
+    if ([self.customDelegate respondsToSelector:@selector(tabBarViewControllerDidSetDefeated:)])
+    {
+        [self.customDelegate tabBarViewControllerDidSetDefeated:self];
+    }
     [self.tabBar setUserInteractionEnabled:NO];
 }
 
@@ -145,7 +135,7 @@
 
 - (void)accountViewControllerUpdatedData:(AccountViewController *)accountViewController
 {
-    [hvc updateData];
+    [hvc refreshData];
 }
 
 @end

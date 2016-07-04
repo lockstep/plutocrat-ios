@@ -25,7 +25,7 @@
 #define PROFILE @"users/%lu"
 #define GET_USERS @"users"
 #define GET_BUYOUTS @"users/%lu/buyouts"
-#define SHARE_PURCHASE @"users/%lu/share_purchase"
+#define SHARE_PURCHASE @"users/%lu/receipt"
 #define PREPARE_BUYOUT @"users/%lu/buyouts/new"
 #define INITIATE_BUYOUT @"users/%lu/buyout"
 #define MATCH_BUYOUT @"buyouts/%lu/match"
@@ -406,17 +406,11 @@ enum ApiMethod {
     }];
 }
 
-+ (void)purchaseShare:(NSUInteger)bundleSize
-             quantity:(NSUInteger)quantity
-     appleReceiptData:(NSData *)appleReceiptData
-           completion:(void (^)(NSString *))completion
++ (void)purchaseSharesWithAppleReceiptData:(NSData *)appleReceiptData
+                                completion:(void (^)(NSString *))completion
 {
-    NSDictionary *params = @{@"share_purchase":
-                                 @{@"apple_receipt_data": [appleReceiptData base64EncodedStringWithOptions:0],
-                                   @"bundle_size": @(bundleSize),
-                                   @"quantity": @(quantity)
-                                   }
-                             };
+    NSDictionary * params = @{@"purchase_token": [appleReceiptData base64EncodedStringWithOptions:0], @"type": @"ios"};
+
     [self connectApi:[NSString stringWithFormat:SHARE_PURCHASE, (unsigned long)[UserManager currentUserId]]
               method:Post
               params:params

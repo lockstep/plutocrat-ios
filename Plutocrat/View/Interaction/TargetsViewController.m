@@ -17,6 +17,7 @@
     BOOL loading;
     BOOL setNoPlutocrat;
     UIActivityIndicatorView * iView;
+    User * pluto;
 }
 @end
 
@@ -118,6 +119,18 @@
     }];
 }
 
+#pragma mark - Header delegate
+
+- (void)buttonTappedToEngage
+{
+    InitiateViewController * ivc = [[InitiateViewController alloc] init];
+    [self addChildViewController:ivc];
+    [self.view addSubview:ivc.view];
+    [ivc setUser:pluto cellTag:-1];
+    [ivc setBackImageType:BackImageTypeTargets];
+    [ivc setDelegate:self];
+}
+
 #pragma mark - Load Data
 
 - (void)loadData
@@ -206,6 +219,8 @@
     [self.table reloadData];
 }
 
+#pragma mark - Plutocrat
+
 - (void)noPlutocrat
 {
     if (setNoPlutocrat) return;
@@ -219,6 +234,8 @@
     [self.header setImageUrl:plutocrat.profileImageUrl initials:plutocrat.initials];
     [self.header setName:plutocrat.displayName];
     [self.header setNumberOfBuyouts:plutocrat.successfulBuyoutsCount];
+    [self.header setDelegate:self];
+    pluto = plutocrat;
 }
 
 @end

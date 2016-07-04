@@ -346,6 +346,7 @@
 {
     UIImage * chosenImage = info[UIImagePickerControllerEditedImage];
     [photo setImage:chosenImage];
+    [photo removeInitials];
     [picker dismissViewControllerAnimated:YES completion:nil];
     imageChanged = YES;
 }

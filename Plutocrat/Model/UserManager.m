@@ -60,7 +60,6 @@
     [[NSUserDefaults standardUserDefaults] setObject:headerDict forKey:HEADER_KEY];
     [[NSUserDefaults standardUserDefaults] setObject:userDict[@"id"] forKey:LAST_LOGIN_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    NSLog(@"STORED");
 }
 
 + (void)removeUser {

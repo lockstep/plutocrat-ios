@@ -10,6 +10,6 @@
 #import "TargetsCell.h"
 #import "InitiateViewController.h"
 
-@interface TargetsViewController : TargetsBuyoutsBaseViewController <TargetsBuyoutsCellDelegate, InitiateViewControllerDelegate>
+@interface TargetsViewController : TargetsBuyoutsBaseViewController <TargetsBuyoutsCellDelegate, TargetsBuyotsHeaderDelegate, InitiateViewControllerDelegate>
 
 @end

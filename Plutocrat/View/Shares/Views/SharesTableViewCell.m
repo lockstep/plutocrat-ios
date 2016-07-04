@@ -84,7 +84,7 @@
         [self addSubview:totalLab];
         
         totalVal = [[UILabel alloc] initWithFrame:
-                        CGRectMake(visual.frame.size.width + [Globals horizontalOffsetInTable] * 2 + 60.0f, [Globals cellHeight] / 2 + 5.0f, 60.0f, 15.0f)];
+                        CGRectMake(visual.frame.size.width + [Globals horizontalOffsetInTable] * 2 + 40.0f, [Globals cellHeight] / 2 + 5.0f, 80.0f, 15.0f)];
         [totalVal setBackgroundColor:[UIColor clearColor]];
         [totalVal setFont:[UIFont italicFontWithSize:12.0f]];
         [totalVal setTextColor:[UIColor grayWithIntense:114.0f]];
@@ -114,12 +114,15 @@
 
 #pragma mark - public
 
-- (void)setShares:(NSUInteger)shares price:(NSUInteger)price visualAmount:(SharesAmount)amount
+- (void)setShares:(NSUInteger)shares
+            price:(NSUInteger)price
+         currency:(NSString *)currency
+     visualAmount:(SharesAmount)amount
 {
     [sharesInRound setText:[NSString stringWithFormat:@"%lu", (unsigned long)shares]];
     NSString * descText = (shares == 1) ? NSLocalizedStringFromTable(@"Share", @"Labels", nil) : NSLocalizedStringFromTable(@"Shares", @"Labels", nil);
     [descriptInRound setText:descText];
-    [totalVal setText:[NSString stringWithFormat:@"$%lu", (unsigned long)price]];
+    [totalVal setText:[NSString stringWithFormat:@"%lu %@", (unsigned long)price, currency]];
     if (shares != 0)
     {
         [perShareVal setText:[NSString stringWithFormat:@"$%lu", (unsigned long)(price / shares)]];
