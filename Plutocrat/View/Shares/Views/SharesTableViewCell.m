@@ -125,7 +125,7 @@
     [totalVal setText:[NSString stringWithFormat:@"%lu %@", (unsigned long)price, currency]];
     if (shares != 0)
     {
-        [perShareVal setText:[NSString stringWithFormat:@"$%lu", (unsigned long)(price / shares)]];
+        [perShareVal setText:[NSString stringWithFormat:@"%lu %@", (unsigned long)(price / shares), currency]];
     }
     switch (amount)
     {
