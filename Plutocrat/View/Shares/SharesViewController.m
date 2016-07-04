@@ -98,7 +98,15 @@ static NSString * identifier = @"SharesCellIdentifier";
     NSArray * bundleParts = [product.productIdentifier componentsSeparatedByString:@"."];
     NSUInteger shares = [[bundleParts lastObject] integerValue];
     NSUInteger price = [product.price unsignedIntegerValue];
-    NSString * currency = [product.priceLocale currencySymbol];
+    
+    NSNumberFormatter * numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+    [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    [numberFormatter setLocale:product.priceLocale];
+
+    NSLocale * storeLocale = product.priceLocale;
+    NSString * currency = (NSString *)CFLocaleGetValue((CFLocaleRef)storeLocale, kCFLocaleCurrencySymbol);
+
     NSUInteger visualAmount = [[amts objectAtIndex:indexPath.row] integerValue];
     [cell setShares:shares price:price currency:currency visualAmount:visualAmount];
     cell.tag = indexPath.row;
