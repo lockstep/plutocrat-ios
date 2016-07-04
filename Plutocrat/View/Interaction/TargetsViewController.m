@@ -15,6 +15,7 @@
 {
     NSString * identifier;
     BOOL loading;
+    BOOL setNoPlutocrat;
     UIActivityIndicatorView * iView;
 }
 @end
@@ -207,6 +208,8 @@
 
 - (void)noPlutocrat
 {
+    if (setNoPlutocrat) return;
+    setNoPlutocrat = YES;
     [self.header setType:TargetsHeaderNoPlutocrat];
 }
 

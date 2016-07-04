@@ -17,6 +17,7 @@
 @interface HomeViewController ()
 {
     UIScrollView * view;
+    UIRefreshControl * refreshControl;
     HomeHeader * homeHeader;
     BigUserView * bigUserView;
     BuyoutsStatsView * buyoutsStatsView;
@@ -74,7 +75,23 @@
     [attackerView setDelegate:self];
     [view addSubview:attackerView];
 
+
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(handleRefresh) forControlEvents:UIControlEventValueChanged];
+    [view addSubview:refreshControl];
+
     [self updateData];
+}
+
+#pragma mark - refresh
+
+- (void)handleRefresh
+{
+    [ApiConnector getProfileWithUserId:[UserManager currentUserId]
+                            completion:^(User * user, NSString * error) {
+                                [refreshControl endRefreshing];
+                                [self updateData];
+                            }];
 }
 
 #pragma mark - public
@@ -107,6 +124,7 @@
     else if (user.terminalBuyout)
     {
         [self styleDefeated];
+
     }
     else
     {
@@ -210,6 +228,11 @@
     [infoView setName:user.terminalBuyout.initiatingUser.displayName
                shares:user.terminalBuyout.numberOfShares
               timeAgo:user.terminalBuyout.resolvedTimeAgo];
+
+    if ([self.delegate respondsToSelector:@selector(homeViewControllerDefeated:)])
+    {
+        [self.delegate homeViewControllerDefeated:self];
+    }
 }
 
 #pragma mark - BigUserViewDelegate
@@ -240,6 +263,10 @@
               if (!error)
               {
                   [self updateData];
+                  if ([self.delegate respondsToSelector:@selector(homeViewControllerDefeated:)])
+                  {
+                      [self.delegate homeViewControllerDefeated:self];
+                  }
               }
               else
               {
@@ -283,7 +310,7 @@
 - (void)onTimerBack
 {
     [homeHeader setDate:user.inboundBuyout.deadlineAt];
-    if ([user.inboundBuyout.deadlineAt timeIntervalSinceNow] >= 0)
+    if ([user.inboundBuyout.deadlineAt timeIntervalSinceNow] <= 0)
     {
         [timer invalidate];
         timer = nil;

@@ -88,6 +88,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FD0076B11D2A246200195E99 /* Plutocrat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Plutocrat.entitlements; sourceTree = "<group>"; };
 		FD310E3F1D18FFF90051930A /* InboundBuyout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InboundBuyout.h; path = Model/InboundBuyout.h; sourceTree = "<group>"; };
 		FD310E401D18FFF90051930A /* InboundBuyout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InboundBuyout.m; path = Model/InboundBuyout.m; sourceTree = "<group>"; };
 		FD3869EB1CE3473700065BA3 /* ApiConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApiConnector.h; path = Network/ApiConnector.h; sourceTree = "<group>"; };
@@ -349,6 +350,7 @@
 		FD45A0B91CD7735100304EC0 /* Plutocrat */ = {
 			isa = PBXGroup;
 			children = (
+				FD0076B11D2A246200195E99 /* Plutocrat.entitlements */,
 				FD45A0BD1CD7735100304EC0 /* AppDelegate.h */,
 				FD45A0BE1CD7735100304EC0 /* AppDelegate.m */,
 				FD45A0C91CD7735100304EC0 /* Assets.xcassets */,
@@ -866,6 +868,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_ENTITLEMENTS = Plutocrat/Plutocrat.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 0.4.4;
@@ -886,6 +889,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_ENTITLEMENTS = Plutocrat/Plutocrat.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 0.4.4;

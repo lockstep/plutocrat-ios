@@ -131,6 +131,16 @@
     }
 }
 
+- (void)homeViewControllerDefeated:(HomeViewController *)controller
+{
+    [self setSelectedIndex:0];
+    tvc.tabBarItem = nil;
+    bvc.tabBarItem = nil;
+    svc.tabBarItem = nil;
+    avc.tabBarItem = nil;
+    [self.tabBar setUserInteractionEnabled:NO];
+}
+
 #pragma mark - AccountViewControllerDelegate
 
 - (void)accountViewControllerUpdatedData:(AccountViewController *)accountViewController
