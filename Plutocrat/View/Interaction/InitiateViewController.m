@@ -184,8 +184,7 @@
 
 - (void)exit
 {
-    [self.view removeFromSuperview];
-    [self removeFromParentViewController];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Alerts

@@ -14,6 +14,7 @@
 #import "Settings.h"
 #import "KeychainWrapper.h"
 #import "ResetPasswordViewController.h"
+#import "CommonHeader.h"
 
 #import <LocalAuthentication/LAContext.h>
 
@@ -24,7 +25,8 @@
 {
     BOOL loginMode;
     UIScrollView * view;
-    UILabel * actionLabel;
+    //UILabel * actionLabel;
+    CommonHeader * header;
     UITextField * displayName;
     UITextField * email;
     UITextField * password;
@@ -71,27 +73,36 @@
 
 - (void)setupCommon
 {
-    view = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    header = [[CommonHeader alloc] initWithFrame:CGRectMake(0.0f,
+                                                            0.0f,
+                                                            self.view.bounds.size.width,
+                                                            [Globals headerHeight])];
+    [self.view addSubview:header];
+
+    view = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0f,
+                                                          [Globals headerHeight],
+                                                          self.view.bounds.size.width,
+                                                          self.view.bounds.size.height - [Globals headerHeight])];
     [self.view addSubview:view];
 
-    UIColor * paleGray = [UIColor grayWithIntense:146.0f];
-    const CGFloat bigFontSize = 24.0f;
+//    UIColor * paleGray = [UIColor grayWithIntense:146.0f];
+//    const CGFloat bigFontSize = 24.0f;
     const CGFloat smallFontSize = 14.0f;
     CGFloat horizontalOffset = [Globals horizontalOffset];
     CGFloat heightsOfTextFields = 34.0f;
     CGFloat componentsWidth = self.view.bounds.size.width - horizontalOffset * 2;
 
-    actionLabel = [[UILabel alloc] initWithFrame:CGRectMake(horizontalOffset,
-                                                            50.0f,
-                                                            componentsWidth,
-                                                            30.0f)];
-    [actionLabel setTextColor:paleGray];
-    [actionLabel setFont:[UIFont regularFontWithSize:bigFontSize]];
-    [view addSubview:actionLabel];
-    
-    
+//    actionLabel = [[UILabel alloc] initWithFrame:CGRectMake(horizontalOffset,
+//                                                            50.0f,
+//                                                            componentsWidth,
+//                                                            30.0f)];
+//    [actionLabel setTextColor:paleGray];
+//    [actionLabel setFont:[UIFont regularFontWithSize:bigFontSize]];
+//    [view addSubview:actionLabel];
+
+
     displayName = [[UITextField alloc] initWithFrame:CGRectMake(horizontalOffset,
-                                                                100.0f,
+                                                                20.0f,
                                                                 componentsWidth,
                                                                 heightsOfTextFields)];
     [displayName setPlaceholder:NSLocalizedStringFromTable(@"DisplayName", @"Labels", nil)];
@@ -196,7 +207,7 @@
     [displayName setHidden:userIsRegistered];
     
     [email setFrame:CGRectMake(email.frame.origin.x,
-                              100.0f + modeDiff,
+                              20.0f + modeDiff,
                               email.frame.size.width,
                               email.frame.size.height)];
     
@@ -221,7 +232,7 @@
     
     if (userIsRegistered)
     {
-        [actionLabel setText:NSLocalizedStringFromTable(@"SignIn", @"Labels", nil)];
+        [header setText:NSLocalizedStringFromTable(@"SignIn", @"Labels", nil)];
         LAContext * context = [LAContext new];
         if ([Settings isTouchIDEnabled] &&
             [context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil] &&
@@ -253,7 +264,7 @@
     else
     {
         [Settings setDefaults];
-        [actionLabel setText:NSLocalizedStringFromTable(@"Register", @"Labels", nil)];
+        [header setText:NSLocalizedStringFromTable(@"Register", @"Labels", nil)];
     }
 }
 

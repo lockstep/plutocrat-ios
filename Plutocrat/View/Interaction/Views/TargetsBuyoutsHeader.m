@@ -28,7 +28,7 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        const CGFloat averageFontSize = 24.0f;
+        const CGFloat averageFontSize = 20.0f;
         const CGFloat smallFontSize = 14.0f;
         
         background = [[UIImageView alloc] initWithFrame:frame];

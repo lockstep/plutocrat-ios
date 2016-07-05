@@ -90,32 +90,12 @@
 
 - (void)buttonTappedToEngageOnCell:(TargetsBuyoutsBaseCell *)cell
 {
-    CGRect frame = cell.frame;
-    frame.origin.y += self.table.frame.origin.y;
-    cell.frame = frame;
-    [self.view addSubview:cell];
-    void (^animations)() = ^()
-    {
-        CGRect frame = cell.frame;
-        frame.origin.y = 20.0f;
-        cell.frame = frame;
-    };
-    
-    [UIView animateWithDuration:0.5f
-                          delay:0.0f
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:animations
-                     completion:^(BOOL finished)
-    {
-        User * target = [self.source objectAtIndex:cell.tag];
-        InitiateViewController * ivc = [[InitiateViewController alloc] init];
-        [self addChildViewController:ivc];
-        [self.view addSubview:ivc.view];
+    User * target = [self.source objectAtIndex:cell.tag];
+    InitiateViewController * ivc = [[InitiateViewController alloc] init];
+    [self presentViewController:ivc animated:YES completion:^(){
         [ivc setUser:target cellTag:cell.tag];
         [ivc setBackImageType:BackImageTypeTargets];
         [ivc setDelegate:self];
-        [cell removeFromSuperview];
-        [self.table reloadData];
     }];
 }
 
@@ -124,11 +104,11 @@
 - (void)buttonTappedToEngage
 {
     InitiateViewController * ivc = [[InitiateViewController alloc] init];
-    [self addChildViewController:ivc];
-    [self.view addSubview:ivc.view];
-    [ivc setUser:pluto cellTag:-1];
-    [ivc setBackImageType:BackImageTypeTargets];
-    [ivc setDelegate:self];
+    [self presentViewController:ivc animated:YES completion:^(){
+        [ivc setUser:pluto cellTag:-1];
+        [ivc setBackImageType:BackImageTypeTargets];
+        [ivc setDelegate:self];
+    }];
 }
 
 #pragma mark - Load Data
@@ -217,7 +197,7 @@
 - (void)initiateViewController:(InitiateViewController *)controller initiatedBuyoutAndShouldRefreshCellWithTag:(NSUInteger)tag
 {
     User * user;
-    if (tag == NSUIntegerMax)
+    if (tag == -1)
     {
         user = pluto;
         user.underBuyoutThreat = YES;
@@ -228,6 +208,10 @@
         user = [self.source objectAtIndex:tag];
         user.underBuyoutThreat = YES;
         [self.table reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:tag inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    }
+    if ([self.delegate respondsToSelector:@selector(targetsBuyoutsViewControllerShouldUpdateBuyouts:)])
+    {
+        [self.delegate targetsBuyoutsViewControllerShouldUpdateBuyouts:self];
     }
 }
 

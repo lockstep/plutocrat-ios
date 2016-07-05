@@ -58,7 +58,7 @@
                                                                            0.0f,
                                                                            self.view.bounds.size.width,
                                                                            [Globals headerHeight])];
-    [header setText:NSLocalizedStringFromTable(@"ACCOUNT", @"Labels", nil)];
+    [header setText:NSLocalizedStringFromTable(@"Account", @"Labels", nil)];
     [self.view addSubview:header];
 
     view = [[UIScrollView alloc] initWithFrame:

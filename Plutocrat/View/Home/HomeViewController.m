@@ -320,11 +320,7 @@
     {
         [timer invalidate];
         timer = nil;
-        [ApiConnector getProfileWithUserId:user.identifier
-                                completion:^(User * user, NSString * error)
-         {
-             [self updateData];
-         }];
+        [self refreshData];
     }
 }
 

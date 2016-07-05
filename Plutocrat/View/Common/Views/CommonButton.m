@@ -69,18 +69,22 @@
                                                  blue:1.0f / 255.0f
                                                 alpha:1.0f]
                        forState:UIControlStateNormal];
+            [self setTitleColor:[UIColor grayWithIntense:124.0f] forState:UIControlStateHighlighted];
             break;
             
         case ButtonColorGray:
             [self setTitleColor:[UIColor grayWithIntense:124.0f] forState:UIControlStateNormal];
+            [self setTitleColor:[UIColor ourViolet] forState:UIControlStateHighlighted];
             break;
             
         case ButtonColorViolet:
             [self setTitleColor:[UIColor ourViolet] forState:UIControlStateNormal];
+            [self setTitleColor:[UIColor grayWithIntense:124.0f] forState:UIControlStateHighlighted];
             break;
             
         case ButtonColorWhite:
             [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [self setTitleColor:[UIColor ourViolet] forState:UIControlStateHighlighted];
             break;
             
         default:

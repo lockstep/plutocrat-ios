@@ -7,6 +7,7 @@
 //
 
 #import "ResetPasswordViewController.h"
+#import "CommonHeader.h"
 #import "CommonButton.h"
 #import "CommonSeparator.h"
 #import "ApiConnector.h"
@@ -15,7 +16,8 @@
 {
     BOOL haveTokenMode;
     UIScrollView * view;
-    UILabel * firstLine;
+   // UILabel * firstLine;
+    CommonHeader * header;
     UILabel * secondLine;
     UILabel * actionLabel;
     UITextField * email;
@@ -47,7 +49,16 @@
 
 - (void)setupCommon
 {
-    view = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    header = [[CommonHeader alloc] initWithFrame:CGRectMake(0.0f,
+                                                            0.0f,
+                                                            self.view.bounds.size.width,
+                                                            [Globals headerHeight])];
+    [self.view addSubview:header];
+
+    view = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0f,
+                                                          [Globals headerHeight],
+                                                          self.view.bounds.size.width,
+                                                          self.view.bounds.size.height - [Globals headerHeight])];
     [self.view addSubview:view];
 
     UIColor * paleGray = [UIColor grayWithIntense:146.0f];
@@ -57,16 +68,16 @@
     CGFloat heightsOfTextFields = 34.0f;
     CGFloat componentsWidth = self.view.bounds.size.width - horizontalOffset * 2;
 
-    firstLine = [[UILabel alloc] initWithFrame:CGRectMake(horizontalOffset,
-                                                          80.0f,
-                                                          componentsWidth,
-                                                          30.0f)];
-    [firstLine setTextColor:paleGray];
-    [firstLine setFont:[UIFont regularFontWithSize:bigFontSize]];
-    [view addSubview:firstLine];
+//    firstLine = [[UILabel alloc] initWithFrame:CGRectMake(horizontalOffset,
+//                                                          80.0f,
+//                                                          componentsWidth,
+//                                                          30.0f)];
+//    [firstLine setTextColor:paleGray];
+//    [firstLine setFont:[UIFont regularFontWithSize:bigFontSize]];
+//    [view addSubview:firstLine];
 
     secondLine = [[UILabel alloc] initWithFrame:CGRectMake(horizontalOffset,
-                                                          120.0f,
+                                                          10.0f,
                                                           componentsWidth,
                                                           80.0f)];
     [secondLine setTextColor:paleGray];
@@ -76,7 +87,7 @@
     [view addSubview:secondLine];
 
     actionLabel = [[UILabel alloc] initWithFrame:CGRectMake(horizontalOffset,
-                                                            200.0f,
+                                                            90.0f,
                                                             componentsWidth,
                                                             30.0f)];
     [actionLabel setTextColor:paleGray];
@@ -84,7 +95,7 @@
     [view addSubview:actionLabel];
 
     email = [[UITextField alloc] initWithFrame:CGRectMake(horizontalOffset,
-                                                          250.0f,
+                                                          130.0f,
                                                           componentsWidth,
                                                           heightsOfTextFields)];
     [email setPlaceholder:NSLocalizedStringFromTable(@"Email", @"Labels", nil)];
@@ -196,7 +207,7 @@
         [secondLine setText:NSLocalizedStringFromTable(@"RequestToken", @"Texts", nil)];
         [actionLabel setText:NSLocalizedStringFromTable(@"RequestResetToken", @"Labels", nil)];
     }
-    [firstLine setText:step];
+    [header setText:step];
 }
 
 #pragma mark - UITextFieldDelegate

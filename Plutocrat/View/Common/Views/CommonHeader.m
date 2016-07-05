@@ -22,11 +22,11 @@
         [background setImage:[UIImage imageNamed:@"Background-gray"]];
         [self addSubview:background];
 
-        label  = [[UILabel alloc] initWithFrame:frame];
-        [label  setFont:[UIFont regularFontWithSize:24.0f]];
-        [label  setTextColor:[UIColor whiteColor]];
-        [label  setTextAlignment:NSTextAlignmentCenter];
-        [self addSubview:label ];
+        label = [[UILabel alloc] initWithFrame:frame];
+        [label setFont:[UIFont regularFontWithSize:20.0f]];
+        [label setTextColor:[UIColor whiteColor]];
+        [label setTextAlignment:NSTextAlignmentCenter];
+        [self addSubview:label];
     }
     return self;
 }

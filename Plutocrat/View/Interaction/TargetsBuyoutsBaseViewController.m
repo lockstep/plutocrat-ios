@@ -97,37 +97,4 @@
     return [Globals cellHeight];
 }
 
-#pragma mark - Engage
-
-- (void)buttonTappedToEngage
-{
-    
-}
-
-- (void)buttonTappedToEngageOnCell:(TargetsBuyoutsBaseCell *)cell
-{
-
-    CGRect frame = cell.frame;
-    frame.origin.y += self.table.frame.origin.y;
-    cell.frame = frame;
-    [self.view addSubview:cell];
-    void (^animations)() = ^() {
-        CGRect frame = cell.frame;
-        frame.origin.y = 20.0f;
-        cell.frame = frame;
-    };
-
-    [UIView animateWithDuration:0.5f
-                          delay:0.0f
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:animations
-                     completion:^(BOOL finished){
-                         InitiateViewController * ivc = [[InitiateViewController alloc] init];
-                         [self addChildViewController:ivc];
-                         [self.view addSubview:ivc.view];
-                         [cell removeFromSuperview];
-                         [self.table reloadData];
-                     }];
-}
-
 @end

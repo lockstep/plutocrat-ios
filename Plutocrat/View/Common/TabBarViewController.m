@@ -8,10 +8,6 @@
 
 #import "TabBarViewController.h"
 
-#import "TargetsViewController.h"
-#import "BuyoutsViewController.h"
-#import "SharesViewController.h"
-
 #import "Settings.h"
 #import "UserManager.h"
 
@@ -53,13 +49,14 @@
     }
 
     tvc = [TargetsViewController new];
+    [tvc setDelegate:self];
     UIImage * tvcImgInact = [[UIImage imageNamed:@"targets-inactive"]
                              imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIImage * tvcImgAct = [[UIImage imageNamed:@"targets-active"]
                            imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     tvc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Targets"
                                                    image:tvcImgInact
-                                           selectedImage:tvcImgAct ];
+                                           selectedImage:tvcImgAct];
     
     bvc = [BuyoutsViewController new];
     UIImage * bvcImgInact = [[UIImage imageNamed:@"buyouts-inactive"]
@@ -129,6 +126,13 @@
         [self.customDelegate tabBarViewControllerDidSetDefeated:self];
     }
     [self.tabBar setUserInteractionEnabled:NO];
+}
+
+#pragma mark - TargetsBuyoutsViewControllerDelegate
+
+- (void)targetsBuyoutsViewControllerShouldUpdateBuyouts:(TargetsBuyoutsBaseViewController *)controller
+{
+    [bvc updateOnPush];
 }
 
 #pragma mark - AccountViewControllerDelegate

@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import "HomeViewController.h"
+#import "TargetsViewController.h"
+#import "BuyoutsViewController.h"
+#import "SharesViewController.h"
 #import "AccountViewController.h"
 
 @class TabBarViewController;
@@ -21,7 +25,7 @@
 
 @end
 
-@interface TabBarViewController : UITabBarController <HomeViewControllerDelegate, AccountViewControllerDelegate>
+@interface TabBarViewController : UITabBarController <HomeViewControllerDelegate, TargetsBuyoutsViewControllerDelegate, AccountViewControllerDelegate>
 
 - (void)setupDefeated:(BOOL)defeated;
 - (void)updateOnPush;

@@ -9,8 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "TargetsBuyoutsHeader.h"
 
+@class TargetsBuyoutsBaseViewController;
+
+@protocol TargetsBuyoutsViewControllerDelegate <NSObject>
+@required
+
+- (void)targetsBuyoutsViewControllerShouldUpdateBuyouts:(TargetsBuyoutsBaseViewController *)controller;
+
+@end
+
 @interface TargetsBuyoutsBaseViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, weak) id <TargetsBuyoutsViewControllerDelegate> delegate;
 @property (nonatomic, strong) TargetsBuyoutsHeader * header;
 @property (nonatomic, strong) UITableView * table;
 @property (nonatomic, strong) UIRefreshControl * refreshControl;

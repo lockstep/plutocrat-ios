@@ -107,7 +107,9 @@ static NSString * identifier = @"SharesCellIdentifier";
     NSLocale * storeLocale = product.priceLocale;
     NSString * currency = (NSString *)CFLocaleGetValue((CFLocaleRef)storeLocale, kCFLocaleCurrencySymbol);
 
-    NSUInteger visualAmount = [[amts objectAtIndex:indexPath.row] integerValue];
+    NSUInteger visualAmount = SharesAmountMany;
+    if ([amts count] > indexPath.row)
+        visualAmount = [[amts objectAtIndex:indexPath.row] integerValue];
     [cell setShares:shares price:price currency:currency visualAmount:visualAmount];
     cell.tag = indexPath.row;
 }
@@ -202,7 +204,7 @@ static NSString * identifier = @"SharesCellIdentifier";
     [table setSeparatorColor:[UIColor clearColor]];
     [iView startAnimating];
 
-    SKProductsRequest * req = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObjects:@"com.whiteflyventuresinc.plutocrat.shares.1", @"com.whiteflyventuresinc.plutocrat.shares.50", @"com.whiteflyventuresinc.plutocrat.shares.100", @"com.whiteflyventuresinc.plutocrat.shares.200", @"com.whiteflyventuresinc.plutocrat.shares.500", nil]];
+    SKProductsRequest * req = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObjects:@"com.whiteflyventuresinc.plutocrat.shares.1", @"com.whiteflyventuresinc.plutocrat.shares.10", @"com.whiteflyventuresinc.plutocrat.shares.50", @"com.whiteflyventuresinc.plutocrat.shares.100", @"com.whiteflyventuresinc.plutocrat.shares.500", nil]];
     [req setDelegate:self];
     [req start];
 }
