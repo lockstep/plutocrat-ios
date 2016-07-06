@@ -265,6 +265,7 @@
          [ApiConnector failToMatchBuyout:user.inboundBuyout.identifier
                               completion:^(User * user, NSString * error)
           {
+              [attackerView setUserInteractionEnabled:YES];
               [iView removeFromSuperview];
               if (!error)
               {
@@ -298,6 +299,7 @@
         [ApiConnector matchBuyout:user.inboundBuyout.identifier
                        completion:^(User * user, NSString * error)
          {
+             [attackerView setUserInteractionEnabled:YES];
              [iView removeFromSuperview];
              if (!error)
              {

@@ -167,7 +167,7 @@ static NSString * identifier = @"SharesCellIdentifier";
                                                       if (!error)
                                                       {
                                                           [[SKPaymentQueue defaultQueue] finishTransaction:trans];
-                                                          [self updateHeaderData];
+                                                          [self loadHeaderData];
                                                       }
                                                   }];
         }

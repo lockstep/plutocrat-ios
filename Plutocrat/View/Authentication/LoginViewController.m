@@ -80,9 +80,10 @@
     [self.view addSubview:header];
 
     view = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0f,
-                                                          [Globals headerHeight],
+                                                          header.frame.size.height,
                                                           self.view.bounds.size.width,
-                                                          self.view.bounds.size.height - [Globals headerHeight])];
+                                                          self.view.bounds.size.height - header.frame.size.height)];
+    [view setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:view];
 
 //    UIColor * paleGray = [UIColor grayWithIntense:146.0f];
