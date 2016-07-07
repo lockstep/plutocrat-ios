@@ -19,5 +19,6 @@ typedef NS_ENUM (NSUInteger, ButtonColor)
 @interface CommonButton : UIButton
 
 + (instancetype)buttonWithText:(NSString *)text color:(ButtonColor)buttonColor;
++ (instancetype)bigButtonWithText:(NSString *)text width:(CGFloat)width;
 
 @end

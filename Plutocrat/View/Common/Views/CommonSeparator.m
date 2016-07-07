@@ -9,6 +9,9 @@
 #import "CommonSeparator.h"
 
 @implementation CommonSeparator
+{
+    BOOL white;
+}
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -20,10 +23,16 @@
     return self;
 }
 
+- (void)makeWhite
+{
+    white = YES;
+}
+
 - (void)drawRect:(CGRect)rect
 {
+    CGColorRef colorRef = white ? [UIColor whiteColor].CGColor : [UIColor grayWithIntense:146.0f].CGColor;
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetStrokeColorWithColor(context, [UIColor grayWithIntense:146.0f].CGColor);
+    CGContextSetStrokeColorWithColor(context, colorRef);
     CGContextSetAllowsAntialiasing(context, false);
     CGContextSetLineWidth(context, 1.0f);
     CGContextMoveToPoint(context, 0.0f, 0.0f);

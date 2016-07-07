@@ -32,6 +32,24 @@
     return button;
 }
 
++ (instancetype)bigButtonWithText:(NSString *)text width:(CGFloat)width
+{
+    UIFont * font = [UIFont regularFontWithSize:12.0f];
+    CommonButton * button = [[CommonButton alloc] initWithFrame:CGRectMake(0.0f,
+                                                                           0.0f,
+                                                                           width,
+                                                                           30.0f)];
+    [[button titleLabel] setFont:font];
+    [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
+    [button paintButtonToColor:ButtonColorWhite titleColor:ButtonColorWhite];
+    [button paintBorderToColor:ButtonColorWhite];
+    [button.layer setBorderWidth:1.0f];
+    [button.layer setCornerRadius:3.0f];
+    [button.layer setMasksToBounds:YES];
+    [button setTitle:text forState:UIControlStateNormal];
+    return button;
+}
+
 #pragma mark - private
 
 - (void)paintButtonToColor:(ButtonColor)buttonColor titleColor:(ButtonColor)titleColor
@@ -54,7 +72,7 @@
             break;
             
         case ButtonColorWhite:
-            [self setBackgroundColor:[UIColor whiteColor]];
+            [self setBackgroundColor:[UIColor clearColor]];
             break;
             
         default:

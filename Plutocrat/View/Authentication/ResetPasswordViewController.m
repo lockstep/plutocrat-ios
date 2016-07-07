@@ -7,7 +7,6 @@
 //
 
 #import "ResetPasswordViewController.h"
-#import "CommonHeader.h"
 #import "CommonButton.h"
 #import "CommonSeparator.h"
 #import "ApiConnector.h"
@@ -16,8 +15,8 @@
 {
     BOOL haveTokenMode;
     UIScrollView * view;
-   // UILabel * firstLine;
-    CommonHeader * header;
+    UILabel * firstLine;
+   // CommonHeader * header;
     UILabel * secondLine;
     UILabel * actionLabel;
     UITextField * email;
@@ -40,7 +39,7 @@
 
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self.view setBackgroundColor:[UIColor blackColor]];
 
     [self setupCommon];
 
@@ -49,126 +48,135 @@
 
 - (void)setupCommon
 {
-    header = [[CommonHeader alloc] initWithFrame:CGRectMake(0.0f,
-                                                            0.0f,
-                                                            self.view.bounds.size.width,
-                                                            [Globals headerHeight])];
-    [self.view addSubview:header];
+//    header = [[CommonHeader alloc] initWithFrame:CGRectMake(0.0f,
+//                                                            0.0f,
+//                                                            self.view.bounds.size.width,
+//                                                            [Globals headerHeight])];
+//    [self.view addSubview:header];
 
     view = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0f,
-                                                          [Globals headerHeight],
+                                                          0.0f,
                                                           self.view.bounds.size.width,
-                                                          self.view.bounds.size.height - [Globals headerHeight])];
+                                                          self.view.bounds.size.height)];
+    UIImageView * back = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Big-back-red"]];
+    [back setCenter:view.center];
+    [view addSubview:back];
     [self.view addSubview:view];
 
-    UIColor * paleGray = [UIColor grayWithIntense:146.0f];
     const CGFloat bigFontSize = 18.0f;
     const CGFloat smallFontSize = 12.0f;
+    NSDictionary * placeholderAttrs = @{NSFontAttributeName: [UIFont regularFontWithSize:smallFontSize], NSForegroundColorAttributeName: [UIColor whiteColor]};
     CGFloat horizontalOffset = [Globals horizontalOffset];
     CGFloat heightsOfTextFields = 34.0f;
     CGFloat componentsWidth = self.view.bounds.size.width - horizontalOffset * 2;
 
-//    firstLine = [[UILabel alloc] initWithFrame:CGRectMake(horizontalOffset,
-//                                                          80.0f,
-//                                                          componentsWidth,
-//                                                          30.0f)];
-//    [firstLine setTextColor:paleGray];
-//    [firstLine setFont:[UIFont regularFontWithSize:bigFontSize]];
-//    [view addSubview:firstLine];
+    firstLine = [[UILabel alloc] initWithFrame:CGRectMake(horizontalOffset,
+                                                          80.0f,
+                                                          componentsWidth,
+                                                          30.0f)];
+    [firstLine setTextColor:[UIColor whiteColor]];
+    [firstLine setFont:[UIFont regularFontWithSize:bigFontSize]];
+    [view addSubview:firstLine];
 
     secondLine = [[UILabel alloc] initWithFrame:CGRectMake(horizontalOffset,
-                                                          10.0f,
+                                                          120.0f,
                                                           componentsWidth,
                                                           80.0f)];
-    [secondLine setTextColor:paleGray];
+    [secondLine setTextColor:[UIColor whiteColor]];
     [secondLine setFont:[UIFont regularFontWithSize:smallFontSize]];
     [secondLine setNumberOfLines:0];
     [secondLine setLineBreakMode:NSLineBreakByWordWrapping];
     [view addSubview:secondLine];
 
     actionLabel = [[UILabel alloc] initWithFrame:CGRectMake(horizontalOffset,
-                                                            90.0f,
+                                                            200.0f,
                                                             componentsWidth,
                                                             30.0f)];
-    [actionLabel setTextColor:paleGray];
+    [actionLabel setTextColor:[UIColor whiteColor]];
     [actionLabel setFont:[UIFont regularFontWithSize:bigFontSize]];
     [view addSubview:actionLabel];
 
     email = [[UITextField alloc] initWithFrame:CGRectMake(horizontalOffset,
-                                                          130.0f,
+                                                          230.0f,
                                                           componentsWidth,
                                                           heightsOfTextFields)];
-    [email setPlaceholder:NSLocalizedStringFromTable(@"Email", @"Labels", nil)];
     [email setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [email setKeyboardType:UIKeyboardTypeEmailAddress];
     [email setReturnKeyType:UIReturnKeyDone];
     [email setFont:[UIFont regularFontWithSize:smallFontSize]];
+    [email setTextColor:[UIColor whiteColor]];
     [email setDelegate:self];
     [view addSubview:email];
 
-    CommonSeparator * sep = [[CommonSeparator alloc] initWithFrame:CGRectMake(0.0f,
-                                                                              0.0f,
-                                                                              componentsWidth,
-                                                                              1.0f)];
-    [email addSubview:sep];
+    NSString * emailString = NSLocalizedStringFromTable(@"Email", @"Labels", nil);
+    NSAttributedString * emailPlaceholder = [[NSAttributedString alloc] initWithString:emailString attributes:placeholderAttrs];
+    [email setAttributedPlaceholder:emailPlaceholder];
 
-    CommonSeparator * sepD = [[CommonSeparator alloc] initWithFrame:CGRectMake(0.0f,
-                                                                               heightsOfTextFields - 1.0f,
-                                                                               componentsWidth,
-                                                                               1.0f)];
-    [email addSubview:sepD];
+    CommonSeparator * sepE = [[CommonSeparator alloc] initWithFrame:
+                              CGRectMake(0.0f,
+                                         heightsOfTextFields - 1.0f,
+                                         componentsWidth,
+                                         1.0f)];
+    [sepE makeWhite];
+    [email addSubview:sepE];
 
     token = [[UITextField alloc] initWithFrame:email.frame];
-    [token setPlaceholder:NSLocalizedStringFromTable(@"ResetToken", @"Labels", nil)];
     [token setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [token setReturnKeyType:UIReturnKeyNext];
     [token setFont:[UIFont regularFontWithSize:smallFontSize]];
+    [token setTextColor:[UIColor whiteColor]];
     [token setDelegate:self];
     [view addSubview:token];
 
-    CommonSeparator * sep1 = [[CommonSeparator alloc] initWithFrame:CGRectMake(0.0f,
-                                                                               0.0f,
-                                                                               componentsWidth,
-                                                                               1.0f)];
-    [token addSubview:sep1];
+    NSString * tokenString = NSLocalizedStringFromTable(@"ResetToken", @"Labels", nil);
+    NSAttributedString * tokenPlaceholder = [[NSAttributedString alloc] initWithString:tokenString attributes:placeholderAttrs];
+    [token setAttributedPlaceholder:tokenPlaceholder];
+
+    CommonSeparator * sepT = [[CommonSeparator alloc] initWithFrame:
+                              CGRectMake(0.0f,
+                                         heightsOfTextFields - 1.0f,
+                                         componentsWidth,
+                                         1.0f)];
+    [sepT makeWhite];
+    [token addSubview:sepT];
 
 
     password = [[UITextField alloc] initWithFrame:CGRectMake(horizontalOffset,
-                                                             token.frame.origin.y + heightsOfTextFields,
+                                                             token.frame.origin.y + heightsOfTextFields + 20.0f,
                                                              componentsWidth,
                                                              heightsOfTextFields)];
-    [password setPlaceholder:NSLocalizedStringFromTable(@"NewPassword", @"Labels", nil)];
     [password setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [password setSecureTextEntry:YES];
     [password setReturnKeyType:UIReturnKeyDone];
     [password setFont:[UIFont regularFontWithSize:smallFontSize]];
+    [password setTextColor:[UIColor whiteColor]];
     [password setDelegate:self];
     [view addSubview:password];
 
-    CommonSeparator * sep2 = [[CommonSeparator alloc] initWithFrame:CGRectMake(0.0f,
-                                                                               0.0f,
-                                                                               componentsWidth,
-                                                                               1.0f)];
-    [password addSubview:sep2];
+    NSString * passwordString = NSLocalizedStringFromTable(@"Password", @"Labels", nil);
+    NSAttributedString * passwordPlaceholder = [[NSAttributedString alloc] initWithString:passwordString attributes:placeholderAttrs];
+    [password setAttributedPlaceholder:passwordPlaceholder];
 
-    CommonSeparator * sep3 = [[CommonSeparator alloc] initWithFrame:CGRectMake(0.0f,
-                                                                               heightsOfTextFields - 1.0f,
-                                                                               componentsWidth,
-                                                                               1.0f)];
-    [password addSubview:sep3];
+    CommonSeparator * sepP = [[CommonSeparator alloc] initWithFrame:
+                              CGRectMake(0.0f,
+                                         heightsOfTextFields - 1.0f,
+                                         componentsWidth,
+                                         1.0f)];
+    [sepP makeWhite];
+    [password addSubview:sepP];
 
-    submitButton = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"SUBMIT", @"Buttons", nil) color:ButtonColorViolet];
+    submitButton = [CommonButton bigButtonWithText:NSLocalizedStringFromTable(@"SUBMIT", @"Buttons", nil) width:view.frame.size.width - 2 * horizontalOffset];
     [submitButton addTarget:self action:@selector(submitButtonTouched) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:submitButton];
 
-    alreadyHaveButton = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"HAVETOKEN", @"Buttons", nil) color:ButtonColorViolet];
+    alreadyHaveButton = [CommonButton bigButtonWithText:NSLocalizedStringFromTable(@"HAVETOKEN", @"Buttons", nil) width:view.frame.size.width - 2 * horizontalOffset];
     [alreadyHaveButton addTarget:self action:@selector(alreadyHaveButtonTouched) forControlEvents:UIControlEventTouchUpInside];
     [alreadyHaveButton setCenter:
      CGPointMake(email.frame.origin.x + alreadyHaveButton.frame.size.width / 2,
                  email.frame.origin.y + heightsOfTextFields + 50.0f + alreadyHaveButton.frame.size.height)];
     [view addSubview:alreadyHaveButton];
 
-    loginButton = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"LOGIN", @"Buttons", nil) color:ButtonColorViolet];
+    loginButton = [CommonButton bigButtonWithText:NSLocalizedStringFromTable(@"LOGIN", @"Buttons", nil) width:140.0f];
     [loginButton addTarget:self action:@selector(loginButtonTouched) forControlEvents:UIControlEventTouchUpInside];
     [loginButton setCenter:CGPointMake(password.frame.origin.x + loginButton.frame.size.width / 2,
                                        view.bounds.size.height - loginButton.frame.size.height)];
@@ -207,7 +215,7 @@
         [secondLine setText:NSLocalizedStringFromTable(@"RequestToken", @"Texts", nil)];
         [actionLabel setText:NSLocalizedStringFromTable(@"RequestResetToken", @"Labels", nil)];
     }
-    [header setText:step];
+    [firstLine setText:step];
 }
 
 #pragma mark - UITextFieldDelegate

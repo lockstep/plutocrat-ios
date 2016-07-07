@@ -10,4 +10,6 @@
 
 @interface CommonSeparator : UIView
 
+- (void)makeWhite;
+
 @end
