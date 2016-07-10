@@ -9,6 +9,7 @@
 #import "TargetsBuyoutsHeader.h"
 #import "CommonButton.h"
 #import "UIImageView+Cached.h"
+#import "CommonHeader.h"
 
 @implementation TargetsBuyoutsHeader
 {
@@ -19,8 +20,8 @@
     UILabel * plutocratBuyouts;
     CommonButton * engageButton;
     UILabel * engageReplace;
-    UILabel * successfulBuyouts;
     BOOL plutocratExists;
+    CommonHeader * buyoutsHeader;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -29,9 +30,10 @@
     if (self)
     {
         const CGFloat averageFontSize = 20.0f;
-        const CGFloat smallFontSize = 14.0f;
+        const CGFloat smallFontSize = 18.0f;
         
         background = [[UIImageView alloc] initWithFrame:frame];
+        [background setImage:[UIImage imageNamed:@"Background-blue"]];
         [self addSubview:background];
         
         noPlutocrat = [[UILabel alloc] initWithFrame:frame];
@@ -44,7 +46,7 @@
         
         CGFloat bordersOffset = [Globals horizontalOffsetInTable];
         photo = [[UIImageView alloc] initWithFrame:CGRectMake(bordersOffset,
-                                                              28.0f,
+                                                              40.0f,
                                                               74.0f,
                                                               74.0f)];
         [[photo layer] setCornerRadius:photo.frame.size.width / 2];
@@ -69,14 +71,14 @@
         plutocratBuyouts = [[UILabel alloc] initWithFrame:CGRectMake(startingXForLabels,
                                                          name.frame.origin.y + name.frame.size.height,
                                                          frame.size.width - startingXForLabels * 2,
-                                                         40.0f)];
+                                                         30.0f)];
         [plutocratBuyouts setFont:[UIFont regularFontWithSize:smallFontSize]];
         [plutocratBuyouts setTextColor:[UIColor whiteColor]];
         [plutocratBuyouts setHidden:YES];
-        [plutocratBuyouts setNumberOfLines:2];
         [self addSubview:plutocratBuyouts];
         
         engageButton = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"ENGAGE", @"Buttons", nil) color:ButtonColorViolet];
+        [engageButton setBackgroundColor:[UIColor whiteColor]];
         [engageButton setCenter:
          CGPointMake(frame.size.width - bordersOffset - engageButton.frame.size.width / 2,
                      frame.size.height / 2 + 10.0f)];
@@ -96,12 +98,9 @@
                      frame.size.height / 2 + 10.0f)];
         [self addSubview:engageReplace];
 
-        successfulBuyouts = [[UILabel alloc] initWithFrame:frame];
-        [successfulBuyouts setFont:[UIFont regularFontWithSize:averageFontSize]];
-        [successfulBuyouts setTextColor:[UIColor whiteColor]];
-        [successfulBuyouts setTextAlignment:NSTextAlignmentCenter];
-        [successfulBuyouts setHidden:YES];
-        [self addSubview:successfulBuyouts];
+        buyoutsHeader = [[CommonHeader alloc] initWithFrame:frame];
+        [buyoutsHeader setHidden:YES];
+        [self addSubview:buyoutsHeader];
     }
     return self;
 }
@@ -113,31 +112,28 @@
     switch (type)
     {
         case TargetsHeaderNoPlutocrat:
-            [background setImage:[UIImage imageNamed:@"Background-blue"]];
             [noPlutocrat setHidden:NO];
             [photo setHidden:YES];
             [name setHidden:YES];
             [plutocratBuyouts setHidden:YES];
             [engageButton setHidden:YES];
             [engageReplace setHidden:YES];
-            [successfulBuyouts setHidden:YES];
+            [buyoutsHeader setHidden:YES];
             plutocratExists = NO;
             break;
             
         case TargetsHeaderWithPlutocrat:
-            [background setImage:[UIImage imageNamed:@"Background-blue"]];
             [noPlutocrat setHidden:YES];
             [photo setHidden:NO];
             [name setHidden:NO];
             [plutocratBuyouts setHidden:NO];
             [engageButton setHidden:NO];
             [engageReplace setHidden:YES];
-            [successfulBuyouts setHidden:YES];
+            [buyoutsHeader setHidden:YES];
             plutocratExists = YES;
             break;
 
         case TargetsHeaderWithPlutocratUnderThreat:
-            [background setImage:[UIImage imageNamed:@"Background-blue"]];
             [noPlutocrat setHidden:YES];
             [photo setHidden:NO];
             [name setHidden:NO];
@@ -145,12 +141,11 @@
             [engageButton setHidden:YES];
             [engageReplace setHidden:NO];
             [engageReplace setText:NSLocalizedStringFromTable(@"UnderThreat", @"Labels", nil)];
-            [successfulBuyouts setHidden:YES];
+            [buyoutsHeader setHidden:YES];
             plutocratExists = YES;
             break;
 
         case TargetsHeaderWithPlutocratAttackingYou:
-            [background setImage:[UIImage imageNamed:@"Background-blue"]];
             [noPlutocrat setHidden:YES];
             [photo setHidden:NO];
             [name setHidden:NO];
@@ -158,19 +153,18 @@
             [engageButton setHidden:YES];
             [engageReplace setHidden:NO];
             [engageReplace setText:NSLocalizedStringFromTable(@"AttackingYou", @"Labels", nil)];
-            [successfulBuyouts setHidden:YES];
+            [buyoutsHeader setHidden:YES];
             plutocratExists = YES;
             break;
 
         case BuyoutsHeader:
-            [background setImage:[UIImage imageNamed:@"Background-gray"]];
             [noPlutocrat setHidden:YES];
             [photo setHidden:YES];
             [name setHidden:YES];
             [plutocratBuyouts setHidden:YES];
             [engageButton setHidden:YES];
             [engageReplace setHidden:YES];
-            [successfulBuyouts setHidden:NO];
+            [buyoutsHeader setHidden:NO];
             plutocratExists = NO;
             break;
             
@@ -198,8 +192,7 @@
     }
     else
     {
-        [successfulBuyouts setText:
-         [NSString stringWithFormat:NSLocalizedStringFromTable(@"SuccessfulBuyouts", @"Labels", nil), number]];
+        [buyoutsHeader setText:NSLocalizedStringFromTable(@"BuyoutHistory", @"Labels", nil) descText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"SuccessfulBuyouts", @"Labels", nil), number]];
     }
 }
 

@@ -24,7 +24,7 @@
 {
     BOOL loginMode;
     UIScrollView * view;
-   // UILabel * actionLabel;
+    UILabel * actionLabel;
     UITextField * displayName;
     UITextField * email;
     UITextField * password;
@@ -80,6 +80,8 @@
     [view addSubview:back];
     [self.view addSubview:view];
 
+    [view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)]];
+
     UIImageView * logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
     [logo setCenter:CGPointMake(view.frame.size.width / 2, 80.0f)];
     [view addSubview:logo];
@@ -91,14 +93,15 @@
     CGFloat horizontalOffset = [Globals horizontalOffset];
     CGFloat heightsOfTextFields = 34.0f;
     CGFloat componentsWidth = self.view.bounds.size.width - horizontalOffset * 2;
-//
-//    actionLabel = [[UILabel alloc] initWithFrame:CGRectMake(horizontalOffset,
-//                                                            50.0f,
-//                                                            componentsWidth,
-//                                                            30.0f)];
-//    [actionLabel setTextColor:paleGray];
-//    [actionLabel setFont:[UIFont regularFontWithSize:bigFontSize]];
-//    [view addSubview:actionLabel];
+
+    actionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f,
+                                                            0.0f,
+                                                            view.bounds.size.width,
+                                                            30.0f)];
+    [actionLabel setTextColor:[UIColor whiteColor]];
+    [actionLabel setFont:[UIFont regularFontWithSize:smallFontSize]];
+    [actionLabel setTextAlignment:NSTextAlignmentCenter];
+    [view addSubview:actionLabel];
 
 
     displayName = [[UITextField alloc] initWithFrame:CGRectMake(horizontalOffset,
@@ -106,7 +109,8 @@
                                                                 componentsWidth,
                                                                 heightsOfTextFields)];
     [displayName setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
-    [displayName setReturnKeyType:UIReturnKeyNext];
+    [displayName setReturnKeyType:UIReturnKeyDone];
+    [displayName setAutocorrectionType:UITextAutocorrectionTypeNo];
     [displayName setFont:[UIFont regularFontWithSize:smallFontSize]];
     [displayName setTextColor:[UIColor whiteColor]];
     [displayName setDelegate:self];
@@ -131,7 +135,8 @@
                                                           heightsOfTextFields)];
     [email setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [email setKeyboardType:UIKeyboardTypeEmailAddress];
-    [email setReturnKeyType:UIReturnKeyNext];
+    [email setReturnKeyType:UIReturnKeyDone];
+    [email setAutocorrectionType:UITextAutocorrectionTypeNo];
     [email setFont:[UIFont regularFontWithSize:smallFontSize]];
     [email setTextColor:[UIColor whiteColor]];
     [email setDelegate:self];
@@ -177,28 +182,33 @@
     [submitButton addTarget:self action:@selector(submitButtonTouched) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:submitButton];
     
-    loginButton = [CommonButton bigButtonWithText:NSLocalizedStringFromTable(@"LOGIN", @"Buttons", nil) width:140.0f];
+    loginButton = [CommonButton bigButtonWithText:NSLocalizedStringFromTable(@"AlreadyAMember", @"Buttons", nil) width:view.frame.size.width - 2 * horizontalOffset];
     [loginButton addTarget:self action:@selector(loginButtonTouched) forControlEvents:UIControlEventTouchUpInside];
+    [loginButton setCenter:CGPointMake(view.center.x,
+                                       view.frame.size.height - loginButton.frame.size.height - 20.0f)];
     [view addSubview:loginButton];
     
-    registerButton = [CommonButton bigButtonWithText:NSLocalizedStringFromTable(@"REGISTER", @"Buttons", nil) width:140.0f];
+    registerButton = [CommonButton bigButtonWithText:NSLocalizedStringFromTable(@"REGISTER", @"Buttons", nil) width:view.frame.size.width - 2 * horizontalOffset];
     [registerButton addTarget:self action:@selector(registerButtonTouched) forControlEvents:UIControlEventTouchUpInside];
+
+    [registerButton setCenter:CGPointMake(view.center.x,
+                                          320.0f)];
     [view addSubview:registerButton];
 
-    eulaButton = [CommonButton bigButtonWithText:NSLocalizedStringFromTable(@"EULA", @"Buttons", nil) width:80.0f];
+    eulaButton = [CommonButton bigButtonWithText:NSLocalizedStringFromTable(@"EULA", @"Buttons", nil) width:120.0f];
     [eulaButton setCenter:CGPointMake(horizontalOffset + eulaButton.frame.size.width / 2,
-                                      view.bounds.size.height - eulaButton.frame.size.height)];
+                                      330.0f)];
     [eulaButton addTarget:self action:@selector(eulaButtonTouched) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:eulaButton];
 
-    privacyButton = [CommonButton bigButtonWithText:NSLocalizedStringFromTable(@"PRIVACY", @"Buttons", nil) width:80.0f];
+    privacyButton = [CommonButton bigButtonWithText:NSLocalizedStringFromTable(@"PRIVACY", @"Buttons", nil) width:120.0f];
     [privacyButton setCenter:
      CGPointMake(view.frame.size.width - horizontalOffset -  privacyButton.frame.size.width / 2,
-                 view.bounds.size.height - privacyButton.frame.size.height)];
+                 330.0f)];
     [privacyButton addTarget:self action:@selector(privacyButtonTouched) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:privacyButton];
 
-    forgotPasswordButton = [CommonButton bigButtonWithText:NSLocalizedStringFromTable(@"FORGOTPASSWORD", @"Buttons", nil) width:140.0f];
+    forgotPasswordButton = [CommonButton bigButtonWithText:NSLocalizedStringFromTable(@"FORGOTPASSWORD", @"Buttons", nil) width:view.frame.size.width - 2 * horizontalOffset];
     [forgotPasswordButton setCenter:
      CGPointMake(horizontalOffset + forgotPasswordButton.frame.size.width / 2,
                  view.bounds.size.height - forgotPasswordButton.frame.size.height)];
@@ -213,7 +223,9 @@
 - (void)setupDerived:(BOOL)userIsRegistered
 {    
     CGFloat heightsOfTextFields = 34.0f;
-    CGFloat modeDiff = userIsRegistered ? 0 : heightsOfTextFields + 20.0f;
+    CGFloat modeDiff = userIsRegistered ? 0.0f : heightsOfTextFields + 20.0f;
+    CGFloat gapForEulas = userIsRegistered ? 0.0f : 70.0f;
+    CGFloat gapForAction = userIsRegistered ? 0.0f : 5.0f;
 
     [displayName setHidden:userIsRegistered];
     
@@ -228,12 +240,9 @@
                                   password.frame.size.height)];
 
     [submitButton setCenter:CGPointMake(password.frame.origin.x + submitButton.frame.size.width / 2,
-                                        password.frame.origin.y + heightsOfTextFields + submitButton.frame.size.height / 2 + 20.0f)];
+                                        password.frame.origin.y + heightsOfTextFields + submitButton.frame.size.height / 2 + 30.0f + gapForEulas)];
 
-    [loginButton setCenter:CGPointMake(password.frame.origin.x + loginButton.frame.size.width / 2,
-                                       view.bounds.size.height - loginButton.frame.size.height - 40.0f)];
-    [registerButton setCenter:CGPointMake(password.frame.origin.x + registerButton.frame.size.width / 2,
-                                          view.bounds.size.height - registerButton.frame.size.height - 40.0f)];
+    [actionLabel setCenter:CGPointMake(view.center.x, 285.0f + gapForAction)];
 
     [loginButton setHidden:userIsRegistered];
     [registerButton setHidden:!userIsRegistered];
@@ -243,7 +252,8 @@
     
     if (userIsRegistered)
     {
-     //   [actionLabel setText:NSLocalizedStringFromTable(@"SignIn", @"Labels", nil)];
+        [submitButton setText:NSLocalizedStringFromTable(@"LOGIN", @"Buttons", nil)];
+        [actionLabel setText:NSLocalizedStringFromTable(@"or", @"Labels", nil)];
         LAContext * context = [LAContext new];
         if ([Settings isTouchIDEnabled] &&
             [context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil] &&
@@ -275,26 +285,25 @@
     else
     {
         [Settings setDefaults];
-     //   [actionLabel setText:NSLocalizedStringFromTable(@"Register", @"Labels", nil)];
+        [submitButton setText:NSLocalizedStringFromTable(@"REGISTER", @"Buttons", nil)];
+        [actionLabel setText:NSLocalizedStringFromTable(@"byRegisteringYouAgreeTo", @"Labels", nil)];
     }
+}
+
+#pragma mark - Tap Gesture
+
+- (void)hideKeyboard
+{
+    [displayName resignFirstResponder];
+    [email resignFirstResponder];
+    [password resignFirstResponder];
 }
 
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if (textField == displayName)
-    {
-        [email becomeFirstResponder];
-    }
-    if (textField == email)
-    {
-        [password becomeFirstResponder];
-    }
-    if (textField == password)
-    {
-        [password resignFirstResponder];
-    }
+    [textField resignFirstResponder];
     return NO;
 }
 

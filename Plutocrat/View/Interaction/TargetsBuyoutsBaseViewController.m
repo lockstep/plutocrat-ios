@@ -62,6 +62,7 @@
 - (void)handleRefresh
 {
     self.pulledToRefresh = YES;
+    self.currentPage = 1;
     [self loadData];
 }
 

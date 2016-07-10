@@ -63,6 +63,8 @@
     [view addSubview:back];
     [self.view addSubview:view];
 
+    [view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)]];
+
     const CGFloat bigFontSize = 18.0f;
     const CGFloat smallFontSize = 12.0f;
     NSDictionary * placeholderAttrs = @{NSFontAttributeName: [UIFont regularFontWithSize:smallFontSize], NSForegroundColorAttributeName: [UIColor whiteColor]};
@@ -103,6 +105,7 @@
     [email setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [email setKeyboardType:UIKeyboardTypeEmailAddress];
     [email setReturnKeyType:UIReturnKeyDone];
+    [email setAutocorrectionType:UITextAutocorrectionTypeNo];
     [email setFont:[UIFont regularFontWithSize:smallFontSize]];
     [email setTextColor:[UIColor whiteColor]];
     [email setDelegate:self];
@@ -122,7 +125,8 @@
 
     token = [[UITextField alloc] initWithFrame:email.frame];
     [token setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
-    [token setReturnKeyType:UIReturnKeyNext];
+    [token setReturnKeyType:UIReturnKeyDone];
+    [token setAutocorrectionType:UITextAutocorrectionTypeNo];
     [token setFont:[UIFont regularFontWithSize:smallFontSize]];
     [token setTextColor:[UIColor whiteColor]];
     [token setDelegate:self];
@@ -176,7 +180,7 @@
                  email.frame.origin.y + heightsOfTextFields + 50.0f + alreadyHaveButton.frame.size.height)];
     [view addSubview:alreadyHaveButton];
 
-    loginButton = [CommonButton bigButtonWithText:NSLocalizedStringFromTable(@"LOGIN", @"Buttons", nil) width:140.0f];
+    loginButton = [CommonButton bigButtonWithText:NSLocalizedStringFromTable(@"LOGIN", @"Buttons", nil) width:view.frame.size.width - 2 * horizontalOffset];
     [loginButton addTarget:self action:@selector(loginButtonTouched) forControlEvents:UIControlEventTouchUpInside];
     [loginButton setCenter:CGPointMake(password.frame.origin.x + loginButton.frame.size.width / 2,
                                        view.bounds.size.height - loginButton.frame.size.height)];
@@ -218,22 +222,20 @@
     [firstLine setText:step];
 }
 
+#pragma mark - Tap Gesture
+
+- (void)hideKeyboard
+{
+    [token resignFirstResponder];
+    [email resignFirstResponder];
+    [password resignFirstResponder];
+}
+
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if (textField == email)
-    {
-        [email resignFirstResponder];
-    }
-    if (textField == token)
-    {
-        [password becomeFirstResponder];
-    }
-    if (textField == password)
-    {
-        [password resignFirstResponder];
-    }
+    [textField resignFirstResponder];
     return NO;
 }
 

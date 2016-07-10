@@ -68,6 +68,7 @@
         [perShareVal setTextColor:[UIColor grayWithIntense:114.0f]];
         [perShareVal setTextAlignment:NSTextAlignmentRight];
         [perShareVal setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin];
+        [perShareLab setAdjustsFontSizeToFitWidth:YES];
         [self addSubview:perShareVal];
         
         CommonSeparator * sep = [[CommonSeparator alloc] initWithFrame:
@@ -90,6 +91,7 @@
         [totalVal setTextColor:[UIColor grayWithIntense:114.0f]];
         [totalVal setTextAlignment:NSTextAlignmentRight];
         [totalVal setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin];
+        [totalVal setAdjustsFontSizeToFitWidth:YES];
         [self addSubview:totalVal];
         
         buy = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"BUY", @"Buttons", nil)
@@ -115,17 +117,17 @@
 #pragma mark - public
 
 - (void)setShares:(NSUInteger)shares
-            price:(NSUInteger)price
+            price:(CGFloat)price
          currency:(NSString *)currency
      visualAmount:(SharesAmount)amount
 {
     [sharesInRound setText:[NSString stringWithFormat:@"%lu", (unsigned long)shares]];
     NSString * descText = (shares == 1) ? NSLocalizedStringFromTable(@"Share", @"Labels", nil) : NSLocalizedStringFromTable(@"Shares", @"Labels", nil);
     [descriptInRound setText:descText];
-    [totalVal setText:[NSString stringWithFormat:@"%lu %@", (unsigned long)price, currency]];
+    [totalVal setText:[NSString stringWithFormat:@"%.2f %@", price, currency]];
     if (shares != 0)
     {
-        [perShareVal setText:[NSString stringWithFormat:@"%lu %@", (unsigned long)(price / shares), currency]];
+        [perShareVal setText:[NSString stringWithFormat:@"%.2f %@", (price / shares), currency]];
     }
     switch (amount)
     {

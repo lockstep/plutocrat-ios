@@ -20,5 +20,6 @@ typedef NS_ENUM (NSUInteger, ButtonColor)
 
 + (instancetype)buttonWithText:(NSString *)text color:(ButtonColor)buttonColor;
 + (instancetype)bigButtonWithText:(NSString *)text width:(CGFloat)width;
+- (void)setText:(NSString *)text;
 
 @end

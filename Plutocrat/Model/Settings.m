@@ -80,7 +80,7 @@
 + (BOOL)setDefaults
 {
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:EVENTS_NOTIFICATIONS_KEY];
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:UPDATES_EMAILS_KEY];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:UPDATES_EMAILS_KEY];
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:TOUCH_ID_KEY];
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:HOME_ALERT_TYPE_KEY];
     return [[NSUserDefaults standardUserDefaults] synchronize];

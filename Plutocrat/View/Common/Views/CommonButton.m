@@ -50,6 +50,11 @@
     return button;
 }
 
+- (void)setText:(NSString *)text
+{
+    [self setTitle:text forState:UIControlStateNormal];
+}
+
 #pragma mark - private
 
 - (void)paintButtonToColor:(ButtonColor)buttonColor titleColor:(ButtonColor)titleColor

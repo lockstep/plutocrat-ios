@@ -21,3 +21,5 @@
 "FORGOTPASSWORD" = "FORGOT PASSWORD";
 "SAVE" = "SAVE";
 "HAVETOKEN" = "I ALREADY HAVE A TOKEN";
+"AlreadyAMember" = "Already a member? Login";
+"CREATEACCOUNT" = "CREATE ACCOUNT";

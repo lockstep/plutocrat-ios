@@ -44,13 +44,13 @@
         
         find = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"FINDTARGET", @"Buttons", nil)
                                       color:ButtonColorViolet];
-        [find setCenter:CGPointMake(frame.size.width / 2, 95.0f)];
+        [find setCenter:CGPointMake(frame.size.width / 2, 105.0f)];
         [find setHidden:YES];
         [find addTarget:self action:@selector(findTapped) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:find];
         
         enable = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"ENABLENOTIFICATIONS", @"Buttons", nil) color:ButtonColorViolet];
-        [enable setCenter:CGPointMake(frame.size.width / 2, 95.0f)];
+        [enable setCenter:CGPointMake(frame.size.width / 2, 105.0f)];
         [enable setHidden:YES];
         [enable addTarget:self action:@selector(enableTapped) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:enable];

@@ -97,7 +97,7 @@ static NSString * identifier = @"SharesCellIdentifier";
     NSArray * amts = @[@(SharesAmountFew), @(SharesAmountAverage), @(SharesAmountAverage), @(SharesAmountMany), @(SharesAmountMany)];
     NSArray * bundleParts = [product.productIdentifier componentsSeparatedByString:@"."];
     NSUInteger shares = [[bundleParts lastObject] integerValue];
-    NSUInteger price = [product.price unsignedIntegerValue];
+    CGFloat price = [product.price floatValue];
     
     NSNumberFormatter * numberFormatter = [[NSNumberFormatter alloc] init];
     [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
@@ -179,20 +179,15 @@ static NSString * identifier = @"SharesCellIdentifier";
 - (void)loadHeaderData
 {
     [self updateHeaderData];
-    UIActivityIndicatorView * iView2 = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    [iView2 setCenter:CGPointMake(30.0f, header.frame.size.height / 2)];
-    [header addSubview:iView2];
-    [iView2 startAnimating];
     [ApiConnector getProfileWithUserId:[UserManager currentUserId]
                             completion:^(User * user, NSString * error) {
-                                [iView2 removeFromSuperview];
                                 [self updateHeaderData];
      }];
 }
 
 - (void)updateHeaderData
 {
-    [header setText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"UnusedSharesFormat", @"Labels", nil), [UserManager availableShares]]];
+    [header setText:NSLocalizedStringFromTable(@"YourAccount", @"Labels", nil) descText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"UnusedSharesFormat", @"Labels", nil), [UserManager availableShares]]];
 }
 
 - (void)loadData

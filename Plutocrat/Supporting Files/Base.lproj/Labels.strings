@@ -25,7 +25,7 @@
 "Deadline" = "Deadline";
 "YouSurvived" = "You Survived";
 "NoPlutocrat" = "No Reigning Plutocrat";
-"PlutocratBuyouts" = "The Plutocrat\r\n%i Buyouts";
+"PlutocratBuyouts" = "%i Buyouts";
 "SuccessfulBuyouts" = "%i Successful Buyouts";
 "TargetsCellFormat" = "Buyouts: %i\r\nThreats: %i\r\nDays Survived: %i";
 "UnderThreat" = "Under Threat";
@@ -74,3 +74,14 @@
 "NotEnoughShares" = "You do not have enough shares";
 "TokenWasSent" = "Reset token was sent to your email.";
 "PasswordReseted" = "Your password has been reset successfully";
+"or" = "or";
+"byRegisteringYouAgreeTo" = "by registering you agree to";
+"NoBuyouts" = "You have no buyouts in your history";
+"YourAccount" = "Your Account";
+"Settings" = "Settings";
+"UpdateYourPreferences" = "Update Your Preferences";
+"BuyoutHistory" = "Buyout History";
+"ChangePhoto" = "ChangePhoto";
+"UseCamera" = "Use Camera";
+"PickFromLibrary" = "Pick From Library";
+"DeletePhoto" = "Delete Photo";

@@ -10,6 +10,6 @@
 
 @interface CommonHeader : UIView
 
-- (void)setText:(NSString *)text;
+- (void)setText:(NSString *)text descText:(NSString *)descText;
 
 @end

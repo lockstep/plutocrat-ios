@@ -58,7 +58,7 @@
                                                                            0.0f,
                                                                            self.view.bounds.size.width,
                                                                            [Globals headerHeight])];
-    [header setText:NSLocalizedStringFromTable(@"Account", @"Labels", nil)];
+    [header setText:NSLocalizedStringFromTable(@"Settings", @"Labels", nil) descText:NSLocalizedStringFromTable(@"UpdateYourPreferences", @"Labels", nil)];
     [self.view addSubview:header];
 
     view = [[UIScrollView alloc] initWithFrame:
@@ -329,15 +329,59 @@
 
 - (void)imageTapped
 {
-    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-    {
-        return;
-    }
     UIImagePickerController * picker = [[UIImagePickerController alloc] init];
     [picker setDelegate:self];
     [picker setAllowsEditing:YES];
-    [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
-    [self presentViewController:picker animated:YES completion:nil];
+    UIAlertController * ac = [UIAlertController alertControllerWithTitle:nil message:NSLocalizedStringFromTable(@"ChangePhoto", @"Labels", nil) preferredStyle:UIAlertControllerStyleActionSheet];
+
+    [ac addAction:[UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"Cancel", @"Labels", nil)
+                                           style:UIAlertActionStyleCancel
+                                         handler:^(UIAlertAction * action) {
+                                             [ac dismissViewControllerAnimated:YES
+                                                                    completion:nil];
+                                         }]];
+
+    [ac addAction:[UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"DeletePhoto", @"Labels", nil)
+                                           style:UIAlertActionStyleDestructive
+                                         handler:^(UIAlertAction * action) {
+                                             photo.image = [UIImage imageNamed:@"empty-profile-image"];
+                                             [photo removeInitials:NO];
+                                             [ac dismissViewControllerAnimated:YES
+                                                                    completion:nil];
+                                         }]];
+
+    [ac addAction:[UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"UseCamera", @"Labels", nil)
+
+                                           style:UIAlertActionStyleDefault
+                                         handler:^(UIAlertAction * action) {
+                                             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+                                             {
+                                                 [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
+                                                 [self presentViewController:picker animated:YES completion:nil];
+                                             }
+                                             else
+                                             {
+                                                 [ac dismissViewControllerAnimated:YES
+                                                                        completion:nil];
+                                             }
+                                         }]];
+
+    [ac addAction:[UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"PickFromLibrary", @"Labels", nil)
+
+                                           style:UIAlertActionStyleDefault
+                                         handler:^(UIAlertAction * action) {
+                                             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
+                                             {
+                                                 [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+                                                 [self presentViewController:picker animated:YES completion:nil];
+                                             }
+                                             else
+                                             {
+                                                 [ac dismissViewControllerAnimated:YES
+                                                                        completion:nil];
+                                             }
+                                         }]];
+    [self presentViewController:ac animated:YES completion:nil];
 }
 
 #pragma mark - UIImagePickerControllerDelegate
@@ -346,7 +390,7 @@
 {
     UIImage * chosenImage = info[UIImagePickerControllerEditedImage];
     [photo setImage:chosenImage];
-    [photo removeInitials];
+    [photo removeInitials:YES];
     [picker dismissViewControllerAnimated:YES completion:nil];
     imageChanged = YES;
 }

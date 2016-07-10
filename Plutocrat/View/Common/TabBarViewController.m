@@ -28,7 +28,8 @@
 - (void)setupDefeated:(BOOL)defeated
 {
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
+
+    [self.tabBar setBackgroundImage:[UIImage imageNamed:@"white_bg.jpg"]];
     [self.tabBar setTintColor:[UIColor ourViolet]];
     
     hvc = [HomeViewController new];
@@ -37,7 +38,7 @@
                              imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIImage * hvcImgAct = [[UIImage imageNamed:@"home-active"]
                            imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    hvc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Home"
+    hvc.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedStringFromTable(@"Home", @"Labels", nil)
                                                    image:hvcImgInact
                                            selectedImage:hvcImgAct];
 
@@ -54,7 +55,7 @@
                              imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIImage * tvcImgAct = [[UIImage imageNamed:@"targets-active"]
                            imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    tvc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Targets"
+    tvc.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedStringFromTable(@"Targets", @"Labels", nil)
                                                    image:tvcImgInact
                                            selectedImage:tvcImgAct];
     
@@ -63,7 +64,7 @@
                              imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIImage * bvcImgAct = [[UIImage imageNamed:@"buyouts-active"]
                            imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    bvc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Buyouts"
+    bvc.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedStringFromTable(@"Buyouts", @"Labels", nil)
                                                    image:bvcImgInact
                                            selectedImage:bvcImgAct];
     
@@ -72,7 +73,7 @@
                              imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIImage * svcImgAct = [[UIImage imageNamed:@"shares-active"]
                            imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    svc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Shares"
+    svc.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedStringFromTable(@"Shares", @"Labels", nil)
                                                    image:svcImgInact
                                            selectedImage:svcImgAct];
     
@@ -82,7 +83,7 @@
                              imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIImage * avcImgAct = [[UIImage imageNamed:@"settings-active"]
                            imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    avc.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Account"
+    avc.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedStringFromTable(@"Settings", @"Labels", nil)
                                                    image:avcImgInact
                                            selectedImage:avcImgAct];
     
@@ -100,7 +101,7 @@
 {
     if ([self.customDelegate respondsToSelector:@selector(tabBarViewController:shouldNavigateTo:)])
     {
-        [Settings setTypeOfHomeAlert:1];
+        [Settings setTypeOfHomeAlert:2];
         [self.customDelegate tabBarViewController:self shouldNavigateTo:dest];
     }
 }
@@ -109,7 +110,7 @@
 {
     if ([self.customDelegate respondsToSelector:@selector(tabBarViewControllerAskedForPushes:)])
     {
-        [Settings setTypeOfHomeAlert:2];
+        [Settings setTypeOfHomeAlert:1];
         [self.customDelegate tabBarViewControllerAskedForPushes:self];
     }
 }

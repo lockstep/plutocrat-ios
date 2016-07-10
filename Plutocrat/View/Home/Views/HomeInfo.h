@@ -10,8 +10,8 @@
 
 typedef NS_ENUM (NSUInteger, HomeInfoType)
 {
-    HomeInfoTypeFind = 0,
-    HomeInfoTypePush,
+    HomeInfoTypePush = 0,
+    HomeInfoTypeFind,
     HomeInfoTypeCommon,
     HomeInfoTypeDefeated
 };

@@ -17,6 +17,7 @@
     NSString * identifier;
     BOOL loading;
     UIActivityIndicatorView * iView;
+    UILabel * noBuyouts;
 }
 @end
 
@@ -29,7 +30,21 @@
     identifier = @"BuyoutsCell";
     
     [self.table registerClass:NSClassFromString(@"BuyoutsCell") forCellReuseIdentifier:identifier];
-    
+
+    noBuyouts = [[UILabel alloc] initWithFrame:
+                 CGRectMake([Globals horizontalOffset],
+                            self.view.frame.size.height / 2 - 40.0f,
+                            self.view.frame.size.width - [Globals horizontalOffset] * 2,
+                            80.0f)];
+    [noBuyouts setTextAlignment:NSTextAlignmentCenter];
+    [noBuyouts setFont:[UIFont regularFontWithSize:20.0f]];
+    [noBuyouts setTextColor:[UIColor grayWithIntense:114.0f]];
+    [noBuyouts setLineBreakMode:NSLineBreakByWordWrapping];
+    [noBuyouts setNumberOfLines:0];
+    [noBuyouts setText:NSLocalizedStringFromTable(@"NoBuyouts", @"Labels", nil])];
+    [noBuyouts setHidden:YES];
+    [self.view addSubview:noBuyouts];
+
     [self loadStatic];
     [self loadData];
 }
@@ -227,6 +242,7 @@
                 [self.table reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:oldDataCount inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
             }
         }
+        [noBuyouts setHidden:(self.source.count != 0)];
     }];
 }
 

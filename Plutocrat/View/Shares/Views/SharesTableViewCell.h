@@ -26,6 +26,9 @@ typedef NS_ENUM (NSUInteger, SharesAmount)
 
 @property (nonatomic, weak) id <SharesCellDelegate> delegate;
 
-- (void)setShares:(NSUInteger)shares price:(NSUInteger)price currency:(NSString *)currency visualAmount:(SharesAmount)amount;
+- (void)setShares:(NSUInteger)shares
+            price:(CGFloat)price
+         currency:(NSString *)currency
+     visualAmount:(SharesAmount)amount;
 
 @end

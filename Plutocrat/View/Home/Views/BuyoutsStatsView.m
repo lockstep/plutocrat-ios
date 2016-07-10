@@ -27,7 +27,7 @@
         CGFloat elementsWidth = (self.bounds.size.width - bordersOffset * 6) / 3;
         const CGFloat bigFontSize = 54.0f;
         const CGFloat smallFontSize = 10.0f;
-        const CGFloat verticalOffset = 15.0f;
+        const CGFloat verticalOffset = 5.0f;
         
         successValue = [[UILabel alloc] initWithFrame:CGRectMake(bordersOffset,
                                                                  verticalOffset,

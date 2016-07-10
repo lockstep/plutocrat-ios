@@ -35,6 +35,8 @@
         [firstLine setFont:[UIFont regularFontWithSize:bigFontSize]];
         [firstLine setTextColor:[UIColor whiteColor]];
         [firstLine setTextAlignment:NSTextAlignmentCenter];
+        firstLine.shadowColor = [UIColor blackColor];
+        firstLine.shadowOffset = CGSizeMake(0.0f, 2.0f);
         [self addSubview:firstLine];
         
         secondLine = [[UILabel alloc] initWithFrame:CGRectMake(0.0f,
@@ -44,8 +46,9 @@
         [secondLine setFont:[UIFont regularFontWithSize:smallFontSize]];
         [secondLine setTextColor:[UIColor whiteColor]];
         [secondLine setTextAlignment:NSTextAlignmentCenter];
+        secondLine.shadowColor = [UIColor blackColor];
+        secondLine.shadowOffset = CGSizeMake(0.0f, 2.0f);
         [self addSubview:secondLine];
-        
     }
     return self;
 }

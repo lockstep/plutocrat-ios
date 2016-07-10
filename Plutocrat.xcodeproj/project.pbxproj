@@ -37,6 +37,7 @@
 		FD45A0BF1CD7735100304EC0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45A0BE1CD7735100304EC0 /* AppDelegate.m */; };
 		FD45A0CA1CD7735100304EC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD45A0C91CD7735100304EC0 /* Assets.xcassets */; };
 		FD5239571D0151B600983C07 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5239561D0151B600983C07 /* StoreKit.framework */; };
+		FD7721CB1D32552E008CDD9F /* white_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FD7721CA1D32552E008CDD9F /* white_bg.jpg */; };
 		FD8B5CAE1CDBE27000751642 /* Labels.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD8B5CAC1CDBE27000751642 /* Labels.strings */; };
 		FD8B5CC01CDBE6A600751642 /* UIFont+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CBF1CDBE6A600751642 /* UIFont+Utils.m */; };
 		FD8B5CC51CDBFF8D00751642 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8B5CC41CDBFF8D00751642 /* LoginViewController.m */; };
@@ -130,6 +131,7 @@
 		FD45A0BE1CD7735100304EC0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FD45A0C91CD7735100304EC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD5239561D0151B600983C07 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		FD7721CA1D32552E008CDD9F /* white_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = white_bg.jpg; path = Misc/white_bg.jpg; sourceTree = "<group>"; };
 		FD8B5CAD1CDBE27000751642 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "Supporting Files/Base.lproj/Labels.strings"; sourceTree = "<group>"; };
 		FD8B5CBE1CDBE6A600751642 /* UIFont+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIFont+Utils.h"; path = "Utils/UIFont+Utils.h"; sourceTree = "<group>"; };
 		FD8B5CBF1CDBE6A600751642 /* UIFont+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIFont+Utils.m"; path = "Utils/UIFont+Utils.m"; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				FD45A0BD1CD7735100304EC0 /* AppDelegate.h */,
 				FD45A0BE1CD7735100304EC0 /* AppDelegate.m */,
 				FD45A0C91CD7735100304EC0 /* Assets.xcassets */,
+				FD7721C91D32551E008CDD9F /* Misc */,
 				FD8B5CD91CE250FD00751642 /* Model */,
 				FD8B5CD81CE250F700751642 /* Network */,
 				FD45A0BA1CD7735100304EC0 /* Supporting Files */,
@@ -337,6 +340,14 @@
 				FD8B5CF11CE252A200751642 /* Shares */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		FD7721C91D32551E008CDD9F /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				FD7721CA1D32552E008CDD9F /* white_bg.jpg */,
+			);
+			name = Misc;
 			sourceTree = "<group>";
 		};
 		FD8B5CAF1CDBE27900751642 /* Base.lproj */ = {
@@ -583,6 +594,7 @@
 			files = (
 				FD8B5CD11CDFE6A400751642 /* Buttons.strings in Resources */,
 				FD8B5CAE1CDBE27000751642 /* Labels.strings in Resources */,
+				FD7721CB1D32552E008CDD9F /* white_bg.jpg in Resources */,
 				FD45A0CA1CD7735100304EC0 /* Assets.xcassets in Resources */,
 				FDFA5AFB1CDA9FAD00030A89 /* Texts.strings in Resources */,
 			);
@@ -771,7 +783,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 0.5.4;
+				CURRENT_PROJECT_VERSION = 0.5.5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Plutocrat/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Plutocrat/Supporting Files/Info.plist";
@@ -793,7 +805,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Whitefly Ventures, Inc. (86AUZJL55V)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Whitefly Ventures, Inc. (86AUZJL55V)";
-				CURRENT_PROJECT_VERSION = 0.5.4;
+				CURRENT_PROJECT_VERSION = 0.5.5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Plutocrat/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Plutocrat/Supporting Files/Info.plist";

@@ -134,7 +134,6 @@
             self.pulledToRefresh = NO;
             [self.refreshControl endRefreshing];
             self.source = [NSMutableArray new];
-            self.currentPage = 1;
             [self.table reloadData];
         }
         loading = NO;
@@ -161,6 +160,20 @@
             {
                 [self noPlutocrat];
             }
+            [filteredOfPlutocrat sortUsingComparator:^NSComparisonResult(User * first, User * second ) {
+                if (first.successfulBuyoutsCount > second.successfulBuyoutsCount)
+                {
+                    return NSOrderedAscending;
+                }
+                else if (first.successfulBuyoutsCount < second.successfulBuyoutsCount)
+                {
+                    return NSOrderedDescending;
+                }
+                else
+                {
+                    return [first.displayName compare:second.displayName];
+                }
+            }];
             NSUInteger oldDataCount = [self.source count];
             [self.source addObjectsFromArray:filteredOfPlutocrat];
             NSUInteger startingIndex = self.currentPage == 1 ? 0 : 1;

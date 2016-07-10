@@ -11,6 +11,6 @@
 @interface UIImageView (Cached)
 
 - (void)setUrl:(NSString *)url initials:(NSString *)initials compeltionHandler:(void (^)(UIImage * image))completion;
-- (void)removeInitials;
+- (void)removeInitials:(BOOL)remove;
 
 @end

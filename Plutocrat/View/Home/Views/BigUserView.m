@@ -29,7 +29,7 @@
         UIColor * paleGray = [UIColor grayWithIntense:114.0f];
         CGFloat bordersOffset = [Globals horizontalOffset];
         const CGFloat bigFontSize = 24.0f;
-        const CGFloat smallFontSize = 12.0f;
+        const CGFloat smallFontSize = 16.0f;
         
         photo = [[UIImageView alloc] initWithFrame:CGRectMake(bordersOffset,
                                                               25.0f,
@@ -44,10 +44,11 @@
         
         name = [[UILabel alloc] initWithFrame:
                 CGRectMake(startingXForLabels,
-                           25.0f * 1.5f,
+                           25.0f,
                            self.bounds.size.width - startingXForLabels - bordersOffset,
                            28.0f)];
         [name setNumberOfLines:1];
+        [name setTextAlignment:NSTextAlignmentCenter];
         [name setAdjustsFontSizeToFitWidth:YES];
         [name setTextColor:paleGray];
         [name setFont:[UIFont regularFontWithSize:bigFontSize]];
@@ -59,6 +60,7 @@
                             self.bounds.size.width - startingXForLabels - bordersOffset,
                             14.0f)];
         [email setNumberOfLines:1];
+        [email setTextAlignment:NSTextAlignmentCenter];
         [email setAdjustsFontSizeToFitWidth:YES];
         [email setTextColor:paleGray];
         [email setFont:[UIFont regularFontWithSize:smallFontSize]];
@@ -66,10 +68,11 @@
         [self addSubview:email];
         
         manageButton = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"ManageAccount", @"Buttons", nil) color:ButtonColorViolet];
-        [manageButton setFrame:CGRectMake(startingXForLabels,
-                                          email.frame.origin.y + email.frame.size.height + 5.0f,
+        [manageButton setFrame:CGRectMake(0.0f,
+                                          email.frame.origin.y + email.frame.size.height + 15.0f,
                                           manageButton.frame.size.width,
                                           manageButton.frame.size.height)];
+        [manageButton setCenter:CGPointMake(email.center.x, manageButton.center.y)];
         [manageButton addTarget:self action:@selector(manageButtonTapped) forControlEvents:UIControlEventTouchUpInside];
         [manageButton setHidden:YES];
         [self addSubview:manageButton];

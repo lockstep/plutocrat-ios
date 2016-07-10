@@ -58,13 +58,13 @@
     buyoutsStatsView = [[BuyoutsStatsView alloc] initWithFrame:CGRectMake(0.0f,
                                                                           0.0f,
                                                                           self.view.bounds.size.width,
-                                                                          136.0f)];
+                                                                          116.0f)];
     [view addSubview:buyoutsStatsView];
     
     infoView = [[HomeInfo alloc] initWithFrame:CGRectMake(0.0f,
                                                           0.0f,
                                                           self.view.bounds.size.width,
-                                                          136.0f)];
+                                                          156.0f)];
     [infoView setDelegate:self];
     [view addSubview:infoView];
     
@@ -182,7 +182,7 @@
     {
         [self.delegate homeViewController:self shouldNavigateTo:NavigateToTargets];
     }
-    [infoView setType:HomeInfoTypePush];
+    [infoView setType:HomeInfoTypeCommon];
 }
 
 - (void)homeInfoShouldEnablePushes:(HomeInfo *)homeInfo
@@ -191,7 +191,7 @@
     {
         [self.delegate homeViewControllerAskedForPushes:self];
     }
-    [infoView setType:HomeInfoTypeCommon];
+    [infoView setType:HomeInfoTypeFind];
 }
 
 - (void)styleNormal
