@@ -34,7 +34,7 @@
         [label setTextColor:[UIColor whiteColor]];
         [label setTextAlignment:NSTextAlignmentCenter];
         label.shadowColor = [UIColor blackColor];
-        label.shadowOffset = CGSizeMake(0.0f, 2.0f);
+        label.shadowOffset = CGSizeMake(1.0f, 1.0f);
         [self addSubview:label];
 
         desc = [[UILabel alloc] initWithFrame:CGRectMake(0.0f,
@@ -45,7 +45,7 @@
         [desc setTextColor:[UIColor whiteColor]];
         [desc setTextAlignment:NSTextAlignmentCenter];
         desc.shadowColor = [UIColor blackColor];
-        desc.shadowOffset = CGSizeMake(0.0f, 2.0f);
+        desc.shadowOffset = CGSizeMake(1.0f, 1.0f);
         [self addSubview:desc];
     }
     return self;
