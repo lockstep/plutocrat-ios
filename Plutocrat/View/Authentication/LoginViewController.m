@@ -36,6 +36,7 @@
     CommonButton * forgotPasswordButton;
     KeychainWrapper * wrapper;
     UIActivityIndicatorView * iView;
+    UIView * blocker;
 }
 @end
 
@@ -417,8 +418,12 @@
 
 - (void)startActivity
 {
-    iView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    iView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     dispatch_async(dispatch_get_main_queue(), ^{
+        blocker = [[UIView alloc] initWithFrame:self.view.frame];
+        [blocker setBackgroundColor:[UIColor blackColor]];
+        [blocker setAlpha:0.7f];
+        [self.view addSubview:blocker];
         [iView setCenter:self.view.center];
         [self.view addSubview:iView];
         [iView startAnimating];
@@ -440,6 +445,7 @@
 - (void)stopActivity
 {
     dispatch_async(dispatch_get_main_queue(), ^{
+        [blocker removeFromSuperview];
         [submitButton setEnabled:YES];
         [email setUserInteractionEnabled:YES];
         [password setUserInteractionEnabled:YES];

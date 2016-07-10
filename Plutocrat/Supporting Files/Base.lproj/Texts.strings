@@ -20,7 +20,7 @@
 
 "BuyoutAttempts" = "Buyout attempts are not reversible. Your shares will be debited regardless of the outcome.\r\n\r\nMinimum share requirements apply to repeat buyout attempts. Each subsequent attempt against the same target requires at least twice the previous number of shares.";
 
-"ToFindTip" = "Buy out other players to become the Plutocrat.\r\nYou may target any player who is not already under threat.";
+"ToFindTip" = "Buy out other players to become the Plutocrat. You may target any player who is not already under threat.";
 
 "ToEnableTip" = "We'll notify you when your buyouts succeed or fail";
 

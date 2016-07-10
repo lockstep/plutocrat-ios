@@ -83,8 +83,8 @@
 {
     UIColor * darkGray = [UIColor grayWithIntense:128.0f];
     UIColor * paleGray = [UIColor grayWithIntense:168.0f];
-    UIFont * bigFont = [UIFont regularFontWithSize:13.0f];
-    UIFont * smallFont = [UIFont regularFontWithSize:12.0f];
+    UIFont * bigFont = [UIFont regularFontWithSize:15.0f];
+    UIFont * smallFont = [UIFont regularFontWithSize:14.0f];
     
     switch (type)
     {
