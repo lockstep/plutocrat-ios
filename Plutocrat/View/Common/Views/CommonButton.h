@@ -13,7 +13,8 @@ typedef NS_ENUM (NSUInteger, ButtonColor)
     ButtonColorGray,
     ButtonColorRed,
     ButtonColorViolet,
-    ButtonColorWhite
+    ButtonColorWhite,
+    ButtonColorHardWhite
 };
 
 @interface CommonButton : UIButton

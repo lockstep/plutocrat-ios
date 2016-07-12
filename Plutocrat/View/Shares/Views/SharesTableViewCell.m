@@ -62,18 +62,18 @@
         [self addSubview:perShareLab];
         
         perShareVal = [[UILabel alloc] initWithFrame:
-                       CGRectMake(visual.frame.size.width + [Globals horizontalOffsetInTable] * 2 + 60.0f, [Globals cellHeight] / 2 - 20.0f, 60.0f, 15.0f)];
+                       CGRectMake(visual.frame.size.width + [Globals horizontalOffsetInTable] * 2 + 40.0f, [Globals cellHeight] / 2 - 20.0f, 120.0f, 15.0f)];
         [perShareVal setBackgroundColor:[UIColor clearColor]];
         [perShareVal setFont:[UIFont regularFontWithSize:12.0f]];
         [perShareVal setTextColor:[UIColor grayWithIntense:114.0f]];
         [perShareVal setTextAlignment:NSTextAlignmentRight];
         [perShareVal setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin];
-        [perShareLab setAdjustsFontSizeToFitWidth:YES];
+        [perShareVal setAdjustsFontSizeToFitWidth:YES];
         [self addSubview:perShareVal];
         
         CommonSeparator * sep = [[CommonSeparator alloc] initWithFrame:
-                                 CGRectMake(visual.frame.size.width + [Globals horizontalOffsetInTable] * 2, [Globals cellHeight] / 2, 120.0f, 1.0f)];
-        [sep setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+                                 CGRectMake(visual.frame.size.width + [Globals horizontalOffsetInTable] * 2, [Globals cellHeight] / 2, 160.0f, 1.0f)];
+        [sep setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin];
         [self addSubview:sep];
         
         UILabel * totalLab = [[UILabel alloc] initWithFrame:
@@ -85,7 +85,7 @@
         [self addSubview:totalLab];
         
         totalVal = [[UILabel alloc] initWithFrame:
-                        CGRectMake(visual.frame.size.width + [Globals horizontalOffsetInTable] * 2 + 40.0f, [Globals cellHeight] / 2 + 5.0f, 80.0f, 15.0f)];
+                        CGRectMake(visual.frame.size.width + [Globals horizontalOffsetInTable] * 2 + 40.0f, [Globals cellHeight] / 2 + 5.0f, 120.0f, 15.0f)];
         [totalVal setBackgroundColor:[UIColor clearColor]];
         [totalVal setFont:[UIFont italicFontWithSize:12.0f]];
         [totalVal setTextColor:[UIColor grayWithIntense:114.0f]];

@@ -42,40 +42,30 @@
                                                    image:hvcImgInact
                                            selectedImage:hvcImgAct];
 
-    if (defeated)
+    if (!defeated)
     {
-        self.viewControllers = @[hvc, [UIViewController new], [UIViewController new], [UIViewController new], [UIViewController new]];
-        [self.tabBar setUserInteractionEnabled:NO];
-        return;
+        tvc = [TargetsViewController new];
+        [tvc setDelegate:self];
+        UIImage * tvcImgInact = [[UIImage imageNamed:@"targets-inactive"]
+                                 imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        UIImage * tvcImgAct = [[UIImage imageNamed:@"targets-active"]
+                               imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        tvc.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedStringFromTable(@"Targets", @"Labels", nil) image:tvcImgInact selectedImage:tvcImgAct];
+        
+        bvc = [BuyoutsViewController new];
+        UIImage * bvcImgInact = [[UIImage imageNamed:@"buyouts-inactive"]
+                                 imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        UIImage * bvcImgAct = [[UIImage imageNamed:@"buyouts-active"]
+                               imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        bvc.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedStringFromTable(@"Buyouts", @"Labels", nil) image:bvcImgInact selectedImage:bvcImgAct];
+        
+        svc = [SharesViewController new];
+        UIImage * svcImgInact = [[UIImage imageNamed:@"shares-inactive"]
+                                 imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        UIImage * svcImgAct = [[UIImage imageNamed:@"shares-active"]
+                                imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        svc.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedStringFromTable(@"Shares", @"Labels", nil) image:svcImgInact selectedImage:svcImgAct];
     }
-
-    tvc = [TargetsViewController new];
-    [tvc setDelegate:self];
-    UIImage * tvcImgInact = [[UIImage imageNamed:@"targets-inactive"]
-                             imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIImage * tvcImgAct = [[UIImage imageNamed:@"targets-active"]
-                           imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    tvc.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedStringFromTable(@"Targets", @"Labels", nil)
-                                                   image:tvcImgInact
-                                           selectedImage:tvcImgAct];
-    
-    bvc = [BuyoutsViewController new];
-    UIImage * bvcImgInact = [[UIImage imageNamed:@"buyouts-inactive"]
-                             imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIImage * bvcImgAct = [[UIImage imageNamed:@"buyouts-active"]
-                           imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    bvc.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedStringFromTable(@"Buyouts", @"Labels", nil)
-                                                   image:bvcImgInact
-                                           selectedImage:bvcImgAct];
-    
-    svc = [SharesViewController new];
-    UIImage * svcImgInact = [[UIImage imageNamed:@"shares-inactive"]
-                             imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIImage * svcImgAct = [[UIImage imageNamed:@"shares-active"]
-                           imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    svc.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedStringFromTable(@"Shares", @"Labels", nil)
-                                                   image:svcImgInact
-                                           selectedImage:svcImgAct];
     
     avc = [AccountViewController new];
     [avc setDelegate:self];
@@ -86,8 +76,15 @@
     avc.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedStringFromTable(@"Settings", @"Labels", nil)
                                                    image:avcImgInact
                                            selectedImage:avcImgAct];
-    
-    self.viewControllers = @[hvc, tvc, bvc, svc, avc];
+
+    if (!defeated)
+    {
+        self.viewControllers = @[hvc, tvc, bvc, svc, avc];
+    }
+    else
+    {
+        self.viewControllers = @[hvc, avc];
+    }
 }
 
 - (void)updateOnPush
@@ -117,16 +114,10 @@
 
 - (void)homeViewControllerDefeated:(HomeViewController *)controller
 {
-    [self setSelectedIndex:0];
-    tvc.tabBarItem = nil;
-    bvc.tabBarItem = nil;
-    svc.tabBarItem = nil;
-    avc.tabBarItem = nil;
     if ([self.customDelegate respondsToSelector:@selector(tabBarViewControllerDidSetDefeated:)])
     {
         [self.customDelegate tabBarViewControllerDidSetDefeated:self];
     }
-    [self.tabBar setUserInteractionEnabled:NO];
 }
 
 #pragma mark - TargetsBuyoutsViewControllerDelegate

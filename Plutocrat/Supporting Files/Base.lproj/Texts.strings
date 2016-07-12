@@ -22,7 +22,7 @@
 
 "ToFindTip" = "Buy out other players to become the Plutocrat. You may target any player who is not already under threat.";
 
-"ToEnableTip" = "We'll notify you when your buyouts succeed or fail";
+"ToEnableTip" = "We'll notify you when your buyouts succeed or fail.";
 
 "SetNewPassword" = "Copy and paste the password reset token from your email into the form below and enter a new password.";
 

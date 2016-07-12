@@ -21,8 +21,7 @@
 "FailedBuyouts" = "Failed\r\nBuyouts";
 "DefeatedBuyouts" = "Defeated\r\nThreats";
 "SurvivalTime" = "Survival Time";
-"ActiveBuyoutThreat" = "Active Buyout Threat";
-"Deadline" = "Deadline";
+"BuyoutThreat" = "Buyout Threat";
 "YouSurvived" = "You Survived";
 "NoPlutocrat" = "No Reigning Plutocrat";
 "PlutocratBuyouts" = "%i Buyouts";
@@ -38,7 +37,7 @@
 "OutcomePending" = "Outcome Pending";
 "BuyoutSucceeded" = "Buyout Succeeded";
 "BuyoutFailed" = "Buyout Failed";
-"BuyoutsCellFormat" = "%@\r\n%i shares %@ ago %@";
+"BuyoutsCellFormat" = "%@ %i shares %@ ago %@";
 "InitiateBuyoutWith" = "Initiate Buyout With";
 "Share" = "Share";
 "Shares" = "Shares";

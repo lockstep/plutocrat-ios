@@ -20,6 +20,5 @@
 @interface LeftPanelViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, weak) id <LeftPanelDelegate> delegate;
-@property BOOL defeated;
 
 @end

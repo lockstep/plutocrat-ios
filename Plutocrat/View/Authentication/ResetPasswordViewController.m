@@ -37,7 +37,7 @@
 {
     [super viewDidLoad];
 
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
     [self.view setBackgroundColor:[UIColor blackColor]];
 
@@ -106,6 +106,7 @@
     [email setKeyboardType:UIKeyboardTypeEmailAddress];
     [email setReturnKeyType:UIReturnKeyDone];
     [email setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [email setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [email setFont:[UIFont regularFontWithSize:smallFontSize]];
     [email setTextColor:[UIColor whiteColor]];
     [email setDelegate:self];

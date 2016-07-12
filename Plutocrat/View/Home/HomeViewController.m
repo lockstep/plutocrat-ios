@@ -58,7 +58,7 @@
     buyoutsStatsView = [[BuyoutsStatsView alloc] initWithFrame:CGRectMake(0.0f,
                                                                           0.0f,
                                                                           self.view.bounds.size.width,
-                                                                          116.0f)];
+                                                                          126.0f)];
     [view addSubview:buyoutsStatsView];
     
     infoView = [[HomeInfo alloc] initWithFrame:CGRectMake(0.0f,
@@ -98,7 +98,17 @@
     [ApiConnector getProfileWithUserId:[UserManager currentUserId]
                             completion:^(User * user, NSString * error) {
                                 [refreshControl endRefreshing];
-                                [self updateData];
+                                if ([UserManager isDefeated])
+                                {
+                                    if ([self.delegate respondsToSelector:@selector(homeViewControllerDefeated:)])
+                                    {
+                                        [self.delegate homeViewControllerDefeated:self];
+                                    }
+                                }
+                                else
+                                {
+                                    [self updateData];
+                                }
                             }];
 }
 
@@ -157,9 +167,15 @@
                                             curY + buyoutsStatsView.frame.size.height / 2)];
     
     curY += buyoutsStatsView.frame.size.height;
-    
-    [infoView setCenter:CGPointMake(infoView.center.x, curY + infoView.frame.size.height / 2)];
-    
+
+    if (self.view.bounds.size.height > 600.0f)
+    {
+        [infoView setCenter:CGPointMake(infoView.center.x, (view.bounds.size.height + curY) / 2)];
+    }
+    else
+    {
+        [infoView setCenter:CGPointMake(infoView.center.x, curY + infoView.frame.size.height / 2)];
+    }
     curY += infoView.frame.size.height;
     
     if (curY > view.frame.size.height)
@@ -183,6 +199,7 @@
         [self.delegate homeViewController:self shouldNavigateTo:NavigateToTargets];
     }
     [infoView setType:HomeInfoTypeCommon];
+    [infoView setBuyouts:user.buyoutsUntilPlutocratCount];
 }
 
 - (void)homeInfoShouldEnablePushes:(HomeInfo *)homeInfo
@@ -228,17 +245,10 @@
     [homeHeader setType:HomeHeaderTypeDefeated];
     [homeHeader setSurvavalFromDate:user.registeredAt toDate:user.defeatedAt];
 
-    [bigUserView setUserInteractionEnabled:NO];
-
     [infoView setType:HomeInfoTypeDefeated];
     [infoView setName:user.terminalBuyout.initiatingUser.displayName
                shares:user.terminalBuyout.numberOfShares
               timeAgo:user.terminalBuyout.resolvedTimeAgo];
-
-    if ([self.delegate respondsToSelector:@selector(homeViewControllerDefeated:)])
-    {
-        [self.delegate homeViewControllerDefeated:self];
-    }
 }
 
 #pragma mark - BigUserViewDelegate

@@ -63,7 +63,7 @@
 {
     [super viewDidLoad];
     
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
     [self.view setBackgroundColor:[UIColor blackColor]];
 
@@ -138,6 +138,7 @@
     [email setKeyboardType:UIKeyboardTypeEmailAddress];
     [email setReturnKeyType:UIReturnKeyDone];
     [email setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [email setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [email setFont:[UIFont regularFontWithSize:smallFontSize]];
     [email setTextColor:[UIColor whiteColor]];
     [email setDelegate:self];
@@ -198,14 +199,14 @@
 
     eulaButton = [CommonButton bigButtonWithText:NSLocalizedStringFromTable(@"EULA", @"Buttons", nil) width:120.0f];
     [eulaButton setCenter:CGPointMake(horizontalOffset + eulaButton.frame.size.width / 2,
-                                      330.0f)];
+                                      380.0f)];
     [eulaButton addTarget:self action:@selector(eulaButtonTouched) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:eulaButton];
 
     privacyButton = [CommonButton bigButtonWithText:NSLocalizedStringFromTable(@"PRIVACY", @"Buttons", nil) width:120.0f];
     [privacyButton setCenter:
      CGPointMake(view.frame.size.width - horizontalOffset -  privacyButton.frame.size.width / 2,
-                 330.0f)];
+                 380.0f)];
     [privacyButton addTarget:self action:@selector(privacyButtonTouched) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:privacyButton];
 
@@ -225,8 +226,7 @@
 {    
     CGFloat heightsOfTextFields = 34.0f;
     CGFloat modeDiff = userIsRegistered ? 0.0f : heightsOfTextFields + 20.0f;
-    CGFloat gapForEulas = userIsRegistered ? 0.0f : 70.0f;
-    CGFloat gapForAction = userIsRegistered ? 0.0f : 5.0f;
+    CGFloat gapForAction = userIsRegistered ? 0.0f : 55.0f;
 
     [displayName setHidden:userIsRegistered];
     
@@ -241,7 +241,7 @@
                                   password.frame.size.height)];
 
     [submitButton setCenter:CGPointMake(password.frame.origin.x + submitButton.frame.size.width / 2,
-                                        password.frame.origin.y + heightsOfTextFields + submitButton.frame.size.height / 2 + 30.0f + gapForEulas)];
+                                        password.frame.origin.y + heightsOfTextFields + submitButton.frame.size.height / 2 + 30.0f)];
 
     [actionLabel setCenter:CGPointMake(view.center.x, 285.0f + gapForAction)];
 

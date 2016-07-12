@@ -48,7 +48,7 @@
         self.info = [[UILabel alloc] initWithFrame:
                      CGRectMake(startingXForLabels,
                                 self.name.frame.origin.y + self.name.frame.size.height - 5.0f,
-                                120.0f,
+                                110.0f,
                                 60.0f)];
         [self.info setFont:[UIFont regularFontWithSize:11.0f]];
         [self.info setTextColor:[UIColor grayWithIntense:112.0f]];
@@ -155,8 +155,6 @@
     [self.photo setHidden:loading];
     [self.name setHidden:loading];
     [self.info setHidden:loading];
-    [engageButton setHidden:loading];
-    [engageReplace setHidden:loading];
 }
 
 - (void)hideSep

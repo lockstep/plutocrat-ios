@@ -79,6 +79,10 @@
         case ButtonColorWhite:
             [self setBackgroundColor:[UIColor clearColor]];
             break;
+
+        case ButtonColorHardWhite:
+            [self setBackgroundColor:[UIColor whiteColor]];
+            break;
             
         default:
             break;
@@ -109,7 +113,12 @@
             [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             [self setTitleColor:[UIColor ourViolet] forState:UIControlStateHighlighted];
             break;
-            
+
+        case ButtonColorHardWhite:
+            [self setTitleColor:[UIColor ourViolet] forState:UIControlStateNormal];
+            [self setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+            break;
+
         default:
             break;
     }
@@ -137,7 +146,11 @@
         case ButtonColorWhite:
             [self.layer setBorderColor:[UIColor whiteColor].CGColor];
             break;
-            
+
+        case ButtonColorHardWhite:
+            [self.layer setBorderColor:[UIColor whiteColor].CGColor];
+            break;
+
         default:
             break;
     }

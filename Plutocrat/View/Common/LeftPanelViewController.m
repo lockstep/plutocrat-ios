@@ -18,6 +18,8 @@
 
 @implementation LeftPanelViewController
 
+CGFloat rowHeight = 40.0f;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -34,7 +36,10 @@
     [self.view addSubview:logo];
 
     UITableView * table = [[UITableView alloc] initWithFrame:
-                           CGRectMake(0.0f, 100.0f, self.view.bounds.size.width * 0.8f, 184.0f)
+                           CGRectMake(0.0f,
+                                      100.0f,
+                                      self.view.bounds.size.width * 0.8f,
+                                      rowHeight * ([labels count] - 1) + 2.0f)
                                                        style:UITableViewStylePlain];
     [table setSeparatorInset:UIEdgeInsetsMake(0.0f,
                                               25.0f,
@@ -86,7 +91,7 @@ static NSString * identifier = @"LeftPanelCellIdentifier";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) return 2.0f;
-    return 60.0f;
+    return rowHeight;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -95,7 +100,6 @@ static NSString * identifier = @"LeftPanelCellIdentifier";
     {
         case 1:
         {
-            if (self.defeated) return;
             if ([self.delegate respondsToSelector:@selector(leftPanelViewController:shouldNavigateTo:)])
             {
                 [self.delegate leftPanelViewController:self shouldNavigateTo:NavigateToAccount];

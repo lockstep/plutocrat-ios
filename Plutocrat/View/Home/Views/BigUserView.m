@@ -48,7 +48,6 @@
                            self.bounds.size.width - startingXForLabels - bordersOffset,
                            28.0f)];
         [name setNumberOfLines:1];
-        [name setTextAlignment:NSTextAlignmentCenter];
         [name setAdjustsFontSizeToFitWidth:YES];
         [name setTextColor:paleGray];
         [name setFont:[UIFont regularFontWithSize:bigFontSize]];
@@ -58,9 +57,8 @@
                  CGRectMake(startingXForLabels,
                             name.frame.origin.y + name.frame.size.height + 5.0f,
                             self.bounds.size.width - startingXForLabels - bordersOffset,
-                            14.0f)];
+                            18.0f)];
         [email setNumberOfLines:1];
-        [email setTextAlignment:NSTextAlignmentCenter];
         [email setAdjustsFontSizeToFitWidth:YES];
         [email setTextColor:paleGray];
         [email setFont:[UIFont regularFontWithSize:smallFontSize]];
@@ -68,11 +66,10 @@
         [self addSubview:email];
         
         manageButton = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"ManageAccount", @"Buttons", nil) color:ButtonColorViolet];
-        [manageButton setFrame:CGRectMake(0.0f,
+        [manageButton setFrame:CGRectMake(email.frame.origin.x,
                                           email.frame.origin.y + email.frame.size.height + 15.0f,
                                           manageButton.frame.size.width,
                                           manageButton.frame.size.height)];
-        [manageButton setCenter:CGPointMake(email.center.x, manageButton.center.y)];
         [manageButton addTarget:self action:@selector(manageButtonTapped) forControlEvents:UIControlEventTouchUpInside];
         [manageButton setHidden:YES];
         [self addSubview:manageButton];

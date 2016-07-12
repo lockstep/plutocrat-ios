@@ -55,7 +55,6 @@
     sidePanelViewController = [JASidePanelController new];
     leftPanelViewController = [LeftPanelViewController new];
     [leftPanelViewController setDelegate:self];
-    leftPanelViewController.defeated = [UserManager isDefeated];
     sidePanelViewController.leftPanel = leftPanelViewController;
     tabBarViewController = [TabBarViewController new];
     [tabBarViewController setCustomDelegate:self];
@@ -73,7 +72,7 @@
     {
         case NavigateToAccount:
             [sidePanelViewController showCenterPanelAnimated:YES];
-            [tabBarViewController setSelectedIndex:4];
+            [tabBarViewController setSelectedIndex:[[tabBarViewController viewControllers] count] - 1];
             break;
             
         case NavigateToTargets:
@@ -126,7 +125,9 @@
 
 - (void)tabBarViewControllerDidSetDefeated:(TabBarViewController *)controller
 {
-    leftPanelViewController.defeated = YES;
+    [sidePanelViewController.view removeFromSuperview];
+    [sidePanelViewController removeFromParentViewController];
+    [self initInReadyState];
 }
 
 @end

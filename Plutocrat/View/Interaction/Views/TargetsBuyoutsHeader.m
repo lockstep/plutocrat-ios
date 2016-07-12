@@ -15,6 +15,7 @@
 {
     UIImageView * background;
     UILabel * noPlutocrat;
+    UIView * shade;
     UIImageView * photo;
     UILabel * name;
     UILabel * plutocratBuyouts;
@@ -29,6 +30,7 @@
     self = [super initWithFrame:frame];
     if (self)
     {
+        const CGFloat bigFontSize = 28.0f;
         const CGFloat averageFontSize = 20.0f;
         const CGFloat smallFontSize = 18.0f;
         
@@ -41,6 +43,8 @@
         [noPlutocrat setTextColor:[UIColor whiteColor]];
         [noPlutocrat setTextAlignment:NSTextAlignmentCenter];
         [noPlutocrat setText:NSLocalizedStringFromTable(@"NoPlutocrat", @"Labels", nil)];
+        [noPlutocrat setShadowColor:[UIColor blackColor]];
+        [noPlutocrat setShadowOffset:CGSizeMake(1.0f, 1.0f)];
         [noPlutocrat setHidden:YES];
         [self addSubview:noPlutocrat];
         
@@ -51,19 +55,30 @@
                                                               74.0f)];
         [[photo layer] setCornerRadius:photo.frame.size.width / 2];
         [[photo layer] setBorderColor:[UIColor whiteColor].CGColor];
-        [[photo layer] setBorderWidth:2.0f];
+        [[photo layer] setBorderWidth:1.0f];
         [[photo layer] setMasksToBounds:YES];
         [photo setImage:[UIImage imageNamed:@"empty-profile-image"]];
         [photo setHidden:YES];
+
+        shade = [[UIView alloc] initWithFrame:photo.frame];
+        [shade setBackgroundColor:[UIColor blackColor]];
+        [[shade layer] setShadowColor:[UIColor blackColor].CGColor];
+        [[shade layer] setShadowOffset:CGSizeMake(1.0f, 1.0f)];
+        [[shade layer] setCornerRadius:shade.frame.size.width / 2];
+        [[shade layer] setShadowOpacity:1.0f];
+        [shade setClipsToBounds:NO];
+        [shade setHidden:YES];
+
+        [self addSubview:shade];
         [self addSubview:photo];
         
         CGFloat startingXForLabels = bordersOffset + photo.frame.size.width + [Globals offsetFromPhoto];
         name = [[UILabel alloc] initWithFrame:CGRectMake(startingXForLabels,
                                                          photo.frame.origin.y + 10.0f,
                                                          frame.size.width - startingXForLabels * 2,
-                                                         24.0f)];
+                                                         28.0f)];
         [name setAdjustsFontSizeToFitWidth:YES];
-        [name setFont:[UIFont regularFontWithSize:averageFontSize]];
+        [name setFont:[UIFont regularFontWithSize:bigFontSize]];
         [name setTextColor:[UIColor whiteColor]];
         [name setHidden:YES];
         [self addSubview:name];
@@ -77,7 +92,7 @@
         [plutocratBuyouts setHidden:YES];
         [self addSubview:plutocratBuyouts];
         
-        engageButton = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"ENGAGE", @"Buttons", nil) color:ButtonColorViolet];
+        engageButton = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"ENGAGE", @"Buttons", nil) color:ButtonColorHardWhite];
         [engageButton setBackgroundColor:[UIColor whiteColor]];
         [engageButton setCenter:
          CGPointMake(frame.size.width - bordersOffset - engageButton.frame.size.width / 2,
@@ -113,6 +128,7 @@
     {
         case TargetsHeaderNoPlutocrat:
             [noPlutocrat setHidden:NO];
+            [shade setHidden:YES];
             [photo setHidden:YES];
             [name setHidden:YES];
             [plutocratBuyouts setHidden:YES];
@@ -124,6 +140,7 @@
             
         case TargetsHeaderWithPlutocrat:
             [noPlutocrat setHidden:YES];
+            [shade setHidden:NO];
             [photo setHidden:NO];
             [name setHidden:NO];
             [plutocratBuyouts setHidden:NO];
@@ -135,6 +152,7 @@
 
         case TargetsHeaderWithPlutocratUnderThreat:
             [noPlutocrat setHidden:YES];
+            [shade setHidden:NO];
             [photo setHidden:NO];
             [name setHidden:NO];
             [plutocratBuyouts setHidden:NO];
@@ -147,6 +165,7 @@
 
         case TargetsHeaderWithPlutocratAttackingYou:
             [noPlutocrat setHidden:YES];
+            [shade setHidden:NO];
             [photo setHidden:NO];
             [name setHidden:NO];
             [plutocratBuyouts setHidden:NO];
@@ -159,6 +178,7 @@
 
         case BuyoutsHeader:
             [noPlutocrat setHidden:YES];
+            [shade setHidden:YES];
             [photo setHidden:YES];
             [name setHidden:YES];
             [plutocratBuyouts setHidden:YES];

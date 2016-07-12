@@ -393,6 +393,7 @@
     [photo removeInitials:YES];
     [picker dismissViewControllerAnimated:YES completion:nil];
     imageChanged = YES;
+    [self save];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -462,6 +463,11 @@
         [self showAlertEmptyPassword];
         return;
     }
+    [self save];
+}
+
+- (void)save
+{
     [self startActivity];
     [ApiConnector updateProfileWithUserId:user.identifier
                                     email:email.text

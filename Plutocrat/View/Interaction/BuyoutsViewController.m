@@ -84,7 +84,22 @@
                 if (buyout.state == BuyoutStateMatched)
                 {
                     state = BuyoutCellHeFailedState;
-                    if (buyout.initiatingUser.underBuyoutThreat) [bCell setEngageButtonState:EngageButtonUnderThreatState];
+                    if (buyout.initiatingUser.attackingCurrentUser)
+                    {
+                        [bCell setEngageButtonState:EngageButtonAttackingYouState];
+                    }
+                    else if (buyout.initiatingUser.underBuyoutThreat)
+                    {
+                        [bCell setEngageButtonState:EngageButtonUnderThreatState];
+                    }
+                    else if (buyout.initiatingUser.defeatedAt)
+                    {
+                        [bCell setEngageButtonState:EngageButtonEliminatedState];
+                    }
+                    else
+                    {
+                        [bCell setEngageButtonState:EngageButtonDefaultState];
+                    }
                 }
                 else
                 {
@@ -168,7 +183,15 @@
 - (void)buttonTappedToEngageOnCell:(TargetsBuyoutsBaseCell *)cell
 {
     Buyout * buyout = [self.source objectAtIndex:cell.tag];
-    User * target = buyout.targetUser;
+    User * target;
+    if (buyout.targetUser.identifier == [UserManager currentUserId])
+    {
+        target = buyout.initiatingUser;
+    }
+    else
+    {
+        target = buyout.targetUser;
+    }
     InitiateViewController * ivc = [[InitiateViewController alloc] init];
     [self presentViewController:ivc animated:YES completion:^(){
         [ivc setUser:target cellTag:cell.tag];

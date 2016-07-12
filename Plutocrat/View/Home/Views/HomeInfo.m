@@ -24,7 +24,7 @@
     {
         UIColor * darkGray = [UIColor grayWithIntense:128.0f];
         
-        gettingStarted = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, 20.0f)];
+        gettingStarted = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, 24.0f)];
         [gettingStarted setFont:[UIFont regularFontWithSize:18.0f]];
         [gettingStarted setTextColor:darkGray];
         [gettingStarted setTextAlignment:NSTextAlignmentCenter];
@@ -84,7 +84,6 @@
     UIColor * darkGray = [UIColor grayWithIntense:128.0f];
     UIColor * paleGray = [UIColor grayWithIntense:168.0f];
     UIFont * bigFont = [UIFont regularFontWithSize:15.0f];
-    UIFont * smallFont = [UIFont regularFontWithSize:14.0f];
     
     switch (type)
     {
@@ -109,7 +108,7 @@
         case HomeInfoTypeCommon:
             [gettingStarted setHidden:YES];
             [info setTextColor:paleGray];
-            [info setFont:smallFont];
+            [info setFont:bigFont];
             [find setHidden:YES];
             [enable setHidden:YES];
             break;
@@ -118,6 +117,7 @@
             [gettingStarted setHidden:YES];
             [info setTextColor:paleGray];
             [info setFont:bigFont];
+            [info setCenter:self.center];
             [find setHidden:YES];
             [enable setHidden:YES];
             break;
