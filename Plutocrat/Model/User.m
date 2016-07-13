@@ -35,12 +35,12 @@
     user.registeredAt = [DateUtility dateFromString:userDict[@"registered_at"]];
     user.defeatedAt = [DateUtility dateFromString:userDict[@"defeated_at"]];
 
-    if (userDict[@"active_inbound_buyout"])
+    if (userDict[@"active_inbound_buyout"] && [userDict[@"active_inbound_buyout"] isKindOfClass:[NSDictionary class]])
     {
         user.inboundBuyout = [InboundBuyout buyoutFromDict:userDict[@"active_inbound_buyout"]];
     }
 
-    if (userDict[@"terminal_buyout"])
+    if (userDict[@"terminal_buyout"] && [userDict[@"terminal_buyout"] isKindOfClass:[NSDictionary class]])
     {
         user.terminalBuyout = [Buyout buyoutFromDict:userDict[@"terminal_buyout"]];
     }

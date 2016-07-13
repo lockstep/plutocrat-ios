@@ -55,11 +55,31 @@
      "X-Runtime" = "0.463555";
      "X-Xss-Protection" = "1; mode=block";
      */
-    
-    [[NSUserDefaults standardUserDefaults] setObject:userDict forKey:USER_KEY];
+
+    NSDictionary * dict = [self clean:userDict];
+
+    [[NSUserDefaults standardUserDefaults] setObject:dict forKey:USER_KEY];
     [[NSUserDefaults standardUserDefaults] setObject:headerDict forKey:HEADER_KEY];
     [[NSUserDefaults standardUserDefaults] setObject:userDict[@"id"] forKey:LAST_LOGIN_KEY];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (NSDictionary *)clean:(NSDictionary *)input
+{
+    NSMutableDictionary * result = [NSMutableDictionary dictionary];
+    for (NSString * key in input.allKeys)
+    {
+        NSObject * object = [input objectForKey:key];
+        if ([object isKindOfClass:[NSDictionary class]])
+        {
+            [result setObject:[self clean:(NSDictionary *)object] forKey:key];
+        }
+        else if (![object isKindOfClass:[NSNull class]])
+        {
+            [result setObject:object forKey:key];
+        }
+    }
+    return result;
 }
 
 + (void)removeUser {

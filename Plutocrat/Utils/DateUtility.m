@@ -19,7 +19,7 @@
 
 + (NSDate *)dateFromString:(NSString *)dateString
 {
-    if (!dateString) return nil;
+    if (!dateString || [dateString isMemberOfClass:[NSNull class]]) return nil;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
     return [self toLocalTime:[formatter dateFromString:dateString]];

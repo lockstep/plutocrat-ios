@@ -9,7 +9,7 @@
 #import "ApiConnector.h"
 #import "AFNetworking.h"
 #import "UserManager.h"
-#import "CollectionUtils.h"
+//#import "CollectionUtils.h"
 
 #define IS_PRODUCTION 0
 
@@ -121,19 +121,19 @@ enum ApiMethod {
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
         long statusCode = httpResponse.statusCode;
         NSLog(@"response(%ld, %ld): %@", statusCode, (long)error.code, responseObject);
-        NSDictionary *responseDict = [responseObject cu_compactDictionary];
 
         switch (statusCode) {
             case 200:
             case 201: {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    NSDictionary * meta = responseDict[@"meta"];
+
+                    NSDictionary * meta = responseObject[@"meta"];
                     NSString * err;
                     if (meta[@"errors"])
                     {
                         err = [self sanitizedError:[[[meta[@"errors"] allValues] firstObject] description]];
                     }
-                    completion(httpResponse.allHeaderFields, [responseDict copy], err);
+                    completion(httpResponse.allHeaderFields, responseObject, err);
                 });
             }
                 break;
@@ -141,21 +141,21 @@ enum ApiMethod {
             case 401: {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     NSArray *errors = responseObject[@"meta"][@"errors"][@"auth"];
-                    completion(httpResponse.allHeaderFields, [responseDict copy], errors.firstObject);//@"Invalid login credentials. Please try again.");
+                    completion(httpResponse.allHeaderFields, responseObject, errors.firstObject);//@"Invalid login credentials. Please try again.");
                 });
             }
                 break;
                 
             case 404: {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    completion(httpResponse.allHeaderFields, [responseDict copy], @"Host is not reachable at this time. Please try again.");
+                    completion(httpResponse.allHeaderFields, responseObject, @"Host is not reachable at this time. Please try again.");
                 });
             }
                 break;
 
             case 422: {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    NSDictionary * meta = responseDict[@"meta"];
+                    NSDictionary * meta = responseObject[@"meta"];
                     NSString * err;
                     if (meta[@"errors"])
                     {
@@ -164,14 +164,14 @@ enum ApiMethod {
                             err = [meta[@"errors"][@"full_messages"] firstObject];
                         }
                     }
-                    completion(httpResponse.allHeaderFields, [responseDict copy], err);
+                    completion(httpResponse.allHeaderFields, responseObject, err);
                 });
             }
                 break;
 
             default: {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    completion(httpResponse.allHeaderFields, [responseDict copy], @"Unknown error has occured. Please try again.");
+                    completion(httpResponse.allHeaderFields, nil, @"Unknown error has occured. Please try again.");
                 });
             }
                 break;
@@ -354,7 +354,7 @@ enum ApiMethod {
               {
                   [UserManager storeUser:responseObject[@"user"] headers:headers];
               }
-        completion(user, error);
+              completion(user, error);
     }];
 }
 
