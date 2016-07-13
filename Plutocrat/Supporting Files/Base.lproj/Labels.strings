@@ -24,7 +24,7 @@
 "BuyoutThreat" = "Buyout Threat";
 "YouSurvived" = "You Survived";
 "NoPlutocrat" = "No Reigning Plutocrat";
-"PlutocratBuyouts" = "%i Buyout%@";
+"PlutocratBuyouts" = "The Plutocrat\r\n%i Buyout%@";
 "SuccessfulBuyouts" = "%i Successful Buyout%@";
 "TargetsCellFormat" = "Buyouts: %i\r\nThreats: %i\r\nDays Survived: %i";
 "UnderThreat" = "Under Threat";

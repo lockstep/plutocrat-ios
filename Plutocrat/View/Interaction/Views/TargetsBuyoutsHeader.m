@@ -32,7 +32,7 @@
     {
         const CGFloat bigFontSize = 28.0f;
         const CGFloat averageFontSize = 20.0f;
-        const CGFloat smallFontSize = 18.0f;
+        const CGFloat smallFontSize = 16.0f;
         
         background = [[UIImageView alloc] initWithFrame:frame];
         [background setImage:[UIImage imageNamed:@"Background-blue"]];
@@ -74,22 +74,25 @@
         
         CGFloat startingXForLabels = bordersOffset + photo.frame.size.width + [Globals offsetFromPhoto];
         name = [[UILabel alloc] initWithFrame:CGRectMake(startingXForLabels,
-                                                         photo.frame.origin.y + 10.0f,
+                                                         photo.frame.origin.y,
                                                          frame.size.width - startingXForLabels * 2,
                                                          28.0f)];
         [name setAdjustsFontSizeToFitWidth:YES];
         [name setFont:[UIFont regularFontWithSize:bigFontSize]];
         [name setTextColor:[UIColor whiteColor]];
         [name setHidden:YES];
+        name.shadowColor = [UIColor blackColor];
+        name.shadowOffset = CGSizeMake(1.0f, 1.0f);
         [self addSubview:name];
         
         plutocratBuyouts = [[UILabel alloc] initWithFrame:CGRectMake(startingXForLabels,
-                                                         name.frame.origin.y + name.frame.size.height,
+                                                         name.frame.origin.y + name.frame.size.height + 5.0f,
                                                          frame.size.width - startingXForLabels * 2,
-                                                         30.0f)];
+                                                         40.0f)];
         [plutocratBuyouts setFont:[UIFont regularFontWithSize:smallFontSize]];
         [plutocratBuyouts setTextColor:[UIColor whiteColor]];
         [plutocratBuyouts setHidden:YES];
+        [plutocratBuyouts setNumberOfLines:2];
         [self addSubview:plutocratBuyouts];
         
         engageButton = [CommonButton buttonWithText:NSLocalizedStringFromTable(@"ENGAGE", @"Buttons", nil) color:ButtonColorHardWhite];
