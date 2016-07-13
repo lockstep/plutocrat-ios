@@ -187,7 +187,7 @@ static NSString * identifier = @"SharesCellIdentifier";
 
 - (void)updateHeaderData
 {
-    [header setText:NSLocalizedStringFromTable(@"YourAccount", @"Labels", nil) descText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"UnusedSharesFormat", @"Labels", nil), [UserManager availableShares]]];
+    [header setText:NSLocalizedStringFromTable(@"YourAccount", @"Labels", nil) descText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"UnusedSharesFormat", @"Labels", nil), [UserManager availableShares], [UserManager availableShares] == 1 ? @"" : @"s"]];
 }
 
 - (void)loadData

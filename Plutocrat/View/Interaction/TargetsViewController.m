@@ -248,6 +248,10 @@
     {
         type = TargetsHeaderWithPlutocratAttackingYou;
     }
+    if (plutocrat.identifier == [UserManager currentUserId])
+    {
+        type = TargetsHeaderWithPlutocratIsYou;
+    }
     [self.header setType:type];
     [self.header setImageUrl:plutocrat.profileImageUrl initials:plutocrat.initials];
     [self.header setName:plutocrat.displayName];

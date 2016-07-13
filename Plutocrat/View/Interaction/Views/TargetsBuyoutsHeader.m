@@ -176,6 +176,18 @@
             plutocratExists = YES;
             break;
 
+        case TargetsHeaderWithPlutocratIsYou:
+            [noPlutocrat setHidden:YES];
+            [shade setHidden:NO];
+            [photo setHidden:NO];
+            [name setHidden:NO];
+            [plutocratBuyouts setHidden:NO];
+            [engageButton setHidden:YES];
+            [engageReplace setHidden:YES];
+            [buyoutsHeader setHidden:YES];
+            plutocratExists = YES;
+            break;
+
         case BuyoutsHeader:
             [noPlutocrat setHidden:YES];
             [shade setHidden:YES];
@@ -208,11 +220,11 @@
     if (plutocratExists)
     {
         [plutocratBuyouts setText:
-         [NSString stringWithFormat:NSLocalizedStringFromTable(@"PlutocratBuyouts", @"Labels", nil), number]];
+         [NSString stringWithFormat:NSLocalizedStringFromTable(@"PlutocratBuyouts", @"Labels", nil), number, number == 1 ? @"" : @"s"]];
     }
     else
     {
-        [buyoutsHeader setText:NSLocalizedStringFromTable(@"BuyoutHistory", @"Labels", nil) descText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"SuccessfulBuyouts", @"Labels", nil), number]];
+        [buyoutsHeader setText:NSLocalizedStringFromTable(@"BuyoutHistory", @"Labels", nil) descText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"SuccessfulBuyouts", @"Labels", nil), number, number == 1 ? @"" : @"s"]];
     }
 }
 

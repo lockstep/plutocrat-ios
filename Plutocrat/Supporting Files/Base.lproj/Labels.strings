@@ -24,8 +24,8 @@
 "BuyoutThreat" = "Buyout Threat";
 "YouSurvived" = "You Survived";
 "NoPlutocrat" = "No Reigning Plutocrat";
-"PlutocratBuyouts" = "%i Buyouts";
-"SuccessfulBuyouts" = "%i Successful Buyouts";
+"PlutocratBuyouts" = "%i Buyout%@";
+"SuccessfulBuyouts" = "%i Successful Buyout%@";
 "TargetsCellFormat" = "Buyouts: %i\r\nThreats: %i\r\nDays Survived: %i";
 "UnderThreat" = "Under Threat";
 "AttackingYou" = "Attacking You";
@@ -43,7 +43,7 @@
 "Shares" = "Shares";
 "MinimumBuyout" = "Minimum Buyout";
 "AvailableShares" = "Available Shares";
-"UnusedSharesFormat" = "%i Unused Shares";
+"UnusedSharesFormat" = "%i Unused Share%@";
 "PerShare" = "Per Share:";
 "Total" = "Total:";
 "ManageAccount" = "Manage Account";

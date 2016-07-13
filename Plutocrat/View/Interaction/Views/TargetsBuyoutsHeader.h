@@ -14,6 +14,7 @@ typedef NS_ENUM (NSUInteger, TargetsBuyoutsHeaderType)
     TargetsHeaderWithPlutocrat,
     TargetsHeaderWithPlutocratUnderThreat,
     TargetsHeaderWithPlutocratAttackingYou,
+    TargetsHeaderWithPlutocratIsYou,
     BuyoutsHeader
 };
 

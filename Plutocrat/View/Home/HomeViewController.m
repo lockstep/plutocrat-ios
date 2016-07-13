@@ -71,7 +71,7 @@
     attackerView = [[AttackerView alloc] initWithFrame:CGRectMake(0.0f,
                                                                   0.0f,
                                                                   self.view.bounds.size.width,
-                                                                  270.0f)];
+                                                                  300.0f)];
     [attackerView setDelegate:self];
     [view addSubview:attackerView];
 
