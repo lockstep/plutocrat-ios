@@ -35,6 +35,37 @@
     [self loadData];
 }
 
+#pragma mark - public
+
+- (void)updateCurrentUserName
+{
+    if (pluto.identifier == [UserManager currentUserId])
+    {
+        [self.header setName:[UserManager displayName]];
+    }
+    else
+    {
+        User * foundUser __block;
+        NSUInteger index __block;
+        [self.source enumerateObjectsUsingBlock:^(User * object, NSUInteger idx, BOOL * stop) {
+            if (object.identifier == [UserManager currentUserId])
+            {
+                foundUser = object;
+                index = idx;
+                *stop = YES;
+            }
+        }];
+        if (foundUser)
+        {
+            foundUser.displayName = [UserManager displayName];
+            [self.source replaceObjectAtIndex:index withObject:foundUser];
+            NSIndexPath * indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+            [self.table reloadRowsAtIndexPaths:@[indexPath]
+                              withRowAnimation:UITableViewRowAnimationNone];
+        }
+    }
+}
+
 #pragma mark - TableView
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -132,6 +132,7 @@
 - (void)accountViewControllerUpdatedData:(AccountViewController *)accountViewController
 {
     [hvc refreshData];
+    [tvc updateCurrentUserName];
 }
 
 @end

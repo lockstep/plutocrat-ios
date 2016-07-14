@@ -21,5 +21,6 @@
 + (NSDictionary *)userDict;
 + (NSUInteger)successfulBuyouts;
 + (NSUInteger)availableShares;
++ (NSString *)displayName;
 
 @end

@@ -12,4 +12,6 @@
 
 @interface TargetsViewController : TargetsBuyoutsBaseViewController <TargetsBuyoutsCellDelegate, TargetsBuyotsHeaderDelegate, InitiateViewControllerDelegate>
 
+- (void)updateCurrentUserName;
+
 @end

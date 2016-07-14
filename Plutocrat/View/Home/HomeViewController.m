@@ -170,11 +170,21 @@
 
     if (self.view.bounds.size.height > 600.0f)
     {
-        [infoView setCenter:CGPointMake(infoView.center.x, (view.bounds.size.height + curY) / 2)];
+        if (!attacked)
+        {
+            [infoView setCenter:CGPointMake(infoView.center.x,
+                                            (view.bounds.size.height + curY) / 2)];
+        }
+        else
+        {
+            [infoView setCenter:CGPointMake(infoView.center.x,
+                                            curY + infoView.frame.size.height / 2 + 20.0f)];
+        }
     }
     else
     {
-        [infoView setCenter:CGPointMake(infoView.center.x, curY + infoView.frame.size.height / 2)];
+        [infoView setCenter:CGPointMake(infoView.center.x,
+                                        curY + infoView.frame.size.height / 2)];
     }
     curY += infoView.frame.size.height;
     
