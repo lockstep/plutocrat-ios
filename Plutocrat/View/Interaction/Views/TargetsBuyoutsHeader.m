@@ -63,7 +63,7 @@
         shade = [[UIView alloc] initWithFrame:photo.frame];
         [shade setBackgroundColor:[UIColor blackColor]];
         [[shade layer] setShadowColor:[UIColor blackColor].CGColor];
-        [[shade layer] setShadowOffset:CGSizeMake(1.0f, 1.0f)];
+        [[shade layer] setShadowOffset:CGSizeMake(0.0f, 0.0f)];
         [[shade layer] setCornerRadius:shade.frame.size.width / 2];
         [[shade layer] setShadowOpacity:1.0f];
         [shade setClipsToBounds:NO];
@@ -106,7 +106,7 @@
 
         engageReplace = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 65.0f, 28.0f)];
         [engageReplace setFont:[UIFont regularFontWithSize:11.0f]];
-        [engageReplace setTextColor:[UIColor ourRed]];
+        [engageReplace setTextColor:[UIColor whiteColor]];
         [engageReplace setNumberOfLines:0];
         [engageReplace setLineBreakMode:NSLineBreakByWordWrapping];
         [engageReplace setHidden:YES];

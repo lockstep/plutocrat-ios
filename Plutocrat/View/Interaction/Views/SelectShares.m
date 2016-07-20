@@ -54,9 +54,10 @@
         
         minusButton = [[UIButton alloc] initWithFrame:
                        CGRectMake(86.0f,
-                                  shares.frame.origin.y + shares.frame.size.height + 12.0f,
-                                  26.0f,
-                                  26.0f)];
+                                  shares.frame.origin.y + shares.frame.size.height + 5.0f,
+                                  40.0f,
+                                  40.0f)];
+        [minusButton setImageEdgeInsets:UIEdgeInsetsMake(7.0f, 7.0f, 7.0f, 7.0f)];
         [minusButton addTarget:self action:@selector(minusDown)
               forControlEvents:UIControlEventTouchDown];
         [minusButton addTarget:self action:@selector(minusUp)
@@ -69,10 +70,11 @@
         [self addSubview:minusButton];
         
         plusButton = [[UIButton alloc] initWithFrame:
-                      CGRectMake(frame.size.width - 86.0f - 26.0f,
-                                 shares.frame.origin.y + shares.frame.size.height + 12.0f,
-                                 26.0f,
-                                 26.0f)];
+                      CGRectMake(frame.size.width - 86.0f - 40.0f,
+                                 shares.frame.origin.y + shares.frame.size.height + 5.0f,
+                                 40.0f,
+                                 40.0f)];
+        [plusButton setImageEdgeInsets:UIEdgeInsetsMake(7.0f, 7.0f, 7.0f, 7.0f)];
         [plusButton addTarget:self action:@selector(plusDown)
              forControlEvents:UIControlEventTouchDown];
         [plusButton addTarget:self action:@selector(plusUp)

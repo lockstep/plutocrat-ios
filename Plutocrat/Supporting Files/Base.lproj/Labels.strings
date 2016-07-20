@@ -37,7 +37,7 @@
 "OutcomePending" = "Outcome Pending";
 "BuyoutSucceeded" = "Buyout Succeeded";
 "BuyoutFailed" = "Buyout Failed";
-"BuyoutsCellFormat" = "%@ %i shares %@ ago %@";
+"BuyoutsCellFormat" = "%@ %i share%@ %@ ago: %@";
 "InitiateBuyoutWith" = "Initiate Buyout With";
 "Share" = "Share";
 "Shares" = "Shares";
@@ -80,7 +80,7 @@
 "Settings" = "Settings";
 "UpdateYourPreferences" = "Update Your Preferences";
 "BuyoutHistory" = "Buyout History";
-"ChangePhoto" = "ChangePhoto";
+"ChangePhoto" = "Change Photo";
 "UseCamera" = "Use Camera";
 "PickFromLibrary" = "Pick From Library";
 "DeletePhoto" = "Delete Photo";

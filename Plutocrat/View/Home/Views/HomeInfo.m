@@ -117,7 +117,7 @@
             [gettingStarted setHidden:YES];
             [info setTextColor:paleGray];
             [info setFont:bigFont];
-            [info setCenter:self.center];
+            [info setCenter:CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2)];
             [find setHidden:YES];
             [enable setHidden:YES];
             break;

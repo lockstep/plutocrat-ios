@@ -65,7 +65,7 @@
             break;
     }
     
-    NSString * str = [NSString stringWithFormat:NSLocalizedStringFromTable(@"BuyoutsCellFormat", @"Labels", nil), firstLine, shares, timeAgo, status];
+    NSString * str = [NSString stringWithFormat:NSLocalizedStringFromTable(@"BuyoutsCellFormat", @"Labels", nil), firstLine, shares, shares == 1 ? @"" : @"s", timeAgo, status];
     
     NSDictionary * baseAttrs = @{NSFontAttributeName:font,
                                  NSForegroundColorAttributeName:gray};
