@@ -129,7 +129,7 @@
 
 - (void)setBuyouts:(NSUInteger)buyouts
 {
-    [info setText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"YouNeedMore", @"Texts", nil), buyouts]];
+    [info setText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"YouNeedMore", @"Texts", nil), buyouts, buyouts == 1 ? @"" : @"s"]];
 }
 
 - (void)setName:(NSString *)name shares:(NSUInteger)shares timeAgo:(NSString *)timeAgo

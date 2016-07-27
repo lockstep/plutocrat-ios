@@ -15,7 +15,6 @@
 {
     UIImageView * background;
     UILabel * noPlutocrat;
-    UIView * shade;
     UIImageView * photo;
     UILabel * name;
     UILabel * plutocratBuyouts;
@@ -59,17 +58,6 @@
         [[photo layer] setMasksToBounds:YES];
         [photo setImage:[UIImage imageNamed:@"empty-profile-image"]];
         [photo setHidden:YES];
-
-        shade = [[UIView alloc] initWithFrame:photo.frame];
-        [shade setBackgroundColor:[UIColor blackColor]];
-        [[shade layer] setShadowColor:[UIColor blackColor].CGColor];
-        [[shade layer] setShadowOffset:CGSizeMake(0.0f, 0.0f)];
-        [[shade layer] setCornerRadius:shade.frame.size.width / 2];
-        [[shade layer] setShadowOpacity:1.0f];
-        [shade setClipsToBounds:NO];
-        [shade setHidden:YES];
-
-        [self addSubview:shade];
         [self addSubview:photo];
         
         CGFloat startingXForLabels = bordersOffset + photo.frame.size.width + [Globals offsetFromPhoto];
@@ -131,7 +119,6 @@
     {
         case TargetsHeaderNoPlutocrat:
             [noPlutocrat setHidden:NO];
-            [shade setHidden:YES];
             [photo setHidden:YES];
             [name setHidden:YES];
             [plutocratBuyouts setHidden:YES];
@@ -143,7 +130,6 @@
             
         case TargetsHeaderWithPlutocrat:
             [noPlutocrat setHidden:YES];
-            [shade setHidden:NO];
             [photo setHidden:NO];
             [name setHidden:NO];
             [plutocratBuyouts setHidden:NO];
@@ -155,7 +141,6 @@
 
         case TargetsHeaderWithPlutocratUnderThreat:
             [noPlutocrat setHidden:YES];
-            [shade setHidden:NO];
             [photo setHidden:NO];
             [name setHidden:NO];
             [plutocratBuyouts setHidden:NO];
@@ -168,7 +153,6 @@
 
         case TargetsHeaderWithPlutocratAttackingYou:
             [noPlutocrat setHidden:YES];
-            [shade setHidden:NO];
             [photo setHidden:NO];
             [name setHidden:NO];
             [plutocratBuyouts setHidden:NO];
@@ -181,7 +165,6 @@
 
         case TargetsHeaderWithPlutocratIsYou:
             [noPlutocrat setHidden:YES];
-            [shade setHidden:NO];
             [photo setHidden:NO];
             [name setHidden:NO];
             [plutocratBuyouts setHidden:NO];
@@ -193,7 +176,6 @@
 
         case BuyoutsHeader:
             [noPlutocrat setHidden:YES];
-            [shade setHidden:YES];
             [photo setHidden:YES];
             [name setHidden:YES];
             [plutocratBuyouts setHidden:YES];

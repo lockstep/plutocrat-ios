@@ -12,7 +12,7 @@
 
 "UseSharesToBold" = "permanent account suspension";
 
-"YouNeedMore" = "You need %i more buyouts to become the Plutocrat.";
+"YouNeedMore" = "You need %i more buyout%@ to become the Plutocrat.";
 
 "WARNING" = "WARNING: Your response to this buyout threat is not reversible. You must match the buyout shares to maintain your account.\r\n\r\nFailure to match the buyout will result in permanent account suspension. Any shares remaining in your account will transfer to the victor.";
 

@@ -109,7 +109,7 @@ enum ApiMethod {
         [urlRequest setValue:[UserManager getHeader:@"Uid"] forHTTPHeaderField:@"Uid"];
     }
     
-    NSLog(@"API:[%@] %@ [%d] (%@)", methodString, urlString, method, params);
+  //  NSLog(@"API:[%@] %@ [%d] (%@)", methodString, urlString, method, params);
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
@@ -119,7 +119,7 @@ enum ApiMethod {
         
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
         long statusCode = httpResponse.statusCode;
-        NSLog(@"response(%ld, %ld): %@", statusCode, (long)error.code, responseObject);
+   //     NSLog(@"response(%ld, %ld): %@", statusCode, (long)error.code, responseObject);
 
         switch (statusCode) {
             case 200:
