@@ -19,10 +19,6 @@
 		FD386A1B1CE34B9600065BA3 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A141CE34B9600065BA3 /* AFURLResponseSerialization.m */; };
 		FD386A1C1CE34B9600065BA3 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A161CE34B9600065BA3 /* AFURLSessionManager.m */; };
 		FD386A1F1CE34BB700065BA3 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A1E1CE34BB700065BA3 /* UserManager.m */; };
-		FD386A2A1CE3516800065BA3 /* Compact.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A231CE3516800065BA3 /* Compact.m */; };
-		FD386A2B1CE3516800065BA3 /* CUCompactArray.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A251CE3516800065BA3 /* CUCompactArray.m */; };
-		FD386A2C1CE3516800065BA3 /* CUCompactDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A271CE3516800065BA3 /* CUCompactDictionary.m */; };
-		FD386A2D1CE3516800065BA3 /* CUJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A291CE3516800065BA3 /* CUJSONSerialization.m */; };
 		FD386A311CE3517A00065BA3 /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A301CE3517A00065BA3 /* JASidePanelController.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		FD386A341CE3637F00065BA3 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A331CE3637F00065BA3 /* RootViewController.m */; };
 		FD386A381CE4FA3600065BA3 /* BigUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD386A371CE4FA3600065BA3 /* BigUserView.m */; };
@@ -95,15 +91,6 @@
 		FD386A161CE34B9600065BA3 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFURLSessionManager.m; path = ThirdParty/AFNetworking/AFURLSessionManager.m; sourceTree = "<group>"; };
 		FD386A1D1CE34BB700065BA3 /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserManager.h; path = Model/UserManager.h; sourceTree = "<group>"; };
 		FD386A1E1CE34BB700065BA3 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserManager.m; path = Model/UserManager.m; sourceTree = "<group>"; };
-		FD386A211CE3516800065BA3 /* CollectionUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollectionUtils.h; path = ThirdParty/CollectionUtils/CollectionUtils.h; sourceTree = "<group>"; };
-		FD386A221CE3516800065BA3 /* Compact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Compact.h; path = ThirdParty/CollectionUtils/Compact.h; sourceTree = "<group>"; };
-		FD386A231CE3516800065BA3 /* Compact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Compact.m; path = ThirdParty/CollectionUtils/Compact.m; sourceTree = "<group>"; };
-		FD386A241CE3516800065BA3 /* CUCompactArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CUCompactArray.h; path = ThirdParty/CollectionUtils/CUCompactArray.h; sourceTree = "<group>"; };
-		FD386A251CE3516800065BA3 /* CUCompactArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CUCompactArray.m; path = ThirdParty/CollectionUtils/CUCompactArray.m; sourceTree = "<group>"; };
-		FD386A261CE3516800065BA3 /* CUCompactDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CUCompactDictionary.h; path = ThirdParty/CollectionUtils/CUCompactDictionary.h; sourceTree = "<group>"; };
-		FD386A271CE3516800065BA3 /* CUCompactDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CUCompactDictionary.m; path = ThirdParty/CollectionUtils/CUCompactDictionary.m; sourceTree = "<group>"; };
-		FD386A281CE3516800065BA3 /* CUJSONSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CUJSONSerialization.h; path = ThirdParty/CollectionUtils/CUJSONSerialization.h; sourceTree = "<group>"; };
-		FD386A291CE3516800065BA3 /* CUJSONSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CUJSONSerialization.m; path = ThirdParty/CollectionUtils/CUJSONSerialization.m; sourceTree = "<group>"; };
 		FD386A2F1CE3517A00065BA3 /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JASidePanelController.h; path = ThirdParty/SidePanel/JASidePanelController.h; sourceTree = "<group>"; };
 		FD386A301CE3517A00065BA3 /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JASidePanelController.m; path = ThirdParty/SidePanel/JASidePanelController.m; sourceTree = "<group>"; };
 		FD386A321CE3637F00065BA3 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootViewController.h; path = View/Common/RootViewController.h; sourceTree = "<group>"; };
@@ -222,22 +209,6 @@
 			name = AFNetworking;
 			sourceTree = "<group>";
 		};
-		FD386A201CE3515700065BA3 /* CollectionUtils */ = {
-			isa = PBXGroup;
-			children = (
-				FD386A211CE3516800065BA3 /* CollectionUtils.h */,
-				FD386A221CE3516800065BA3 /* Compact.h */,
-				FD386A231CE3516800065BA3 /* Compact.m */,
-				FD386A241CE3516800065BA3 /* CUCompactArray.h */,
-				FD386A251CE3516800065BA3 /* CUCompactArray.m */,
-				FD386A261CE3516800065BA3 /* CUCompactDictionary.h */,
-				FD386A271CE3516800065BA3 /* CUCompactDictionary.m */,
-				FD386A281CE3516800065BA3 /* CUJSONSerialization.h */,
-				FD386A291CE3516800065BA3 /* CUJSONSerialization.m */,
-			);
-			name = CollectionUtils;
-			sourceTree = "<group>";
-		};
 		FD386A2E1CE3516B00065BA3 /* SidePanel */ = {
 			isa = PBXGroup;
 			children = (
@@ -322,7 +293,6 @@
 			isa = PBXGroup;
 			children = (
 				FD386A091CE34B8A00065BA3 /* AFNetworking */,
-				FD386A201CE3515700065BA3 /* CollectionUtils */,
 				FD4553D71D09885700554618 /* KeychainWrapper */,
 				FD386A2E1CE3516B00065BA3 /* SidePanel */,
 			);
@@ -607,7 +577,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD386A2D1CE3516800065BA3 /* CUJSONSerialization.m in Sources */,
 				FD45A0BF1CD7735100304EC0 /* AppDelegate.m in Sources */,
 				FD4553DD1D109C4600554618 /* UIImageView+Cached.m in Sources */,
 				FD8B5CC51CDBFF8D00751642 /* LoginViewController.m in Sources */,
@@ -632,7 +601,6 @@
 				FD8B5CF41CE252AE00751642 /* SharesViewController.m in Sources */,
 				FDA1A6BF1D001DF700FFB268 /* HomeInfo.m in Sources */,
 				FD8B5CC01CDBE6A600751642 /* UIFont+Utils.m in Sources */,
-				FD386A2A1CE3516800065BA3 /* Compact.m in Sources */,
 				FDA1A69E1CECE31800FFB268 /* TargetsCell.m in Sources */,
 				FDA1A6821CEB467100FFB268 /* Globals.m in Sources */,
 				FD386A3E1CE4FB3100065BA3 /* AttackerView.m in Sources */,
@@ -654,10 +622,8 @@
 				FD8B5CCB1CDBFFFA00751642 /* CommonSeparator.m in Sources */,
 				FDFA5AF81CDA9F9700030A89 /* main.m in Sources */,
 				FD8B5CFA1CE252BF00751642 /* TabBarViewController.m in Sources */,
-				FD386A2C1CE3516800065BA3 /* CUCompactDictionary.m in Sources */,
 				FD386A181CE34B9600065BA3 /* AFNetworkReachabilityManager.m in Sources */,
 				FD8B5CE51CE2525100751642 /* AccountViewController.m in Sources */,
-				FD386A2B1CE3516800065BA3 /* CUCompactArray.m in Sources */,
 				FD4553DA1D09886700554618 /* KeychainWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -783,7 +749,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 0.7;
+				CURRENT_PROJECT_VERSION = 0.8;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Plutocrat/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Plutocrat/Supporting Files/Info.plist";
@@ -805,7 +771,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 0.7;
+				CURRENT_PROJECT_VERSION = 0.8;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Plutocrat/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Plutocrat/Supporting Files/Info.plist";

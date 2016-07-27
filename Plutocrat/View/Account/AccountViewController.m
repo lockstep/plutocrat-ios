@@ -341,15 +341,6 @@
                                                                     completion:nil];
                                          }]];
 
-    [ac addAction:[UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"DeletePhoto", @"Labels", nil)
-                                           style:UIAlertActionStyleDestructive
-                                         handler:^(UIAlertAction * action) {
-                                             photo.image = [UIImage imageNamed:@"empty-profile-image"];
-                                             [photo removeInitials:NO];
-                                             [ac dismissViewControllerAnimated:YES
-                                                                    completion:nil];
-                                         }]];
-
     [ac addAction:[UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"UseCamera", @"Labels", nil)
 
                                            style:UIAlertActionStyleDefault
