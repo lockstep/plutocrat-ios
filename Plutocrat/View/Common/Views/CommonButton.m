@@ -41,8 +41,8 @@
                                                                            30.0f)];
     [[button titleLabel] setFont:font];
     [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
-    [button paintButtonToColor:ButtonColorWhite titleColor:ButtonColorWhite];
-    [button paintBorderToColor:ButtonColorWhite];
+    [button paintButtonToColor:ButtonColorClear titleColor:ButtonColorClear];
+    [button paintBorderToColor:ButtonColorClear];
     [button.layer setBorderWidth:1.0f];
     [button.layer setCornerRadius:3.0f];
     [button.layer setMasksToBounds:YES];
@@ -66,28 +66,39 @@
                                                      green:1.0f / 255.0f
                                                       blue:1.0f / 255.0f
                                                      alpha:1.0f]];
+            [self setHighColor:[UIColor whiteColor]];
             break;
             
         case ButtonColorGray:
             [self setBackgroundColor:[UIColor grayWithIntense:124.0f]];
+            [self setHighColor:[UIColor ourViolet]];
             break;
             
         case ButtonColorViolet:
             [self setBackgroundColor:[UIColor ourViolet]];
+            [self setHighColor:[UIColor whiteColor]];
             break;
             
         case ButtonColorWhite:
-            [self setBackgroundColor:[UIColor clearColor]];
+            [self setBackgroundColor:[UIColor whiteColor]];
+            [self setHighColor:[UIColor ourViolet]];
             break;
 
         case ButtonColorHardWhite:
             [self setBackgroundColor:[UIColor whiteColor]];
+            [self setHighColor:[UIColor ourViolet]];
             break;
-            
+
+        case ButtonColorClear:
+            [self setBackgroundColor:[UIColor clearColor]];
+            [self setHighColor:[UIColor whiteColor]];
+            break;
+
         default:
             break;
     }
-    
+    [self setDefColor:self.backgroundColor];
+
     switch (titleColor)
     {
         case ButtonColorRed:
@@ -96,27 +107,36 @@
                                                  blue:1.0f / 255.0f
                                                 alpha:1.0f]
                        forState:UIControlStateNormal];
-            [self setTitleColor:[UIColor grayWithIntense:124.0f] forState:UIControlStateHighlighted];
+            [self setTitleColor:[UIColor colorWithRed:193.0f / 255.0f
+                                                green:1.0f / 255.0f
+                                                 blue:1.0f / 255.0f
+                                                alpha:1.0f]
+                       forState:UIControlStateHighlighted];
             break;
             
         case ButtonColorGray:
             [self setTitleColor:[UIColor grayWithIntense:124.0f] forState:UIControlStateNormal];
-            [self setTitleColor:[UIColor ourViolet] forState:UIControlStateHighlighted];
+            [self setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
             break;
             
         case ButtonColorViolet:
             [self setTitleColor:[UIColor ourViolet] forState:UIControlStateNormal];
-            [self setTitleColor:[UIColor grayWithIntense:124.0f] forState:UIControlStateHighlighted];
+            [self setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
             break;
             
         case ButtonColorWhite:
             [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [self setTitleColor:[UIColor ourViolet] forState:UIControlStateHighlighted];
+            [self setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
             break;
 
         case ButtonColorHardWhite:
             [self setTitleColor:[UIColor ourViolet] forState:UIControlStateNormal];
             [self setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+            break;
+
+        case ButtonColorClear:
+            [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [self setTitleColor:[UIColor ourViolet] forState:UIControlStateHighlighted];
             break;
 
         default:
@@ -151,9 +171,21 @@
             [self.layer setBorderColor:[UIColor whiteColor].CGColor];
             break;
 
+        case ButtonColorClear:
+            [self.layer setBorderColor:[UIColor whiteColor].CGColor];
+            break;
+
         default:
             break;
     }
+}
+
+- (void)setHighlighted:(BOOL)highlighted
+{
+    [super setHighlighted:highlighted];
+
+    UIColor * paintBack = highlighted ? self.highColor : self.defColor;
+    [self setBackgroundColor:paintBack];
 }
 
 @end

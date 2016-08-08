@@ -14,7 +14,8 @@ typedef NS_ENUM (NSUInteger, ButtonColor)
     ButtonColorRed,
     ButtonColorViolet,
     ButtonColorWhite,
-    ButtonColorHardWhite
+    ButtonColorHardWhite,
+    ButtonColorClear
 };
 
 @interface CommonButton : UIButton
@@ -22,5 +23,8 @@ typedef NS_ENUM (NSUInteger, ButtonColor)
 + (instancetype)buttonWithText:(NSString *)text color:(ButtonColor)buttonColor;
 + (instancetype)bigButtonWithText:(NSString *)text width:(CGFloat)width;
 - (void)setText:(NSString *)text;
+
+@property (nonatomic, strong) UIColor * defColor;
+@property (nonatomic, strong) UIColor * highColor;
 
 @end

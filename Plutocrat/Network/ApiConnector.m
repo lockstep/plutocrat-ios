@@ -10,7 +10,7 @@
 #import "AFNetworking.h"
 #import "UserManager.h"
 
-#define IS_PRODUCTION 1
+#define IS_PRODUCTION 0
 
 #define PRODUCTION_SERVER @"https://plutocracy.herokuapp.com"
 #define STAGING_SERVER @"https://plutocracy-staging.herokuapp.com"

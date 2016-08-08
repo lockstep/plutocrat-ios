@@ -25,10 +25,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     [self initInLoginStateAndReset:NO];
 }
 
 #pragma mark - public
+
+- (void)reInit
+{
+    [self initInLoginStateAndReset:NO];
+}
 
 - (void)updateOnPush
 {

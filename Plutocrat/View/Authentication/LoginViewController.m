@@ -87,8 +87,6 @@
     [logo setCenter:CGPointMake(view.frame.size.width / 2, 80.0f)];
     [view addSubview:logo];
 
-//    UIColor * paleGray = [UIColor grayWithIntense:146.0f];
-  //  const CGFloat bigFontSize = 24.0f;
     CGFloat smallFontSize = 14.0f;
     NSDictionary * placeholderAttrs = @{NSFontAttributeName: [UIFont regularFontWithSize:smallFontSize], NSForegroundColorAttributeName: [UIColor whiteColor]};
     CGFloat horizontalOffset = [Globals horizontalOffset];
@@ -420,7 +418,7 @@
 {
     iView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     dispatch_async(dispatch_get_main_queue(), ^{
-        blocker = [[UIView alloc] initWithFrame:self.view.frame];
+        blocker = [[UIView alloc] initWithFrame:self.view.bounds];
         [blocker setBackgroundColor:[UIColor blackColor]];
         [blocker setAlpha:0.7f];
         [self.view addSubview:blocker];

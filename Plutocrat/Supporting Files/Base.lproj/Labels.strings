@@ -67,6 +67,7 @@
 "UseTouchIDToLogin" = "Use TouchID to login";
 "SettingsUpdated" = "Your settings were updated successfully";
 "SuccessfulInitiation" = "Buyout Initiated";
+"NotEnoughInitiation" = "Not enough shares";
 "AskForDefeat" = "Are you sure you want to accept defeat? It will result in permanent account suspension.";
 "YES" = "YES";
 "Cancel" = "Cancel";

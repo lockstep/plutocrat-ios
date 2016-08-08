@@ -193,8 +193,8 @@
         target = buyout.targetUser;
     }
     InitiateViewController * ivc = [[InitiateViewController alloc] init];
+    [ivc setUser:target cellTag:cell.tag];
     [self presentViewController:ivc animated:YES completion:^(){
-        [ivc setUser:target cellTag:cell.tag];
         [ivc setBackImageType:BackImageTypeBuyouts];
         [ivc setDelegate:self];
     }];

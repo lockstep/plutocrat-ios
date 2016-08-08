@@ -16,7 +16,7 @@
 
 "WARNING" = "WARNING: Your response to this buyout threat is not reversible. You must match the buyout shares to maintain your account.\r\n\r\nFailure to match the buyout will result in permanent account suspension. Any shares remaining in your account will transfer to the victor.";
 
-"YourWereBoughtOut" = "You were bought out by %@ for\r\n%i shares %@ ago.\r\nYour account is now inactive.";
+"YourWereBoughtOut" = "You were bought out by %@ for\r\n%i share%@ %@ ago.\r\nYour account is now inactive.";
 
 "BuyoutAttempts" = "Buyout attempts are not reversible. Your shares will be debited regardless of the outcome.\r\n\r\nMinimum share requirements apply to repeat buyout attempts. Each subsequent attempt against the same target requires at least twice the previous number of shares.";
 

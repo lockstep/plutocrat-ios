@@ -123,8 +123,8 @@
 {
     User * target = [self.source objectAtIndex:cell.tag];
     InitiateViewController * ivc = [[InitiateViewController alloc] init];
+    [ivc setUser:target cellTag:cell.tag];
     [self presentViewController:ivc animated:YES completion:^(){
-        [ivc setUser:target cellTag:cell.tag];
         [ivc setBackImageType:BackImageTypeTargets];
         [ivc setDelegate:self];
     }];
@@ -135,8 +135,8 @@
 - (void)buttonTappedToEngage
 {
     InitiateViewController * ivc = [[InitiateViewController alloc] init];
+    [ivc setUser:pluto cellTag:-1];
     [self presentViewController:ivc animated:YES completion:^(){
-        [ivc setUser:pluto cellTag:-1];
         [ivc setBackImageType:BackImageTypeTargets];
         [ivc setDelegate:self];
     }];

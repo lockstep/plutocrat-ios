@@ -134,7 +134,7 @@
 
 - (void)setName:(NSString *)name shares:(NSUInteger)shares timeAgo:(NSString *)timeAgo
 {
-    [info setText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"YourWereBoughtOut", @"Texts", nil), name, shares, timeAgo]];
+    [info setText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"YourWereBoughtOut", @"Texts", nil), name, shares == 1 ? @"" : @"s", shares, timeAgo]];
 }
 
 @end

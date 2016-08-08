@@ -478,6 +478,7 @@
                                        [Settings enableEventsNotifiations:eventsSwitch.isOn];
                                        [Settings enableUpdatesEmails:updatesSwitch.isOn];
                                        [Settings enableTouchID:touchIDSwitch.isOn];
+                                       [Settings setUserEmail:email.text];
                                        [self showAlertOk];
                                        if ([self.delegate respondsToSelector:@selector(accountViewControllerUpdatedData:)])
                                        {

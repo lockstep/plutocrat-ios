@@ -31,7 +31,16 @@
 
     [self.tabBar setBackgroundImage:[UIImage imageNamed:@"white_bg.jpg"]];
     [self.tabBar setTintColor:[UIColor ourViolet]];
-    
+    CGFloat sizeOfStatusBar = [[UIApplication sharedApplication] statusBarFrame].size.height;
+
+    if (sizeOfStatusBar > 20.0f)
+    {
+        [self.tabBar setFrame:CGRectMake(0.0f,
+                                         [[UIScreen mainScreen] applicationFrame].size.height - self.tabBar.frame.size.height,
+                                         self.tabBar.frame.size.width,
+                                         self.tabBar.frame.size.height)];
+    }
+
     hvc = [HomeViewController new];
     [hvc setDelegate:self];
     UIImage * hvcImgInact = [[UIImage imageNamed:@"home-inactive"]
